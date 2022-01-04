@@ -1,5 +1,6 @@
 {% extends 'superuser/basic.html' %}
 {% block body %}
+{% load static %}
 {% load custumfilter %}
 <div class=" smart-card">
     <h4 class="title">Available {{currentmodelname|title}}s in <a
@@ -36,3 +37,23 @@
 </div>
 {% endif %}
 {% endblock %}
+{% block exscript %}
+<script src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+
+
+<script type="text/javascript"
+src="{% static 'select/js/mdb.min.js' %}"></script>
+<script type="text/javascript">
+{ // Material Select Initialization
+  $(document).ready(function () {
+    $('.mdb-select').materialSelect();
+  });
+}
+</script>
+{%  endblock %}
+{% block exstyle %}
+<link rel="stylesheet"
+href="{% static 'select/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'select/css/mdb.min.css' %}">
+
+{%  endblock %}

@@ -14,11 +14,22 @@
             {{form.media}}
             {{form.as_p}}
             <input type="submit" class="btn btn-primary my-3" />
-           
+            {% if form.instance %}
+            <a tabindex="0" class="btn btn-danger " role="button" data-toggle="popover"
+                    data-trigger="focus" data-html="true" title="" data-content="
+                                <h6>Are you sure to delete this?</h6>
+                                <form method='get' action='{% url 'editdatamodel' appname modelname form.instance.pk 'delete' %}'>
+                                <br>
+                                    <input type='submit' class='btn btn-danger btn-xs' value='Yes,Please'>
+                                    </form>
+                                " data-original-title="">
+                    <i class="ti-trash"></i>Delete
+              </a>{% endif %}
              <div class='row container'>
     {% for data in relateddata %}
     {% if data.related_name is not None %}
-        <a href="{% url 'relatedmodel' appname=appname modelname=modelname objectid=objectid relatedfield=data.related_name %}" class ="btn btn-primary {% if forloop.counter > 1 %}mx-2{% endif %}">Available {{data.related_name}}s</a>
+          
+        <a href="{% url 'relatedmodel' appname=appname modelname=modelname objectid=objectid relatedfield=data.related_name %}" class ="btn btn-primary {% if forloop.counter > 1 %}mx-2{% endif %}">{% if  "onetoonerel" in data|slugify %}View {{data.related_name}}s{% else %}Available {{data.related_name}}s{% endif %}</a>
         {% if showrelated %}
             <div>  
             {{data|showrelated:objectid}}

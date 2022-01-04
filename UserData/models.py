@@ -3,8 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import FileExtensionValidator
 from package.models import package, test
-
-
+from django.urls import reverse
 
 class User(AbstractUser):
     bio = models.TextField(max_length=500, blank=True)
@@ -44,7 +43,22 @@ class report(models.Model):
     booking = models.OneToOneField(Booking,on_delete=models.CASCADE,related_name="report")
     report = models.FileField(upload_to="reports",validators=[FileExtensionValidator( ['pdf','tif','jpg','jpeg','gif','png','docx'] ) ],)
     message = models.TextField(blank=True)
+    content_type = models.CharField(null=True, blank=True, max_length=100)
+
+    def save(self, *args, **kwargs):
+        try:
+            self.content_type = self.report.file.content_type
+        except:
+            pass
+        super().save(*args, **kwargs)
     def clean(self, *args, **kwargs):
         print(type(self.report.size))
-        if self.report.size > (1*1024*1024):
+        if self.report.size > (5*1024*1024):
             raise ValidationError({'report':'Report size should be less than 5mb'})
+    def BulkOprationButton(self):
+        data = (
+            # ("button name","button class","funtionname","reversed url","redirection:boolan")
+            ("Send Report",'btn btn-warning',"HandleSendReport",reverse('bulksendmail'),False),
+            ("Bluk Report upload",'btn btn-secondary',"HandleUploadReport",reverse('bulkreportupload'),True),
+        )
+        return data

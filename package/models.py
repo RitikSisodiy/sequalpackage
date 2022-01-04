@@ -14,6 +14,7 @@ class test(models.Model):
     sample_colllection_charges = models.CharField(max_length = 1,choices=(("1","Yes"),("0","No")))
     discount = models.CharField(help_text="You Can Ammount or Percent of Ammount Eg: 100 or 10%",max_length=10)
     final_cost  = models.FloatField(max_length = 50,blank=True)
+    
     def __str__(self):
         return F"{self.test_name} - ( {self.test_uniqueId} )"
     def save(self, *args, **kwargs):

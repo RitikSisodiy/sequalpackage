@@ -10,7 +10,10 @@ from django.core import serializers
 from .forms import GenForm
 from django.contrib.auth import authenticate, login, logout
 from superuser.dashboardsettings import exclude as excludeapps
+from django.db.models.fields import related
 from superuser.dashboardsettings import hiddenFields,disablefield
+from .models import emailSetup
+from django.core.mail.backends.smtp import EmailBackend
 # from django.apps import apps
 # from onlineshop.models import *
 # from django.contrib import messages
@@ -74,6 +77,10 @@ def showObject(request,appname,modelname):
     res['appname'] =appname
     res['modelname'] =modelname
     res['title'] =modelname
+    try:
+        res['oprations'] = mymodel().BulkOprationButton()
+    except:
+        pass
     return render(request , 'superuser/modeldatatable.html' ,res)
 from .dashboardsettings import showRelatedOnEditPage
 def editmodel(request,appname=None,modelname=None,objectid=None,opration=None):
@@ -125,7 +132,7 @@ def editmodel(request,appname=None,modelname=None,objectid=None,opration=None):
     return render(request,'superuser/editmodel.html',res)
 
 def cheackField(field=[],avFields=[],appname='', modelname=''):
-    nfield= field
+    nfield = field
     for data in avFields:
         data = data.split('.')
         if appname==data[0] and modelname==data[1]:
@@ -137,8 +144,42 @@ def relatedmodel(request,appname=None,modelname=None,objectid=None,relatedfield=
     res['title'] = modelname+" | " + relatedfield
     mymodel = getObjectbyAppModelName(appname,modelname)
     singledata = mymodel.objects.get(pk=objectid)
-    relatedfieldobject = getattr(singledata,relatedfield)
-    res['availbledata'] = relatedfieldobject.all()
+    res['appname'] = appname
+    res['modelname'] = modelname
+    res['objectid'] = objectid
+    res['currentmodel'] = singledata
+    try:
+        relatedfieldobject = getattr(singledata,relatedfield)
+    except getattr(mymodel._meta.model,relatedfield).RelatedObjectDoesNotExist:
+        result =  (list(filter(lambda x : (x.related_name==relatedfield), mymodel._meta.related_objects)))[0]
+        relatedmodel =   result.related_model._meta.verbose_name
+        relappname = result.related_model._meta.app_label
+        res['title'] = "edit " + modelname
+        if f"{appname}.{modelname}" in showRelatedOnEditPage:
+            res['showrelated'] = True
+        form = GenForm(result.related_model,listHiddenfield=[result.field.name])
+        inidic = {result.field.name:singledata.id}
+        print(inidic)
+        res['form'] = form(initial=inidic)
+        if request.method=='POST':
+            res['form'] = form(request.POST,request.FILES)
+            if res['form'].is_valid():
+                res['form'].save()
+                messages.success(request,str(getobjecturl(res['form'].instance)) + " is saved successfully")
+                if request.GET.get('next') is not None:
+                    return redirect(request.GET.get('next'))
+                return redirect(request.get_full_path())
+            messages.error(request,str(getobjecturl(res['form'].instance)) + " data is invalid Check your form")
+        return render(request,'superuser/editmodel.html',res)
+        # return redirect('editdatamodel',appname=relappname,modelname=relatedmodel,opration='add',objectid='newmodel')
+    try:
+        res['availbledata'] = relatedfieldobject.all()
+    except:
+        result =  (list(filter(lambda x : (x.related_name==relatedfield), mymodel._meta.related_objects)))[0]
+        relatedmodel =   result.related_model._meta.verbose_name
+        relappname = result.related_model._meta.app_label
+        return redirect('editdatamodel',appname=relappname,modelname=relatedmodel,opration='edit',objectid=relatedfieldobject.id)
+
     relmodel = relatedfieldobject.model
     relatedfieldobjectFieldname = relatedfieldobject.field.name
     hfield = [relatedfieldobjectFieldname,'slug']
@@ -149,19 +190,17 @@ def relatedmodel(request,appname=None,modelname=None,objectid=None,relatedfield=
     res['currentappname'] = relatedfieldobject.model._meta.app_label
     res['currentmodelfieldname'] = relatedfieldobject.model._meta.model_name
     if request.method == "POST":
-        form = form(request.POST,request.FILES)
-        if form.is_valid():
-            form.save()
+        res['form'] = form(request.POST,request.FILES)
+        if res['form'].is_valid():
+            res['form'].save()
             messages.success(request,"new "+ res['currentmodelname'] + "is added in "+modelname +" Successfully"  )
             return redirect(request.get_full_path())
         else:
             messages.error(request,'Invalid data please cheack your form')
+            return render(request,'superuser/relatedmodel.html',res)
     if relmodel is not None:
         res['fields'] = [[f.name,str(type(f))] for f in relmodel._meta.fields]
-    res['appname'] = appname
-    res['modelname'] = modelname
-    res['objectid'] = objectid
-    res['currentmodel'] = singledata
+    
     res['currentmodelobjectid'] = singledata.pk
     res['form'] = form(initial={relatedfieldobjectFieldname: singledata.pk})
     return render(request,'superuser/relatedmodel.html',res)
@@ -217,6 +256,17 @@ def logindashboard(request):
             return JsonResponse({"status":'invaliduser','msg':'invalid user','type':'danger'})
         return JsonResponse({"status":'invaliduser','msg':'Invalid Credentials','type':'danger'})
     return render(request,'superuser/logindashboard.html')
+
+
+
+def getEmailBackend():
+    config = emailSetup.objects.get(activate=True)
+    backend = EmailBackend(host=config.host, port=config.port, username=config.email, 
+                       password=config.password, use_tls=config.tsl )
+    return backend , config
+
+
+
 
 
 

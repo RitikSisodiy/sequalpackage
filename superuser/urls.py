@@ -1,6 +1,7 @@
 from django.urls import path, include
 from .import views
 urlpatterns = [
+    path('opration/',include('superuser.custumurl')),
     path('',views.index, name="dashboardindex"),
     path('logout',views.Logout, name="dashboardlogout"),
     path('related/<slug:appname>/<slug:modelname>/<slug:objectid>/<slug:relatedfield>/',views.relatedmodel, name="relatedmodel"),

@@ -41,11 +41,13 @@ hiddenFields= (
     "package.profile.Profile_Id",
     "package.coupon.Coupon_id",
     "package.package.Package_id",
-    
+    "UserData.report.content_type",
 )
 disablefield = (
     "package.Test.final_cost",
-    "package.coupon.Coupon_issed_by"
+    "package.coupon.Coupon_issed_by",
+    "UserData.Booking.Booking_id",
+   
 )
 
 for data in INSTALLED_APPS:
