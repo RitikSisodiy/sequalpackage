@@ -5,6 +5,29 @@ from django.core.exceptions import ValidationError
 
 exposed_request = None
 
+import random,string
+from django.utils.text import slugify
+
+# Create your models here.
+def get_random_string(size):
+    return ''.join(random.choices(string.ascii_uppercase +
+                             string.digits, k = size))
+
+def unique_slug_generator(instance, new_slug=None):
+    """
+    This is for a Django project and it assumes your instance 
+    has a model with a slug field and a title character (char) field.
+    """
+    slug=slugify(new_slug)[:50]
+    Klass = instance
+    qs_exists = Klass.objects.filter(slug=slug).exists()
+    if qs_exists:
+        new_slug = slugify(str(slug)[:46]+get_random_string(4))
+        return unique_slug_generator(instance, new_slug=new_slug)
+    return slug
+
+
+
 
 class test(models.Model):
     test_uniqueId = models.CharField(max_length=50, blank=True)
@@ -72,9 +95,12 @@ class package(models.Model):
     Package_for = models.ManyToManyField(PackageAvailablefor)
     discount = models.CharField(help_text="You Can Ammount or Percent of Ammount Eg: 100 or 10%",max_length=10)
     final_cost  = models.FloatField(max_length = 50,blank=True)
+    slug = models.SlugField(blank=True)
     def __str__(self):
         return F"{self.Package_name} - ( {self.Package_id} )"
     def save(self, *args, **kwargs):
+        if self.id is None:
+            self.slug = unique_slug_generator(package,self.Package_name)
         if self.discount:
             discount = float(self.discount.replace("%",''))
             if '%' in self.discount:
