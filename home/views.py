@@ -4,4 +4,5 @@ from package.models import package
 def index(request):
     res = {}
     res['packages'] = package.objects.all()
+    res['bodyclass'] = "index-page"
     return render(request,'home/index.html',res)

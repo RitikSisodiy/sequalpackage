@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+{% load custumfilter %}
+{% with ''|getAbout as aboutdata %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental</title>
+    <link href=" {% static 'css/main.css' %} " rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+</head>
+
+<body>
+    <div class="login-page" id="pagename">
+        {% include 'header.html' with aboutdata=aboutdata %}
+
+        <div class="container">
+            <h1 class="text-center title">Welcome to SEQUEL!</h1>
+            <div class="login-container container " id="login-container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="img-main">
+                                        <img class="d-block m-auto" src=" {% static 'images/boxicon.png' %} ">
+                                        <h1 class="text-center">Custamize</h1>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="img-main">
+                                        <img class="d-block m-auto" src=" {% static 'images/cost-effective.png' %} ">
+                                        <h1 class="text-center">Cost Effective</h1>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="img-main">
+                                        <img class="d-block m-auto" src=" {% static 'images/Convenient.png' %} ">
+                                        <h1 class="text-center">Convenient</h1>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="img-main">
+                                        <img class="d-block m-auto" src=" {% static 'images/timer.png' %} ">
+                                        <h1 class="text-center">Carefree</h1>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <div class="img-main">
+                                        <img class="d-block m-auto" src=" {% static 'images/complete.png' %} ">
+                                        <h1 class="text-center">Complete</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href=" {% static '#carouselExampleIndicators' %} "
+                                role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href=" {% static '#carouselExampleIndicators' %} "
+                                role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 p-lg-5">
+                        <h3>Login/Sign Up</h3>
+                        <p>Please enter your Mobile Number to proceed</p>
+                        <div class="blue-line"></div>
+                        <form action="{% url 'userlogin' %}" id="loginform">
+                            {% csrf_token %}
+                            <input type="text" value="+91" readonly>
+                            <input type="number" placeholder="Enter your Mobile Number" name="phone" id=""> <br>
+                            <div id="otpdiv"></div>
+                            <div id="loadingdiv"></div>
+                            <input type="submit" value="Login">
+                        </form>
+
+                        <p class="proceed text-center mt-5">By proceeding, you agree with our <span
+                                class="text-danger">Terms and Conditions</span> &amp; <span class="text-danger">Privacy
+                                Policy</span></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br>
+        {% include 'footer.html' with aboutdata=aboutdata %}
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script src=" {% static 'js/index.js' %} "></script>
+        <script>
+            AOS.init();
+        </script>
+        <script>
+            $("#loginform").submit(function (e) {
+
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+
+                var form = $(this);
+                var actionUrl = form.attr('action');
+                var input = form.children("input[name=phone]")
+                var otpdiv = $("#otpdiv")
+                var loadingdiv = $("#loadingdiv")
+                loadingdiv.html(`<center><img src="/static/Spinner-1s-44px.gif" alt="loading"></center>`)
+                $.ajax({
+                    type: "POST",
+                    url: actionUrl,
+                    data: form.serialize(), // serializes the form's elements.
+                    success: function (data) {
+                        console.log(data)// show response from the php script.
+                        $("#login-container").html(data);
+                        $("#pagename").attr('class', 'otp-page')
+                    }
+                });
+
+            });
+        </script>
+    </div>
+</body>
+{% endwith %}
+
+</html>

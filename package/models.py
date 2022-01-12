@@ -158,3 +158,9 @@ class coupon(models.Model):
             if not (discount <=100):
                 raise ValidationError(
                 {'discount': "discount should be under 100%"})
+
+
+class Faqs(models.Model):
+    package = models.ForeignKey(package,on_delete=models.CASCADE , related_name="Faqs")
+    question = models.CharField(max_length=150)
+    Answere = models.TextField()

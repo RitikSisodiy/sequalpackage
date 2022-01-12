@@ -115,7 +115,7 @@
                             <p>Fasting Time: <br> <b>10 Hours</b></p>
                         </div>
                         <div class="col-lg-3 col-6">
-                            <p>Test Recommended for: <br> <b>Female</b></p>
+                            <p>Test Recommended for: <br> <b>{% for data in package.Package_for.all %}{{data}}{% endfor %}</b></p>
                         </div>
                         <div class="col-lg-3 col-6">
                             <p> Recommended for age: <br> <b>5-99 Years</b></p>
@@ -170,77 +170,21 @@
                 <h2 style="font-weight: 800;">
                     Frequntly Asked Questions
                 </h2>
+                {% for data in package.Faqs.all %}
                 <div class="col-12 toggler p-0" id="toggler">
                     <div class="row">
                         <div class="col-lg-5 col-12">
-                            What does The pregnancy blood test show?
+                            {{data.question}}
                         </div>
                     </div>
                     <ul class="pt-2 pb-2">
-                        <p>"A pregnancy blood test shows the presence and rise of the human chorionic gonadotropin
-                            (hCG), a hormone secreted during pregnancy. The hCG nearly doubles every 2 days during early
-                            pregnancy, so a measurement by a blood test allows for better understanding of a pregnancy."
+                        <p>{{data.Answere|safe}}
                         </p>
                     </ul>
 
                 </div>
-                <div class="col-12 toggler p-0" id="toggler">
-                    <div class="row">
-                        <div class="col-lg-5 col-12">
-                            What tests should be done during pregnancy?
-                        </div>
-                    </div>
-                    <ul class="pt-2 pb-2">
-                        <p>"Some of the common tests that you should get done during pregnancy are complete hemogram,
-                            thyroid, blood sugar HIV, TORCH tests, HB variance amongst others. Most of these tests are
-                            included in the early pregnancy checkup, so you can get a clear understanding of your health
-                            and that of your baby."
-                        </p>
-                    </ul>
-
-                </div>
-                <div class="col-12 toggler p-0" id="toggler">
-                    <div class="row">
-                        <div class="col-lg-5 col-12">
-                            What tests are done during first trimester of pregnancy?
-                        </div>
-                    </div>
-                    <ul class="pt-2 pb-2">
-                        <p>"The following tests are generally recommended during the first trimester of pregnancy:
-                            Complete hemogram, blood sugar, thyroid, HIV and other STIs, Hb variance, ABO and Rh blood
-                            typing among others. Getting a early pregnancy check up is an essential way to determine
-                            both the mother and child's health."
-                        </p>
-                    </ul>
-
-                </div>
-                <div class="col-12 toggler p-0" id="toggler">
-                    <div class="row">
-                        <div class="col-lg-5 col-12">
-                            How soon can I take a Pregnancy Test?
-                        </div>
-                    </div>
-                    <ul class="pt-2 pb-2">
-                        <p>To get the most accurate result you should wait a week after you have missed your period for
-                            a pregnancy test
-                        </p>
-                    </ul>
-
-                </div>
-                <div class="col-12 toggler p-0" id="toggler">
-                    <div class="row">
-                        <div class="col-lg-5 col-12">
-                            Can blood test detect abnormalities in pregnancy?
-                        </div>
-                    </div>
-                    <ul class="pt-2 pb-2">
-                        <p>
-                            To get the most accurate result you should wait a week after you have missed your period for
-                            a pregnancy test
-                        </p>
-                    </ul>
-
-                </div>
+                {% endfor %}
+           
             </div>
         </div>
     

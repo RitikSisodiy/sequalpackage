@@ -4,11 +4,35 @@ from django.contrib.auth.models import AbstractUser
 from django.core.validators import FileExtensionValidator
 from package.models import package, test
 from django.urls import reverse
+from package.models import get_random_string
+def gen_username(length):
+    username= get_random_string(length)
+    userdata = User.objects.filter(username=username)
+    if userdata.exists():
+        return gen_username(length)
+    return username
 
 class User(AbstractUser):
-    bio = models.TextField(max_length=500, blank=True)
-    location = models.CharField(max_length=30, blank=True)
-    birth_date = models.DateField(null=True, blank=True)
+    phone = models.CharField(max_length=10)
+    gender = models.CharField(max_length=5,blank=True,null=True)
+    dob = models.DateField(blank=True,null=True)
+
+    def save(self,*args, **kwargs):
+        if self.id is None:
+            check = User.objects.filter(phone= self.phone)
+            if len(self.phone)!=10:
+                raise ValidationError("invalid phone")
+            if check.exists():
+                raise ValidationError("This phone is already exist")
+            self.username = gen_username(8)
+        super(User, self).save(*args, **kwargs)
+
+class TempUser(models.Model):
+    phone = models.CharField(max_length=13)
+    otp = models.CharField(max_length=8)
+    expire = models.DateTimeField()
+
+
 class Booking(models.Model):
     choices=(
         ("package","package"),

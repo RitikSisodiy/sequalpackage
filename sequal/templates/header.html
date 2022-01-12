@@ -5,7 +5,11 @@
                 <nav>
                     <div class="top">
                         <ul>
-                            <li><a href=" {% static 'login.html' %} ">Login/Sign up <i class="fa fa-user"></i></a></li>
+                            {% if user.is_authenticated %}
+                            <li><a href="  ">Profile <i class="fa fa-user"></i></a></li>
+                            {% else %}
+                            <li><a href=" {% url 'userlogin' %} ">Login/Sign up <i class="fa fa-user"></i></a></li>
+                            {% endif %}
                             <li><a href="#">Gurugon <i class="fa fa-map-marker"></i></a></li>
                             <li><a href=" {% static 'tel:+919199944099' %} ">+91 9199944099</a>/<a href="tel:+919584584587">+91
                                     9584584587 <i class="fa fa-phone"></i></a></li>
@@ -33,7 +37,7 @@
                                     </div>
                                 </ul>
                             </li>
-                            <li><a href="#">Wellness Card</a></li>
+
                             <li class="sub-menu"><a href="#">Popular Packages</a>
                                 <ul class="drop-down">
                                     <div class="row">
