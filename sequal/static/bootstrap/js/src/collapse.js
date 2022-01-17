@@ -37,7 +37,7 @@ const EVENT_HIDE           = `hide${EVENT_KEY}`
 const EVENT_HIDDEN         = `hidden${EVENT_KEY}`
 const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`
 
-const CLASS_NAME_SHOW       = 'show'
+const CLASS_NAME_SHOW       = 'in'
 const CLASS_NAME_COLLAPSE   = 'collapse'
 const CLASS_NAME_COLLAPSING = 'collapsing'
 const CLASS_NAME_COLLAPSED  = 'collapsed'

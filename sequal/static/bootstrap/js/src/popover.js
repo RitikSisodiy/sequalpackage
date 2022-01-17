@@ -39,7 +39,7 @@ const DefaultType = {
 }
 
 const CLASS_NAME_FADE = 'fade'
-const CLASS_NAME_SHOW = 'show'
+const CLASS_NAME_SHOW = 'in'
 
 const SELECTOR_TITLE   = '.popover-header'
 const SELECTOR_CONTENT = '.popover-body'

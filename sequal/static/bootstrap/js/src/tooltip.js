@@ -76,7 +76,7 @@ const Default = {
   popperConfig      : null
 }
 
-const HOVER_STATE_SHOW = 'show'
+const HOVER_STATE_SHOW = 'in'
 const HOVER_STATE_OUT  = 'out'
 
 const Event = {
@@ -93,7 +93,7 @@ const Event = {
 }
 
 const CLASS_NAME_FADE = 'fade'
-const CLASS_NAME_SHOW = 'show'
+const CLASS_NAME_SHOW = 'in'
 
 const SELECTOR_TOOLTIP_INNER = '.tooltip-inner'
 const SELECTOR_ARROW         = '.arrow'

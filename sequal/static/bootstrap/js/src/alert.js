@@ -29,7 +29,7 @@ const EVENT_CLICK_DATA_API = `click${EVENT_KEY}${DATA_API_KEY}`
 
 const CLASS_NAME_ALERT = 'alert'
 const CLASS_NAME_FADE  = 'fade'
-const CLASS_NAME_SHOW  = 'show'
+const CLASS_NAME_SHOW  = 'in'
 
 /**
  * ------------------------------------------------------------------------

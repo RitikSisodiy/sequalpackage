@@ -2970,6 +2970,7 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
 }
 
 @media(max-width:911px) {

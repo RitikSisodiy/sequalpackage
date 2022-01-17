@@ -39,7 +39,7 @@ const EVENT_KEYDOWN_DATA_API = `keydown${EVENT_KEY}${DATA_API_KEY}`
 const EVENT_KEYUP_DATA_API   = `keyup${EVENT_KEY}${DATA_API_KEY}`
 
 const CLASS_NAME_DISABLED        = 'disabled'
-const CLASS_NAME_SHOW            = 'show'
+const CLASS_NAME_SHOW            = 'in'
 const CLASS_NAME_DROPUP          = 'dropup'
 const CLASS_NAME_DROPRIGHT       = 'dropright'
 const CLASS_NAME_DROPLEFT        = 'dropleft'

@@ -1,0 +1,48 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block body %}
+ <div class="main">
+     <div class="container">
+         <h1 class="text-center title">Dashboard</h1>
+         <div class="row">
+             <div class="col-lg-3 col-12 p-3">
+                 <div class="profile-div">
+                     <div class="profile">V</div>
+                 <h6 class="mt-1">Vinay</h6>
+                 <p>Vinay@gamil.com
+                     <br>
+                     Phone: +91 8109829687</p>
+                     <a href="#">Edit Info</a>
+                 </div>
+             </div>
+             <div class="col-lg-3 p-3 text-center">
+                <div class="rest-card">
+                    <img src="{% static 'images/my-subscription.png' %}" alt="">
+                    <a href="{% url "subscription" %}"><h6>My Subscriptions</h6></a>
+                </div>
+            </div>
+            <div class="col-lg-3 p-3 text-center">
+                <div class="rest-card">
+                    <img src="{% static 'images/my-subscription.png' %}" alt="">
+                    <a href=""><h6>My Subscriptions</h6></a>
+                </div>
+            </div>
+            <div class="col-lg-3 p-3 text-center">
+                <div class="rest-card">
+                    <img src="{% static 'images/my-subscription.png' %}" alt="">
+                    <a href=""><h6>My Subscriptions</h6></a>
+                </div>
+            </div>
+            <div class="col-lg-3 p-3 text-center">
+                <div class="rest-card">
+                    <img src="{% static 'images/my-subscription.png' %}" alt="">
+                    <a href=""><h6>My Subscriptions</h6></a>
+                </div>
+            </div>
+            
+         </div>
+     </div>
+ 
+     <br><br>
+ </div>
+  {% endblock %}   

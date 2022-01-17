@@ -6,7 +6,7 @@
                     <div class="top">
                         <ul>
                             {% if user.is_authenticated %}
-                            <li><a href="  ">Profile <i class="fa fa-user"></i></a></li>
+                            <li><a href="{% url "userdashboard" %}">Profile <i class="fa fa-user"></i></a></li>
                             {% else %}
                             <li><a href=" {% url 'userlogin' %} ">Login/Sign up <i class="fa fa-user"></i></a></li>
                             {% endif %}

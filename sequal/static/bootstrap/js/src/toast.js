@@ -28,7 +28,7 @@ const EVENT_SHOWN         = `shown${EVENT_KEY}`
 
 const CLASS_NAME_FADE    = 'fade'
 const CLASS_NAME_HIDE    = 'hide'
-const CLASS_NAME_SHOW    = 'show'
+const CLASS_NAME_SHOW    = 'in'
 const CLASS_NAME_SHOWING = 'showing'
 
 const DefaultType = {

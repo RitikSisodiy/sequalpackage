@@ -54,7 +54,7 @@ const CLASS_NAME_SCROLLBAR_MEASURER = 'modal-scrollbar-measure'
 const CLASS_NAME_BACKDROP           = 'modal-backdrop'
 const CLASS_NAME_OPEN               = 'modal-open'
 const CLASS_NAME_FADE               = 'fade'
-const CLASS_NAME_SHOW               = 'show'
+const CLASS_NAME_SHOW               = 'in'
 const CLASS_NAME_STATIC             = 'modal-static'
 
 const SELECTOR_DIALOG         = '.modal-dialog'

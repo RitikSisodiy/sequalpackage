@@ -96,3 +96,4 @@ def registration(request):
         request.user.save()
         return redirect("index")
     return render(request,'UserData/registration.html',res)
+

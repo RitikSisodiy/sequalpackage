@@ -1,8 +1,15 @@
 
 from django.urls import path 
-from . import views
+from . import views , userView
 urlpatterns = [
     path('login', views.LoginSignUp , name="userlogin"),
     path('login/verifyotp', views.verifyotp , name="verifyotp"),
-    path('registration/',views.registration,name="registration")
+    path('registration/',views.registration,name="registration"),
+    path('dashboard/',userView.dashboard,name="userdashboard"),
+    path('subscription/',userView.subscription,name="subscription"),
+    path('profile/',userView.profile,name="profile"),
+    path('booking/',userView.booking,name="booking"),
+    path('report/',userView.report,name="report"),
+    path('family/',userView.family,name="family"),
+    path('address/',userView.address,name="address"),
 ]

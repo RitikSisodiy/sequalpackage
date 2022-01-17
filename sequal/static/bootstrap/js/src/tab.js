@@ -31,7 +31,7 @@ const CLASS_NAME_DROPDOWN_MENU = 'dropdown-menu'
 const CLASS_NAME_ACTIVE        = 'active'
 const CLASS_NAME_DISABLED      = 'disabled'
 const CLASS_NAME_FADE          = 'fade'
-const CLASS_NAME_SHOW          = 'show'
+const CLASS_NAME_SHOW          = 'in'
 
 const SELECTOR_DROPDOWN              = '.dropdown'
 const SELECTOR_NAV_LIST_GROUP        = '.nav, .list-group'
@@ -235,7 +235,7 @@ class Tab {
 $(document)
   .on(EVENT_CLICK_DATA_API, SELECTOR_DATA_TOGGLE, function (event) {
     event.preventDefault()
-    Tab._jQueryInterface.call($(this), 'show')
+    Tab._jQueryInterface.call($(this), 'in')
   })
 
 /**
