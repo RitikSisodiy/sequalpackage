@@ -9,3 +9,5 @@ def packagedetails(request,slug):
         totaltest += data.Select_Test_id.all().count()
     res['totaltest'] = totaltest
     return render(request,'package/packageDetails.html',res)
+def booknow(request,slug):
+    return render(request,'package/booknow.html')

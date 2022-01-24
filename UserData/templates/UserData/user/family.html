@@ -7,7 +7,7 @@
 
         <span class="addmemberright">
             <a class="btn btn-danger btn_cmncolor_right ga_add_member_button" data-toggle="modal"
-                data-target="#family_edit" id="addnewmember" >Add New Member</a>
+                data-target="#family_edit" onclick="addFamily()" id="addnewmember">Add New Member</a>
         </span>
 
     </div>
@@ -50,58 +50,48 @@
                             </table>
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
-                        <div class="hb-circle">
-                            <p>57</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 text-center btnrdiv"> <a
-                            href="/healthkarma?user_id=c26582dfe73c1c673e724cffa259cb86"
-                            class="btn btn-danger btn_cmncolor">Retake Healthkarma</a> </div>
+
                 </div>
             </div>
-            <div class="add-box"><a class="edit" data-toggle="modal" data-target="#family_edit"
-                    onclick="editFamily('d72394960f2d1d95b21c3f70d0ce13d7');"> <img src="/img/edit-icon.png"> </a>
+            {% for data in request.user.Family.all %}
+            <div class="add-box">
+                <a class="edit" data-toggle="modal" data-target="#family_edit"
+                    onclick="editFamily('{{data.id}}');"> <img src="/static/images/edit-icon.png">
+                    </a>
                 <div class="row">
                     <div class="col-sm-5">
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th colspan="2">Pravesh</th>
+                                        <th colspan="2">{{data.name}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td class="db_titlecaption">Age : </td>
-                                        <td class="db_titleinfo">22 Years</td>
+                                        <td class="db_titleinfo">{{data.age}} Years</td>
                                     </tr>
                                     <tr>
                                         <td class="db_titlecaption">Relation : </td>
-                                        <td class="db_titleinfo">Colleague</td>
+                                        <td class="db_titleinfo">{{data.relation}}</td>
                                     </tr>
                                     <tr>
                                         <td class="db_titlecaption">Gender : </td>
-                                        <td class="db_titleinfo">Male</td>
+                                        <td class="db_titleinfo">{{data.gender|title}}</td>
                                     </tr>
                                     <tr>
                                         <td class="db_titlecaption">Mobile Number : </td>
-                                        <td class="db_titleinfo">9876353654</td>
+                                        <td class="db_titleinfo">{{data.mobile}}</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
                     </div>
-                    <div class="col-sm-3 text-center">
-                        <div class="hb-circle">
-                            <p>0</p>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 text-center btnrdiv"> <a
-                            href="/healthkarma?user_id=d72394960f2d1d95b21c3f70d0ce13d7"
-                            class="btn btn-danger btn_cmncolor">Healthkarma</a> </div>
+
                 </div>
             </div>
+            {% endfor %}
         </div>
 
     </div>
@@ -110,61 +100,79 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closeFamilyModal();">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="clearfix"></div>
             <form class="" id="add_family_form" name="add_family_form" method="post">
                 <div class="modal-body">
-                    
+
                     <div class="col-md-12 col-xs-12 col-sm-12 col-lg-12 mar-top select-member-option">
 
                         <div class="col-sm-12 text-center modaltitle">
                             <h2 id="add_edit_title"> Add Family Member </h2>
-                            <img class="lazy-loaded" data-src="/img/underline.png" alt="underline" src="/img/underline.png">
+                            <img class="lazy-loaded" data-src="/static/images/underline.png" alt="underline"
+                                src="/static/images/underline.png">
                         </div>
 
-                        <input type="hidden" name="_token" value="32n1wyhUhQ84z0mHUsMRZT3JcXZZj8WVOSKsWZGn">
-
+                        {% csrf_token %}
+                        <input type="hidden" name="familid" id="familid" value="">
+                        <input type="hidden" name="user" value="{{request.user.id}}">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 editmembermidhgt">
                             <div class="field_myfamilyblade">
-                                <input name="username" id="username" type="text" class="ic_user" placeholder="Name *" tabindex="1" maxlength="512" required autocomplete="off">
+                                <input name="name" id="username" type="text" class="ic_user" placeholder="Name *"
+                                    tabindex="1" maxlength="512" required autocomplete="off">
                             </div>
                         </div>
 
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 editmembermidhgt">
                             <div class="field_myfamilyblade">
-                                <select class="ic_family relationwith"  name="relation" id="relation" tabindex="2" required>
-                                    <option value="" selected>Select Relation</option>
+                                <select class="ic_family relationwith valid" name="relation" id="relation" tabindex="2"
+                                    required="">
+                                    <option value="" selected="selected">Select Relation</option>
+                                    <option value="Spouse">Spouse</option>
+                                    <option value="Child">Child</option>
+                                    <option value="Parent">Parent</option>
+                                    <option value="Grand Parent">Grand Parent</option>
+                                    <option value="Sibling">Sibling</option>
+                                    <option value="Friend">Friend</option>
+                                    <option value="Relative">Relative</option>
+                                    <option value="Neighbour">Neighbour</option>
+                                    <option value="Colleague">Colleague</option>
+                                    <option value="Others">Others</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 editmembermidhgt">
                             <div class="field_myfamilyblade">
-                                <input name="mobile" id="mobile" type="tel" class="ic_phone" placeholder="Mobile No."  tabindex="3"  maxlength="10" minlength="10" autocomplete="off">
+                                <input name="mobile" id="mobile" type="tel" class="ic_phone" placeholder="Mobile No."
+                                    tabindex="3" maxlength="10" minlength="10" autocomplete="off">
                             </div>
                         </div>
 
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 editmembermidhgt">
                             <div class="field_myfamilyblade">
-                                <input type="text" class="ic_age userage" id="age" name="age"  tabindex="4" placeholder="Age *" maxlength="3" required autocomplete="off">
+                                <input type="text" class="ic_age userage" id="age" name="age" tabindex="4"
+                                    placeholder="Age *" maxlength="3" required autocomplete="off">
                             </div>
                         </div>
 
-                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 editmembermidhgt" id="dob_date_picker" onClick="dob_click();">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 editmembermidhgt" id="dob_date_picker">
                             <div class="field_myfamilyblade">
-                                <input type="text" class="dateofbirth ic_date" id="dob" name="dob"  tabindex="5" placeholder="Date Of Birth *" required autocomplete="off" readonly>
+                                <input type="date" class="dateofbirth ic_date" id="dob" name="dob" tabindex="5"
+                                    placeholder="Date Of Birth *" required autocomplete="off">
                             </div>
                         </div>
 
 
-                                                  
-                        
+
+
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 editmembermidhgt">
                             <div class="field_myfamilyblade">
-                                <input name="email" id="email" type="email" class="ic_email" placeholder="Email ID"  maxlength="512" tabindex="6" autocomplete="off">
+                                <input name="email" id="email" type="email" class="ic_email" placeholder="Email ID"
+                                    maxlength="512" tabindex="6" autocomplete="off">
                             </div>
                         </div>
 
@@ -174,19 +182,21 @@
                                     <div class="genderopt radio_genoption">
                                         <ul>
                                             <li>
-                                                
-                                                    <input name="gender" value="M" type="radio" id="checkbox6" tabindex="7" required>
-                                                    <label for="checkbox6">Male</label>   
-                                                
+
+                                                <input name="gender" value="male" type="radio" id="checkbox6" tabindex="7"
+                                                    required>
+                                                <label for="checkbox6">Male</label>
+
                                             </li>
 
                                             <li>
-                                                <input name="gender" value="F" type="radio" id="checkbox7" tabindex="8" required>
+                                                <input name="gender" value="female" type="radio" id="checkbox7" tabindex="8"
+                                                    required>
                                                 <label for="checkbox7">Female</label>
-                                            </li> 
+                                            </li>
                                         </ul>
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         </div>
 
@@ -196,7 +206,8 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="modal-footer-popup">
-                    <button type="submit" tabindex="9" class="btn btn-danger btn_cmncolor ga_add_member_submit">Save changes
+                    <button type="submit" tabindex="9" class="btn btn-danger btn_cmncolor ga_add_member_submit">Save
+                        changes
                     </button>
                     <br>
                 </div>
@@ -215,6 +226,53 @@
 });
 
 </script> -->
+
+
+<script>
+    function ajaxCallPromise(api_url, method, request_data, loader = true) {
+        var promiseObj = new Promise(function (resolve, reject) {
+            $.ajax({
+                url: api_url,
+                type: method,
+                data: request_data,
+                beforeSend: function () {
+                    if (loader) {
+                        $("#ajax-loader").show();
+                    }
+                },
+                success: resolve,
+                error: reject
+            });
+        });
+        return promiseObj;
+    }
+
+    function editFamily(customer_id) {
+        getFamily_api_url = "{% url "getmember" %}?memberid="+customer_id
+        $("#add_edit_title").text("Edit Family Member");
+        $('#add_family_form')[0].reset();
+
+        $("#customer_id").val("");
+        $("#customer_id").val(customer_id);
+
+        ajaxCallPromise(getFamily_api_url, "GET", null).then((data)=>{
+            console.log(data);
+        $("#username").val(data.name);
+        $("#relation").val(data.relation);
+        $("#mobile").val(data.mobile);
+        $("#dob").val(data.dob);
+        $("#email").val(data.email);
+        $("#familid").val(customer_id);
+        $("input[value="+data.gender+"]").prop('checked', true);
+            
+        });
+    }
+
+    function addFamily() {
+        $("#add_edit_title").text("Add Family Member");
+        $('#add_family_form')[0].reset();
+    }
+</script>
 {% endblock %}
 
 <!------aside-end -->

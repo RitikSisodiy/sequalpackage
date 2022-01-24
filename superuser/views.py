@@ -238,8 +238,8 @@ def Logout(request):
     try:
         logout(request)
     except Exception as e:
-        return redirect('home')
-    return redirect('home')
+        return redirect('index')
+    return redirect('index')
 
 def logindashboard(request):
     if request.user.is_authenticated and request.user.is_superuser:

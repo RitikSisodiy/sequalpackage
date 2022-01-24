@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-    {% load custumfilter %}
-    {% with ''|getAbout as aboutdata %}
+{% load custumfilter %}
+{% with ''|getAbout as aboutdata %}
 {% load static %}
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,58 +24,178 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+        .modal-header .close {
+            position: absolute;
+            right: 3px;
+            top: 7px;
+            background: red;
+            border-radius: 50%;
+            padding: 5px 9px 8px !important;
+            opacity: 1;
+            color: #fff;
+        }
 
+        .modal-header {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: start;
+            align-items: flex-start;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            padding: 1rem 1rem;
+            border-bottom: none;
+        }
+
+        .plastic_select,
+        input[type=email],
+        input[type=number],
+        input[type=password],
+        input[type=tel],
+        input[type=text],
+        input[type=url],
+        select,
+        textarea {
+            font-size: 1.25rem;
+            line-height: normal;
+            padding: .75rem;
+            border: 1px solid #c5c5c5;
+            border-radius: .25rem;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            outline: 0;
+            color: #555459;
+            width: 100%;
+            max-width: 100%;
+            margin: 0 0 .5rem;
+            -webkit-transition: box-shadow 70ms ease-out, border-color 70ms ease-out;
+            -moz-transition: box-shadow 70ms ease-out, border-color 70ms ease-out;
+            transition: box-shadow 70ms ease-out, border-color 70ms ease-out;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            box-shadow: none;
+            height: auto;
+        }
+
+        .field-form input.mob-icon {
+            background: url(/static/images/mob-icon.png) no-repeat 17px 14px !important;
+        }
+
+        .field-form input.user-icon {
+            background: url(/static/images/user-icon.png) no-repeat 17px 14px !important;
+        }
+
+        .field-form input {
+            display: block;
+            width: 100%;
+            height: 45px;
+            font-size: 16px !important;
+            padding: 10px 12px 10px 45px;
+            color: #ccc;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            margin-bottom: 10px !important;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #dcdcdc;
+            border-radius: 2px;
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        }
+
+        .field-button input {
+            font-size: 20px;
+            background: #ee5152;
+            background-image: -webkit-linear-gradient(top, #f26061, #d74142);
+            background-image: -moz-linear-gradient(top, #f26061, #d74142);
+            background-image: -ms-linear-gradient(top, #f26061, #d74142);
+            background-image: -o-linear-gradient(top, #f26061, #d74142);
+            background-image: linear-gradient(to bottom, #f26061, #d74142);
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            color: #fff;
+            border: none;
+            border-bottom: none;
+            width: 100%;
+            box-shadow: none !important;
+            padding: 8px 20px 8px 20px;
+            font-size: 20px;
+            margin: 15px 0 15px 0;
+        }
+
+        .genderOptions .genderopt ul {
+            list-style: none;
+            margin-bottom: 12px;
+            margin-left: 10px;
+            padding: 0;
+            display: flex;
+
+        }
+
+        .genderOptions .genderopt ul li {
+            display: block;
+            position: relative;
+            padding-right: 30px;
+            float: left;
+        }
+    </style>
 
 </head>
 
 <body>
-  <div class="pregnancy-test-page">
-    {% include 'header.html' with aboutdata=aboutdata %}
-    <br><br>
-    <div class="container">
-        <div class="title">
-            <div class="left" >
-                <h2>{{package.Package_name}}</h2>
-                <p>Perameter Included: <b>{{totaltest}}</b></p><br>
-            </div>
-            <div class="right ">
-                <h4 style="opacity: 80%;">Sequal Price: &#8377;{{package.Package_price}}</h4>
-                <h4>Limited Time offer: &#8377;{{package.final_cost}}</h4>
-                <!-- package rating -->
-                <div class="package_rating">
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="text-dark">4.8/5</span>
+    <div class="pregnancy-test-page">
+        {% include 'header.html' with aboutdata=aboutdata %}
+        <br><br>
+        <div class="container">
+            <div class="title">
+                <div class="left">
+                    <h2>{{package.Package_name}}</h2>
+                    <p>Perameter Included: <b>{{totaltest}}</b></p><br>
                 </div>
-                <!-- package rating -->
+                <div class="right ">
+                    <h4 style="opacity: 80%;">Sequal Price: &#8377;{{package.Package_price}}</h4>
+                    <h4>Limited Time offer: &#8377;{{package.final_cost}}</h4>
+                    <!-- package rating -->
+                    <div class="package_rating">
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="text-dark">4.8/5</span>
+                    </div>
+                    <!-- package rating -->
 
 
-            </div>
-        </div>
-        <div>
-
-            <div class="row mt-5">
-                <div class="col-lg-9 col-12 text-left" style="float: left;">
-                    {{package.Package_descrption|safe}}
-                    <br>
                 </div>
-                <div class="col-lg-3 col-12 no-display">
-                    <div class="row">
-                        <div class="row card-1 col-lg-12 col-6  p-1">
-                            <div class="col-lg-3 col-6 p-0 m-0">
-                                <img src=" {% static 'images/safety-assured.jpg' %} " style="width: 100%; height: 100%;" alt="">
+            </div>
+            <div>
+
+                <div class="row mt-5">
+                    <div class="col-lg-9 col-12 text-left" style="float: left;">
+                        {{package.Package_descrption|safe}}
+                        <br>
+                    </div>
+                    <div class="col-lg-3 col-12 no-display">
+                        <div class="row">
+                            <div class="row card-1 col-lg-12 col-6  p-1">
+                                <div class="col-lg-3 col-6 p-0 m-0">
+                                    <img src=" {% static 'images/safety-assured.jpg' %} "
+                                        style="width: 100%; height: 100%;" alt="">
+                                </div>
+                                <div class="col-lg-9 col-6" style="border-left: 1px solid black;">
+                                    <a href="#" style="font-size: 14px;">Covid Safety</a>
+                                    <p style="font-size: 13px;">Assured</p>
+                                </div>
                             </div>
-                            <div class="col-lg-9 col-6" style="border-left: 1px solid black;">
-                                <a href="#" style="font-size: 14px;">Covid Safety</a>
-                                <p style="font-size: 13px;">Assured</p>
-                            </div>
-                        </div>
                             <div class="row card-2 col-lg-12 col-6  p-1">
                                 <div class="col-lg-3 col-6 p-0 m-0">
-                                    <img src=" {% static 'images/smart-report-icon.jpg' %} " style="width: 100%; height: 100%;" alt="">
+                                    <img src=" {% static 'images/smart-report-icon.jpg' %} "
+                                        style="width: 100%; height: 100%;" alt="">
                                 </div>
                                 <div class="col-lg-9 col-6" style="border-left: 1px solid black;">
                                     <a href="#" style="font-size: 14px;">View Smart</a>
@@ -88,14 +209,17 @@
             </div>
             <div class="row third" style="background: #f2f2f2;">
                 <div class="col-lg-3 col-6 perameter">
-                    <img src=" {% static 'images/lv_icon1.png' %} " class="float-left p-2" alt="">Parameter Included: <b> {{totaltest}}</b></p>
+                    <img src=" {% static 'images/lv_icon1.png' %} " class="float-left p-2" alt="">Parameter Included:
+                    <b> {{totaltest}}</b></p>
                 </div>
                 <div class="col-lg-3 col-6 perameter">
-                    <img src=" {% static 'images/lv_icon2.png' %} " class="float-left p-2" alt=""><b>FREE &nbsp;</b> Sample
+                    <img src=" {% static 'images/lv_icon2.png' %} " class="float-left p-2" alt=""><b>FREE &nbsp;</b>
+                    Sample
                     Collection</p>
                 </div>
                 <div class="col-lg-3 col-6 perameter">
-                    <img src=" {% static 'images/lv_icon3.png' %} " class="float-left p-2" alt=""> <b>FREE &nbsp;</b>Doctor
+                    <img src=" {% static 'images/lv_icon3.png' %} " class="float-left p-2" alt=""> <b>FREE
+                        &nbsp;</b>Doctor
                     Consultation
                     </p>
                 </div>
@@ -115,7 +239,8 @@
                             <p>Fasting Time: <br> <b>10 Hours</b></p>
                         </div>
                         <div class="col-lg-3 col-6">
-                            <p>Test Recommended for: <br> <b>{% for data in package.Package_for.all %}{{data}}{% endfor %}</b></p>
+                            <p>Test Recommended for: <br>
+                                <b>{% for data in package.Package_for.all %}{{data}}{% endfor %}</b></p>
                         </div>
                         <div class="col-lg-3 col-6">
                             <p> Recommended for age: <br> <b>5-99 Years</b></p>
@@ -125,13 +250,175 @@
                 </div>
             </div>
             <center>
-                <a href="#"><button class="link-1">Book Now</button></a>
-                <a href="#"><button class="link-2">Get A Call Back</button></a>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
+                            </div>
+                            <div class="modal-body">
+                                <form name="addLeadFormPopup" id="addLeadFormPopup" novalidate="">
+                                    <input type="hidden" name="_token" value="7S8oxfLEvprLMRwUjHOOzgSph9FuHZ6X5Cfas4ar">
+                                    <input type="hidden" id="gclid_fieldPopup" name="gclid_field" value="">
+
+
+                                    <div class="genderOptions" id="callback_type_div">
+                                        <div class="genderopt">
+                                            <ul>
+                                                <li>
+                                                    <div class="radio_genoption">
+                                                        <input id="newBooking" name="callback_type" type="radio"
+                                                            value="1">
+                                                        <label for="newBooking">New booking </label>
+                                                    </div>
+                                                </li>
+
+                                                <li><input id="customerSupport" name="callback_type" type="radio"
+                                                        value="2">
+                                                    <label for="customerSupport">Customer support query </label>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="field-form">
+                                        <input id="contact_noPopup" value="" class="mob-icon pl10" minlength="10"
+                                            maxlength="10" name="contact_noPopup" type="text"
+                                            placeholder="Enter Your Mobile No. *" required="" autocomplete="off"
+                                            autofocus="" onkeyup="leadMirror(this);">
+                                    </div>
+
+                                    <div class="field-form">
+                                        <input name="namePopup" id="namePopup" type="text" value=""
+                                            class="user-icon pl10" placeholder="Enter Your Name *" required=""
+                                            autocomplete="off" autofocus="">
+                                    </div>
+
+                                    <div class="field-form">
+                                        <select class="form-select minimal" id="cityPopup" name="cityPopup"
+                                            required="true">
+                                            <option value="" selected="">Select Your City *</option>
+                                            <option value="1517">Agra</option>
+                                            <option value="1488">Ahmedabad</option>
+                                            <option value="1473">Ajmer</option>
+                                            <option value="1518">Aligarh</option>
+                                            <option value="1519">Allahabad</option>
+                                            <option value="1678">Alwar</option>
+                                            <option value="1462">Ambala</option>
+                                            <option value="1499">Amritsar</option>
+                                            <option value="1490">Aurangabad</option>
+                                            <option value="1611">Bahadurgarh</option>
+                                            <option value="1520">Bareilly</option>
+                                            <option value="1610">Bengaluru</option>
+                                            <option value="1687">Bharatpur</option>
+                                            <option value="1854">Bhavnagar</option>
+                                            <option value="1622">Bhilai</option>
+                                            <option value="1855">Bhiwandi</option>
+                                            <option value="1444">Bhopal</option>
+                                            <option value="1450">Bhubaneswar</option>
+                                            <option value="1474">Bikaner</option>
+                                            <option value="1504">Bilaspur</option>
+                                            <option value="1507">Bokaro</option>
+                                            <option value="1750">Bulandshahar</option>
+                                            <option value="1553">Chandigarh</option>
+                                            <option value="1613">Chennai</option>
+                                            <option value="1451">Cuttack</option>
+                                            <option value="1458">Dehradun</option>
+                                            <option value="1595">Delhi</option>
+                                            <option value="1853">Dewas</option>
+                                            <option value="1508">Dhanbad</option>
+                                            <option value="1786">Dhariwal</option>
+                                            <option value="1582">Faizabad</option>
+                                            <option value="1429">Faridabad</option>
+                                            <option value="1815">Gandhinagar</option>
+                                            <option value="1521">Ghaziabad</option>
+                                            <option value="1584">Gorakhpur</option>
+                                            <option value="1597">Greater Noida</option>
+                                            <option value="1845">Gulbarga</option>
+                                            <option value="1644">Guntur</option>
+                                            <option value="23">Gurgaon</option>
+                                            <option value="1445">Gwalior</option>
+                                            <option value="1609">Haridwar</option>
+                                            <option value="1829">Hissar</option>
+                                            <option value="1846">Hubli</option>
+                                            <option value="1465">Hyderabad</option>
+                                            <option value="1446">Indore</option>
+                                            <option value="1447">Jabalpur</option>
+                                            <option value="1475">Jaipur</option>
+                                            <option value="1501">Jalandhar</option>
+                                            <option value="1509">Jamshedpur</option>
+                                            <option value="1795">Jaunpur</option>
+                                            <option value="1628">Jhansi</option>
+                                            <option value="1476">Jodhpur</option>
+                                            <option value="1849">Kakinada</option>
+                                            <option value="1522">Kanpur</option>
+                                            <option value="1604">Karnal</option>
+                                            <option value="1549">Kolkata</option>
+                                            <option value="1477">Kota</option>
+                                            <option value="1651">Kurnool</option>
+                                            <option value="1608">Kurukshetra</option>
+                                            <option value="1523">Lucknow</option>
+                                            <option value="1502">Ludhiana</option>
+                                            <option value="1524">Mathura</option>
+                                            <option value="1525">Meerut</option>
+                                            <option value="1796">Modinagar</option>
+                                            <option value="1580">Mohali</option>
+                                            <option value="1630">Moradabad</option>
+                                            <option value="1563">Mumbai</option>
+                                            <option value="1797">Muradnagar</option>
+                                            <option value="1660">Muzaffarnagar</option>
+                                            <option value="1442">Mysuru</option>
+                                            <option value="1485">Nagpur</option>
+                                            <option value="1817">Nashik</option>
+                                            <option value="1428">Noida</option>
+                                            <option value="1603">Panchkula</option>
+                                            <option value="1463">Panipat</option>
+                                            <option value="1503">Patiala</option>
+                                            <option value="1497">Patna</option>
+                                            <option value="1487">Pune</option>
+                                            <option value="1506">Raipur</option>
+                                            <option value="1433">Rajkot</option>
+                                            <option value="1510">Ranchi</option>
+                                            <option value="1800">Rishikesh</option>
+                                            <option value="1607">Rohtak</option>
+                                            <option value="1799">Roorkee</option>
+                                            <option value="1528">Saharanpur</option>
+                                            <option value="1464">Sonipat</option>
+                                            <option value="1435">Surat</option>
+                                            <option value="1848">Tirupati</option>
+                                            <option value="1478">Udaipur</option>
+                                            <option value="1448">Ujjain</option>
+                                            <option value="1436">Vadodara</option>
+                                            <option value="1529">Varanasi</option>
+                                            <option value="1819">Vijaywada</option>
+                                            <option value="1471">Visakhapatnam</option>
+                                            <option value="1470">Warangal</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="field-button">
+                                        <input type="submit" onclick="sendLandingPopupDetails();"
+                                            value="Get Free Call Now" id="landing_desktop">
+                                    </div>
+                                    <span class="mand_field_text">* Mandatory fields</span>
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <a href="{% url 'booknow' 'slug' %}"><button class="link-1">Book Now</button></a>
+                <button class="link-2" data-toggle="modal" data-target="#exampleModal">Get A Call Back</button>
             </center>
             <br><br>
             <div class="fifth">
                 <h2 style="font-weight: 800;">
-                    {{package.Package_name}}  (Test included : {{totaltest}})
+                    {{package.Package_name}} (Test included : {{totaltest}})
                 </h2>
                 <div class="col-12 head">
                     <div class="row" style="font-weight: 600;">
@@ -143,7 +430,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 {% for data in package.Porfile_collection.all %}
                 <div class="col-12 toggler p-0" id="toggler">
                     <div class="row">
@@ -163,7 +450,7 @@
                     </ul>
                 </div>
                 {% endfor %}
-              
+
             </div>
             <br><br>
             <div class="fifth">
@@ -184,474 +471,474 @@
 
                 </div>
                 {% endfor %}
-           
-            </div>
-        </div>
-    
-    <div class="first container mt-5">
-        <div class="text col-lg-6 col-12">
-        </div>
-        <h1 class="text-center m-lg-5 mb-5">Most Search Blood Test</h1>
-        <div class="slides" style="display:flex; overflow-y:hidden; overflow-x: scroll;">
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">60% Off</span>
-                        <h4>CRP(C Reactive Protein) Quantitative, Serum</h4>
-                        Includes : 1 Parameter
-                        <ul>
-                            <li>CRP (CReactive Protein) Quantitative, Serum</a> </li>
-                        </ul>
-                        <br>
-                        <b>
-                            <a href=" {% static '' %} ">+ Know More</a><br>
-                            <del>₹750</del>
-                            ₹299
-                        </b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">88% Off</span>
-                        <h4> D-Dimer Quantitative</h4>
-                        Includes : 1 Parameter
-                        <ul>
-                            <li> D-Dimer Quantitative </li>
-                        </ul>
-                        <b>
-                            <a href=" {% static '' %} ">+ Know More</a><br>
-                            <del>₹4000</del>
-                            ₹499
-                        </b>
-                    </div>
-                </div>
-            </div>
 
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">58% Off</span>
-                        <h4>Covid 19 RTPCR Test</h4>
-                        Includes : 1 Parameter
-                        <ul>
-                            <li>Covid 19 RTPCR Test</li>
-                        </ul>
-                        <br>
-                        <b>
-                            <br>
-                            <a href=" {% static '' %} ">+ Know More</a><br>
-                            <del>₹1200</del>
-                            ₹499
-                        </b>
-                    </div>
-                </div>
-            </div>
-
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">91% Off</span>
-                        <h4>HealthyIndia 2021 Full Body Checkup</h2>
-                            Includes : 82 Parameters
-                            <ul>
-                                <li>Blood Glucose Fasting</li>
-                                <li>Complete Hemogram</li>
-                                <li>HbA1c</li>
-                            </ul>
-
-                            <b>
-
-                                <a href=" {% static '' %} ">+ Know More</a><br>
-                                <del>₹7733</del>
-                                ₹699
-                            </b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">71% Off</span>
-                        <h4>Healthy India 2021 Full Body Checkup With Covid IgG Antibody</a></h2>
-                            Includes : 85 Parameters
-                            <ul>
-                                <li>Blood Glucose Fasting</a> </li>
-                                <li>Complete Hemogram</a> </li>
-                                <li>COVID-19 Antibody - IgG</a>
-                                </li>
-                            </ul>
-                            <b>
-                                <a href=" {% static '' %} ">+ Know More</a><br>
-                                <del>₹4555</del>
-                                ₹129
-                            </b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">82% Off</span>
-                        <h4>Basic ScreeningPackage 3.0</a></h2>
-                            Includes : 83 Parameters
-                            <ul>
-                                <li>Blood Glucose Fasting</a> </li>
-                                <li>Complete Hemogram</a> </li>
-                                <li>CRP (CReactive Protein) Quantitative, Serum</li>
-                            </ul>
-                            <br>
-                            <b><a href=" {% static '' %} ">+ Know More</a><br>
-                                <del>₹8508</del>₹1499
-                            </b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">67% Off</span>
-                        <h4>Vitamin Screening</h2>
-                            Includes : 2 Parameters
-                            <ul>
-                                <li> Vitamin B12 Cyanocobalamin</a> </li>
-                                <li>Vitamin D Total-25 Hydroxy</li>
-                            </ul>
-                            <br>
-                            <b>
-                                <a href=" {% static '' %} ">+ Know More</a><br>
-                                <del>₹2700</del>
-                                ₹899
-                            </b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">83% Off</span>
-                        <h4>Basic Screening
-                            Package 4.0</a></h2>
-                            Includes : 87 Parameters
-                            <ul>
-                                <li>Amylase enzymatic, Serum</a>
-                                </li>
-                                <li>Blood Glucose Fasting</a> </li>
-                                <li>Complete Hemogram</a> </li>
-                            </ul>
-                            <br>
-                            <b>
-                                <a href=" {% static '' %} ">+ Know More</a><br>
-                                <del>₹9978</del>
-                                ₹169
-                            </b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">79% Off</span>
-                        <h4>Basic
-                            Screening 4.0 Package With Covid IgG Antibody</a></h2>
-                            Includes : 91 Parameters
-                            <ul>
-                                <li>Amylase enzymatic, Serum</a>
-                                </li>
-                                <li>Blood Glucose Fasting</a> </li>
-                                <li>Complete Hemogram</a> </li>
-                            </ul>
-                            <br>
-                            <b>
-                                <a href=" {% static '' %} ">+ Know More</a><br>
-                                <del>₹9000</del>
-                                ₹189
-                            </b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">64% Off</span>
-                        <h4>Typhoid Test</a></h2>
-                            Includes : 29 Parameters
-                            <ul>
-                                <li>Complete Hemogram</a> </li>
-                                <li>Typhi Dot IgM</a> </li>
-                                <li>Widal Profile</a> </li>
-                            </ul>
-                            <br>
-                            <b>
-                                <a href=" {% static '' %} ">+ Know More</a><br>
-                                <del>₹970</del>
-                                ₹349
-                            </b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">65% Off</span>
-                        <h4>STI Detection Package</a>
-                            </h2>
-                            Includes : 4 Parameters
-                            <ul>
-                                <li>Anti HCV antibody
-                                    (qualitative)</a> </li>
-                                <li>Hepatitis
-                                    B Virus (HBV) HbsAg-Screening Surface antigen</a> </li>
-                                <li>HIV 1&amp;2 Antibodies</a>
-                                </li>
-                            </ul>
-                            <br>
-                            <b>
-                                <a href=" {% static '' %} ">+ Know More</a><br>
-                                <del>₹2575</del>
-                                ₹899
-                            </b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">54% Off</span>
-                        <h4>Basic Allergy Package</a>
-                            </h2>
-                            Includes : 25 Parameters
-                            <ul>
-                                <li>Complete Hemogram</a> </li>
-                                <li>IgE Total antibody</a> </li>
-                            </ul>
-                            <br>
-                            <b><a href=" {% static '' %} ">+ Know More</a><br><del>₹1520</del>₹699</b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">81% Off</span>
-                        <h4>Healthians Full Body Checkup with Thyroid and CBC</a></h2>
-                            Includes : 79 Parameters
-                            <ul>
-                                <li>Blood Glucose Fasting</a> </li>
-                                <li>Complete Hemogram</a> </li>
-                                <li>HbA1c</a> </li>
-                            </ul> <a href=" {% static '' %} ">+
-                                Know More</a>
-                            <br>
-                            <b><a href=" {% static '' %} ">+ Know More</a><br><del>₹5133</del>₹999</b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">51% Off</span>
-                        <h4>Healthians Basic
-                            Health Checkup</a></h2>
-                            Includes : 38 Parameters
-                            <ul>
-                                <li>Calcium Total, Serum</li>
-                                <li>Complete Hemogram</a> </li>
-                                <li>Liver Function Test</a> </li>
-                            </ul> <a href=" {% static '' %} ">+ KnowMore</a>
-                            <br>
-                            <b>
-                                <a href=" {% static '' %} ">+ Know More</a><br>
-                                <del>₹1630</del>
-                                ₹799
-                            </b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">71% Off</span>
-                        <h4>Healthians Diabetic
-                            Checkup</a></h2>
-                            Includes : 49 Parameters
-                            <ul>
-                                <li>Blood Glucose Fasting</a> </li>
-                                <li>HbA1c</a> </li>
-                                <li>Kidney Function Test</a> </li>
-                            </ul>
-
-                            <br>
-                            <b>
-                                <a href=" {% static '' %} ">+ Know More</a><br>
-                                <del>₹3450</del>
-                                ₹999
-                            </b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">44% Off</span>
-                        <h4>HIV Preventive Package</a></h2>
-                            Includes : 60 Parameters
-                            <ul>
-                                <li>Blood Glucose Fasting</a> </li>
-                                <li>Complete Hemogram</a> </li>
-                                <li>HIV 1&amp;2 Antibodies</a></li>
-                            </ul>
-
-                            <b><a href=" {% static '' %} ">+ Know More</a><br><del>₹2500</del>₹1399</b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">79% Off</span>
-                        <h4>Hplus
-                            Basic Screening &amp; Immunity Check Package</a></h2>
-                            Includes : 60 Parameters
-                            <ul>
-                                <li>Complete Hemogram</a> </li>
-                                <li>CRP (C
-                                    Reactive Protein) Quantitative, Serum</a> </li>
-                                <li>Iron Studies</a> </li>
-                            </ul> <a href=" {% static '' %} ">+Know More</a>
-                            <br>
-                            <b>
-                                <a href=" {% static '' %} ">+ Know More</a><br>
-                                <del>₹6055</del>
-                                ₹1299
-                            </b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">59% Off</span>
-                        <h4>Malaria Test</a></h2>
-                            Includes : 2 Parameters
-                            <ul>
-                                <li>Malaria
-                                    Parasite detection by Smear examination</a> </li>
-                                <li>Malarial Antigen, Vivax &amp; Falciparum</a> </li>
-                            </ul>+ Know More</a>
-                            <br>
-                            <b>
-                                <a href=" {% static '' %} ">+ Know More</a><br>
-                                <del>₹600</del>₹249</b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">33% Off</span>
-                        <h4>Viral Marker Test</h2>
-                            Includes : 47 Parameters
-                            <ul>
-                                <li> Chikungunya IgM antibody</a>
-                                </li>
-                                <li>Complete Hemogram</a> </li>
-                                <li>CRP (C
-                                    Reactive Protein) Quantitative, Serum</a> </li>
-                            </ul>
-                            <br>
-                            <b>
-                                <a href=" {% static '' %} ">+ Know More</a><br>
-                                <del>₹4160</del>₹2799</b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">17% Off</span>
-                        <h4>Dengue Test</a></h2>
-                            Includes : 3 Parameters
-                            <ul>
-                                <li>Dengue IgG And IgM(Rapid Card)</a> </li>
-                                <li>Dengue NS1 Antigen Detection - RAPID Card</a> </li>
-                            </ul>
-                            <br>
-                            <b>
-                                <a href=" {% static '' %} ">+ Know More</a><br><del>₹1200</del>₹999</b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">67% Off</span>
-                        <h4>BasicScreening Package 4.0 With Allergy By Elisa Method</a></h2>
-                            Includes : 110 Parameters
-                            <ul>
-                                <li>Allergy Food Profile 20 Allergens</a> </li>
-                                <li>Amylase enzymatic, Serum</a>
-                                </li>
-                                <li>Blood Glucose Fasting</a> </li>
-                            </ul>
-                            <br>
-                            <b>
-                                <a href=" {% static '' %} ">+ Know More</a><br>
-                                <del>₹5999</del>
-                                ₹199
-                            </b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">64% Off</span>
-                        <h4>Basic Screening Package 3.0 With Allergy By Elisa Method</a></h2>
-                            Includes : 106 Parameters
-                            <ul>
-                                <li>Allergy Food Profile 20 Allergens</a> </li>
-                                <li>Blood Glucose Fasting</a> </li>
-                                <li>Complete Hemogram</a> </li>
-                            </ul>
-                            <br>
-                            <b><a href=" {% static '' %} ">+ Know More</a><br><del>₹4999</del>₹1799</b>
-                    </div>
-                </div>
-            </div>
-            <div class="m-auto col-12 col-lg-4">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">78% Off</span>
-                        <h4>Healthians
-                            100% Good Health Package With Allergy By Elisa Method</a></h2>
-                            Includes : 104 Parameters
-                            <ul>
-                                <li>Allergy Food Profile 20 Allergens</a> </li>
-                                <li>Blood Glucose Fasting</a> </li>
-                                <li>Complete Hemogram</a> </li>
-                            </ul>
-                            <br>
-                            <b><a href=" {% static '' %} ">+ Know More</a><br><del>₹8999</del>₹1999</b>
-                    </div>
-                </div>
             </div>
         </div>
 
-        <center>
-            <br><br>
-            <a href=" {% static '' %} " class="services-btn m-4">View All Services</a>
-            <br><br>
-        </center>
+        <div class="first container mt-5">
+            <div class="text col-lg-6 col-12">
+            </div>
+            <h1 class="text-center m-lg-5 mb-5">Most Search Blood Test</h1>
+            <div class="slides" style="display:flex; overflow-y:hidden; overflow-x: scroll;">
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">60% Off</span>
+                            <h4>CRP(C Reactive Protein) Quantitative, Serum</h4>
+                            Includes : 1 Parameter
+                            <ul>
+                                <li>CRP (CReactive Protein) Quantitative, Serum</a> </li>
+                            </ul>
+                            <br>
+                            <b>
+                                <a href=" {% static '' %} ">+ Know More</a><br>
+                                <del>₹750</del>
+                                ₹299
+                            </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">88% Off</span>
+                            <h4> D-Dimer Quantitative</h4>
+                            Includes : 1 Parameter
+                            <ul>
+                                <li> D-Dimer Quantitative </li>
+                            </ul>
+                            <b>
+                                <a href=" {% static '' %} ">+ Know More</a><br>
+                                <del>₹4000</del>
+                                ₹499
+                            </b>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">58% Off</span>
+                            <h4>Covid 19 RTPCR Test</h4>
+                            Includes : 1 Parameter
+                            <ul>
+                                <li>Covid 19 RTPCR Test</li>
+                            </ul>
+                            <br>
+                            <b>
+                                <br>
+                                <a href=" {% static '' %} ">+ Know More</a><br>
+                                <del>₹1200</del>
+                                ₹499
+                            </b>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">91% Off</span>
+                            <h4>HealthyIndia 2021 Full Body Checkup</h2>
+                                Includes : 82 Parameters
+                                <ul>
+                                    <li>Blood Glucose Fasting</li>
+                                    <li>Complete Hemogram</li>
+                                    <li>HbA1c</li>
+                                </ul>
+
+                                <b>
+
+                                    <a href=" {% static '' %} ">+ Know More</a><br>
+                                    <del>₹7733</del>
+                                    ₹699
+                                </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">71% Off</span>
+                            <h4>Healthy India 2021 Full Body Checkup With Covid IgG Antibody</a></h2>
+                                Includes : 85 Parameters
+                                <ul>
+                                    <li>Blood Glucose Fasting</a> </li>
+                                    <li>Complete Hemogram</a> </li>
+                                    <li>COVID-19 Antibody - IgG</a>
+                                    </li>
+                                </ul>
+                                <b>
+                                    <a href=" {% static '' %} ">+ Know More</a><br>
+                                    <del>₹4555</del>
+                                    ₹129
+                                </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">82% Off</span>
+                            <h4>Basic ScreeningPackage 3.0</a></h2>
+                                Includes : 83 Parameters
+                                <ul>
+                                    <li>Blood Glucose Fasting</a> </li>
+                                    <li>Complete Hemogram</a> </li>
+                                    <li>CRP (CReactive Protein) Quantitative, Serum</li>
+                                </ul>
+                                <br>
+                                <b><a href=" {% static '' %} ">+ Know More</a><br>
+                                    <del>₹8508</del>₹1499
+                                </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">67% Off</span>
+                            <h4>Vitamin Screening</h2>
+                                Includes : 2 Parameters
+                                <ul>
+                                    <li> Vitamin B12 Cyanocobalamin</a> </li>
+                                    <li>Vitamin D Total-25 Hydroxy</li>
+                                </ul>
+                                <br>
+                                <b>
+                                    <a href=" {% static '' %} ">+ Know More</a><br>
+                                    <del>₹2700</del>
+                                    ₹899
+                                </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">83% Off</span>
+                            <h4>Basic Screening
+                                Package 4.0</a></h2>
+                                Includes : 87 Parameters
+                                <ul>
+                                    <li>Amylase enzymatic, Serum</a>
+                                    </li>
+                                    <li>Blood Glucose Fasting</a> </li>
+                                    <li>Complete Hemogram</a> </li>
+                                </ul>
+                                <br>
+                                <b>
+                                    <a href=" {% static '' %} ">+ Know More</a><br>
+                                    <del>₹9978</del>
+                                    ₹169
+                                </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">79% Off</span>
+                            <h4>Basic
+                                Screening 4.0 Package With Covid IgG Antibody</a></h2>
+                                Includes : 91 Parameters
+                                <ul>
+                                    <li>Amylase enzymatic, Serum</a>
+                                    </li>
+                                    <li>Blood Glucose Fasting</a> </li>
+                                    <li>Complete Hemogram</a> </li>
+                                </ul>
+                                <br>
+                                <b>
+                                    <a href=" {% static '' %} ">+ Know More</a><br>
+                                    <del>₹9000</del>
+                                    ₹189
+                                </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">64% Off</span>
+                            <h4>Typhoid Test</a></h2>
+                                Includes : 29 Parameters
+                                <ul>
+                                    <li>Complete Hemogram</a> </li>
+                                    <li>Typhi Dot IgM</a> </li>
+                                    <li>Widal Profile</a> </li>
+                                </ul>
+                                <br>
+                                <b>
+                                    <a href=" {% static '' %} ">+ Know More</a><br>
+                                    <del>₹970</del>
+                                    ₹349
+                                </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">65% Off</span>
+                            <h4>STI Detection Package</a>
+                                </h2>
+                                Includes : 4 Parameters
+                                <ul>
+                                    <li>Anti HCV antibody
+                                        (qualitative)</a> </li>
+                                    <li>Hepatitis
+                                        B Virus (HBV) HbsAg-Screening Surface antigen</a> </li>
+                                    <li>HIV 1&amp;2 Antibodies</a>
+                                    </li>
+                                </ul>
+                                <br>
+                                <b>
+                                    <a href=" {% static '' %} ">+ Know More</a><br>
+                                    <del>₹2575</del>
+                                    ₹899
+                                </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">54% Off</span>
+                            <h4>Basic Allergy Package</a>
+                                </h2>
+                                Includes : 25 Parameters
+                                <ul>
+                                    <li>Complete Hemogram</a> </li>
+                                    <li>IgE Total antibody</a> </li>
+                                </ul>
+                                <br>
+                                <b><a href=" {% static '' %} ">+ Know More</a><br><del>₹1520</del>₹699</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">81% Off</span>
+                            <h4>Healthians Full Body Checkup with Thyroid and CBC</a></h2>
+                                Includes : 79 Parameters
+                                <ul>
+                                    <li>Blood Glucose Fasting</a> </li>
+                                    <li>Complete Hemogram</a> </li>
+                                    <li>HbA1c</a> </li>
+                                </ul> <a href=" {% static '' %} ">+
+                                    Know More</a>
+                                <br>
+                                <b><a href=" {% static '' %} ">+ Know More</a><br><del>₹5133</del>₹999</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">51% Off</span>
+                            <h4>Healthians Basic
+                                Health Checkup</a></h2>
+                                Includes : 38 Parameters
+                                <ul>
+                                    <li>Calcium Total, Serum</li>
+                                    <li>Complete Hemogram</a> </li>
+                                    <li>Liver Function Test</a> </li>
+                                </ul> <a href=" {% static '' %} ">+ KnowMore</a>
+                                <br>
+                                <b>
+                                    <a href=" {% static '' %} ">+ Know More</a><br>
+                                    <del>₹1630</del>
+                                    ₹799
+                                </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">71% Off</span>
+                            <h4>Healthians Diabetic
+                                Checkup</a></h2>
+                                Includes : 49 Parameters
+                                <ul>
+                                    <li>Blood Glucose Fasting</a> </li>
+                                    <li>HbA1c</a> </li>
+                                    <li>Kidney Function Test</a> </li>
+                                </ul>
+
+                                <br>
+                                <b>
+                                    <a href=" {% static '' %} ">+ Know More</a><br>
+                                    <del>₹3450</del>
+                                    ₹999
+                                </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">44% Off</span>
+                            <h4>HIV Preventive Package</a></h2>
+                                Includes : 60 Parameters
+                                <ul>
+                                    <li>Blood Glucose Fasting</a> </li>
+                                    <li>Complete Hemogram</a> </li>
+                                    <li>HIV 1&amp;2 Antibodies</a></li>
+                                </ul>
+
+                                <b><a href=" {% static '' %} ">+ Know More</a><br><del>₹2500</del>₹1399</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">79% Off</span>
+                            <h4>Hplus
+                                Basic Screening &amp; Immunity Check Package</a></h2>
+                                Includes : 60 Parameters
+                                <ul>
+                                    <li>Complete Hemogram</a> </li>
+                                    <li>CRP (C
+                                        Reactive Protein) Quantitative, Serum</a> </li>
+                                    <li>Iron Studies</a> </li>
+                                </ul> <a href=" {% static '' %} ">+Know More</a>
+                                <br>
+                                <b>
+                                    <a href=" {% static '' %} ">+ Know More</a><br>
+                                    <del>₹6055</del>
+                                    ₹1299
+                                </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">59% Off</span>
+                            <h4>Malaria Test</a></h2>
+                                Includes : 2 Parameters
+                                <ul>
+                                    <li>Malaria
+                                        Parasite detection by Smear examination</a> </li>
+                                    <li>Malarial Antigen, Vivax &amp; Falciparum</a> </li>
+                                </ul>+ Know More</a>
+                                <br>
+                                <b>
+                                    <a href=" {% static '' %} ">+ Know More</a><br>
+                                    <del>₹600</del>₹249</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">33% Off</span>
+                            <h4>Viral Marker Test</h2>
+                                Includes : 47 Parameters
+                                <ul>
+                                    <li> Chikungunya IgM antibody</a>
+                                    </li>
+                                    <li>Complete Hemogram</a> </li>
+                                    <li>CRP (C
+                                        Reactive Protein) Quantitative, Serum</a> </li>
+                                </ul>
+                                <br>
+                                <b>
+                                    <a href=" {% static '' %} ">+ Know More</a><br>
+                                    <del>₹4160</del>₹2799</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">17% Off</span>
+                            <h4>Dengue Test</a></h2>
+                                Includes : 3 Parameters
+                                <ul>
+                                    <li>Dengue IgG And IgM(Rapid Card)</a> </li>
+                                    <li>Dengue NS1 Antigen Detection - RAPID Card</a> </li>
+                                </ul>
+                                <br>
+                                <b>
+                                    <a href=" {% static '' %} ">+ Know More</a><br><del>₹1200</del>₹999</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">67% Off</span>
+                            <h4>BasicScreening Package 4.0 With Allergy By Elisa Method</a></h2>
+                                Includes : 110 Parameters
+                                <ul>
+                                    <li>Allergy Food Profile 20 Allergens</a> </li>
+                                    <li>Amylase enzymatic, Serum</a>
+                                    </li>
+                                    <li>Blood Glucose Fasting</a> </li>
+                                </ul>
+                                <br>
+                                <b>
+                                    <a href=" {% static '' %} ">+ Know More</a><br>
+                                    <del>₹5999</del>
+                                    ₹199
+                                </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">64% Off</span>
+                            <h4>Basic Screening Package 3.0 With Allergy By Elisa Method</a></h2>
+                                Includes : 106 Parameters
+                                <ul>
+                                    <li>Allergy Food Profile 20 Allergens</a> </li>
+                                    <li>Blood Glucose Fasting</a> </li>
+                                    <li>Complete Hemogram</a> </li>
+                                </ul>
+                                <br>
+                                <b><a href=" {% static '' %} ">+ Know More</a><br><del>₹4999</del>₹1799</b>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-auto col-12 col-lg-4">
+                    <div class="card">
+                        <div style="height: 350px;" class="check-up-card">
+                            <span class="discount">78% Off</span>
+                            <h4>Healthians
+                                100% Good Health Package With Allergy By Elisa Method</a></h2>
+                                Includes : 104 Parameters
+                                <ul>
+                                    <li>Allergy Food Profile 20 Allergens</a> </li>
+                                    <li>Blood Glucose Fasting</a> </li>
+                                    <li>Complete Hemogram</a> </li>
+                                </ul>
+                                <br>
+                                <b><a href=" {% static '' %} ">+ Know More</a><br><del>₹8999</del>₹1999</b>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <center>
+                <br><br>
+                <a href=" {% static '' %} " class="services-btn m-4">View All Services</a>
+                <br><br>
+            </center>
+        </div>
+
+        {% include 'footer.html' with aboutdata=aboutdata %}
+
+        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+        <script src=" {% static 'js/index.js' %} "></script>
+
     </div>
-    
-    {% include 'footer.html' with aboutdata=aboutdata %}
-   
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src=" {% static 'js/index.js' %} "></script>
-
-  </div>
 </body>
 <script>
     offset = 0;
@@ -670,4 +957,5 @@
     });
 </script>
 {% endwith %}
+
 </html>

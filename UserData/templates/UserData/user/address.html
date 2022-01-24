@@ -1,12 +1,37 @@
 {% extends 'UserData/user/userbasic.html' %}
 {% block user %}
+<!-- Button trigger modal -->
 
 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
     <div class="Family-headingdiv text-left">
-        <h3>My Address</h3>
+        <h3>Manage Addresses</h3>
+        <a class="btn btn-danger btn_cmncolor_right add_newaddress ga_add_address_button" data-toggle="modal"
+            data-target="#address_edit" onclick="addAddress();">Add New Address</a>
     </div>
     <div class="Retake-Healthkarmadiv f-div">
-        <h4><label class="alert alert-info">No Address Found..!!</label></h4>
+        <!--  <div class="Add-New-Member text-center"></div> -->
+        <div class="alert alert-danger" id="address_list_error_div" style="display:none;"></div>
+        <div id="address_list_div">
+            <div class="add-box" id="address_1802946">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <div class="address"> <strong>House No. / Flat : </strong> <span>123</span> </div>
+                        <div class="address"> <strong>Address : </strong> <span>Indore, Madhya Pradesh, India</span>
+                        </div>
+                        <div class="address"> <strong>Pincode : </strong> <span>452010</span> </div>
+                    </div>
+                    <div class="col-sm-4 text-center btnrdiv">
+                        <div class="edit-address"> <a class="delico" onclick="deleteAddress('1802946');"> <img
+                                    src="/static/images/del-icon.png"> </a> <a class="editico"
+                                onclick="editAddress('1802946');" data-toggle="modal" data-target="#address_edit"> <img
+                                    src="/static/images/edit-icon.png"> </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </div>
 

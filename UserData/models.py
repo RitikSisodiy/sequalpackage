@@ -1,9 +1,11 @@
+from email.policy import default
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import FileExtensionValidator
 from package.models import package, test
 from django.urls import reverse
+import datetime
 from package.models import get_random_string
 def gen_username(length):
     username= get_random_string(length)
@@ -16,6 +18,7 @@ class User(AbstractUser):
     phone = models.CharField(max_length=10)
     gender = models.CharField(max_length=5,blank=True,null=True)
     dob = models.DateField(blank=True,null=True)
+    profile = models.ImageField(upload_to="profiles",default="profile/default.jpg")
 
     def save(self,*args, **kwargs):
         if self.id is None:
@@ -26,13 +29,24 @@ class User(AbstractUser):
                 raise ValidationError("This phone is already exist")
             self.username = gen_username(8)
         super(User, self).save(*args, **kwargs)
-
+    def age(self):
+        if not isinstance(self.dob, str):
+            return datetime.date.today().year - self.dob.year
 class TempUser(models.Model):
     phone = models.CharField(max_length=13)
     otp = models.CharField(max_length=8)
     expire = models.DateTimeField()
-
-
+class Family(models.Model):
+    user= models.ForeignKey(User,on_delete=models.CASCADE,related_name="Family")
+    name= models.CharField(max_length=100)
+    email= models.EmailField()
+    relation= models.CharField(max_length=100)
+    mobile= models.CharField(max_length=10)
+    dob= models.DateField()
+    gender=models.CharField(max_length=10)
+    def age(self):
+        if not isinstance(self.dob, str):
+            return datetime.date.today().year - self.dob.year
 class Booking(models.Model):
     choices=(
         ("package","package"),

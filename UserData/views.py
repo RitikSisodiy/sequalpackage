@@ -1,14 +1,12 @@
-from django import http
-from django.db.models.fields import CharField
-from django.http.request import HttpRequest
 from django.shortcuts import redirect, render
 from .models import User,TempUser
+from django.contrib import messages
 from datetime import datetime
 from django.http import HttpResponse,JsonResponse
 import random, string
 from datetime import timedelta
 from django.utils.timezone import make_aware
-from django.contrib.auth import authenticate,login ,logout
+from django.contrib.auth import login ,logout
 from django.urls import reverse
 # Create your views here.
 def GenOtp(phone,userotp=None):
@@ -97,3 +95,9 @@ def registration(request):
         return redirect("index")
     return render(request,'UserData/registration.html',res)
 
+def Logout(request):
+    try:
+        logout(request)
+    finally:
+        messages.success(request,"Signout SuccessFully")
+        return redirect('userlogin')

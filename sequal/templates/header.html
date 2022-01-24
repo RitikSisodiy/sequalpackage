@@ -1,12 +1,23 @@
 {% load static %}
         <header>
             <div class="navbar">
-                <div class="logo"><img src="{{aboutdata.logo.url}} " alt="" class="logo"></div>
+                <div class="logo"><a href="{% url 'index' %}"><img src="{{aboutdata.logo.url}} " alt="" class="logo"></a></div>
                 <nav>
                     <div class="top">
                         <ul>
                             {% if user.is_authenticated %}
-                            <li><a href="{% url "userdashboard" %}">Profile <i class="fa fa-user"></i></a></li>
+                            <li class="dropdown dropdown-toggle"><a type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Welcome {{request.user.first_name}} <i class="fa fa-user"></i></a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="{% url "userdashboard" %}">Dashboard</a>
+                                    <a class="dropdown-item" href="{% url "profile" %}">Profile</a>
+                                    <a class="dropdown-item" href="{% url "booking" %}">My Bookings</a>
+                                    <a class="dropdown-item" href="{% url "report" %}">My Reports</a>
+                                    <a class="dropdown-item" href="{% url "family" %}">My Family &amp; Friends</a>
+                                    <a class="dropdown-item" href="{% url "address" %}">Manage Addresses</a>
+                                    <a class="dropdown-item" href="{% url "logoutuser" %}">Sign-Out</a>
+                                  </div>
+                            </li>
+                            
                             {% else %}
                             <li><a href=" {% url 'userlogin' %} ">Login/Sign up <i class="fa fa-user"></i></a></li>
                             {% endif %}
@@ -122,3 +133,11 @@
                 </div>
             </div>
         </header>
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}} alert-dismissible fade show in" role="alert">
+            {{message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        {% endfor %}

@@ -2,17 +2,18 @@
 {% load static %}
 {% block body %}
 <link rel="stylesheet" href="{% static 'css/head.css' %}">
+
 <div class="container">
     <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-3">
             <div class="asidenavdiv text-left">
                 <div class="dash-left">
                     <div class="user-area">
-                        <div class="namerdiv">T</div>
-                        <strong>Test</strong>
-                        <p>test@gmail.com</p>
-                        <p>Phone: +91 9090974785</p>
-                        <a href="/myprofile" class="btn btn-danger">Edit info</a>
+                        <div class="namerdiv">{{request.user.first_name|slice:":1"|title}}</div>
+                        <strong>{{request.user.first_name|title}}</strong>
+                        <p>{{request.user.email}}</p>
+                        <p>Phone: +91 {{request.user.phone}}</p>
+                        <a href="{% url 'profile' %}" class="btn btn-danger">Edit info</a>
                     </div>
                     <div class="collapse-element-title visible-xs collapsed" id="h_main_menu123"> Navigation Menu</div>
 
@@ -26,9 +27,7 @@
 
                             
                            
-                            <li><a href="{% url 'subscription' as subscriptionurl %}{{subscriptionurl}}" class="{% if request.path == subscriptionurl %}active{% endif %}">My Subscriptions</a>
-                            </li>
-
+                            
                             <li><a href="{% url 'booking' as bookingurl %}{{bookingurl}}" class="{% if request.path == bookingurl %}active{% endif %}">My Bookings</a></li>
 
                             <li><a href="{% url 'report' as reporturl %}{{reporturl}}" class="{% if request.path == reporturl %}active{% endif %}">My Reports</a></li>
@@ -37,6 +36,7 @@
                             <li><a href="{% url 'family' as familyurl %}{{familyurl}}" class="{% if request.path == familyurl %}active{% endif %}">My Family &amp; Friends</a></li>
 
                             <li><a href="{% url 'address' as addressurl %}{{addressurl}}" class="{% if request.path == addressurl %}active{% endif %}">Manage Addresses</a></li>
+                            <li><a href="{% url 'logoutuser' as logoutuserurl %}{{logoutuserurl}}" class="{% if request.path == logoutuserurl %}active{% endif %}">Sign-out</a></li>
 
                         </ul>
                     </div>

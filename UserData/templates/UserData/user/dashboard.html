@@ -7,39 +7,45 @@
          <div class="row">
              <div class="col-lg-3 col-12 p-3">
                  <div class="profile-div">
-                     <div class="profile">V</div>
-                 <h6 class="mt-1">Vinay</h6>
-                 <p>Vinay@gamil.com
+                     <div class="profile">{{request.user.first_name|slice:":1"|title}}</div>
+                 <h6 class="mt-1">{{request.user.first_name|title}}</h6>
+                 <p>{{request.user.email|title}}
                      <br>
-                     Phone: +91 8109829687</p>
-                     <a href="#">Edit Info</a>
+                     Phone: +91 {{request.user.phone}}</p>
+                     <a href="{% url 'profile' %}">Edit Info</a>
                  </div>
              </div>
              <div class="col-lg-3 p-3 text-center">
                 <div class="rest-card">
                     <img src="{% static 'images/my-subscription.png' %}" alt="">
-                    <a href="{% url "subscription" %}"><h6>My Subscriptions</h6></a>
+                    <a href="{% url "booking" %}"><h6>My Bookings</h6></a>
                 </div>
             </div>
             <div class="col-lg-3 p-3 text-center">
                 <div class="rest-card">
-                    <img src="{% static 'images/my-subscription.png' %}" alt="">
-                    <a href=""><h6>My Subscriptions</h6></a>
+                    <img src="{% static 'images/report_icon.png' %}" alt="">
+                    <a href="{% url "report" %}"><h6>My Reports</h6></a>
                 </div>
             </div>
             <div class="col-lg-3 p-3 text-center">
                 <div class="rest-card">
-                    <img src="{% static 'images/my-subscription.png' %}" alt="">
-                    <a href=""><h6>My Subscriptions</h6></a>
+                    <img src="{% static 'images/my-faimly.png' %}" alt="">
+                    <a href="{% url "family" %}"><h6>My Subscriptions</h6></a>
                 </div>
             </div>
             <div class="col-lg-3 p-3 text-center">
                 <div class="rest-card">
-                    <img src="{% static 'images/my-subscription.png' %}" alt="">
-                    <a href=""><h6>My Subscriptions</h6></a>
+                    <img src="{% static 'images/mange-adress.png' %}" alt="">
+                    <a href="{% url "address" %}"><h6>Manage Addresses</h6></a>
                 </div>
             </div>
-            
+            <div class="col-lg-3 p-3 text-center">
+                <div class="rest-card">
+                    <h1 style="font-size: 3rem;color: #22a14d;"><i class="fa fa-sign-out display-1"></i></h1>
+                    
+                    <a href="{% url "logoutuser" %}"><h6>Logout</h6></a>
+                </div>
+            </div>
          </div>
      </div>
  
