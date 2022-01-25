@@ -674,3 +674,22 @@
     </div>
 </div>
     {% endblock %}
+
+    {% block basicscript %}
+    <script>
+        offset = 0;
+        setInterval(() => {
+            offset = offset + 0.2;
+            document.querySelector(".slides").scrollTo(offset, 0);
+        }, 10);
+        AOS.init();
+        $(document).ready(function () {
+            $('.toggler').click(function () {
+                $(this).siblings().removeClass("active");
+                $(this).toggleClass("active");
+    
+            })
+    
+        });
+    </script>
+    {% endblock %}

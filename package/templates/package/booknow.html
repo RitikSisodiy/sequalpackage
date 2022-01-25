@@ -1,1112 +1,149 @@
 {% extends 'basic.html' %}
 {% load static %}
 {% block body %}
-<link rel="stylesheet" href="{% static 'css/head.css' %}">
+<style>
+    .bg-primary {
+        background: #00a0a8 !important;
+    }
+    .text-secondary{
+        color: red !important;
+    }
+    .bg-secondary{
+        background: red !important;
+    }
+
+    .text-primary {
+        color: #00a0a8 !important;
+    }
+
+    .addressbox input[type=checkbox] {
+        position: absolute !important;
+        top: 25px;
+        right: 23px;
+    }
+
+    div.Addressbuttons button {
+        -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: transparent;
+        box-sizing: border-box;
+        margin: 0;
+        font: inherit;
+        overflow: visible;
+        text-transform: none;
+        -webkit-appearance: button;
+        cursor: pointer;
+        font-family: inherit;
+        line-height: inherit;
+        background: #f16948;
+        border: 1px solid #f16948;
+        color: #fff;
+        font-size: 15px;
+        border-radius: 0 30px 30px 0;
+        padding: 10px 35px;
+    }
+</style>
 <div class="container">
     <div class="row">
-        <div class="col-sm-12">
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 mob_viewport">
-                <div class="contain_left">
-                    <div class="wrappanel4 panel-clr">
-                        <div class="col-sm-10 col-xs-10 spanText">
-                            <div class="row"> <span>1</span> test | +91 9090974785 </div>
-
-                        </div>
-                        <div class="col-sm-2 col-xs-2">
-                        </div>
-                    </div>
-                    <div class="wrap2">
-                        <div class="col-sm-12 col-xs-12">
-                            <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
+            <div class="p-3 shadow p-3 mb-2 bg-white rounded">1 Test | +91 9090974785</div>
+            <div class="shadow mb-2">
+                <div class="p-3  text-light bg-primary">2 Add Member</div>
+                <div class="p-3 ">
+                    <div class="row">
+                        <div class="p-3 col-sm-4">
+                            <div class="p-3 text-sm shadow-sm addressbox">
+                                <span>Test,</span><br>
+                                <small>Self</small><br>
+                                <small>male , 30 yrs</small>
+                                <input type="checkbox" name="" id="">
                             </div>
                         </div>
                     </div>
-
-                    <div style="clear:both"></div>
-
-                    <div id="member-tab" class="wrappanel2 panel-clr acconActive" data-toggle="collapse"
-                        data-parent="#accordion" aria-controls="collapse3" data-target="#collapse3">
-                        <a onclick="checkPastTab('member')" class="wrappanel2_section"><span>2</span>
-                            <div class="labelcheckouttitle">Add member</div>
-                        </a>
-                    </div>
-
-                    <div id="collapse3" class="panel-collapse collapse in">
-                        <div class="wrap wrap-section">
-                            <div id="existing_member_list">
-
-
-                                <div class="cart-block memberinfo col-lg-4 col-md-4 col-sm-4 cart-box">
-                                    <div class="custmer_inf">
-                                        <strong>Test,</strong>
-                                        <p><span>Self</span> </p>
-                                        <p class="custmembr">
-                                            Male
-                                            , 30 yrs.
-                                        </p>
-                                        <p></p>
-
-                                    </div>
-                                    <div class="checkbox checkbox-info checkbox-circle">
-                                        <input onclick="addMemberWithPackage(this)" class="customer_details"
-                                            data-cust_name="Test" data-cust_relation="Self" data-cust_age="30"
-                                            data-cust_gender="M" name="cus_ids" id="c26582dfe73c1c673e724cffa259cb86"
-                                            value="c26582dfe73c1c673e724cffa259cb86" title="Already selected"
-                                            type="checkbox" checked="">
-                                        <label for="c26582dfe73c1c673e724cffa259cb86"> </label>
-                                    </div>
-
-                                    <div class="last_checkup_text">
-                                    </div>
-                                </div>
-
-
-                                <div class="cart-block memberinfo col-lg-4 col-md-4 col-sm-4 cart-box">
-                                    <div class="custmer_inf">
-                                        <strong>Pravesh,</strong>
-                                        <p><span>Colleague</span> </p>
-                                        <p class="custmembr">
-                                            Male
-                                            , 22 yrs.
-                                        </p>
-                                        <p></p>
-
-                                    </div>
-                                    <div class="checkbox checkbox-info checkbox-circle">
-                                        <input onclick="addMemberWithPackage(this)" class="customer_details"
-                                            data-cust_name="Pravesh" data-cust_relation="Colleague" data-cust_age="22"
-                                            data-cust_gender="M" name="cus_ids" id="d72394960f2d1d95b21c3f70d0ce13d7"
-                                            value="d72394960f2d1d95b21c3f70d0ce13d7" title="Already selected"
-                                            type="checkbox" checked="">
-                                        <label for="d72394960f2d1d95b21c3f70d0ce13d7"> </label>
-                                    </div>
-
-                                    <div class="last_checkup_text">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-12 col-xs-12 no-padding">
-
-                                <div class="space1"></div>
-                                <div class="col-sm-12 addmemberbtn col-xs-12">
-                                    <button type="button" data-toggle="modal" data-target="#add-member"
-                                        class="btn_2 ga_booking_add_more_member">Add More Member</button>
-                                    <button id="next-to-address" type="button"
-                                        class="btn_3 mtl_30 ga_add_memeber_next_button">Next</button>
-                                </div>
-                                <div class="space2"></div>
-
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="address-tab" class="wrappanel2 panel-clr">
-                        <a class="wrappanel2_section"><span>3</span>
-                            <div class="labelcheckouttitle">Add sample collection address, date &amp; time</div>
-                        </a>
-                    </div>
-
-                    <div id="collapse4" class="panel-collapse collapse">
-
-                        <div class="wrap">
-
-                            <div class="col-sm-12 col-xs-12">
-                                <div id="show-address">
-
-                                    <div class="col-sm-6 col-xs-12">
-                                        <div class="addleftslot">
-                                            <div class="address-area defaultaddress" style="margin-right: 0px;"
-                                                id="default_address_area">
-                                                <div style="margin-top: 0px;"
-                                                    class="checkbox checkbox-info checkbox-circle"><input checked=""
-                                                        id="selected_address" data-localityid="4656"
-                                                        data-cityname="indore" value="1802946" type="checkbox"><label
-                                                        for="address-n-2" id="default-address-detail">
-                                                        <h6>House no.: <span>123, Indore, Madhya Pradesh, India indore
-                                                                Madhya Pradesh - 452010</span></h6>
-                                                    </label></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6 col-xs-12 ">
-                                        <div id="view-arrow" class="address-area viewslotopt">
-                                            <h5>View Saved Address</h5>
-                                        </div>
-                                        <div id="check-dropdown">
-                                            <div class="radiopull">
-
-                                                <input class="pick_address" id="radio-n-1" data-localityid="4656"
-                                                    data-cityname="indore" value="1802946"
-                                                    name="selected_address_dropdown" type="radio">
-                                                <label for="radio-n-1">
-                                                    <h6>House no.: <span>123, Indore, Madhya Pradesh, India indore
-                                                            Madhya Pradesh - 452010</span></h6>
-                                                </label>
-                                            </div>
-
-                                            <div class="dropdownaddnewaddress">
-                                                <a class="ga_booking_add_new_address" href="JavaScript:void(0);"
-                                                    id="add-btn" data-toggle="modal" data-target="#add-address"
-                                                    onclick="resetLocality();pushGaEvent('Checkout', 'Click on Add new Address', 'c26582dfe73c1c673e724cffa259cb86')">Add
-                                                    New Address</a>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-xs-12" style="margin-top:15px; ">
-                                <div class="col-sm-12 col-xs-12 path_slot">CHOOSE DATE &amp; TIME FOR HOME SAMPLE
-                                    COLLECTION</div>
-                                <div class="col-sm-6 col-xs-12 path_slot">
-                                    <div class="form-group">
-                                        <div class="checkout_input date" id="datetimepicker5">
-                                            <input type="text"
-                                                class="logininput borderred ga_booking_sample_collection_date"
-                                                placeholder="Select sample collection date" name="collection_date"
-                                                readonly="" data-date-format="mm/dd/yy" id="dp2" autocomplete="off">
-                                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-xs-12 path_slot">
-                                    <div class="form-group">
-                                        <div class="checkout_input date" id="datetimepicker3">
-                                            <select placeholder="Select sample collection Time" name="collection_time"
-                                                id="collection_time"
-                                                class="borderred ga_booking_sample_collection_time">
-                                                <option value="" selected="">Select Collection Time</option>
-                                            </select>
-                                        </div>
-                                        <img src="/img/load_wait.gif" id="sample_time_wait" style="display: none;">
-                                    </div>
-                                </div>
-
-                                <div class="show_address" id="radiology_div_title" style="display: none;">
-                                    <h3>Choose date &amp; time of Radiology lab visit</h3>
-                                </div>
-
-                                <div id="radiology_div" class="col-sm-12 col-xs-12 radio_slot" style="display: none;">
-
-                                    <div class="">
-                                    </div>
-                                </div>
-
-
-                                <button style="display: none" id="next-to-payment" type="button"
-                                    class="btn_3 mtl_30 ga_booking_add_new_address_next">Next</button>
-
-                                <p class="choosedatetime">* Choose sample collection date &amp; time to proceed further
-                                </p>
-                                <p><button id="next-to-payment-2" type="button"
-                                        class="btn_3 mtl_30 ga_booking_add_new_address_next" style="display: none;"
-                                        onclick="changeToPaymentTab();">Next</button></p>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <input type="hidden" id="checkAddressClicked" name="checkAddressClicked" value="0">
-                <!-- payment option section -->
-
-                <div id="payment-tab" data-toggle="collapse" data-parent="#accordion"
-                    class="wrappanel2 panel-clr payment_section">
-                    <a class="wrappanel2_section"><span>4</span>
-                        <div class="labelcheckouttitle">Payment option</div>
-                    </a>
-                </div>
-
-                <div id="collapse5" class="panel-collapse collapse">
-                    <input type="hidden" name="order_amount" value="798">
-                    <input type="hidden" name="customer_count" value="2">
-                    <input type="hidden" name="restrict_coupon" value="">
-
-                    <input type="hidden" name="pathology_count" id="pathology_count" value="2">
-                    <input type="hidden" name="radiology_count" id="radiology_count" value="0">
-
-                    <div class="wrap wrap_apply_coupon">
-                        <div class="col-sm-12 col-xs-12 mob_viewport">
-                            <form action="https://www.healthians.com/payment" id="payment_form" name="payment_form"
-                                method="post">
-                                <input type="hidden" name="_token" value="7S8oxfLEvprLMRwUjHOOzgSph9FuHZ6X5Cfas4ar">
-                                <input type="hidden" name="cart_id" value="704026">
-
-                                <input type="checkbox" name="yuvraj_foundation" style="display:none;" value="10">
-                            </form>
-                            <input type="hidden" name="coupon_id" value="0">
-                            <input type="hidden" name="discount" value="0">
-                            <input type="hidden" name="new_coupon" value="0">
-
-                            <input type="hidden" name="subscription_freq" value="0">
-                            <input type="hidden" name="finalamount" value="0">
-                            <input type="hidden" name="isSubscription" value="0">
-                            <div id="subscription_cal_div">
-                                <div id="gfyter_voucher" class="pbless">
-                                    <div class="gyfter-left">
-                                        <div class="checkbox checkbox-info checkbox-circle">
-                                            <input id="voucher_check" type="checkbox" name="voucher_check" value="1"
-                                                onclick="voucher_check();">
-                                            <label class="voucher_check_detail" for="voucher_check_detail"> </label>
-                                            Add / Redeem Gyftr E-Gift Cards <br>
-                                        </div>
-
-                                        <div class="giftCard"><img src="/img/giftcard.png"></div>
-                                    </div>
-                                    <div id="vocuher_details_div" style="display: none;">
-                                        <div class="col-sm-12 col-xs-12 col-md-12 mar10 ecardbalance">
-                                            Gyftr E-Gift Cards Balance : <span class="rupeesign">₹</span> <b><span
-                                                    id="voucher_wallet_balance"></span></b>
-                                        </div>
-
-                                        <div class="redemptionopt">
-                                            <h5>To use redemption option </h5>
-
-                                            <div class="redemptionrgt">
-                                                <input type="text" name="redeemption_amount" id="redeemption_amount"
-                                                    autocomplete="off" placeholder="Enter redemption Amount">
-
-                                                <input type="button" class="btb btn-info applyredeem" value="Redeem"
-                                                    id="redeem_btn" onclick="checkRedeemPosible();">
-
-                                                <input type="button" class="btb btn-info applyredeem"
-                                                    value="Remove redemption" id="redeem_remove_btn"
-                                                    onclick="removeRedeemtion();" style="display: none;">
-
-                                                <input type="hidden" value="" id="redeem_id" name="redeem_id">
-
-                                            </div>
-                                        </div>
-
-                                        <!-- add gyfter balance -->
-                                        <div class="col-sm-12 col-xs-12 col-md-12 mar10 gyf-add-balance">
-                                            <h6>To add Gyftr E-Gift Card Balance </h6>
-                                            <div class="balbtn">
-                                                <a href="javascript:void(0)" data-toggle="modal"
-                                                    data-target="#load_wallet_otp"
-                                                    onclick="getGyfterWalletOTP('load_wallet', false);"
-                                                    class="btn btn-success applyredeem">Add Gyftr Balance</a>
-                                            </div>
-                                        </div>
-                                        <!-- add gyfter balance -->
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-
-                                <div id="sip_use_div" class="pbless">
-                                    <div class="gyfter-left">
-                                        <div class="checkbox checkbox-info checkbox-circle">
-                                            <input id="sip_balance_check" type="checkbox" name="sip_balance_check"
-                                                value="1" onclick="sip_check();">
-                                            <label class="sip_check_detail" for="sip_check_detail"> </label>
-                                            Redeem SHPP Investment Amount <br>
-                                        </div>
-
-                                        <div class="giftCard"><img src="/img/sip/icon_saving.png"></div>
-                                    </div>
-                                    <div id="sip_details_div" style="display: none;">
-                                        <div class="col-sm-12 col-xs-12 col-md-12 mar10 ecardbalance">
-                                            Net Usable Balance : <span class="rupeesign">₹</span> <b><span
-                                                    id="sip_net_usable_balance">0</span></b>
-                                        </div>
-
-                                        <div class="redemptionopt">
-                                            <h5>To use redemption option </h5>
-
-                                            <div class="redemptionrgt">
-                                                <input type="text" name="sip_redeemption_amount"
-                                                    id="sip_redeemption_amount" autocomplete="off"
-                                                    placeholder="Enter redemption Amount">
-
-                                                <input type="button" class="btb btn-info applyredeem" value="Redeem"
-                                                    id="sip_redeem_btn" onclick="checkSIPRedeemPossible();">
-
-                                                <input type="button" class="btb btn-info applyredeem"
-                                                    value="Remove redemption" id="sip_redeem_remove_btn"
-                                                    onclick="removeSipRedeemtion();" style="display: none;">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </div>
-
-                                <div id="coupon_hcash_div">
-                                    <div class="payment_wrap">
-                                        <!-- Coupon -->
-                                        <div class="detail-div payment">
-                                            <div class="couponapplyopt">
-                                                <div class="row">
-                                                    <div class="col-md-12 col-xs-12">
-                                                        <div class="coupontxt" id="coupontxt"><img
-                                                                src="/img/coupon-card.png"> Apply Coupon here</div>
-                                                    </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="cpninput dark">
-                                                            <input type="text" name="coupon_code" autocomplete="off"
-                                                                placeholder="Enter Coupon Code">
-                                                            <!-- <input type="submit" value="Apply" id="cal_coupon"> -->
-
-                                                            <input type="submit" class="addcoupon" value="Add"
-                                                                id="cal_coupon">
-                                                            <input type="submit" class="removecoupon hidden"
-                                                                value="Remove" id="remove_coupon">
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <span class="clearfix"></span>
-
-                                                <div class="row">
-                                                    <div class="col-md-12 col-lg-12" id="coupon_display_message"
-                                                        style="display:none;text-align: left;color: #41a5b8;padding-left: 30px;padding-bottom: 10px;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <span class="clearfix"></span>
-
-                                            <div class="couponapplyopt">
-                                                <span class="clearfix"></span>
-                                                <div class="row">
-                                                    <div class="col-md-12 col-lg-12">
-                                                        <div id="coupon-aplicable" style="display: none"
-                                                            class="coupontxt_message">
-                                                            <span>Coupon is not applicable on selected package</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <input type="hidden" name="coupon_discount" value="0">
-                                    </div>
-
-                                    <input id="max_hcash_value" type="hidden" name="max_hcash_value" value="2">
-                                    <!-- Hcash options -->
-                                    <div class="detail-div" id="hcash_display_div">
-                                        <div class="amount-area">
-                                            <div class="row">
-                                                <div class="col-sm-6 col-xs-9 col-md-6">
-                                                    <div class="checkbox checkbox-info checkbox-circle">
-                                                        <input id="hcash_field_detail" type="checkbox"
-                                                            name="hcash_value" value="2">
-                                                        <label class="hcash_val" for="hcash_field_detail"> </label>
-                                                        HCASH Amount <a data-toggle="modal" data-target="#modal_visible"
-                                                            title="Hcash Usage Rule" id="hcash_modal"><img
-                                                                class="astrek1" src="/img/astrek.png"></a><br>
-                                                        <span class="availablewallet">(Available Balance <span
-                                                                class="rupeesign">₹</span> 1000) </span>
-                                                    </div>
-
-                                                </div>
-                                                <div class="col-md-6 col-sm-6 col-xs-3">
-                                                    <div class="text-right rght">
-                                                        <div class="total" id="ecashAmount"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-12 col-sm-12 col-xs-12">
-                                                    <span style="display: none" class="coupontxt_message"
-                                                        id="hcashmessage">
-
-                                                    </span>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="detail-div mkchange" id="donation_display_div">
-                                    <div class="amount-area">
-                                        <div class="col-md-6 col-sm-6 col-xs-7 no-padding">Make a Change <a
-                                                data-toggle="modal" data-target="#modal_visible"
-                                                title="Yuvraj Foundation" id="donation_modal"><img class="astrek"
-                                                    src="/img/astrek.png"></a>
-
-                                            <p class="yuvifoundation">Donation to Yuvraj Singh Foundation</p>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-5 text-right">
-                                            <div class="total">
-                                                <span id="donation_amt_detail"> <span class="rupeesign">₹</span> 10 <br>
-                                                    <p class="removes remove_yuvraj_foundation" style="cursor:pointer;">
-                                                        Remove</p>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div id="generateConvenienceFeeOnlineDiscount">
-
-                                    </div>
-
-                                    <div id="generateConvenienceFee">
-
-                                    </div>
-                                </div>
-
-                                <div class="modal fade" id="load_wallet_otp" tabindex="-1" role="dialog"
-                                    aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">×</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body contentotp">
-
-                                                <div id="load_otp_wallet_div">
-                                                    <h3>Verify OTP</h3>
-                                                    <p>Please enter the OTP sent to your registered Mobile Number</p>
-                                                    <br>
-
-                                                    <input type="text" name="wallet_load_otp" id="wallet_load_otp"
-                                                        maxlength="4" placeholder="Enter OTP">
-
-                                                    <input type="button" class="btn btn-info" name="wallet_load_otp_btn"
-                                                        id="wallet_load_otp_btn" onclick="getGyfterLoadWallet();"
-                                                        value="Submit OTP">
-                                                    <p class="load_resendotp" id="load_resendotp"
-                                                        onclick="getGyfterWalletOTP('load_wallet', true);"
-                                                        style="display: none;">Resend OTP</p>
-
-
-                                                    <div class="errorsuccess">
-                                                        <p class="successp" id="load_otp_success"
-                                                            style="display: none;"></p>
-                                                        <p class="errorp" id="load_otp_error" style="display: none;">
-                                                        </p>
-                                                    </div>
-
-                                                    <div id="load_otp_processing" class="load_wait_gif"
-                                                        style="display: none;">
-                                                        <img src="/img/load_wait.gif">
-                                                    </div>
-                                                </div>
-
-                                                <div id="voucher_list" class="row"
-                                                    style="display: none;margin-left: 0px;">
-                                                    <div class="row">
-                                                        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
-                                                            <b>E-Gift Card Balance: <span class="mainbl"
-                                                                    id="load_wallet_balance"></span></b>
-                                                        </div>
-
-
-                                                        <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
-                                                            <div class="refresh_btn">
-                                                                <input type="button" name="refresh_balance"
-                                                                    id="refresh_balance" value="Refresh balance"
-                                                                    class="btn btn-warning"
-                                                                    onclick="getWalletBalance();">
-                                                            </div>
-                                                        </div>
-
-
-                                                    </div>
-
-
-
-                                                    <div class="row available_voucher_txt">
-                                                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                                            <b>Available E-Gift Cards</b>
-
-                                                            <img src="/img/load_wait.gif"
-                                                                style="float: right;margin-right: 10%;display: none;"
-                                                                id="balance_refresh">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row" id="voucher_list_div">
-
-
-                                                    </div>
-
-                                                    <div class="row available_voucher_txt">
-                                                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                                            <b>Manually add E-Gift Cards</b>
-                                                        </div>
-                                                        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
-                                                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-8">
-                                                                <div class="row">
-                                                                    <input type="text" name="manual_voucher"
-                                                                        id="manual_voucher"
-                                                                        placeholder="eg: AG123XXXXXXXXX">
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-sm-12 col-xs-12 col-md-12 col-lg-4">
-                                                                <input type="button" class="btn btn-info applyredeem"
-                                                                    value="ADD" onclick="getGyfterManualVoucher();">
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="modal fade" id="redeem_wallet_otp" tabindex="-1" role="dialog"
-                                    aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">×</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body contentotp">
-                                                <h3>Verify OTP to Redeem</h3>
-                                                <p>Please enter the OTP sent to your registered Mobile Number</p>
-                                                <div id="redeem_otp_wallet_div">
-
-                                                    <input type="text" name="wallet_redeem_otp" id="wallet_redeem_otp"
-                                                        maxlength="4" placeholder="Enter OTP">
-
-                                                    <input type="button" class="btn btn-info"
-                                                        name="wallet_redeem_otp_btn" id="wallet_redeem_otp_btn"
-                                                        onclick="getGyfterRedeemWallet();" value="Submit OTP">
-
-                                                    <p class="resendotp mrinfo" id="redeem_resend_otp"
-                                                        onclick="getGyfterWalletOTP('redeem_wallet', true);">Resend OTP
-                                                    </p>
-
-                                                    <div id="redeem_otp_processing" class="load_wait_gif"
-                                                        style="display: none;">
-                                                        <img src="/img/load_wait.gif">
-                                                    </div>
-
-                                                    <div class="errorsuccess">
-                                                        <p class="successp" id="redeem_otp_success"
-                                                            style="display: none;"></p>
-                                                        <p class="errorp" id="redeem_otp_error" style="display: none;">
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="modal fade" id="collection_fees_visible" tabindex="-1" role="dialog"
-                                    aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">×</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="ysf_section">
-                                                    <div class="donationInfo"></div>
-                                                    <div style="margin:0px auto;text-align: center;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="modal fade" id="modal_visible" tabindex="-1" role="dialog"
-                                    aria-labelledby="myModalLabel">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">×</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="ysf_section donation_modal_Info hidden">
-                                                    <img src="/img/you-we-can-logo.png" class="ysflogo">
-                                                    <div id="modal_visible_content"> </div>
-                                                    <p><a class="web-ysf"
-                                                            href="https://www.youwecan.org/">www.youwecan.org</a></p>
-                                                    <div style="margin:0px auto;text-align: center;">
-                                                    </div>
-                                                </div>
-                                                <div class="ysf_section hcash_modal_info hidden">
-                                                    <!--Varun-->
-                                                    <div>
-                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td><strong>H-Cash - the simplest way to save money
-                                                                            on health checkups</strong></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <p> <strong>T&amp;C </strong></p>
-
-                                                                        <p>·&nbsp;Earn H-Cash with every booking you
-                                                                            make with Healthians.</p>
-                                                                        <p>·&nbsp;Redeem it to get discounts on your
-                                                                            future bookings with Healthians.</p>
-
-                                                                        <p>·&nbsp;All earned H-Cash is automatically
-                                                                            added to your Healthians wallet.</p>
-
-                                                                        <p>·&nbsp;You can check your H-Cash balance in
-                                                                            Healthians app under Profile section.</p>
-
-                                                                        <p>·&nbsp;H-Cash is 100% encrypted and can only
-                                                                            be used after login.</p>
-
-                                                                        <p>·&nbsp;The available H-Cash balance is valid
-                                                                            for 1 year from the day of credit.</p>
-
-                                                                        <p>·&nbsp;Depending on the offer, H-Cash can/
-                                                                            cannot be used over &amp; above the discount
-                                                                            coupons. Kindly read the T&amp;C of each
-                                                                            offer for clarity.</p>
-
-                                                                        <p>·&nbsp;The H-Cash earned can be used for all
-                                                                            bookings made from the user id attached to
-                                                                            the Healthians wallet. It is
-                                                                            non-transferable.</p>
-
-                                                                        <p>·&nbsp;The H-Cash amount doesn’t bear
-                                                                            interest, and is non-refundable.</p>
-
-                                                                        <p>·&nbsp;Healthians holds the sole discretion
-                                                                            to reward H-Cash with promotional offers,
-                                                                            monitoring and temporarily suspending the
-                                                                            H-Cash account.</p>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>&nbsp;</td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <div style="margin:0px auto;text-align: center;">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="payment_wrap payment_wrap_hard" style="display: none;">
-                                    <div class="col-sm-10 col-xs-7">
-                                        <p style="font-size: 14px;"> Need a hard copy of report?</p>
-                                    </div>
-                                    <div class="col-xs-5 col-sm-2 col-md-2 col-lg-2">
-
-                                        <div class="section-radio-btn rupay-btn pull-right">
-                                            <!-- radio-btn -->
-                                            <div class="pay_wrp" id="hard_copy_detail">
-                                                <div class="list">
-
-                                                    <div class="checkbox checkbox-info  circle-section ray-circle">
-                                                        <input id="hard_copy_check" type="checkbox" name="hard_copy"
-                                                            value="150">
-                                                        <label for="hard_copy_check"> </label>
-                                                    </div>
-                                                </div>
-                                                <div class="list1" id="sub_hard_copy_price"> <b> <span
-                                                            class="rupeesign">₹</span> 150 </b>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="pay1">
-                                <div>
-                                    <p> Total Payable Amount <span class="amt_after_discount"><span
-                                                class="rupeesign">₹</span> 798 </span> </p>
-                                    <input type="hidden" name="payable_amount" value="798">
-                                </div>
-                            </div>
-                            <div class="payment_wrap1" id="payment_mode_div">
-
-
-                                <div class="pay_wrp" id="pay_wrp_paytm">
-                                    <div class="list">
-                                        <label for="paytm_1" class="con_pay">
-                                            <input id="paytm_1" name="payment_mode" value="paytm"
-                                                data-couponcode="paytm" checked="" type="radio">
-                                            <span class="checkmark"></span>
-                                            <div class="list1">
-                                                <p> <img src="/img/paytm_payment.png" class="imgset"> Pay With Paytm
-                                                    Wallet &amp; Postpaid</p>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="pay_wrp" id="pay_wrp_payu">
-                                    <div class="list">
-                                        <label for="payu_3" class="con_pay">
-                                            <input type="radio" id="payu_3" name="payment_mode" value="payu"
-                                                data-couponcode="payu">
-                                            <span class="checkmark"></span>
-
-                                            <div class="list1">
-                                                <p> <img src="/img/payu_payment.png" class="imgset"> Pay Online (Credit
-                                                    Card / Debit Card / Netbanking / Wallet)</p>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="pay_wrp" id="pay_wrp_mobikwik">
-                                    <div class="list">
-                                        <label for="mobikwik_2" class="con_pay">
-                                            <input type="radio" id="mobikwik_2" name="payment_mode" value="mobikwik"
-                                                data-couponcode="mobikwik">
-                                            <span class="checkmark"></span>
-
-                                            <div class="list1">
-                                                <p> <img src="/img/mobikwik_payment.png" class="imgset"> Pay with
-                                                    MobiKwik - (Get up to Rs.500 Cashback with a minimum payment of
-                                                    Rs.300)</p>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="pay_wrp" id="pay_wrp_pinelab">
-                                    <div class="list">
-                                        <label for="pinelab" class="con_pay">
-                                            <input type="radio" id="pinelab" name="payment_mode" value="pinelab"
-                                                data-couponcode="pinelab">
-                                            <span class="checkmark"></span>
-
-                                            <div class="list1">
-                                                <p> <img src="/img/plural-pinelabs.jpg" class="imgset"> Pay via Plural
-                                                    by Pine Labs</p>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="pay_wrp" id="pay_wrp_cash">
-                                    <div class="list">
-                                        <label for="cash_4" class="con_pay">
-                                            <input type="radio" id="cash_4" name="payment_mode" value="cash"
-                                                data-couponcode="cod">
-                                            <span class="checkmark"></span>
-
-                                            <div class="list1">
-                                                <p> <img src="/img/cash_payment.png" class="imgset"> Cash/Card on Sample
-                                                    Collection</p>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="payment_wrap2">
-                                <div class="pay_wrp2">
-
-                                    <div class="accept_conditions">
-
-                                        <div class="acceptterms">
-                                            <input type="radio" id="terms" name="term_check">
-                                            <label class="acceptpaymentterm" for="terms">I accept the <a
-                                                    style="margin:0px;" class="link-otp"
-                                                    href="https://www.healthians.com/terms-condition">Terms &amp;
-                                                    Conditions</a>, <a style="margin:0px;" class="link-otp"
-                                                    href="https://www.healthians.com/privacy-policy">Privacy Policy</a>
-                                                and <a style="margin:0px;" class="link-otp"
-                                                    href="https://www.healthians.com/terms-condition#booking_terms">Booking
-                                                    Terms &amp; Conditions</a></label>
-
-
-                                        </div>
-                                        <a href="javascript:void(0)"
-                                            class="btn btn btn-danger btn_cmncolor ga_booking_complete_order"
-                                            id="payment_out">Complete Order <img class="lazy-loaded"
-                                                data-src="/img/left-icon-sml.png" src="/img/left-icon-sml.png"></a>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- payment-option end -->
-
-
-
-
-                <!-- subscription big banner -->
-                <div class="use_subscription_section" style="display:none;" id="botm_sub_div">
-
-                    <div class="col-md-12 col-xs-12">
-                        <div class="row subscribe_benefits_colour">
-                            <div class="col-md-4 col-xs-12 no_padding">
-                                <div class="use_subscription_img">
-                                    <img
-                                        src="https://www.healthians.com/img/checkout-subscribe/img_Use_Subscription.png">
-                                </div>
-                            </div>
-                            <div class="col-md-8 col-xs-12 ">
-
-                                <div class="col-md-12 col-xs-12 no_padding">
-                                    <div class="use_subscription_text">
-                                        <h1>Choose a subscription plan &amp; relax!</h1>
-                                        <p>Subscribe to get hassle-free health Check-ups</p>
-                                    </div>
-
-                                    <div class="use_subscription_subscribe">
-                                        <button type="button" id="botm_sub_button"
-                                            class="btn subscribedbx subscribe_now_paymnt iconbig subscribe_benefits">Subscribe</button>
-                                    </div>
-
-
-                                </div>
-
-                                <div class="clearfix"></div>
-                                <div class="col-md-12 col-xs-12 Subscription_benefits_text">
-                                    <h3>Subscription benefits</h3>
-                                </div>
-                                <div class="row text-center">
-                                    <div class="col-md-3 col-xs-3">
-                                        <div class="Subscription_benefits_logo">
-                                            <img src="https://www.healthians.com/img/checkout-subscribe/discount_logo.png"
-                                                alt="">
-                                            <p>Higher savings</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-xs-3">
-                                        <div class="Subscription_benefits_logo">
-                                            <img src="https://www.healthians.com/img/checkout-subscribe/time_saving_logo.png"
-                                                alt="">
-                                            <p> Saves your time</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-xs-3">
-                                        <div class="Subscription_benefits_logo">
-                                            <img src="https://www.healthians.com/img/checkout-subscribe/easy_booking_logo.png"
-                                                alt="discount_logo">
-                                            <p> Hassel-free booking</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-xs-3">
-                                        <div class="Subscription_benefits_logo">
-                                            <img src="https://www.healthians.com/img/checkout-subscribe/doctor_logo.png"
-                                                alt="discount_logo">
-                                            <p>Doctor consultation
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-                <!-- subscription big banner ends -->
-            </div>
-            <div class="col-sm-4 col-xs-12 packages_section mob_viewport">
-                <div class="package_detail">
-                    <h2>Package Details </h2>
-
-                    <div class="package_info pkgarea">
-                        <div class="cart-product-infos">
-                            <div class="row">
-                                <div class="textcol1">
-                                    <!-- <div class="mt2"> <img src="https://www.healthians.com/img/del-icon.png" class="removeicon"></div> -->
-                                </div>
-                                <div class="col-sm-8 col-xs-8">
-                                    <p class="boxlft">
-                                        Ayushman Package
-                                    </p>
-                                </div>
-                                <div class="col-sm-4 col-xs-4">
-                                    <div class="save"> Save 92% </div>
-                                </div>
-
-
-                                <div class="col-sm-12">
-                                    <del>
-                                        <span class="rupeesign">₹</span>5103
-                                    </del>
-                                    <span class="textcol1">
-                                        <span class="rupeesign">₹</span>399 </span>
-                                </div>
-                                <!-- New Price -->
-                                <!--  <div class="col-sm-12"> 
-                    <span class="textcol1">
-                        <span class="rupeesign">₹</span> 399 
-                        <p style="font-size:12px;color: red;margin-bottom: 0px;display: inline-block;margin-left: 5px;">(Special Price applied)</p>
-                    </span>
-
-                </div> -->
-                                <!-- New Price -->
-
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-
-                    <div id="package_detail_cart_and_selected">
-
-                        <div id="package_detail_c26582dfe73c1c673e724cffa259cb86" class="package_info"
-                            data-packagecount="1">
-                            <div class="subscribedlabel"><span class="customize_text">Your customize package</span>
-                            </div>
-                            <div class="purchasesummery">
-                                <div class="purchasesummerytext"> <span>Test | Self</span><br>Male, 30 years </div>
-                                <div id="produt_detail_package_690-c26582dfe73c1c673e724cffa259cb86"
-                                    class="cart-product-details">
-                                    <div class="row">
-                                        <div class="col-sm-12 col-xs-12 lft_testdetail">
-                                            <p class="boxlft">Ayushman Package<span>Parameters Included : 77 </span></p>
-                                        </div>
-                                        <div class="col-sm-12 mid_totalamnt"> <del> <span
-                                                    class="rupeesign">₹</span>5103</del>
-                                            <span class="textcol1"> <span class="rupeesign">₹</span>399</span><span
-                                                class="savetxt" style="margin-left: 10px;">Save 92%</span><span
-                                                class="removepkg"><a class="remove_package" href="javascript:void(0);"
-                                                    data-price="399" data-cusid="c26582dfe73c1c673e724cffa259cb86"
-                                                    data-groupid="package_690" data-actual_price="5103"
-                                                    data-cust_count="1"><img src="/img/del-icon.png"
-                                                        class="removeicon"></a></span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="package_detail_d72394960f2d1d95b21c3f70d0ce13d7" class="package_info"
-                            data-packagecount="1">
-                            <div class="subscribedlabel"><span class="customize_text">Your customize package</span>
-                            </div>
-                            <div class="purchasesummery">
-                                <div class="purchasesummerytext"> <span>Pravesh | Colleague</span><br>Male, 22 years
-                                </div>
-                                <div id="produt_detail_package_690-d72394960f2d1d95b21c3f70d0ce13d7"
-                                    class="cart-product-details">
-                                    <div class="row">
-                                        <div class="col-sm-12 col-xs-12 lft_testdetail">
-                                            <p class="boxlft">Ayushman Package<span>Parameters Included : 77 </span></p>
-                                        </div>
-                                        <div class="col-sm-12 mid_totalamnt"> <del> <span
-                                                    class="rupeesign">₹</span>5103</del>
-                                            <span class="textcol1"> <span class="rupeesign">₹</span>399</span><span
-                                                class="savetxt" style="margin-left: 10px;">Save 92%</span><span
-                                                class="removepkg"><a class="remove_package" href="javascript:void(0);"
-                                                    data-price="399" data-cusid="d72394960f2d1d95b21c3f70d0ce13d7"
-                                                    data-groupid="package_690" data-actual_price="5103"
-                                                    data-cust_count="1"><img src="/img/del-icon.png"
-                                                        class="removeicon"></a></span></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="package_info2" id="package_info2">
-                        <div class="total-package">
-                            <table class="table">
-                                <tbody>
-
-                                    <input type="hidden" name="package_count" value="2">
-                                    <!-- <tr>
-                        <td>Total Package</td>
-                        <td id="total-package" class="package-and-price-align">2</td>
-                        
-                    </tr> -->
-                                    <tr>
-                                        <td>Price</td>
-                                        <td id="order-amount" class="package-and-price-align"><span
-                                                class="rupeesign">₹</span> 798</td>
-                                    </tr>
-
-
-
-
-                                    <!-- <tr id="collection-charge-free">
-                        <td>Collection Charges <span class="freeofcost">FREE</span></td>
-                        <td id="convenience_fees_free" class="package-and-price-align"><del class="doccharge"><span class="rupeesign">₹</span> 200</del></td>
-                    </tr> -->
-
-                                    <tr id="generateConvenienceFeeOnlineDiscountSide" style="display: none;">
-                                    </tr>
-
-                                    <tr id="generateConvenienceFeeSide">
-
-                                    </tr>
-
-
-
-                                    <tr id="yuvraj_foundation_donation"></tr>
-                                    <tr id="hard_copy_check_payment"></tr>
-                                    <tr id="hascashhtml"></tr>
-                                    <tr id="dis_coupon_amt" style="display: none;"></tr>
-                                    <tr id="voucher_redeem_amt"></tr>
-                                    <tr id="sip_redeem_amt"></tr>
-                                    <tr>
-                                    </tr>
-                                    <tr id="free_consultation_div">
-                                        <td>Doctor Consultation <span class="freeofcost">FREE</span></td>
-                                        <td id="order-amount" class="package-and-price-align"><del
-                                                class="doccharge"><span class="rupeesign">₹</span> 399</del> </td>
-                                    </tr>
-
-                                    <!-- New Price -->
-                                    <!-- <tr>
-                        <td>Special Price </td>
-                        <td id="order-amount" class="package-and-price-align">
-                            <span style="color:#00a0a8 !important;" class="doccharge"><span class="rupeesign">₹</span> 699</span> </td>
-                    </tr> -->
-                                    <!-- New Price -->
-
-
-                                    <tr class="space1"> </tr>
-                                    <tr class="totalpay">
-                                        <td
-                                            style="color: #00a0a8; line-height: 38px; margin-right:0px; font-weight: bold;">
-                                            Total Payable</td>
-                                        <td class="amt_after_discount"
-                                            style="color: #00a0a8; margin-right:0px; line-height: 38px; font-weight: bold;">
-                                            <span class="rupeesign">₹</span> 798</td>
-                                        <input type="hidden" name="order_price" value="798">
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="textcol2" id="total-saving">
-                            Your total saving on this health booking
-                            <span class="rupeesign">₹</span> 9408
-
-                        </div>
-                        <input type="hidden" name="total-saving" value="9408">
-                        <div class="booking-footer">
-
-                            <div class="row">
-
-                                <div class="purchase_btn">
-                                    <a href="https://www.healthians.com/popular-package" class="btn btn_add_more">+ Add
-                                        More Packages</a><br>
-                                    <a href="/indore/orderbook" class="btn btn_add_more radio_more">+ Add More Radiology
-                                        Packages</a>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-
+                    <div class="Addressbuttons">
+                        <button class="mx-2">Add More Member</button>
+                        <button class="mx-2" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                        aria-controls="collapseExample">next</button>
                     </div>
                 </div>
             </div>
+            <div class=" shadow  mb-2 bg-white rounded">
+                <div class="p-3" >3 Add Sample Collection Address, Date & Time</div>
+                <div class="collapse" id="collapseExample">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="p-3 col-sm-6">
+                                <div class="p-3 text-sm shadow-sm addressbox d-flex flex-row">
+                                    <div><input class="mx-1" type="radio" name="" id=""></div>
+                                    <div><small>
+                                            House no.: 123, Indore, Madhya Pradesh, India indore Madhya Pradesh - 452010
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Addressbuttons">
+                            <button class="mx-2">Add More Address</button>
+                            <button class="mx-2" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false"
+                            aria-controls="collapseExample1">next</button>
+                        </div>
+                        <div class="my-3"></div>
+                        <p class="text-primary">CHOOSE DATE & TIME FOR HOME SAMPLE COLLECTION</p>
+                        <div class="row mb-3">
+                            <div class="col-sm-6">
+                                <input type="date" class="form-control ">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="date" class="form-control ">
+                            </div>
+                        </div>
+                        <small>* Choose sample collection date & time to proceed further</small>
+                    </div>
+                </div>
+            </div>
+            <div class=" shadow  mb-2 bg-white rounded">
+                <div class="p-3" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false"
+                    aria-controls="collapseExample1">3 Add Sample Collection Address, Date & Time</div>
+                <div class="collapse" id="collapseExample1">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="p-3 col-sm-6">
+                                <div class="p-3 text-sm shadow-sm addressbox d-flex flex-row">
+                                    <div><input class="mx-1" type="radio" name="" id=""></div>
+                                    <div><small>
+                                            House no.: 123, Indore, Madhya Pradesh, India indore Madhya Pradesh - 452010
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-3"></div>
+                        <p class="text-primary">CHOOSE DATE & TIME FOR HOME SAMPLE COLLECTION</p>
+                        <div class="row mb-3">
+                            <div class="col-sm-6">
+                                <input type="date" class="form-control ">
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="date" class="form-control ">
+                            </div>
+                        </div>
+                        <small>* Choose sample collection date & time to proceed further</small>
+                    </div>
+                </div>
+            </div>
+            <div class="p-3 shadow p-3 mb-2 bg-white rounded">4 Payment Option</div>
+        </div>
+        <div class="col-sm-4 col-xs-12 packages_section mob_viewport">
+            <div class="p-3 shadow p-3 mb-2 bg-primary text-light font-weight-bold rounded">PACKAGE DETAILS</div>
+            <div class="p-3 shadow d-flex justify-content-between p-3 mb-2  rounded">
+                <div>
+                    <span>ferlin</span><br>
+                    <del class="text-secondary">₹1050 </del> <small class="text-primary font-weight-bold mx-3">₹399</small>
+                </div>
+                <div>
+                    <small class="p-1 bg-primary text-light">save 62%</small>
+                </div>
+            </div>
+            <div class="p-3 shadow p-3 mb-2  font-weight-bold rounded">PACKAGE DETAILS</div>
         </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}
