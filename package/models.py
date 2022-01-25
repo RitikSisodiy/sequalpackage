@@ -1,7 +1,10 @@
+
+from operator import mod
 from django.db import models
 from django.core.exceptions import ValidationError
+from datetime import datetime
 # Create your models here.
-
+# from UserData.models import User
 
 exposed_request = None
 
@@ -66,7 +69,6 @@ class test(models.Model):
             if discount>self.test_price:
                 raise ValidationError(
                 {'discount': "discount should be less than test Prize"})
-
 
 class profile(models.Model):
     Profile_Id = models.CharField(max_length=50,blank = True)
@@ -164,3 +166,13 @@ class Faqs(models.Model):
     package = models.ForeignKey(package,on_delete=models.CASCADE , related_name="Faqs")
     question = models.CharField(max_length=150)
     Answere = models.TextField()
+class tempbooking(models.Model):
+    bookingid = models.TextField() #csv formate
+    tempbookingid = models.CharField(max_length=20)
+    ammount = models.CharField(max_length=20)
+    def save(self, ) -> None:
+        if self.id is None:
+            now = datetime.now()
+            super().save()
+            self.tempbookingid = f'paytm{now.year}{now.month}{now.day}{self.id}'
+        super().save()

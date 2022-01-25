@@ -12854,7 +12854,7 @@ button.toast-close-button {
     left: 0;
     width: 56px;
     height: 2px;
-    background-color: #199ca6;
+    background-color: #e51f23;
     bottom: 0
 }
 
@@ -13072,8 +13072,8 @@ button.toast-close-button {
 
 .uploadpres:hover {
     color: #fff;
-    background-color: #f37d26 !important;
-    border-color: #f37d26 !important;
+    background-color: #ed1b24 !important;
+    border-color: #ed1b24 !important;
     transition: .3s ease-in-out;
     font-weight: 400
 }
@@ -13140,7 +13140,7 @@ button.toast-close-button {
 }
 
 .city-heading h2 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-weight: 600;
     font-size: 32px;
     font-family: Lato, sans-serif;
@@ -13235,7 +13235,7 @@ button.toast-close-button {
 }
 
 .doctorhomepanel h3 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 32px;
     font-family: Lato, sans-serif;
     font-weight: 600;
@@ -13312,7 +13312,7 @@ button.toast-close-button {
     font-family: Lato, sans-serif;
     margin-bottom: 3px;
     font-weight: 600;
-    color: #1a9ca6
+    color: #e51f23
 }
 
 .doctorhomepanel .doctormain .card-text p {
@@ -13329,7 +13329,7 @@ button.toast-close-button {
 }
 
 .customerspeak h3 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 32px;
     font-family: Lato, sans-serif;
     font-weight: 600;
@@ -13467,15 +13467,15 @@ a {
 
 .btn-danger {
     color: #fff;
-    background-color: #f37d26;
-    border-color: #f37d26;
+    background-color: #ed1b24;
+    border-color: #ed1b24;
     transition: .3s ease-in-out
 }
 
 .btn-danger:hover {
     color: #fff;
-    background-color: #1a9ca6;
-    border-color: #1a9ca6
+    background-color: #e51f23;
+    border-color: #e51f23
 }
 
 .btn-danger.active.focus,
@@ -13488,8 +13488,8 @@ a {
 .open>.dropdown-toggle.btn-danger:focus,
 .open>.dropdown-toggle.btn-danger:hover {
     color: #fff;
-    background-color: #1a9ca6;
-    border-color: #1a9ca6
+    background-color: #e51f23;
+    border-color: #e51f23
 }
 
 .owl-controls .owl-prev {
@@ -13546,7 +13546,7 @@ a {
 
 .owl-controls .owl-next:hover,
 .owl-controls .owl-prev:hover {
-    background: #1a9ca6
+    background: #e51f23
 }
 
 .btn_cmncolor {
@@ -13554,8 +13554,8 @@ a {
     margin-right: 15px;
     outline: 0;
     color: #fff;
-    background-color: #f37d26;
-    border-color: #f37d26;
+    background-color: #ed1b24;
+    border-color: #ed1b24;
     transition: .3s ease-in-out
 }
 
@@ -13565,13 +13565,13 @@ a {
     margin-right: 5px;
     outline: 0;
     color: #fff;
-    background-color: #f37d26;
-    border-color: #f37d26;
+    background-color: #ed1b24;
+    border-color: #ed1b24;
     transition: .3s ease-in-out
 }
 
 .btn_cmncolor_right:hover {
-    background-color: #f37d26
+    background-color: #ed1b24
 }
 
 .btn_whtcolor {
@@ -13629,7 +13629,7 @@ header {
 .banner_group .popup-container {
     width: 20%;
     height: 200px;
-    background-color: #00a0a8;
+    background-color: #e51f23;
     position: absolute;
     right: 0;
     bottom: -100px;
@@ -13722,7 +13722,7 @@ header .dropdown-toggle .caret {
     font-size: 16px;
     padding: 0 5px 0 5px;
     margin: 0;
-    color: #1a9ca6
+    color: #e51f23
 }
 
 .headerrightdiv-content ul li a {
@@ -13749,7 +13749,7 @@ header .dropdown-toggle .caret {
     background: 0 0 !important;
     background-color: none !important;
     text-decoration: none;
-    color: #00a0a8
+    color: #e51f23
 }
 
 .headerrightdiv-content .btn-group.open .dropdown-toggle {
@@ -13850,7 +13850,7 @@ header .dropdown-toggle .caret {
 }
 
 .gplayreview center {
-    color: #00a0a8;
+    color: #e51f23;
     font-weight: 600;
     font-size: 13px
 }
@@ -13957,7 +13957,7 @@ header .navbar-default .navbar-nav li:first-child a {
 
 #navigation ul li a:hover {
     font-weight: 400 !important;
-    color: #00a0a8 !important;
+    color: #e51f23 !important;
     background: 0 0
 }
 
@@ -14138,7 +14138,7 @@ header .navbar-default .navbar-nav li:first-child a {
 
 .search-section {
     float: left;
-    background-color: #00a0a8;
+    background-color: #e51f23;
     padding: 20px 0 0 0;
     width: 100%
 }
@@ -14254,7 +14254,7 @@ header .navbar-default .navbar-nav li:first-child a {
 }
 
 .about-section h1 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-weight: 600;
     font-size: 36px;
     font-family: Lato, sans-serif;
@@ -14310,7 +14310,7 @@ header .navbar-default .navbar-nav li:first-child a {
 .smart-section {
     width: 32%;
     float: left;
-    background-color: #f37d26;
+    background-color: #ed1b24;
     padding: 15px;
     text-align: center;
     border-radius: 0 6px 6px 0;
@@ -14348,7 +14348,7 @@ header .navbar-default .navbar-nav li:first-child a {
 }
 
 .getcloser-section h2 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-weight: 600;
     font-size: 36px;
     font-family: Lato, sans-serif;
@@ -14369,7 +14369,7 @@ header .navbar-default .navbar-nav li:first-child a {
 
 .getcloserdiv h4 {
     font-size: 26px;
-    color: #1a9ca6;
+    color: #e51f23;
     float: left;
     font-family: Ubuntu, sans-serif;
     font-weight: 400
@@ -14443,7 +14443,7 @@ header .navbar-default .navbar-nav li:first-child a {
 }
 
 .mysubscriptions-section h2 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-weight: 600;
     font-size: 36px;
     font-family: Lato, sans-serif;
@@ -14628,7 +14628,7 @@ header .navbar-default .navbar-nav li:first-child a {
 }
 
 .ourexpert-section h2 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-weight: 700;
     margin-top: 0
 }
@@ -14636,7 +14636,7 @@ header .navbar-default .navbar-nav li:first-child a {
 .teamtop-section {
     width: 100%;
     float: left;
-    background-color: #1a9ca6;
+    background-color: #e51f23;
     padding: 10px;
     background-image: url(../../img/circle-icon.png);
     background-repeat: no-repeat;
@@ -14661,7 +14661,7 @@ header .navbar-default .navbar-nav li:first-child a {
 .teamcontent1 h4 {
     font-size: 30px;
     font-weight: 700;
-    color: #1a9ca6
+    color: #e51f23
 }
 
 .teamcontent1 a {
@@ -14691,7 +14691,7 @@ header .navbar-default .navbar-nav li:first-child a {
 }
 
 .specialoffer-section h2 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-weight: 700;
     margin-top: 0
 }
@@ -14699,7 +14699,7 @@ header .navbar-default .navbar-nav li:first-child a {
 .special-section {
     width: 100%;
     float: left;
-    background-color: #1a9ca6;
+    background-color: #e51f23;
     padding: 10px
 }
 
@@ -14737,7 +14737,7 @@ header .navbar-default .navbar-nav li:first-child a {
 .specialcontent1 h4 {
     font-size: 30px;
     font-weight: 700;
-    color: #1a9ca6
+    color: #e51f23
 }
 
 .specialcontent1 h3 {
@@ -14798,7 +14798,7 @@ header .navbar-default .navbar-nav li:first-child a {
 }
 
 .popular-section h3 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 30px;
     font-family: Lato, sans-serif;
     font-weight: 600;
@@ -14807,7 +14807,7 @@ header .navbar-default .navbar-nav li:first-child a {
 
 #special-offer-heading h1,
 .popular-section h2 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 30px;
     font-family: Lato, sans-serif;
     font-weight: 600;
@@ -14815,7 +14815,7 @@ header .navbar-default .navbar-nav li:first-child a {
 }
 
 .commonrisk-section h2 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 30px;
     font-family: Lato, sans-serif;
     font-weight: 600;
@@ -14827,7 +14827,7 @@ header .navbar-default .navbar-nav li:first-child a {
 }
 
 .popular-slide h3 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-family: Lato, sans-serif;
     font-weight: 600;
     font-size: 26px
@@ -14841,7 +14841,7 @@ header .navbar-default .navbar-nav li:first-child a {
 }
 
 .healthrisktitle {
-    color: #00a0a8;
+    color: #e51f23;
     text-decoration: none;
     font-size: 32px;
     font-family: Lato, sans-serif;
@@ -14851,7 +14851,7 @@ header .navbar-default .navbar-nav li:first-child a {
 
 .healthrisktitle:hover {
     text-decoration: none;
-    color: #00a0a8;
+    color: #e51f23;
     text-decoration: none
 }
 
@@ -14881,14 +14881,14 @@ header .navbar-default .navbar-nav li:first-child a {
 }
 
 .supplement-section h2 a {
-    color: #00a0a8;
+    color: #e51f23;
     font-size: 30px;
     font-weight: 600;
     margin-left: 0
 }
 
 .supplement-section h2 a:hover {
-    color: #00a0a8;
+    color: #e51f23;
     font-size: 30px;
     font-weight: 600;
     text-decoration: none
@@ -14900,12 +14900,12 @@ header .navbar-default .navbar-nav li:first-child a {
 }
 
 .owl-next span {
-    color: #00a0a8;
+    color: #e51f23;
     margin-left: -20px
 }
 
 .owl-prev span {
-    color: #00a0a8;
+    color: #e51f23;
     margin-right: -20px
 }
 
@@ -14960,7 +14960,7 @@ header .navbar-default .navbar-nav li:first-child a {
     font-size: 18px;
     font-weight: 600;
     margin: 6px 0;
-    color: #00a0a8
+    color: #e51f23
 }
 
 .thumbProd .titleprice h4 {
@@ -14998,15 +14998,15 @@ header .navbar-default .navbar-nav li:first-child a {
     font-weight: 400;
     border-radius: 30px;
     padding: 3px 18px;
-    border: 1px solid #00a0a8;
+    border: 1px solid #e51f23;
     font-size: 15px;
-    color: #00a0a8;
+    color: #e51f23;
     margin: 5px 0 10px 0;
     transition: .3s ease-in-out
 }
 
 .thumbProd .btnarea .know-more-abt:hover {
-    color: #1a9ca6;
+    color: #e51f23;
     text-decoration: none
 }
 
@@ -15122,7 +15122,7 @@ header .navbar-default .navbar-nav li:first-child a {
 
 .popular-slide h3 a {
     text-decoration: none;
-    color: #1a9ca6
+    color: #e51f23
 }
 
 .commonrisk-section {
@@ -15133,7 +15133,7 @@ header .navbar-default .navbar-nav li:first-child a {
 }
 
 .commonrisk-section h3 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 32px;
     font-family: Lato, sans-serif;
     font-weight: 600;
@@ -15145,7 +15145,7 @@ header .navbar-default .navbar-nav li:first-child a {
 }
 
 .commonrisk-slide h3 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-weight: 700
 }
 
@@ -15254,7 +15254,7 @@ header .navbar-default .navbar-nav li:first-child a {
 }
 
 .yourhealth-section h3 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 32px;
     font-family: Lato, sans-serif;
     font-weight: 600;
@@ -15263,14 +15263,14 @@ header .navbar-default .navbar-nav li:first-child a {
 
 .thumbnail {
     border-radius: 0;
-    border-bottom: 5px solid #1a9ca6;
+    border-bottom: 5px solid #e51f23;
     margin-bottom: 0;
     width: 100%;
     float: left
 }
 
 .yourhealth-section h2 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 32px;
     font-family: Lato, sans-serif;
     font-weight: 600;
@@ -15297,7 +15297,7 @@ header .navbar-default .navbar-nav li:first-child a {
     border-top: 1px solid #f0f0f0;
     border-left: 1px solid #f0f0f0;
     border-right: 1px solid #f0f0f0;
-    border-bottom: 5px solid #1a9ca6;
+    border-bottom: 5px solid #e51f23;
     padding: 10px 10px 20px 10px
 }
 
@@ -15314,7 +15314,7 @@ header .navbar-default .navbar-nav li:first-child a {
     font-weight: 500;
     font-family: Ubuntu, sans-serif;
     font-size: 16px;
-    color: #00a0a8;
+    color: #e51f23;
     transition: .3s ease-in-out;
     font-size: 16px;
     text-transform: capitalize;
@@ -15346,7 +15346,7 @@ header .navbar-default .navbar-nav li:first-child a {
 }
 
 .downloadapp-section h3 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-weight: 600;
     font-size: 32px
 }
@@ -15364,7 +15364,7 @@ header .navbar-default .navbar-nav li:first-child a {
     width: 100%;
     float: left;
     padding: 50px 0;
-    background-color: #1a9ca6
+    background-color: #e51f23
 }
 
 .subscribe-section h3 {
@@ -15433,7 +15433,7 @@ header .navbar-default .navbar-nav li:first-child a {
     display: block;
     padding: 15px 15px;
     font-size: 18px;
-    color: #00a0a8
+    color: #e51f23
 }
 
 .complianceleft .panel-default>.panel-heading a:after {
@@ -15537,7 +15537,7 @@ header .navbar-default .navbar-nav li:first-child a {
     text-transform: uppercase;
     display: block;
     width: 100%;
-    color: #00a0a8;
+    color: #e51f23;
     font-weight: 600;
     letter-spacing: 1.1px;
     font-size: 11px
@@ -15577,7 +15577,7 @@ header .navbar-default .navbar-nav li:first-child a {
     text-transform: uppercase;
     display: block;
     width: 100%;
-    color: #00a0a8;
+    color: #e51f23;
     font-weight: 600;
     letter-spacing: 1.1px;
     font-size: 11px
@@ -15704,7 +15704,7 @@ ul.logindropdownitems li {
     background: url(/img/franchisee/plus-medical.png);
     background-repeat: no-repeat;
     padding: 0 37px;
-    color: #00a0a8;
+    color: #e51f23;
     background-position: left center;
     font-size: 21px;
     font-weight: 600;
@@ -15750,7 +15750,7 @@ ul.logindropdownitems li {
     font-weight: 600;
     margin-left: 0;
     font-family: Lato, sans-serif;
-    background-color: #f37d26;
+    background-color: #ed1b24;
     border-radius: 50px
 }
 
@@ -15965,14 +15965,14 @@ footer p {
 }
 
 .otherlinks ul li a:hover {
-    color: #1a9ca6
+    color: #e51f23
 }
 
 .footer-btm {
     width: 100%;
     float: left;
     margin-top: 15px;
-    background-color: #1a9ca6;
+    background-color: #e51f23;
     padding: 10px 0;
     text-align: center
 }
@@ -16059,7 +16059,7 @@ footer p {
 }
 
 .recomendation-upper {
-    background-color: #1a9ca6;
+    background-color: #e51f23;
     min-height: 120px;
     position: relative;
     padding: 15px 27px;
@@ -16127,16 +16127,16 @@ footer p {
     font-weight: 400;
     border-radius: 30px;
     padding: 3px 16px;
-    border: 1px solid #00a0a8;
+    border: 1px solid #e51f23;
     font-family: Lato, sans-serif;
     font-size: 15px;
-    color: #00a0a8;
+    color: #e51f23;
     margin: 22px 0 0 0;
     transition: .3s ease-in-out
 }
 
 .know-more-opt:hover {
-    color: #1a9ca6;
+    color: #e51f23;
     text-decoration: none
 }
 
@@ -16165,7 +16165,7 @@ footer p {
 }
 
 .know-more:hover {
-    color: #1a9ca6;
+    color: #e51f23;
     text-decoration: none
 }
 
@@ -16179,7 +16179,7 @@ footer p {
     font-family: Ubuntu, sans-serif;
     font-size: 40px;
     font-weight: 700;
-    color: #1a9ca6
+    color: #e51f23
 }
 
 #recomendation .owl-next,
@@ -16226,7 +16226,7 @@ footer p {
 }
 
 .special-offer h2 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-weight: 600;
     font-size: 30px;
     font-family: Lato, sans-serif;
@@ -16235,7 +16235,7 @@ footer p {
 }
 
 .special-offer h1 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-weight: 600;
     font-size: 30px;
     font-family: Lato, sans-serif;
@@ -16396,7 +16396,7 @@ footer p {
     font-family: Ubuntu, sans-serif;
     font-size: 32px;
     font-weight: 600;
-    color: #1a9ca6;
+    color: #e51f23;
     margin-top: -4px;
     margin-bottom: 0
 }
@@ -16444,16 +16444,16 @@ footer p {
     font-weight: 400;
     border-radius: 30px;
     padding: 3px 16px;
-    border: 1px solid #00a0a8;
+    border: 1px solid #e51f23;
     font-family: Lato, sans-serif;
     font-size: 15px;
-    color: #00a0a8;
+    color: #e51f23;
     margin: 30px 0 0 0;
     transition: .3s ease-in-out
 }
 
 .know-more:hover {
-    color: #1a9ca6;
+    color: #e51f23;
     text-decoration: none
 }
 
@@ -16472,7 +16472,7 @@ footer p {
     font-family: Ubuntu, sans-serif;
     font-size: 30px;
     font-weight: 700;
-    color: #1a9ca6;
+    color: #e51f23;
     margin-top: 5px
 }
 
@@ -16502,7 +16502,7 @@ footer p {
 }
 
 .choose-us h3 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 32px;
     font-family: Lato, sans-serif;
     font-weight: 600;
@@ -16510,7 +16510,7 @@ footer p {
 }
 
 .choose-us h2 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 26px;
     font-family: Lato, sans-serif;
     margin-bottom: 25px;
@@ -16553,7 +16553,7 @@ footer p {
 }
 
 .media-video {
-    background: #00a0a8;
+    background: #e51f23;
     padding: 50px 0 40px;
     float: left;
     width: 100%
@@ -16656,7 +16656,7 @@ footer p {
 }
 
 .smartreportsection h3 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 32px;
     margin-top: 40px;
     text-align: left;
@@ -16678,7 +16678,7 @@ footer p {
 .contentsmartreport h6 {
     font-weight: 600;
     font-size: 28px;
-    color: #00a0a8;
+    color: #e51f23;
     margin-top: 50px
 }
 
@@ -16687,7 +16687,7 @@ footer p {
 }
 
 .zigzag-area h3 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 32px;
     font-family: Lato, sans-serif;
     font-weight: 600;
@@ -16722,7 +16722,7 @@ footer p {
     background-color: transparent;
     border-top-left-radius: 110px;
     border-top-right-radius: 110px;
-    border: 30px solid #00a0a8;
+    border: 30px solid #e51f23;
     border-bottom: 0;
     transform: rotate(-180deg)
 }
@@ -16739,7 +16739,7 @@ footer p {
     background-color: transparent;
     border-top-left-radius: 110px;
     border-top-right-radius: 110px;
-    border: 30px solid #00a0a8;
+    border: 30px solid #e51f23;
     border-bottom: 0
 }
 
@@ -16907,7 +16907,7 @@ footer p {
     margin: 0;
     padding: 0;
     font-size: 50px;
-    color: #1a9ca6;
+    color: #e51f23;
     font-weight: 700;
     font-family: Lato, sans-serif;
     padding-top: 25px
@@ -16943,7 +16943,7 @@ footer p {
 
 .meet-us h2 {
     text-align: center;
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 36px;
     text-transform: capitalize;
     margin: 0;
@@ -16977,7 +16977,7 @@ footer p {
     font-family: Lato, sans-serif;
     font-weight: 600;
     font-size: 24px;
-    color: #1a9ca6;
+    color: #e51f23;
     text-transform: capitalize
 }
 
@@ -17026,7 +17026,7 @@ footer p {
 .member-content ul li a {
     text-decoration: none;
     font-size: 15px;
-    color: #00a0a8;
+    color: #e51f23;
     margin-left: 7px;
     display: inline-block
 }
@@ -17046,7 +17046,7 @@ footer p {
 
 .about-team h2 {
     text-align: center;
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 36px;
     text-transform: capitalize;
     margin: 0;
@@ -17106,7 +17106,7 @@ footer p {
     margin: 0;
     line-height: 30px;
     padding: 0;
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 20px;
     font-weight: 600
 }
@@ -17139,16 +17139,16 @@ footer p {
     font-weight: 400;
     border-radius: 30px;
     padding: 3px 16px;
-    border: 1px solid #00a0a8;
+    border: 1px solid #e51f23;
     font-family: Lato, sans-serif;
     font-size: 15px;
-    color: #00a0a8;
+    color: #e51f23;
     margin: 30px 0 0 0;
     transition: .3s ease-in-out
 }
 
 .know-more-risk:hover {
-    color: #1a9ca6;
+    color: #e51f23;
     text-decoration: none
 }
 
@@ -17250,7 +17250,7 @@ footer p {
     font-family: Lato, sans-serif;
     font-weight: 600;
     font-size: 36px;
-    color: #1a9ca6;
+    color: #e51f23;
     text-align: center;
     padding: 0 0 14px 0;
     margin: 0
@@ -17347,14 +17347,14 @@ a {
     text-decoration: none;
     margin-left: 10px;
     font-size: 12px;
-    color: #00a0a8
+    color: #e51f23
 }
 
 .social-details ul li a {
     text-decoration: none;
     margin-left: 5px;
     font-size: 14px;
-    color: #00a0a8
+    color: #e51f23
 }
 
 .health {
@@ -17436,7 +17436,7 @@ a {
 }
 
 .blog-heading h2 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-weight: 600;
     font-size: 32px;
     font-family: Lato, sans-serif;
@@ -17482,7 +17482,7 @@ a {
     position: absolute;
     width: 50%;
     height: 2px;
-    background: #199ca6
+    background: #e51f23
 }
 
 .widget-form .form-control {
@@ -17519,7 +17519,7 @@ a {
 }
 
 .step-div {
-    background-color: #1a9ca6;
+    background-color: #e51f23;
     position: relative;
     padding: 30px 35px
 }
@@ -18160,7 +18160,7 @@ span.removereport {
 
 .investor-cont h2 {
     font-weight: 600;
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 26px;
     padding: 0;
     margin: 0
@@ -18267,7 +18267,7 @@ span.removereport {
 }
 
 .share ul li a:hover {
-    color: #1a9ca6
+    color: #e51f23
 }
 
 img.img-inner {
@@ -18318,8 +18318,8 @@ img.img-inner {
     line-height: 28px;
     text-align: center;
     background-color: transparent;
-    border-color: #f37d26;
-    color: #f37d26;
+    border-color: #ed1b24;
+    color: #ed1b24;
     margin: 0;
     transition: .3s ease-in-out
 }
@@ -18330,7 +18330,7 @@ img.img-inner {
 }
 
 .filter-icon a:hover {
-    background-color: #f37d26;
+    background-color: #ed1b24;
     color: #fff
 }
 
@@ -18349,7 +18349,7 @@ img.img-inner {
 
 .filter-icon ul li a {
     font-size: 16px;
-    color: #f37d26;
+    color: #ed1b24;
     font-family: Lato, sans-serif;
     display: block;
     text-decoration: none;
@@ -18425,7 +18425,7 @@ img.img-inner {
 }
 
 .Wlcm-Healthians h2 {
-    color: #199ca6;
+    color: #e51f23;
     margin-top: 30px;
     font-size: 36px;
     font-weight: 600
@@ -18848,7 +18848,7 @@ img.img-inner {
 
 .Expedient-Healtdiv h1 {
     font-size: 32px;
-    color: #1a9ca6;
+    color: #e51f23;
     font-weight: 600;
     text-align: center;
     line-height: 44px;
@@ -18982,7 +18982,7 @@ img.img-inner {
 }
 
 .right-boxdiv label {
-    color: #199ca6;
+    color: #e51f23;
     margin-bottom: 8px
 }
 
@@ -19090,7 +19090,7 @@ select:active,
 select:focus,
 textarea:active,
 textarea:focus {
-    border-color: #00a0a8;
+    border-color: #e51f23;
     box-shadow: none;
     outline-offset: 0;
     outline: 0
@@ -19107,11 +19107,11 @@ textarea:focus {
 
 .split_input_item {
     display: table-cell;
-    border: 2px solid #1a9ca6
+    border: 2px solid #e51f23
 }
 
 .split_input_item:not(:first-child) {
-    border: 2px solid #1a9ca6;
+    border: 2px solid #e51f23;
     border-radius: 5px
 }
 
@@ -19293,7 +19293,7 @@ textarea:focus {
 }
 
 .mydashbordiv h1 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-weight: 600;
     font-size: 36px;
     font-family: Lato, sans-serif;
@@ -19461,7 +19461,7 @@ textarea:focus {
     margin-bottom: 12px;
     height: 55px;
     line-height: 55px;
-    background-color: #199ca6;
+    background-color: #e51f23;
     border-radius: 100%;
     color: #fff;
     text-align: center;
@@ -19553,7 +19553,7 @@ textarea:focus {
 .Family-headingdiv {
     width: 100%;
     float: left;
-    background-color: #199ca6;
+    background-color: #e51f23;
     color: #fff;
     padding: 0 10px;
     margin-top: 51px
@@ -19615,7 +19615,7 @@ textarea:focus {
     width: 97%;
     text-align: left;
     background: #fff;
-    color: #f37d26;
+    color: #ed1b24;
     padding-bottom: 10px
 }
 
@@ -19734,7 +19734,7 @@ textarea:focus {
 .orderpaidstatus {
     margin-top: 10px;
     font-size: 18px;
-    color: #00a0a8
+    color: #e51f23
 }
 
 .locationwdth img {
@@ -19770,7 +19770,7 @@ textarea:focus {
 }
 
 .shubham .add-box h3 {
-    color: #199ca6;
+    color: #e51f23;
     font-size: 40px;
     font-weight: 600;
     margin: 20px 0 0 0;
@@ -19802,7 +19802,7 @@ textarea:focus {
 
 .shubham .add-box .Lipid-div span {
     font-size: 18px;
-    color: #1a9ca6;
+    color: #e51f23;
     padding: 0;
     margin: 9px 0 0 0;
     line-height: 14px;
@@ -19972,7 +19972,7 @@ textarea:focus {
 }
 
 .social-iconsdiv h4 {
-    color: #f37d26;
+    color: #ed1b24;
     font-size: 30px;
     text-transform: capitalize;
     margin-bottom: 20px
@@ -20226,7 +20226,7 @@ a.edit:hover img {
 }
 
 .link-otp {
-    color: #f37d26
+    color: #ed1b24
 }
 
 .amount-area-panel {
@@ -20339,7 +20339,7 @@ a.edit:hover img {
 
 .discount {
     padding: 5px 15px 5px 10px;
-    background-color: #00a0a8;
+    background-color: #e51f23;
     border: 1px solid #fff;
     border-radius: 17px 0 17px 0;
     display: inline-block;
@@ -20429,7 +20429,7 @@ a.edit:hover img {
 
 .usecode span {
     font-weight: 600;
-    color: #199ca6
+    color: #e51f23
 }
 
 .metafooterstyle {
@@ -20558,7 +20558,7 @@ label.hcash_val {
     text-align: center;
     padding: 0 0 15px 0;
     font-size: 18px;
-    color: #00a0a8;
+    color: #e51f23;
     font-weight: 700;
     font-style: normal
 }
@@ -20671,7 +20671,7 @@ label.hcash_val {
 }
 
 .detail-div-main {
-    background-color: #00a0a8;
+    background-color: #e51f23;
     border-radius: 6px 6px 6px 6px;
     box-shadow: 0 6px 10px rgba(148, 148, 148, .5);
     overflow: hidden;
@@ -20686,7 +20686,7 @@ label.hcash_val {
 }
 
 .green-band {
-    background: #199ca6;
+    background: #e51f23;
     padding: 10px;
     margin-left: -20px;
     margin-right: -20px;
@@ -20878,11 +20878,11 @@ a.query {
 }
 
 .feedback-div .form-control:hover {
-    border: 1px solid #00a0a8
+    border: 1px solid #e51f23
 }
 
 .feedback-div .form-control:focus {
-    border: 1px solid #00a0a8
+    border: 1px solid #e51f23
 }
 
 .feedback-div select.form-control {
@@ -20912,11 +20912,11 @@ a.query {
 }
 
 .text-area textarea:hover {
-    border: 1px solid #00a0a8
+    border: 1px solid #e51f23
 }
 
 .text-area textarea:focus {
-    border: 1px solid #00a0a8
+    border: 1px solid #e51f23
 }
 
 .text-area.col-md-12 {
@@ -20951,7 +20951,7 @@ a.query {
 }
 
 .head {
-    color: #1a9ca6;
+    color: #e51f23;
     margin: 0;
     padding: 0 0 30px 0
 }
@@ -21030,7 +21030,7 @@ a.query {
 }
 
 .green-text {
-    color: #199ca6;
+    color: #e51f23;
     text-align: right;
     padding: 10px 20px 0 0;
     font-weight: 600
@@ -21063,7 +21063,7 @@ a.query {
 }
 
 .green-text-left {
-    color: #199ca6;
+    color: #e51f23;
     text-align: left;
     padding: 10px 20px 0 0;
     font-weight: 600
@@ -21080,7 +21080,7 @@ a.query {
 }
 
 .green-txt {
-    color: #199ca6
+    color: #e51f23
 }
 
 .cart-width h3 {
@@ -21492,7 +21492,7 @@ a.query {
 
 .subscription-page .new-btn {
     background-color: transparent;
-    color: #f37d26;
+    color: #ed1b24;
     width: 207px;
     height: 50px;
     padding: 0;
@@ -21750,7 +21750,7 @@ a.active-report {
     left: 4px;
     top: -4px;
     bottom: 4px;
-    background-color: #f37d26;
+    background-color: #ed1b24;
     -webkit-transition: .4s;
     transition: .4s
 }
@@ -22282,7 +22282,7 @@ input[type=radio] .styled:checked+label::after {
     margin: 0;
     padding: 0;
     font-size: 20px;
-    color: #1a9ca6;
+    color: #e51f23;
     font-weight: 700;
     font-family: Lato, sans-serif;
     padding-top: 25px
@@ -22306,7 +22306,7 @@ input[type=radio] .styled:checked+label::after {
 }
 
 .new-member-form h3 {
-    color: #1a9ca6;
+    color: #e51f23;
     margin-bottom: 30px;
     font-weight: 600
 }
@@ -22851,7 +22851,7 @@ ul.tabs {
 }
 
 .our-labs-page ul li.active {
-    background-color: #1a9ca6
+    background-color: #e51f23
 }
 
 .our-labs-page ul li span {
@@ -22880,7 +22880,7 @@ ul.tabs {
 }
 
 .lablinetitle {
-    color: #1a9ca6;
+    color: #e51f23;
     font-family: Lato, sans-serif;
     text-align: left;
     font-weight: 600;
@@ -22958,7 +22958,7 @@ ul.tabs {
 .labortary-tech {
     margin-top: 20px;
     padding: 35px 30px;
-    border-top: 6px solid #1a9ca6;
+    border-top: 6px solid #e51f23;
     float: left;
     width: 100%
 }
@@ -22991,7 +22991,7 @@ ul.tabs {
 .labortary-details {
     margin-top: 0;
     padding: 35px 30px;
-    border-top: 6px solid #1a9ca6;
+    border-top: 6px solid #e51f23;
     float: left;
     width: 100%
 }
@@ -23053,7 +23053,7 @@ ul.tabs {
 
 .visit-heading {
     padding: 4px 17px;
-    background-color: #1a9ca6;
+    background-color: #e51f23;
     border-radius: 4px 4px 0 0;
     margin-bottom: 0;
     position: relative
@@ -23134,7 +23134,7 @@ ul.tabs {
 }
 
 .map-right {
-    border-left: 2px solid #1a9ca6;
+    border-left: 2px solid #e51f23;
     padding-left: 60px;
     text-align: center;
     padding-top: 10px;
@@ -23245,7 +23245,7 @@ ul.tabs {
 }
 
 .condition-cont ol li:before {
-    color: #f37d26;
+    color: #ed1b24;
     text-align: right;
     width: 26px;
     font-weight: 600;
@@ -23344,7 +23344,7 @@ ul.tabs {
 }
 
 .select2-results__option[aria-selected=true] {
-    color: #00a0a8
+    color: #e51f23
 }
 
 .select2-results__option[aria-selected=false] {
@@ -23354,7 +23354,7 @@ ul.tabs {
 .select2-results__option[aria-selected=true]:before {
     font-family: fontAwesome;
     content: "\f058";
-    color: #00a0a8;
+    color: #e51f23;
     background-color: transparent;
     border: 0;
     display: inline-block;
@@ -23380,7 +23380,7 @@ ul.tabs {
 
 .select2-container--default .select2-results__option--highlighted[aria-selected] {
     background-color: #fff;
-    color: #00a0a8
+    color: #e51f23
 }
 
 .select2-container--default .select2-selection--multiple {
@@ -23988,7 +23988,7 @@ a.tag:after {
     width: 100%;
     clear: both;
     margin-top: 40px;
-    border-top: 10px solid #1a9ca6
+    border-top: 10px solid #e51f23
 }
 
 .meet-us {
@@ -24049,7 +24049,7 @@ a.tag:after {
 .lft-map {
     float: left;
     padding: 45px 30px;
-    border-top: 6px solid #1a9ca6;
+    border-top: 6px solid #e51f23;
     width: 100%
 }
 
@@ -24285,7 +24285,7 @@ h4.current-filter::after {
     padding: 7px 30px 7px 34px;
     font-size: 16px;
     line-height: 27px;
-    border-color: #f37d26;
+    border-color: #ed1b24;
     color: #f27d27;
     background-color: #fff
 }
@@ -24407,7 +24407,7 @@ img.lazy {
     text-align: center;
     padding: .75rem;
     font-size: 2.5rem;
-    border: 2px solid #1a9ca6;
+    border: 2px solid #e51f23;
     float: left
 }
 
@@ -24699,7 +24699,7 @@ img.lazy {
 }
 
 .rupeecolor {
-    color: #00a0a8;
+    color: #e51f23;
     font-weight: 600
 }
 
@@ -24718,8 +24718,8 @@ img.lazy {
 
 .checkoutbtn a:hover {
     color: #fff;
-    background-color: #f37d26;
-    border-color: #f37d26;
+    background-color: #ed1b24;
+    border-color: #ed1b24;
     transition: .3s ease-in-out
 }
 
@@ -24816,13 +24816,13 @@ img.lazy {
     margin: 0;
     padding: 10px 0;
     text-align: right;
-    color: #00a0a8
+    color: #e51f23
 }
 
 .cartpricedisplay .hdiscount {
     padding: 8px 15px 8px 10px;
-    background-color: #00a0a8;
-    border: 1px solid #00a0a8;
+    background-color: #e51f23;
+    border: 1px solid #e51f23;
     border-radius: 17px 0 17px 0;
     display: inline-block;
     margin-top: 0;
@@ -24929,7 +24929,7 @@ img.lazy {
     clear: both;
     font-size: 14px;
     width: 100%;
-    color: #1a9ca6;
+    color: #e51f23;
     font-weight: 400;
     margin-bottom: 0
 }
@@ -25124,7 +25124,7 @@ img.lazy {
 .cart-div .cartuserinfo .cartusername p {
     display: block;
     font-size: 14px;
-    color: #00a0a8;
+    color: #e51f23;
     font-weight: 700
 }
 
@@ -25163,7 +25163,7 @@ img.lazy {
 }
 
 .mainprice {
-    color: #00a0a8;
+    color: #e51f23;
     font-weight: 700 !important;
     font-size: 19px !important
 }
@@ -25380,7 +25380,7 @@ img.lazy {
 .add-address-box {
     text-align: left;
     padding: 16px 20px;
-    background-color: #1a9ca6
+    background-color: #e51f23
 }
 
 .add-address-box h2 {
@@ -25697,7 +25697,7 @@ img.lazy {
     font-family: Ubuntu, sans-serif;
     font-size: 30px;
     font-weight: 700;
-    color: #1a9ca6;
+    color: #e51f23;
     margin-top: 0;
     margin-bottom: 0
 }
@@ -25725,14 +25725,14 @@ a.viewriskhabit {
     font-family: Ubuntu, sans-serif;
     font-size: 32px;
     font-weight: 700;
-    color: #1a9ca6;
+    color: #e51f23;
     margin-top: 0
 }
 
 .subscriptionprice span {
     padding: 0 3px;
     font-family: Hind, sans-serif;
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 32px
 }
 
@@ -25934,7 +25934,7 @@ a.viewriskhabit {
 }
 
 .select-member .step-div h2 {
-    color: #1a9ca6
+    color: #e51f23
 }
 
 .big-h2 {
@@ -25944,8 +25944,8 @@ a.viewriskhabit {
 
 .select-member .discount {
     padding: 8px 15px 8px 10px;
-    background-color: #1a9ca6;
-    border: 1px solid #1a9ca6;
+    background-color: #e51f23;
+    border: 1px solid #e51f23;
     border-radius: 17px 0 17px 0;
     display: inline-block;
     margin-top: 15px;
@@ -25956,7 +25956,7 @@ a.viewriskhabit {
 }
 
 .select-member .cart-block {
-    background-color: #1a9ca6;
+    background-color: #e51f23;
     color: #fff
 }
 
@@ -26177,7 +26177,7 @@ a.viewriskhabit {
     text-align: left;
     float: left;
     font-size: 15px;
-    color: #1a9ca6;
+    color: #e51f23;
     font-weight: 400;
     margin-bottom: 23px
 }
@@ -26201,8 +26201,8 @@ a.viewriskhabit {
 }
 
 .genderOptions .genderopt input[type=radio]:checked~.check {
-    border: 1px solid #f37d26;
-    background: #f37d26
+    border: 1px solid #ed1b24;
+    background: #ed1b24
 }
 
 .genderOptions .genderopt input[type=radio]:checked~.check::before {
@@ -26258,7 +26258,7 @@ a.viewriskhabit {
 }
 
 .cart-price ul li span {
-    color: #1a9ca6;
+    color: #e51f23;
     display: inline-block;
     font-weight: 600
 }
@@ -26376,15 +26376,15 @@ a.viewriskhabit {
 .cart-right h5 {
     font-weight: 600;
     font-size: 24px;
-    color: #1a9ca6;
+    color: #e51f23;
     text-transform: capitalize;
     padding: 0;
     margin: 5px 0
 }
 
 .cart-right .discount {
-    background-color: #1a9ca6;
-    border: 1px solid #1a9ca6;
+    background-color: #e51f23;
+    border: 1px solid #e51f23;
     border-radius: 17px 0 17px 0;
     display: inline-block;
     color: #fff;
@@ -26432,7 +26432,7 @@ a.viewriskhabit {
 }
 
 .cart-add-member ul li a:hover {
-    color: #1a9ca6
+    color: #e51f23
 }
 
 .cart-add-member a.btn-danger {
@@ -26461,7 +26461,7 @@ a.viewriskhabit {
 .picklocation_slots .add-address-box {
     text-align: left;
     padding: 20px;
-    background-color: #1a9ca6
+    background-color: #e51f23
 }
 
 .address-content {
@@ -26586,7 +26586,7 @@ a.viewriskhabit {
 
 .hb-circle p,
 .hb-circle-red p {
-    color: #f37d26;
+    color: #ed1b24;
     font-size: 40px;
     font-weight: 700;
     text-align: center;
@@ -26631,7 +26631,7 @@ a.viewriskhabit {
 .pricerightser {
     float: right;
     padding-right: 20px;
-    color: #00a0a8;
+    color: #e51f23;
     font-size: 15px
 }
 
@@ -27041,8 +27041,8 @@ td.middle-top del {
 }
 
 .paymentOptRadio .paymentOpt input[type=radio]:checked~.check {
-    border: 1px solid #f37d26;
-    background: #f37d26
+    border: 1px solid #ed1b24;
+    background: #ed1b24
 }
 
 .paymentOptRadio .paymentOpt input[type=radio]:checked~.check::before {
@@ -27080,7 +27080,7 @@ td.middle-top del {
 .nps_survey_section .nps_survey_title {
     text-align: center;
     padding: 20px;
-    background-color: #1a9ca6
+    background-color: #e51f23
 }
 
 .nps_survey_section .nps_survey_title h2 {
@@ -27418,7 +27418,7 @@ td.middle-top del {
 
 .thankyoufeeds h4 {
     font-size: 24px;
-    color: #00a0a8;
+    color: #e51f23;
     margin-bottom: 10px
 }
 
@@ -27706,7 +27706,7 @@ td.middle-top del {
 
 .customcart_color {
     font-size: 18px;
-    color: #00a0a8;
+    color: #e51f23;
     line-height: 45px
 }
 
@@ -27754,7 +27754,7 @@ td.middle-top del {
 }
 
 .timercountdown {
-    background: #f37d26;
+    background: #ed1b24;
     border-radius: 30px;
     padding: 0 9px;
     color: #fff
@@ -27792,7 +27792,7 @@ td.middle-top del {
 .edit-input input:focus {
     outline: 0;
     box-shadow: none;
-    border-bottom: 1px solid #00a0a8
+    border-bottom: 1px solid #e51f23
 }
 
 .edit-input input[disabled] {
@@ -27833,11 +27833,11 @@ label {
 .priceright {
     float: right;
     padding-right: 20px;
-    color: #00a0a8
+    color: #e51f23
 }
 
 .pricerightclr {
-    color: #00a0a8;
+    color: #e51f23;
     font-size: 19px;
     float: right;
     padding-right: 20px
@@ -27851,7 +27851,7 @@ label {
     float: right;
     padding-right: 20px;
     font-weight: 600;
-    color: #00a0a8
+    color: #e51f23
 }
 
 .makepayservice {
@@ -28256,7 +28256,7 @@ label {
     font-size: 20px;
     padding-left: 7px;
     font-weight: 700;
-    color: #1a9ca6;
+    color: #e51f23;
     margin-top: 0;
     margin-bottom: 0
 }
@@ -28278,7 +28278,7 @@ label {
     margin-bottom: 12px;
     height: 110px;
     line-height: 108px;
-    background-color: #199ca6;
+    background-color: #e51f23;
     border-radius: 100%;
     color: #fff;
     text-align: center;
@@ -28939,7 +28939,7 @@ label {
 
 .servicesec h5 {
     font-weight: 600;
-    color: #00a0a8;
+    color: #e51f23;
     font-size: 18px;
     margin-bottom: 0
 }
@@ -29165,7 +29165,7 @@ div#success_message {
     text-transform: capitalize;
     font-size: 13px !important;
     padding-left: 10px;
-    color: #00a0a8;
+    color: #e51f23;
     padding-top: 0;
     text-transform: capitalize;
     font-weight: 400
@@ -29177,7 +29177,7 @@ div#success_message {
     text-transform: capitalize;
     font-size: 14px !important;
     padding-left: 10px;
-    color: #00a0a8 !important;
+    color: #e51f23 !important;
     padding-top: 5px;
     text-transform: capitalize;
     font-weight: 600
@@ -29354,7 +29354,7 @@ header .dropdown-menu a {
 }
 
 .srweb_container h1 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 30px;
     font-family: Lato, sans-serif;
     font-weight: 600;
@@ -29636,7 +29636,7 @@ h1.out-of-100 {
 }
 
 .srweb_container .full-report-section ul.nav-tabs>li:hover {
-    border-bottom: 4px solid #00a0a8;
+    border-bottom: 4px solid #e51f23;
     background-color: transparent
 }
 
@@ -29988,7 +29988,7 @@ del.del-money {
 
 span.offer-money {
     font-size: 32px;
-    color: #00a0a8;
+    color: #e51f23;
     font-weight: 800;
     margin-left: 28px
 }
@@ -30041,7 +30041,7 @@ a.btn.btn-danger.danger-section {
 }
 
 .srweb_container h1 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 30px;
     font-family: Lato, sans-serif;
     font-weight: 600;
@@ -30627,7 +30627,7 @@ span.u-i-section {
 .nav-tabs>li.active>a:hover,
 .srweb_container .full-report-section .nav-tabs>li.active>a {
     color: #1c9ca6;
-    border-bottom: 4px solid #00a0a8
+    border-bottom: 4px solid #e51f23
 }
 
 .srweb_container .full-report-section .nav .nav-tabs .active {
@@ -30732,7 +30732,7 @@ del.del-money {
 
 span.offer-money {
     font-size: 20px;
-    color: #00a0a8;
+    color: #e51f23;
     font-weight: 600;
     margin-left: 28px
 }
@@ -31259,8 +31259,8 @@ a.btn.btn-danger.danger-section {
 
 .diet-planner-section .btn-danger {
     color: #fff;
-    background-color: #f37d26;
-    border-color: #f37d26;
+    background-color: #ed1b24;
+    border-color: #ed1b24;
     transition: .3s ease-in-out;
     padding: 14px 20px 14px 30px;
     margin-top: 15px
@@ -31359,7 +31359,7 @@ a.btn.btn-danger.danger-section {
 
 .diet-planner-section .calorie-modal-text .modal-header .close {
     margin-top: -24px;
-    background: #f37d26;
+    background: #ed1b24;
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -31473,7 +31473,7 @@ a.btn.btn-danger.danger-section {
 }
 
 .diet-planner-section .search-medical-concerns input:checked~.checkmark {
-    background-color: #00a0a8;
+    background-color: #e51f23;
     border-radius: 50%
 }
 
@@ -31636,10 +31636,10 @@ to .diet-planner-section .Choose-calories-btn {
 }
 
 .diet-recommended-section .edit-text a {
-    background-color: #f37d26;
+    background-color: #ed1b24;
     color: #fff;
     text-decoration: none;
-    border: 1px solid #f37d26;
+    border: 1px solid #ed1b24;
     border-radius: 50px;
     padding: 12px 12px
 }
@@ -31653,16 +31653,16 @@ to .diet-planner-section .Choose-calories-btn {
 }
 
 .diet-recommended-section .today-tab-section .nav-pills>li.active>a {
-    border-bottom: 4px solid #00a0a8;
+    border-bottom: 4px solid #e51f23;
     background-color: transparent;
-    color: #00a0a8;
+    color: #e51f23;
     text-align: center
 }
 
 .diet-recommended-section .nav>li>a:focus .nav>li>a:hover {
     text-decoration: none;
     background-color: transparent;
-    border-bottom: 4px solid #00a0a8
+    border-bottom: 4px solid #e51f23
 }
 
 .diet-recommended-section .nav-pills>li>a {
@@ -31678,7 +31678,7 @@ to .diet-planner-section .Choose-calories-btn {
 .diet-recommended-section .today-tab-section a {
     font-size: 25px;
     font-weight: 600;
-    color: #00a0a8
+    color: #e51f23
 }
 
 .diet-recommended-section .today-tab-section h5 {
@@ -31928,7 +31928,7 @@ to .diet-planner-section .Choose-calories-btn {
 }
 
 .diet-recommended-section .modal-header .close {
-    background: #f37d26;
+    background: #ed1b24;
     border-radius: 50%;
     width: 32px;
     height: 32px;
@@ -31997,7 +31997,7 @@ to .diet-planner-section .Choose-calories-btn {
 
 .health-read-filter .modal-header .close {
     margin-top: -42px;
-    background: #f37d26;
+    background: #ed1b24;
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -32093,10 +32093,10 @@ to .diet-planner-section .Choose-calories-btn {
 }
 
 .diseases-value-selected ul li {
-    border: 1px solid #00a0a8;
+    border: 1px solid #e51f23;
     margin-right: 10px;
     font-size: 12px;
-    color: #00a0a8;
+    color: #e51f23;
     border-radius: 30px;
     padding: 8px 14px;
     float: left;
@@ -32204,8 +32204,8 @@ to .diet-planner-section .Choose-calories-btn {
 
 .health-read-filter .apply-btn.text-center button.btn.btn-danger.btn-apply {
     color: #fff;
-    background-color: #f37d26;
-    border-color: #f37d26;
+    background-color: #ed1b24;
+    border-color: #ed1b24;
     padding: 5px 20px 5px 30px;
     margin-top: 15px;
     border-radius: 50px;
@@ -32482,7 +32482,7 @@ to .diet-planner-section .Choose-calories-btn {
 .health-read-filter .calorie-modal-text .modal-header .close {
     margin-right: 0;
     margin-top: -24px;
-    background: #f37d26;
+    background: #ed1b24;
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -32587,8 +32587,8 @@ to .diet-planner-section .Choose-calories-btn {
 
 .health-read-filter .btn-danger {
     color: #fff;
-    background-color: #f37d26;
-    border-color: #f37d26;
+    background-color: #ed1b24;
+    border-color: #ed1b24;
     transition: .3s ease-in-out;
     padding: 14px 20px 14px 30px;
     margin-top: 15px
@@ -32634,7 +32634,7 @@ to .diet-planner-section .Choose-calories-btn {
 }
 
 .health-read-filter .search-medical-concerns input:checked~.checkmark {
-    background-color: #00a0a8;
+    background-color: #e51f23;
     border-radius: 50%
 }
 
@@ -32709,10 +32709,10 @@ to .health-read-filter ul.search-medical-concern {
 
 .tags-value-selected label {
     margin-bottom: 10px;
-    border: 1px solid #00a0a8;
+    border: 1px solid #e51f23;
     margin-right: 10px;
     font-size: 12px;
-    color: #00a0a8;
+    color: #e51f23;
     border-radius: 30px;
     padding: 8px 14px;
     float: left;
@@ -32729,7 +32729,7 @@ to .health-read-filter ul.search-medical-concern {
 
 div#more_consider h1 {
     font-size: 34px;
-    color: #199ca6;
+    color: #e51f23;
     font-weight: 900
 }
 
@@ -32992,7 +32992,7 @@ label.hcash_val:before {
 
 @media(max-width:600px) {
     .healthians_pop_up_modal .modal-content {
-        background-color: #00a0a8
+        background-color: #e51f23
     }
 
     .healthians_pop_up_modal .modal_yu img {
@@ -33266,7 +33266,7 @@ label.hcash_val:before {
 
 @media(max-width:600px) {
     .healthians_pop_up .modal-content {
-        background-color: #00a0a8
+        background-color: #e51f23
     }
 
     .modal_yu img {
@@ -33297,8 +33297,8 @@ label.hcash_val:before {
 
 .newfeature {
     float: right;
-    background: #f37d26;
-    border: 1px solid #f37d26;
+    background: #ed1b24;
+    border: 1px solid #ed1b24;
     padding: 0 4px;
     color: #fff;
     font-size: 7px;
@@ -33435,8 +33435,8 @@ label.hcash_val:before {
     display: inline-block;
     margin-right: 8px;
     text-decoration: none;
-    border: 1px solid #f37d26;
-    color: #f37d26;
+    border: 1px solid #ed1b24;
+    color: #ed1b24;
     padding: 9px 40px;
     font-size: 16px;
     background: #fff;
@@ -33447,11 +33447,11 @@ label.hcash_val:before {
     display: inline-block;
     margin-right: 0;
     text-decoration: none;
-    border: 1px solid #f37d26;
+    border: 1px solid #ed1b24;
     color: #fff;
     padding: 9px 40px;
     font-size: 16px;
-    background: #f37d26;
+    background: #ed1b24;
     border-radius: 40px
 }
 
@@ -33480,7 +33480,7 @@ label.hcash_val:before {
 }
 
 .docservice_section h2 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 30px;
     font-family: Lato, sans-serif;
     font-weight: 600;
@@ -33523,7 +33523,7 @@ label.hcash_val:before {
 }
 
 .bottomsticky {
-    background: #00a0a8;
+    background: #e51f23;
     box-shadow: 0 2px 18px #a3a3a3;
     width: 100%;
     position: fixed;
@@ -33643,7 +33643,7 @@ label.hcash_val:before {
     background-image: url(/img/campaign/arrow-top.png);
     background-position: 95% center;
     background-repeat: no-repeat;
-    border-color: #00a0a8;
+    border-color: #e51f23;
     outline: 0
 }
 
@@ -33676,7 +33676,7 @@ label.hcash_val:before {
 }
 
 .leadmodalcallback .field-form input:focus {
-    border: 1px solid #00a0a8;
+    border: 1px solid #e51f23;
     color: #888
 }
 
@@ -33747,7 +33747,7 @@ label.hcash_val:before {
 
 .chathead {
     width: 100%;
-    background: #00a0a8;
+    background: #e51f23;
     position: absolute;
     top: -49px;
     z-index: 99;
@@ -33845,7 +33845,7 @@ label.hcash_val:before {
     font-weight: 400;
     outline: 0;
     border-radius: 50px;
-    background: #00a0a8;
+    background: #e51f23;
     color: #fff;
     border: none;
     padding: 4% 7%;
@@ -33901,7 +33901,7 @@ label.hcash_val:before {
     font-weight: 400;
     outline: 0;
     border-radius: 50px;
-    background: #00a0a8;
+    background: #e51f23;
     color: #fff;
     border: none;
     padding: 4% 7%;
@@ -34012,7 +34012,7 @@ body #tars-cb-widget .close-ontop {
     input.form-control.pincode-input-text {
         width: 44px;
         height: 44px;
-        border: 1px solid #00a0a8;
+        border: 1px solid #e51f23;
         border-radius: 3px;
         margin-right: 8px
     }
@@ -34113,7 +34113,7 @@ body #tars-cb-widget .close-ontop {
     .mobilecontactdetail {
         display: block;
         font-family: Lato, sans-serif;
-        background: #00a0a8;
+        background: #e51f23;
         padding: 5px 0;
         color: #fff;
         text-align: center;
@@ -34246,7 +34246,7 @@ body #tars-cb-widget .close-ontop {
     }
 
     .uploadpres {
-        background-color: #f37d26
+        background-color: #ed1b24
     }
 
     .tag-section .container {
@@ -34673,7 +34673,7 @@ body #tars-cb-widget .close-ontop {
         background-color: transparent;
         border-top-left-radius: 110px;
         border-top-right-radius: 110px;
-        border: 15px solid #00a0a8;
+        border: 15px solid #e51f23;
         border-bottom: 0;
         transform: rotate(-180deg)
     }
@@ -34690,7 +34690,7 @@ body #tars-cb-widget .close-ontop {
         background-color: transparent;
         border-top-left-radius: 110px;
         border-top-right-radius: 110px;
-        border: 15px solid #00a0a8;
+        border: 15px solid #e51f23;
         border-bottom: 0
     }
 
@@ -35324,7 +35324,7 @@ body #tars-cb-widget .close-ontop {
 
     .selectmemberpanel .cart-div {
         margin-top: 0;
-        background: #00a0a8;
+        background: #e51f23;
         margin-bottom: 0
     }
 
@@ -35400,11 +35400,11 @@ body #tars-cb-widget .close-ontop {
     }
 
     .selectSlot .cart-div {
-        background: #00a0a8
+        background: #e51f23
     }
 
     .cust_pkgopt .cart-div {
-        background: #00a0a8;
+        background: #e51f23;
         margin-top: 10px
     }
 
@@ -37052,7 +37052,7 @@ body #tars-cb-widget .close-ontop {
         position: fixed;
         top: 200px;
         left: 0;
-        background-color: #f37d26;
+        background-color: #ed1b24;
         width: 40px;
         height: 40px;
         line-height: 40px;
@@ -37201,7 +37201,7 @@ body #tars-cb-widget .close-ontop {
         text-align: center;
         padding-top: 40px;
         padding-bottom: 0;
-        border-top: 2px solid #1a9ca6;
+        border-top: 2px solid #e51f23;
         margin-top: 50px
     }
 
@@ -37349,7 +37349,7 @@ body #tars-cb-widget .close-ontop {
     }
 
     .cart-div .step-div {
-        background: #00a0a8
+        background: #e51f23
     }
 
     .get-btn {
@@ -38401,7 +38401,7 @@ body #tars-cb-widget .close-ontop {
     .certified {
         background-image: none;
         background-repeat: no-repeat;
-        background-color: #1a9ca6;
+        background-color: #e51f23;
         background-size: contain;
         padding: 12px 0;
         color: #fff;
@@ -39526,7 +39526,7 @@ body #tars-cb-widget .close-ontop {
         font-weight: 700;
         margin-bottom: 15px;
         font-size: 25px;
-        color: #00a0a8;
+        color: #e51f23;
         padding-top: 15px;
         padding-bottom: 15px;
         margin-top: 0
@@ -39641,7 +39641,7 @@ body #tars-cb-widget .close-ontop {
         text-align: center;
         padding-top: 30px;
         padding-bottom: 0;
-        border-top: 2px solid #1a9ca6
+        border-top: 2px solid #e51f23
     }
 
     .labs-map-area {
@@ -39697,7 +39697,7 @@ body #tars-cb-widget .close-ontop {
     .certified {
         background-image: none;
         background-repeat: no-repeat;
-        background-color: #1a9ca6;
+        background-color: #e51f23;
         background-size: contain;
         padding: 12px 22px;
         color: #fff;

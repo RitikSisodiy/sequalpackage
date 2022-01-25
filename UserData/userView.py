@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render
 from django.http import JsonResponse
 from UserData.models import Family
 from superuser.forms import GenForm
+
 def dashboard(request):
     res={}
     res['bodyclass'] = "dashboard"

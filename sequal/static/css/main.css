@@ -1,4 +1,7 @@
 /* header */
+header{
+    background:#202020 !important;
+}
 .navbar ul li ul .row{
     padding: 0 10px;
 }
@@ -44,7 +47,7 @@ div.carousel-item a img {
 }
 
 .index-page .search .search-sub-menu ul li:hover {
-    color: #f37d26;
+    color: #ed1b24;
 }
 
 .index-page .search input[type="text"] {
@@ -63,7 +66,7 @@ div.carousel-item a img {
     background: none;
     color: #fff;
     padding: 0px 20px;
-    background: #f37d26;
+    background: #ed1b24;
     z-index: 10;
 }
 
@@ -101,7 +104,7 @@ header .navbar nav .top ul li {
 
 header .navbar nav .top ul a {
     font-size: 13px;
-    color: #000;
+    color: #e51f23;
     font-weight: 500;
 }
 
@@ -116,7 +119,7 @@ header .navbar nav .bottom ul li {
 
 header .navbar nav .bottom ul a {
     font-size: 14px;
-    color: #000;
+    color: #e51f23;
     font-weight: normal;
 }
 
@@ -128,7 +131,7 @@ header .navbar nav .bottom ul li i {
 header .navbar .bottom button {
     color: white;
     display: inline-block;
-    background: #f37d26;
+    background: #ed1b24;
     border: none;
     border-radius: 25px;
     padding: 5px 8px;
@@ -155,7 +158,7 @@ header .navbar ul li.sub-menu a::after {
     font-weight: 400;
     font-family: fontAwesome;
     margin-left: 4px;
-    color: #00000099;
+    color: #ffffff;
 }
 
 header .drop-down {
@@ -291,7 +294,7 @@ footer .social-ico .icon {
     margin: 0 6px;
     border-radius: 50%;
     color: #fff;
-    background: #f37d26;
+    background: #ed1b24;
 }
 
 /* index page */
@@ -376,7 +379,7 @@ html, body {
     padding: 5px 10px;
     height: 300px;
     width: 250px;
-    color: #000;
+    color: #e51f23;
     transition: 0.4s;
     box-shadow: 0 2px 20px #c2c2c2;
 }
@@ -403,10 +406,10 @@ html, body {
     font-weight: 400;
     border-radius: 30px;
     padding: 3px 16px;
-    border: 1px solid #00a0a8;
+    border: 1px solid #e51f23;
     font-family: Lato, sans-serif;
     font-size: 15px;
-    color: #00a0a8;
+    color: #e51f23;
     margin: 22px 0 0 0;
     transition: 0.3s ease-in-out;
 }
@@ -417,9 +420,9 @@ html, body {
 }
 
 .index-page .check-up-card a {
-    color: #f37d26;
+    color: #ed1b24;
     padding: 5px 8px;
-    border: 1px solid #f37d26;
+    border: 1px solid #ed1b24;
     font-size: 20px;
     background: none;
     border-radius: 10px;
@@ -431,17 +434,17 @@ html, body {
 }
 
 .index-page .check-up-card .discount {
-    color: #f37d26;
+    color: #ed1b24;
     font-weight: 1000;
     padding: 5px 10px;
     margin-left: -10px;
-    border: 1px solid #f37d26;
+    border: 1px solid #ed1b24;
     border-bottom-right-radius: 10px;
 }
 
 .index-page .check-up-card b {
     margin-top: 10px;
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 26px;
 }
 
@@ -458,7 +461,7 @@ html, body {
 .index-page a.services-btn {
     color: #fff;
     border: none;
-    background: #f37d26;
+    background: #ed1b24;
     padding: 12px 20px;
     font-weight: bold;
     border-radius: 25px;
@@ -467,7 +470,7 @@ html, body {
 
 .index-page a.services-btn:hover {
     color: #fff;
-    background: #1a9ca6;
+    background: #e51f23;
     text-decoration: none;
 }
 
@@ -497,7 +500,7 @@ html, body {
 }
 
 .index-page .second h2 {
-    color: #1a9ca6;
+    color: #e51f23;
 }
 
 .index-page .second p, .index-page .second h1, .index-page .second h3 {
@@ -506,7 +509,7 @@ html, body {
 }
 
 .index-page .second h1, .index-page .second h3 {
-    color: #1a9ca6;
+    color: #e51f23;
 }
 
 .index-page .second img {
@@ -529,7 +532,7 @@ html, body {
 
 .index-page .second button {
     border: none;
-    background: #f37d26;
+    background: #ed1b24;
     color: white;
     text-decoration: none;
     border-radius: 40px;
@@ -558,7 +561,7 @@ html, body {
 
 .index-page .health-card-p a {
     text-align: center;
-    color: #1a9ca6;
+    color: #e51f23;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -573,11 +576,11 @@ html, body {
 
 .index-page .surgery-page .third i {
     font-size: 80px;
-    color: #1ebeb6;
+    color: #e51f23;
 }
 
 .index-page .third h6 {
-    color: #1ebeb6;
+    color: #e51f23;
     font-family: 'Playfair Display', serif;
 }
 
@@ -587,13 +590,13 @@ html, body {
 }
 
 .index-page .third h1 {
-    color: #1ebeb6;
+    color: #e51f23;
     font-family: 'Playfair Display', serif;
 }
 
 .index-page .ratings h1 {
     text-align: center;
-    color: #1ebeb6;
+    color: #e51f23;
     font-family: 'Playfair Display', serif;
 }
 
@@ -602,7 +605,7 @@ html, body {
 }
 
 .index-page .ratings b {
-    color: #1ebeb6;
+    color: #e51f23;
     font-family: 'Playfair Display', serif;
     font-size: 20px;
 }
@@ -688,7 +691,7 @@ body {
 }
 
 .general-page .first h3 {
-    color: #1ebeb6;
+    color: #e51f23;
     font-family: 'Playfair Display', serif;
 }
 
@@ -780,16 +783,16 @@ body {
 
 .general-page .third i {
     font-size: 80px;
-    color: #1ebeb6;
+    color: #e51f23;
 }
 
 .general-page .third h6 {
-    color: #1ebeb6;
+    color: #e51f23;
     font-family: 'Playfair Display', serif;
 }
 
 .general-page .third h1 {
-    color: #1ebeb6;
+    color: #e51f23;
     font-family: 'Playfair Display', serif;
 }
 
@@ -915,14 +918,14 @@ body {
 
 .career-page .first .side-text a {
     color: white;
-    background: #1ebeb6;
+    background: #e51f23;
     border-radius: 40px;
     text-decoration: none;
     padding: 18px 25px;
 }
 
 .career-page .first h2 {
-    color: #1ebeb6;
+    color: #e51f23;
     font-family: 'Playfair Display', serif;
 }
 
@@ -935,7 +938,7 @@ body {
 
 .career-page .second .submit {
     color: white;
-    background: #1ebeb6;
+    background: #e51f23;
     border-radius: 40px;
     text-decoration: none;
     padding: 12px 20px;
@@ -968,16 +971,16 @@ body {
 
 .career-page .third i {
     font-size: 80px;
-    color: #1ebeb6;
+    color: #e51f23;
 }
 
 .career-page .third h6 {
-    color: #1ebeb6;
+    color: #e51f23;
     font-family: 'Playfair Display', serif;
 }
 
 .career-page .third h1 {
-    color: #1ebeb6;
+    color: #e51f23;
     font-family: 'Playfair Display', serif;
 }
 
@@ -1083,21 +1086,21 @@ body {
 
 .dr-profile-page .first .third i {
     font-size: 80px;
-    color: #1ebeb6;
+    color: #e51f23;
 }
 
 .dr-profile-page .first .third h6 {
-    color: #1ebeb6;
+    color: #e51f23;
     font-family: 'Playfair Display', serif;
 }
 
 .dr-profile-page .first .third h1 {
-    color: #1ebeb6;
+    color: #e51f23;
     font-family: 'Playfair Display', serif;
 }
 
 .dr-profile-page .first .working-hours h3 {
-    color: #1ebeb6;
+    color: #e51f23;
     font-family: 'Playfair Display', serif;
 }
 
@@ -1172,7 +1175,7 @@ body {
 }
 
 .dr-profile-page .third i {
-    color: #1ebeb6;
+    color: #e51f23;
     font-size: 80px;
 }
 
@@ -1240,7 +1243,7 @@ body {
 }
 
 .pregnancy-test-page .title {
-    background: #1ebeb6;
+    background: #e51f23;
     color: white;
     position: relative;
     padding: 40px 20px;
@@ -1294,7 +1297,7 @@ body {
 }
 
 .pregnancy-test-page .fourth {
-    background: #1a9ca6;
+    background: #e51f23;
     color: white;
     margin: 0px 40px;
     border-radius: 8px;
@@ -1336,18 +1339,18 @@ body {
 }
 
 .pregnancy-test-page .container .link-2 {
-    border: 2px solid #1a9ca6;
-    background: #1a9ca6;
+    border: 2px solid #e51f23;
+    background: #e51f23;
     color: white;
 }
 
 .pregnancy-test-page .container .link-2:hover {
     background: #ffff;
-    color: #1a9ca6;
+    color: #e51f23;
 }
 
 .pregnancy-test-page .fifth .head {
-    background: #1ebeb6;
+    background: #e51f23;
     color: #fff;
     padding: 10px 8px;
 }
@@ -1427,9 +1430,9 @@ body {
 }
 
 .pregnancy-test-page .check-up-card a {
-    color: #1ebeb6;
+    color: #e51f23;
     padding: 5px 8px;
-    border: 1px solid #1ebeb6;
+    border: 1px solid #e51f23;
     border-radius: 10px;
 }
 
@@ -1447,7 +1450,7 @@ body {
 
 .pregnancy-test-page .check-up-card b {
     margin-top: 10px;
-    color: #1ebeb6;
+    color: #e51f23;
     font-size: 26px;
 }
 
@@ -1462,7 +1465,7 @@ body {
 
 .pregnancy-test-page .check-up-card a:hover {
     color: white;
-    background: #1ebeb6;
+    background: #e51f23;
 }
 
 .pregnancy-test-page .check-up-card ul {
@@ -1470,8 +1473,8 @@ body {
 }
 
 .pregnancy-test-page a.services-btn {
-    color: #1ebeb6;
-    border: 1px solid #1ebeb6;
+    color: #e51f23;
+    border: 1px solid #e51f23;
     padding: 8px 10px;
     border-radius: 20px;
     transition: 0.4s;
@@ -1479,7 +1482,7 @@ body {
 
 .pregnancy-test-page a.services-btn:hover {
     color: #fff;
-    background: #1ebeb6;
+    background: #e51f23;
     text-decoration: none;
 }
 
@@ -1545,7 +1548,7 @@ body {
 }
 .Expedient-Healtdiv h1 {
     font-size: 32px;
-    color: #1a9ca6;
+    color: #e51f23;
     font-weight: 600;
     text-align: center;
     line-height: 44px;
@@ -1730,7 +1733,7 @@ body {
 
 .services-page .left h1 {
     font-family: 'Playfair Display', serif;
-    color: #1ebeb6;
+    color: #e51f23;
 }
 
 .services-page .first {
@@ -1752,7 +1755,7 @@ body {
     left: 0;
     width: 30%;
     height: 4px;
-    background: #1ebeb6;
+    background: #e51f23;
 }
 
 .services-page .first ul {
@@ -1775,7 +1778,7 @@ body {
 }
 
 .services-page .second .row i {
-    color: #1ebeb6;
+    color: #e51f23;
     font-size: 80px;
 }
 
@@ -1791,12 +1794,12 @@ body {
 
 .services-page .second h3 {
     font-family: 'Playfair Display', serif;
-    color: #1ebeb6;
+    color: #e51f23;
 }
 
 .services-page .second .submit {
     color: white;
-    background: #1ebeb6;
+    background: #e51f23;
     border-radius: 40px;
     text-decoration: none;
     padding: 12px 20px;
@@ -1819,7 +1822,7 @@ body {
 }
 
 .services-page .services-btn {
-    background: #1ebeb6;
+    background: #e51f23;
     color: white;
     text-decoration: none;
     border-radius: 40px;
@@ -1866,7 +1869,7 @@ body {
         font-size: 14px;
     }
     .services-page .second .row i {
-        color: #1ebeb6;
+        color: #e51f23;
         font-size: 60px;
     }
 }
@@ -2008,7 +2011,7 @@ body {
 
 .solution-page .child-1 i {
     font-size: 80px;
-    color: #1ebeb6;
+    color: #e51f23;
 }
 
 .solution-page .child-1 b {
@@ -2017,7 +2020,7 @@ body {
 }
 
 .solution-page .child-1 h4 {
-    color: #1ebeb6;
+    color: #e51f23;
     font-family: 'Playfair Display', serif;
 }
 
@@ -2032,7 +2035,7 @@ body {
 
 .solution-page .child-1 ul li::before {
     content: "\f00c ";
-    color: #1ebeb6;
+    color: #e51f23;
     margin-right: 4px;
     font-family: fontAwesome;
 }
@@ -2056,7 +2059,7 @@ body {
 
 .solution-page .child-2 i {
     font-size: 80px;
-    color: #1ebeb6;
+    color: #e51f23;
 }
 
 .solution-page .child-2 p {
@@ -2086,7 +2089,7 @@ body {
 
 .solution-page .child-2 ul li::before {
     content: "\f00c ";
-    color: #1ebeb6;
+    color: #e51f23;
     margin-right: 4px;
     font-family: fontAwesome;
 }
@@ -2094,7 +2097,7 @@ body {
 .solution-page .col2 button {
     color: white;
     font-family: 'Playfair Display', serif;
-    background: #1ebeb6;
+    background: #e51f23;
     padding: 14px 18px;
     border-radius: 40px;
     border: none;
@@ -2103,7 +2106,7 @@ body {
 }
 
 .solution-page .child-3 {
-    background: #1ebeb6;
+    background: #e51f23;
     padding: 20px 25px;
     border-radius: 40px;
 }
@@ -2212,16 +2215,16 @@ body {
 
 .book-appointment .left i {
     font-size: 80px;
-    color: #1ebeb6;
+    color: #e51f23;
 }
 
 .book-appointment .left h6 {
-    color: #1ebeb6;
+    color: #e51f23;
     font-family: 'Playfair Display', serif;
 }
 
 .book-appointment .left h1 {
-    color: #1ebeb6;
+    color: #e51f23;
     font-family: 'Playfair Display', serif;
 }
 
@@ -2232,7 +2235,7 @@ body {
 }
 
 .book-appointment .second .row i {
-    color: #1ebeb6;
+    color: #e51f23;
     font-size: 80px;
 }
 
@@ -2247,12 +2250,12 @@ body {
 
 .book-appointment .second h3 {
     font-family: 'Playfair Display', serif;
-    color: #1ebeb6;
+    color: #e51f23;
 }
 
 .book-appointment .second .submit {
     color: white;
-    background: #1ebeb6;
+    background: #e51f23;
     border-radius: 40px;
     text-decoration: none;
     padding: 12px 20px;
@@ -2320,7 +2323,7 @@ body {
     height: 40px;
     width: 40px;
     color: white;
-    background: #1ebeb6;
+    background: #e51f23;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -2338,7 +2341,7 @@ body {
 }
 
 .news-page .posts ul li:nth-child(2) {
-    background: #1da1f2;
+    background: #e51f23;;
 }
 
 .news-page .posts ul li:nth-child(3) {
@@ -2357,8 +2360,8 @@ body {
 
 .news-page .posts ul li:nth-child(2):hover {
     background: #fff;
-    color: #1da1f2;
-    border: 1px solid #1da1f2;
+    color: #e51f23;;
+    border: 1px solid #e51f23;;
 }
 
 .news-page .posts ul li:nth-child(3):hover {
@@ -2374,7 +2377,7 @@ body {
 }
 
 .news-page .posts .left button {
-    background: #1ebeb6;
+    background: #e51f23;
     height: 40px;
     color: white;
     border: none;
@@ -2412,7 +2415,7 @@ body {
     margin-left: -52px;
     outline: none!important;
     border: none;
-    background: #1da1f2;
+    background: #e51f23;;
     color: white;
     z-index: 10;
 }
@@ -2511,12 +2514,12 @@ body {
 .login-page .login-container .blue-line {
     width: 20%;
     height: 2px;
-    background-color: #1da1f2;
+    background-color: #e51f23;;
     margin: 3px 0px 16px 0;
 }
 
 .login-page .login-container h3 {
-    color: #1da1f2;
+    color: #e51f23;;
     font-family: 'Playfair Display', serif;
 }
 
@@ -2544,7 +2547,7 @@ body {
 
 .login-page .login-container input[type="submit"] {
     color: white;
-    background: #1da1f2;
+    background: #e51f23;;
     width: 100%;
     padding: 10px;
     border-radius: 40px;
@@ -2562,16 +2565,16 @@ body {
 
 .login-page .third i {
     font-size: 80px;
-    color: #1ebeb6;
+    color: #e51f23;
 }
 
 .login-page .third h6 {
-    color: #1ebeb6;
+    color: #e51f23;
     font-family: 'Playfair Display', serif;
 }
 
 .login-page .third h1 {
-    color: #1ebeb6;
+    color: #e51f23;
     font-family: 'Playfair Display', serif;
 }
 
@@ -2669,12 +2672,12 @@ body {
 .otp-page .login-container .blue-line {
     width: 20%;
     height: 2px;
-    background-color: #1da1f2;
+    background-color: #e51f23;;
     margin: 3px 0px 16px 0;
 }
 
 .otp-page .login-container h3 {
-    color: #1da1f2;
+    color: #e51f23;;
     font-family: 'Playfair Display', serif;
 }
 
@@ -2684,7 +2687,7 @@ body {
 
 .otp-page .login-container input[type="submit"] {
     color: white;
-    background: #1da1f2;
+    background: #e51f23;;
     width: 100%;
     padding: 10px;
     border-radius: 40px;
@@ -2818,12 +2821,12 @@ body {
 .registration-page .login-container .blue-line {
     width: 20%;
     height: 2px;
-    background-color: #1da1f2;
+    background-color: #e51f23;;
     margin: 3px 0px 16px 0;
 }
 
 .registration-page .login-container h3 {
-    color: #1da1f2;
+    color: #e51f23;;
     font-family: 'Playfair Display', serif;
 }
 
@@ -2849,7 +2852,7 @@ body {
 
 .registration-page .login-container input[type="submit"] {
     color: white;
-    background: #1da1f2;
+    background: #e51f23;;
     width: 100%;
     padding: 10px;
     border-radius: 40px;
@@ -2926,7 +2929,7 @@ body {
 }
 
 .dashboard .profile-div {
-    background: #1da1f2;
+    background: #e51f23;;
     color: #fff;
     padding: 20px 10px;
     text-align: center;
@@ -2936,7 +2939,7 @@ body {
 
 .dashboard .profile-div .profile {
     background: #fff;
-    color: #1da1f2;
+    color: #e51f23;;
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -2992,13 +2995,13 @@ body {
 }
 
 .upload-page .first h1 {
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 58px;
     font-weight: bold;
 }
 
 .upload-page .second .first-row {
-    background: #1a9ca6;
+    background: #e51f23;
     color: white;
     position: relative;
     padding: 20px 10px;
@@ -3039,7 +3042,7 @@ body {
     width: auto;
     color: white;
     padding: 10px 8px;
-    background: #f37d26;
+    background: #ed1b24;
     border-radius: 4px;
     font-family: 'fontAwesome';
 }
@@ -3082,7 +3085,7 @@ body {
     color: white;
     border-radius: 20px;
     border: none;
-    background: #f37d26;
+    background: #ed1b24;
 }
 
 .upload-page .second .row {
@@ -3120,14 +3123,14 @@ body {
 }
 
 .submited-page .container h3 {
-    color: #1a9ca6;
+    color: #e51f23;
     margin: 8px 0px;
 }
 
 .submited-page .container button {
     color: white;
     border: none;
-    background: #f37d26;
+    background: #ed1b24;
     border-radius: 14px;
     padding: 10px 20px;
 }
@@ -3230,7 +3233,7 @@ a.link1 {
     padding: 5px 10px;
     height: 300px;
     width: 250px;
-    color: #000;
+    color: #e51f23;
     transition: 0.4s;
     box-shadow: 0 2px 20px #c2c2c2;
 }
@@ -3257,10 +3260,10 @@ a.link1 {
     font-weight: 400;
     border-radius: 30px;
     padding: 3px 16px;
-    border: 1px solid #00a0a8;
+    border: 1px solid #e51f23;
     font-family: Lato, sans-serif;
     font-size: 15px;
-    color: #00a0a8;
+    color: #e51f23;
     margin: 22px 0 0 0;
     transition: 0.3s ease-in-out;
 }
@@ -3271,9 +3274,9 @@ a.link1 {
 }
 
 .risk-page .check-up-card a {
-    color: #f37d26;
+    color: #ed1b24;
     padding: 5px 8px;
-    border: 1px solid #f37d26;
+    border: 1px solid #ed1b24;
     font-size: 20px;
     background: none;
     border-radius: 10px;
@@ -3285,17 +3288,17 @@ a.link1 {
 }
 
 .risk-page .check-up-card .discount {
-    color: #f37d26;
+    color: #ed1b24;
     font-weight: 1000;
     padding: 5px 10px;
     margin-left: -10px;
-    border: 1px solid #f37d26;
+    border: 1px solid #ed1b24;
     border-bottom-right-radius: 10px;
 }
 
 .risk-page .check-up-card b {
     margin-top: 10px;
-    color: #1a9ca6;
+    color: #e51f23;
     font-size: 26px;
 }
 
@@ -3310,7 +3313,7 @@ a.link1 {
 }
 
 .faq-page .fifth .head {
-    background: #1ebeb6;
+    background: #e51f23;
     color: #fff;
     padding: 10px 8px;
 }
@@ -3364,7 +3367,7 @@ a.link1 {
 }
 .faq-sec  h1{
     font-size: 108px;
-    color: #00a0a8;
+    color: #e51f23;
 }
 .faq-sec  p{
     font-weight: 600;
@@ -3488,13 +3491,13 @@ a.link1 {
     background-repeat: no-repeat;
 }
 .surgery-page .sixth h3{
-    color: #00a0a8;
+    color: #e51f23;
     text-align: center;
     font-size: 29px;
     /* margin-top: 10px; */
 }
 .surgery-page .sixth .col-lg-6 h4{
-    color: #00a0a8;
+    color: #e51f23;
     font-size: 20px;
 }
 .surgery-page .seventh p{
@@ -3537,7 +3540,7 @@ a.link1 {
 .surgery-page .forms .heading{
     background: #f1f1f1;
     padding: 22px 0px;
-    color: #00a0a8;
+    color: #e51f23;
     font-size: 18px;
     font-weight: 400;
     text-align: center;

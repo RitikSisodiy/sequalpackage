@@ -1,8 +1,10 @@
 from email.policy import default
+from pyexpat import model
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import FileExtensionValidator
+
 from package.models import package, test
 from django.urls import reverse
 import datetime
@@ -52,11 +54,31 @@ class Booking(models.Model):
         ("package","package"),
         ("test","test")
     )
+    forchoice = (
+        ('self','self'),
+        ('child','child'),
+        ('perent','perent'),
+        ('grand parent','grand parent'),
+        ('friend','friend'),
+        ('relative','relative'),
+        ('other','other'),
+        ('collieague','collieague'),
+        ('other','other'),
+    )
+    statuschoice=(
+        ('success','success'),
+        ('pending','pending'),
+        ('failed','failed'),
+    )
     Booking_id = models.CharField(max_length=50,blank=True)
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="Booking")
     type = models.CharField(max_length=10,choices=choices)
     test = models.ForeignKey(test,on_delete=models.SET_NULL,null=True,blank=True)
     package = models.ForeignKey(package,on_delete=models.SET_NULL,null=True,blank=True)
+    collectiontime = models.DateTimeField()
+    bookingfor = models.CharField(max_length=20,choices=forchoice)
+    status = models.CharField(max_length=20,choices=statuschoice,default='pending')
+    member = models.ForeignKey(Family,on_delete=models.SET_NULL,null=True,blank=True)
     def clean(self) -> None:
         if self.type == "package" and not self.package:
             raise ValidationError(
@@ -76,6 +98,11 @@ class Booking(models.Model):
         super(Booking, self).save(*args, **kwargs)
     def __str__(self):
         return self.Booking_id
+class cart(models.Model):
+    user = models.ForeignKey("UserData.User",on_delete=models.CASCADE)
+    package = models.ForeignKey(package,on_delete=models.SET_NULL,null=True)
+    test = models.ForeignKey(test,on_delete=models.SET_NULL,null=True)
+
 
 class report(models.Model):
     booking = models.OneToOneField(Booking,on_delete=models.CASCADE,related_name="report")

@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'package',
     'home',
     'sequal',
+    'paymentintigration',
+    'paypal.standard.ipn',
 
 ]
 
@@ -136,3 +138,4 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+PAYPAL_RECEIVER_EMAIL = 'sb-1pdsh8805287@business.example.com'

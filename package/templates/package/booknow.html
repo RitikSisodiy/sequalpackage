@@ -5,10 +5,12 @@
     .bg-primary {
         background: #00a0a8 !important;
     }
-    .text-secondary{
+
+    .text-secondary {
         color: red !important;
     }
-    .bg-secondary{
+
+    .bg-secondary {
         background: red !important;
     }
 
@@ -41,109 +43,205 @@
         border-radius: 0 30px 30px 0;
         padding: 10px 35px;
     }
+
+    input.coupeninput {
+        padding: 5px 14px;
+        font-size: 16px;
+        letter-spacing: 2px;
+        border-radius: 25px;
+        border: 1px solid #d3d3d3;
+        width: 55%;
+
+        margin-bottom: 15px;
+    }
+
+    input.coupenButton {
+        box-sizing: border-box;
+        font: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        -webkit-appearance: button;
+        background: none repeat scroll 0 0 #ff9800;
+        border: medium none;
+        color: #fff;
+        cursor: pointer;
+        position: absolute;
+        border-radius: 30px;
+        margin-left: 5px;
+        padding: 4px;
+        width: 80px;
+        line-height: 27px;
+
+    }
+
+    .cpninput {
+        float: initial;
+        display: initial;
+        position: relative;
+    }
 </style>
 <div class="container">
     <div class="row">
+
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
-            <div class="p-3 shadow p-3 mb-2 bg-white rounded">1 Test | +91 9090974785</div>
-            <div class="shadow mb-2">
-                <div class="p-3  text-light bg-primary">2 Add Member</div>
-                <div class="p-3 ">
-                    <div class="row">
-                        <div class="p-3 col-sm-4">
-                            <div class="p-3 text-sm shadow-sm addressbox">
-                                <span>Test,</span><br>
-                                <small>Self</small><br>
-                                <small>male , 30 yrs</small>
-                                <input type="checkbox" name="" id="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="Addressbuttons">
-                        <button class="mx-2">Add More Member</button>
-                        <button class="mx-2" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
-                        aria-controls="collapseExample">next</button>
-                    </div>
-                </div>
-            </div>
-            <div class=" shadow  mb-2 bg-white rounded">
-                <div class="p-3" >3 Add Sample Collection Address, Date & Time</div>
-                <div class="collapse" id="collapseExample">
-                    <div class="card-body">
+            <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                <div class="p-3 shadow p-3 mb-2 bg-white rounded">1 Test | +91 9090974785</div>
+                <div class="shadow mb-2">
+                    <div class="p-3  text-light bg-primary">2 Add Member</div>
+                    <div class="p-3 ">
                         <div class="row">
-                            <div class="p-3 col-sm-6">
-                                <div class="p-3 text-sm shadow-sm addressbox d-flex flex-row">
-                                    <div><input class="mx-1" type="radio" name="" id=""></div>
-                                    <div><small>
-                                            House no.: 123, Indore, Madhya Pradesh, India indore Madhya Pradesh - 452010
-                                        </small>
-                                    </div>
+                            <div class="p-3 col-sm-4">
+                                <div class="p-3 text-sm shadow-sm addressbox">
+                                    <span>{{user.first_name}} {{user.last_name}},</span><br>
+                                    <small>Self,</small><br>
+                                    <small>{{user.gender}} , {{user.age}} yrs</small>
+                                    <input type="checkbox" class="familymember" name="self" id="">
                                 </div>
                             </div>
+                            {% for data in family %}
+                            <div class="p-3 col-sm-4">
+                                <div class="p-3 text-sm shadow-sm addressbox">
+                                    <span>{{data.name}},</span><br>
+                                    <small>{{data.relation}}</small><br>
+                                    <small>{{data.gender}} , {{data.age}} yrs</small>
+                                    <input type="checkbox" class="familymember" name="member{{data.id}}" id="" >
+                                </div>
+                            </div>
+                            {% endfor %}
                         </div>
                         <div class="Addressbuttons">
-                            <button class="mx-2">Add More Address</button>
-                            <button class="mx-2" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false"
-                            aria-controls="collapseExample1">next</button>
+                            <a href="{% url 'family' %}?next={{request.path}}"><button class="mx-2">Add More
+                                    Member</button></a>
+                            <button type="button"  class="mx-2" data-toggle="collapse" data-target="#collapseExample"
+                                aria-expanded="false" aria-controls="collapseExample">next</button>
                         </div>
-                        <div class="my-3"></div>
-                        <p class="text-primary">CHOOSE DATE & TIME FOR HOME SAMPLE COLLECTION</p>
-                        <div class="row mb-3">
-                            <div class="col-sm-6">
-                                <input type="date" class="form-control ">
-                            </div>
-                            <div class="col-sm-6">
-                                <input type="date" class="form-control ">
-                            </div>
-                        </div>
-                        <small>* Choose sample collection date & time to proceed further</small>
                     </div>
                 </div>
-            </div>
-            <div class=" shadow  mb-2 bg-white rounded">
-                <div class="p-3" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false"
-                    aria-controls="collapseExample1">3 Add Sample Collection Address, Date & Time</div>
-                <div class="collapse" id="collapseExample1">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="p-3 col-sm-6">
-                                <div class="p-3 text-sm shadow-sm addressbox d-flex flex-row">
-                                    <div><input class="mx-1" type="radio" name="" id=""></div>
-                                    <div><small>
-                                            House no.: 123, Indore, Madhya Pradesh, India indore Madhya Pradesh - 452010
-                                        </small>
+                <div class=" shadow  mb-2 bg-white rounded">
+                    <div class="p-3">3 Add Sample Collection Address, Date & Time</div>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card-body">
+                            <div class="row">
+
+                                <div class="p-3 col-sm-6">
+                                    <div class="p-3 text-sm shadow-sm addressbox d-flex flex-row">
+                                        <div><input class="mx-1" type="radio" name="" id="" required></div>
+                                        <div><small>
+                                                House no.: 123, Indore, Madhya Pradesh, India indore Madhya Pradesh -
+                                                452010
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="my-3"></div>
-                        <p class="text-primary">CHOOSE DATE & TIME FOR HOME SAMPLE COLLECTION</p>
-                        <div class="row mb-3">
-                            <div class="col-sm-6">
-                                <input type="date" class="form-control ">
+
+                            <div class="my-3"></div>
+                            <p class="text-primary">CHOOSE DATE & TIME FOR HOME SAMPLE COLLECTION</p>
+                            <div class="row mb-3">
+                                <div class="col-sm-6">
+                                    <input type="date" name="colletiondate" class="form-control " required>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="time"  name="colletiontime" class="form-control" required>
+                                </div>
                             </div>
-                            <div class="col-sm-6">
-                                <input type="date" class="form-control ">
+                            <small>* Choose sample collection date & time to proceed further</small>
+                            <div class="Addressbuttons">
+                                <a href="{% url 'address' %}?next={{request.path}}"><button class="mx-2">Add More
+                                        Address</button></a>
+                                <button class="mx-2" type="button" data-toggle="collapse" data-target="#collapseExample1"
+                                    aria-expanded="false" aria-controls="collapseExample1">next</button>
                             </div>
                         </div>
-                        <small>* Choose sample collection date & time to proceed further</small>
                     </div>
                 </div>
-            </div>
-            <div class="p-3 shadow p-3 mb-2 bg-white rounded">4 Payment Option</div>
+                <div class=" shadow  mb-2 bg-white rounded">
+                    <div class="p-3" data-toggle="collapse" data-target="#collapseExample1" aria-expanded="false"
+                        aria-controls="collapseExample1">4 Payment Option</div>
+                    <div class="collapse" id="collapseExample1">
+                        <div class="card-body">
+                            <div class="shadow-sm p-3 mb-2">
+                                <div class="my-3"></div>
+                                <div class="mb-3">
+                                    <img src="/static/images/coupon-card.png" class="mb-3">Apply Coupon here<br>
+                                    <input type="text" class="coupeninput"  placeholder="Enter Coupen">
+                                    <input type="button" class="coupenButton" value="Apply">
+                                </div>
+                                <div>
+                                    <small>* Choose sample collection date & time to proceed further</small>
+                                </div>
+                            </div>
+                            <div class="p-3 shadow-sm p-3 mb-2 bg-white rounded" id=''>
+                                <input type="radio" name="payoption" id="paytm" value="paytm" class="mx-2"><label
+                                    for="paytm"> <img src="/static/images/paytm_payment.png" alt=""> Pay with
+                                    Paytm</label>
+                            </div>
+                            <div class="p-3 shadow-sm p-3 mb-2 bg-white rounded">
+                                <input type="radio" name="payoption" id='paypal' value="paypal" class="mx-2"><label
+                                    for="paypal"><img src="/static/images/paypal.png" class="mx-1" alt="paypal icon">
+                                    Pay with Paypal</label>
+                            </div>
+                            <div class="Addressbuttons">
+                                <button type="submit" class="mx-2">Pay Now</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
         <div class="col-sm-4 col-xs-12 packages_section mob_viewport">
             <div class="p-3 shadow p-3 mb-2 bg-primary text-light font-weight-bold rounded">PACKAGE DETAILS</div>
             <div class="p-3 shadow d-flex justify-content-between p-3 mb-2  rounded">
                 <div>
                     <span>ferlin</span><br>
-                    <del class="text-secondary">₹1050 </del> <small class="text-primary font-weight-bold mx-3">₹399</small>
+                    <del class="text-secondary">₹1050 </del> <small
+                        class="text-primary font-weight-bold mx-3">₹399</small>
                 </div>
                 <div>
                     <small class="p-1 bg-primary text-light">save 62%</small>
                 </div>
             </div>
-            <div class="p-3 shadow p-3 mb-2  font-weight-bold rounded">PACKAGE DETAILS</div>
+            <div class="p-3 shadow p-3 mb-2  font-weight-bold rounded">
+                <div>Pravesh | Colleague</div>
+                <small>Male, 22 years</small>
+                <hr>
+                <div>Ayushman Package</div>
+                <small>Parameters Included : 77</small>
+                <div>
+                    <del class="text-secondary">₹1050 </del> <small
+                        class="text-primary font-weight-bold mx-3">₹399</small>
+                </div>
+            </div>
+            <div class="shadow p-3">
+                <div class="d-flex justify-content-between">
+                    <div>Price</div>
+                    <div>₹ 798</div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div>Doctor Consultation<span class=" mx-1 badge badge-pill badge-success">Success</span></div>
+                    <div><del>₹ 798</del></div>
+                </div>
+                <hr>
+                <div class="d-flex justify-content-between">
+                    <div class="font-weight-bold text-primary">Total</div>
+                    <div class="font-weight-bold text-primary">₹ 798</div>
+                </div>
+                <p class="text-success text-center my-4"><small>Your total saving on this health booking ₹ 9408</small>
+                </p>
+                <div class="Addressbuttons">
+                    <button class="mx-2">Add More Package</button>
+                </div>
+            </div>
+
+
         </div>
     </div>
+    {% endblock %}
+    {% block basicscript %}
+    <script>
+        $("input.familymember").on("change", function () {
+            console.log(this.name)
+        })
+    </script>
     {% endblock %}

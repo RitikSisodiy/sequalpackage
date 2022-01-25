@@ -16,6 +16,7 @@ Including another URLconf
 from django.urls import path 
 from . import views
 urlpatterns = [
+    path('Handlepayment/', views.handlepaytm , name="handlePaytm"),
     path('<slug:slug>', views.packagedetails , name="packagedetails"),
     path('<slug:slug>/book-now', views.booknow , name="booknow"),
 ]
