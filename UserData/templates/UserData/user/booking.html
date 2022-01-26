@@ -1,15 +1,148 @@
 {% extends 'UserData/user/userbasic.html' %}
 {% block user %}
+<!-- <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+    
+    {% if Bookings|length > 0 %}
+    <div id="Retake-Healthkarmadiv f-div">
+        {% for data in Bookings %}
+        <div class="add-box">
+            <a class="edit" data-toggle="modal" data-target="#family_edit" onclick="editFamily('{{data.id}}');"> <img
+                    src="/static/images/edit-icon.png">
+            </a>
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">{{data.name}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="db_titlecaption">Age : </td>
+                                    <td class="db_titleinfo">{{data.age}} Years</td>
+                                </tr>
+                                <tr>
+                                    <td class="db_titlecaption">Relation : </td>
+                                    <td class="db_titleinfo">{{data.relation}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="db_titlecaption">Gender : </td>
+                                    <td class="db_titleinfo">{{data.gender|title}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="db_titlecaption">Mobile Number : </td>
+                                    <td class="db_titleinfo">{{data.mobile}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="Retake-Healthkarmadiv f-div">
+        <h4><label class="alert alert-info">No Booking Found..!!</label></h4>
+    </div>
+    {% endif %}
+</div> -->
 
 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
     <div class="Family-headingdiv text-left">
         <h3>My Bookings</h3>
     </div>
+
     <div class="Retake-Healthkarmadiv f-div">
-        <h4><label class="alert alert-info">No Booking Found..!!</label></h4>
+        
+
+        <div class="alert alert-danger" id="family_list_error_div" style="display:none;">
+        </div>
+        <div id="myfamily_list_div">
+            {% for data in Bookings %}
+            <div class="add-box">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2"><a href="{% url 'packagedetails' data.package.slug %}"><h3>{{data.package.Package_name}}</h3></a></th>
+                                    </tr>
+                                </thead>
+                                {% if data.bookingfor == 'self' %}
+                                <tbody>
+                                    <tr>
+                                        <td class="db_titlecaption">Booking For : </td>
+                                        <td class="db_titleinfo">{{user.first_name|title}} {{user.last_name|title}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="db_titlecaption">Relation : </td>
+                                        <td class="db_titleinfo">self,</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="db_titlecaption">Gender : </td>
+                                        <td class="db_titleinfo">{{user.gender}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="db_titlecaption">Mobile Number : </td>
+                                        <td class="db_titleinfo">{{user.phone}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="db_titlecaption">Report : </td>
+                                        <td class="db_titleinfo"><span class="badge badge-primary">
+                                            {% if data.report %}
+                                            <a href="{% url "report" %}" target="_blank" rel="noopener noreferrer">Uploaded</a>
+                                            {% else %}
+                                            Will Upload soon...
+                                            {% endif %}
+                                        </span></td>
+                                    </tr>
+                                </tbody>
+                                {% else %}
+                                <tbody>
+                                    <tr>
+                                        <td class="db_titlecaption">Booking For : </td>
+                                        <td class="db_titleinfo">{{data.member.name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="db_titlecaption">Relation : </td>
+                                        <td class="db_titleinfo">{{data.member.relation}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="db_titlecaption">Gender : </td>
+                                        <td class="db_titleinfo">{{data.member.gender|title}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="db_titlecaption">Mobile Number : </td>
+                                        <td class="db_titleinfo">{{data.member.mobile}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="db_titlecaption">Report : </td>
+                                        <td class="db_titleinfo"><span class="badge badge-primary">
+                                            {% if data.report %}
+                                            <a href="{% url "report" %}" class="text-light" style="margin-left: 0px;" target="_blank" rel="noopener noreferrer">Uploaded</a>
+                                            {% else %}
+                                            Will Upload soon...
+                                            {% endif %}
+                                        </span></td>
+                                    </tr>
+                                </tbody>
+                                {% endif %}
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
     </div>
 </div>
-
 {% endblock %}
 
 <!------aside-end -->

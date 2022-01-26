@@ -1,0 +1,20 @@
+<div class="m-auto col-12 col-lg-3">
+    <div class="card">
+        <div style="height: 350px;" class="check-up-card">
+            <span class="discount">{{data.discount}}{% if '%' not in data.discount %}₹{% endif %} off</span>
+            <h4>{{data.Package_name}}</h4>
+            Includes : {{data.Porfile_collection.count}} Parameter
+            <ul>
+                {% for profile in data.Porfile_collection.all %}
+                <li>{{profile.Profile_Name}}</a> </li>
+                {% endfor %}
+            </ul>
+            <br>
+            <b>
+                <a href="{% url "packagedetails" data.slug %}">+ Know More</a><br>
+                <del>₹{{data.Package_price}}</del>
+                ₹{{data.final_cost}}
+            </b>
+        </div>
+    </div>
+</div>

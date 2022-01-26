@@ -1,5 +1,7 @@
 
+from math import fabs
 from operator import mod
+from pydoc import describe
 from django.db import models
 from django.core.exceptions import ValidationError
 from datetime import datetime
@@ -70,6 +72,7 @@ class test(models.Model):
                 raise ValidationError(
                 {'discount': "discount should be less than test Prize"})
 
+
 class profile(models.Model):
     Profile_Id = models.CharField(max_length=50,blank = True)
     Profile_Name = models.CharField(max_length=50)
@@ -88,15 +91,42 @@ class PackageAvailablefor(models.Model):
     gender = models.CharField(max_length=20)
     def __str__(self):
         return self.gender
+
+class category(models.Model):
+    name = models.CharField(max_length=100,unique=True)
+    describe = models.CharField(max_length=100)
+    img = models.ImageField(upload_to="images",blank=True,help_text="optional")
+    slug = models.SlugField(blank=True)
+    def __str__(self) -> str:
+        return self.name
+    def save(self, *args, **kwargs):
+        if self.id is None or self.slug is None or len(self.slug)==0:
+            self.slug = unique_slug_generator(category,self.name)
+        super().save()
+class Subcategory(models.Model):
+    category = models.ForeignKey(category,on_delete=models.CASCADE,related_name="subcategory")
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(blank=True)
+    class Meta:
+        unique_together = ('category', 'name',)
+
+    def __str__(self) -> str:
+        return f"{self.name} ({self.category.name})"
+    def save(self, *args, **kwargs):
+        if self.id is None or self.slug is None or len(self.slug)==0:
+            self.slug = unique_slug_generator(Subcategory,self.name)
+        super().save()
 class package(models.Model):
     Package_id = models.CharField(max_length=50,blank=True)
     Package_name = models.CharField(max_length=50)
+    package_category = models.ManyToManyField(Subcategory,null=True,blank=True,related_name="package")
     Porfile_collection = models.ManyToManyField(profile)
     Package_descrption = models.TextField()
     Package_price = models.FloatField()
     Package_for = models.ManyToManyField(PackageAvailablefor)
     discount = models.CharField(help_text="You Can Ammount or Percent of Ammount Eg: 100 or 10%",max_length=10)
     final_cost  = models.FloatField(max_length = 50,blank=True)
+    popular_package = models.BooleanField(default=False)
     slug = models.SlugField(blank=True)
     def __str__(self):
         return F"{self.Package_name} - ( {self.Package_id} )"

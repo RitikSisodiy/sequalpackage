@@ -1,0 +1,124 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block body %}
+<div class="contact-page">
+    <div class="heading-sec">
+        <h1>Need to Connect?</h1>
+        <h2>
+            Call Us at: 999-888-111-1 <br>
+            Helpline No.: 1800-572-0005
+        </h2>
+    </div>
+</div>
+<section class="Expedientwraper container py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="Expedient-Healtdiv">
+                    <div class="heading-name my-4  d-flex justify-content-center align-items-center flex-column">
+                        <h1>Expedient Healthcare<br>
+                            Marketing Pvt. Ltd.</h1>
+                        <img alt="Icon" class="center-block"
+                            src="images/underline-o.png">
+                        
+                    </div>
+                    <div class="Wing-Floordiv">
+                        <p>Plot No. 518, Udyog Vihar, Phase 3,<br>
+                            Gurugram, Haryana, India.</p>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="cont-d d-flex">
+                            <div class="contact-heading mr-3">
+                                <p>Helpline No.</p>
+                            </div>
+
+                            <div class="contact-cont">
+                                <p>999-888-000-5</p>
+
+                                <p>1800-572-0005 <span style="display:inline;">(Toll free number)</span></p>
+                            </div>
+                        </div>
+
+                        <div class="cont-d d-flex">
+                            <div class="contact-heading mr-3">
+                                <p>Email</p>
+                            </div>
+
+                            <div class="contact-cont">
+                                <p>Customer Support<br>
+                                    <span>cs@healthians.com</span>
+                                </p>
+
+                                <p>Corporate Tie-ups<br>
+                                    <span>arpita.bhattacharyya@healthians.com</span>
+                                </p>
+
+                                <p>Media Queries/PR<br>
+                                    <span>media@healthians.com</span>
+                                </p>
+
+                                <p>Become an Affiliate<br>
+                                    <span>partners@healthians.com</span>
+                                </p>
+
+                                <p>Become a Franchisee Partner<br>
+                                    <span>franchisee@healthians.com</span>
+                                </p>
+
+                                <p>Marketing<br>
+                                    <span>marketing@healthians.com</span>
+                                </p>
+
+                                <p>Career<br>
+                                    <span>careers@healthians.com</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6 my-5">
+                <div class="For-anyquerydiv text-center">
+                    <p>For any query fill the form below.<br>
+                        For career, related requests use <b><a href="/career">career page</a>.</b></p>
+
+
+
+
+                    <form  id="contact_us" name="contact_us"
+                        method="post">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <input class="form-control" id="name" name="name" placeholder="Name *" type="text"
+                                autocomplete="off" maxlength="255" value="" required>
+                        </div>
+                        <div class="form-group row">
+                            <input class="form-control" id="email_id" name="email"
+                                placeholder="Email Address *" type="email" autocomplete="off" value="" required>
+                        </div>
+                        <div class="form-group row">
+                            <input class="form-control" id="contact_no" name="mobile"
+                                placeholder="Mobile Number *" type="text" minlength="10" maxlength="10" value=""
+                                autocomplete="off" required>
+                        </div>
+                        <div class="form-group row">
+                            <input class="form-control" id="company" name="company" placeholder="Company *"
+                                type="text" value="" autocomplete="off" required>
+                        </div>
+                        <div class="text-area form-group row">
+                            <textarea placeholder="Message" class="form-control" id="message" name="message"
+                                autocomplete="off" value="" maxlength="512" required></textarea>
+                        </div>
+                        <div class="btn-submitform">
+                            <button class="btn-default" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -81,34 +81,16 @@
         <h1 class="text-center m-5" style="color: #c7250f; font-size: 28px;">Full Body Checkup Packages</h1>
         <div class="slides" style="display:flex; overflow-y:hidden; overflow-x: scroll;">
             {% for data in packages %}
-            <div class="m-auto col-12 col-lg-3">
-                <div class="card">
-                    <div style="height: 350px;" class="check-up-card">
-                        <span class="discount">{{data.discount}}{% if '%' not in data.discount %}₹{% endif %} off</span>
-                        <h4>{{data.Package_name}}</h4>
-                        Includes : {{data.Porfile_collection.count}} Parameter
-                        <ul>
-                            {% for profile in data.Porfile_collection.all %}
-                            <li>{{profile.Profile_Name}}</a> </li>
-                            {% endfor %}
-                        </ul>
-                        <br>
-                        <b>
-                            <a href="{% url "packagedetails" data.slug %}">+ Know More</a><br>
-                            <del>₹{{data.Package_price}}</del>
-                            ₹{{data.final_cost}}
-                        </b>
-                    </div>
-                </div>
-            </div>
+            
+            {% include 'package/component/packageItem.html' with data=data %}
             {% endfor %}
     
         </div>
 
-        <center>
+        <!-- <center>
             <br><br>
             <a href=" {% static '' %} " class="services-btn m-4">View All Services</a>
-        </center>
+        </center> -->
     </div>
 
     <div class="second">
@@ -634,7 +616,7 @@
         </div>
     </div>
 
-    <div class="risk-page">
+    <!-- <div class="risk-page">
         <div class="fifth  container">
             <h3>OUR POPULAR TESTS & PACKAGES</h3>
             <p>Allergy Testing in Gurgaon, Amylase Test in Gurgaon, Anemia Test in Gurgaon, Anti Hcv Test in
@@ -671,7 +653,7 @@
                 Surgery</p>
         </div>
         <hr>
-    </div>
+    </div> -->
 </div>
     {% endblock %}
 

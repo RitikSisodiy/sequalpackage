@@ -17,6 +17,8 @@ from django.urls import path
 from . import views
 urlpatterns = [
     path('Handlepayment/', views.handlepaytm , name="handlePaytm"),
-    path('<slug:slug>', views.packagedetails , name="packagedetails"),
-    path('<slug:slug>/book-now', views.booknow , name="booknow"),
+    path('package/<slug:slug>/', views.packagedetails , name="packagedetails"),
+    path('category/<slug:slug>/', views.getbycategory , name="getbycategory"),
+    path('subcategory/<slug:slug>/', views.getbysubcategory , name="getbysubcategory"),
+    path('package/<slug:slug>/book-now/', views.booknow , name="booknow"),
 ]

@@ -1,4 +1,5 @@
 {% load static %}
+{% load loadheader %}
         <header>
             <div class="navbar">
                 <div class="logo"><a href="{% url 'index' %}"><img src="{{aboutdata.logo.url}} " alt="" class="logo"></a></div>
@@ -29,100 +30,37 @@
                     </div>
                     <div class="bottom">
                         <ul>
-                            <li class="sub-menu"><a href="#">Surgery</a>
-                                <ul class="drop-down">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-12">
-                                            <li><a href="#">Piles Surgery</a></li>
-
-                                            <li><a href="#">Anal Fistula Surgery</a></li>
-
-                                            <li><a href="#">Anal Fissure Surgery</a></li>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-
-                                            <li><a href="#">Pilonidal Sinus Surgery</a></li>
-
-                                            <li><a href="#">Gallstones Surgery</a></li>
-                                        </div>
-                                    </div>
-                                </ul>
-                            </li>
-
                             <li class="sub-menu"><a href="#">Popular Packages</a>
                                 <ul class="drop-down">
                                     <div class="row">
-                                        <div class="col-lg-6 col-12">
-                                            <li><a href="# ">Pregnancy Checkup</a></li>
-                                            <li><a href="# ">Arthritis Test</a></li>
-                                            <li><a href="# ">Thyroid Test</a></li>
-                                            <li><a href="# ">HbA1c Test</a></li>
-                                            <li><a href="# ">PSA Test</a></li>
+                                        {% for range in ""|popularpackage|getrange %}
+                                        <div class="col-lg-12 col-12">
+                                            {% for  mdata in ""|popularpackage|slice:range %}
+                                            <li><a href="{% url 'packagedetails' mdata.slug %}">{{mdata.Package_name}}</a></li>
+                                            {% endfor %}
                                         </div>
-                                        <div class="col-lg-6 col-12">
-                                            <li><a href="# ">Uric Acid Test</a></li>
-                                            <li><a href="# ">Pancreatitis Test</a></li>
-                                            <li><a href="# ">STD Test</a></li>
-                                            <li><a href="# ">Ca125 Test</a></li>
-                                            <li><a href="# ">Vitamin B12 Test</a></li>
-                                        </div>
+                                        {% endfor %}
                                     </div>
                                 </ul>
                             </li>
-                            <li class="sub-menu"><a href="#">Risk</a>
+                            {% for data in ""|getcategory %}
+                            <li class="sub-menu"><a href="#">{{data.name}}</a>
                                 <ul class="drop-down">
                                     <div class="row">
-                                        <div class="col-6">
-                                            <li><a href=" #">Alcoholism</a></li>
-                                            <li><a href=" #">Anger</a></li>
-                                            <li><a href=" #">Eating Poorly</a></li>
-                                            <li><a href=" #">Heartburn</a></li>
-                                            <li><a href=" #">Junk Food</a></li>
-                                            <li><a href=" #">Low Iron Diet</a></li>
-                                        </div>
-                                        <div class="col-6">
-                                            <li><a href=" #">Medicine Overuse</a></li>
-                                            <li><a href=" #">Poor Nutrition</a></li>
-                                            <li><a href=" #">Sleeplessness</a></li>
-                                            <li><a href=" #">Smoking</a></li>
-                                            <li><a href=" #">Stress</a></li>
-                                            <li><a href=" #">Zero Exercise</a></li>
-                                        </div>
-                                </ul>
-                            </li>
-                            <li class="sub-menu"><a href="#">Habit</a>
-                                <ul class="drop-down  width-230">
-                                    <div class="row">
+                                        {% for range in data.subcategory.all|getrange %}
                                         <div class="col-lg-6 col-12">
-                                            <li><a href=" #">Acidity</a></li>
-                                            <li><a href=" #">Allergy</a></li>
-                                            <li><a href=" #">Anaemia</a></li>
-                                            <li><a href=" #">Arthritis</a></li>
-                                            <li><a href=" #">Bone</a></li>
-                                            <li><a href=" #">Cancer</a></li>
-                                            <li><a href=" #">Diabetes</a></li>
-                                            <li><a href=" #">Digestion</a></li>
-                                            <li><a href=" #">Fatigue</a></li>
-                                            <li><a href=" #">Fever</a></li>
+                                            {% for  mdata in data.subcategory.all|slice:range %}
+                                            <li><a href="{% url 'getbysubcategory' mdata.slug %}">{{mdata.name}}</a></li>
+                                            {% endfor %}
                                         </div>
-                                        <div class="col-lg-6 col-12">
-                                            <li><a href=" #">Heart</a></li>
-                                            <li><a href=" #">Hepatitis</a></li>
-                                            <li><a href=" #">Hormones</a></li>
-                                            <li><a href=" #">Hypertension</a></li>
-                                            <li><a href=" #">Immunity</a></li>
-                                            <li><a href=" #">Infections</a></li>
-                                            <li><a href=" #">Jaundice</a></li>
-                                            <li><a href=" #"> Joints</a></li>
-                                            <li><a href=" #">Joints</a></li>
-
-
-                                        </div>
+                                        {% endfor %}
                                     </div>
                                 </ul>
                             </li>
-                            <li><a href=" # ">Faqs</a></li>
-                            <li><a href="#">Contact Us</a></li>
+                            {% endfor %}
+                           
+                            <!-- <li><a href=" # ">Faqs</a></li> -->
+                            <li><a href="{% url 'contact' %}">Contact Us</a></li>
                             <li style="margin-right: 0;"><a href=" # "><button class="ml-2"><i
                                             class="text-light fa fa-upload"></i>Upload Prescription</button></a></li>
                         </ul>

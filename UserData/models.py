@@ -34,6 +34,8 @@ class User(AbstractUser):
     def age(self):
         if not isinstance(self.dob, str):
             return datetime.date.today().year - self.dob.year
+    def __str__(self):
+        return f"{self.email}"
 class TempUser(models.Model):
     phone = models.CharField(max_length=13)
     otp = models.CharField(max_length=8)
@@ -74,7 +76,7 @@ class Booking(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="Booking")
     type = models.CharField(max_length=10,choices=choices)
     test = models.ForeignKey(test,on_delete=models.SET_NULL,null=True,blank=True)
-    package = models.ForeignKey(package,on_delete=models.SET_NULL,null=True,blank=True)
+    package = models.ForeignKey(package,on_delete=models.SET_NULL,null=True,blank=True,related_name="Booking")
     collectiontime = models.DateTimeField()
     bookingfor = models.CharField(max_length=20,choices=forchoice)
     status = models.CharField(max_length=20,choices=statuschoice,default='pending')

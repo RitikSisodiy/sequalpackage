@@ -1,8 +1,32 @@
+from ast import Not
 from django.contrib import messages
 from django.shortcuts import redirect, render
-from django.http import JsonResponse
-from UserData.models import Family
+from django.http import JsonResponse,HttpResponse
+from UserData.models import Family,Booking,report
+from django.conf import settings
 from superuser.forms import GenForm
+import mimetypes
+
+def download_file(filepath):
+    # Define Django project base directory
+    # Define text file name
+    filename = 'report'+ filepath[filepath.rfind('.'):]
+    # Define the full file path
+    print(filepath)
+    filepath = settings.MEDIA_ROOT / filepath
+    # Open the file for reading content
+    print(filepath)
+
+    path = open(filepath, 'rb')
+    # Set the mime type
+    mime_type, _ = mimetypes.guess_type(filepath)
+    # Set the return value of the HttpResponse
+    response = HttpResponse(path, content_type=mime_type)
+    # Set the HTTP header for sending to browser
+    response['Content-Disposition'] = "attachment; filename=%s" % filename
+    # Return the response value
+    return response
+
 
 def dashboard(request):
     res={}
@@ -37,9 +61,14 @@ def profile(request):
 def booking(request):
     res = {}
     res['bodyclass'] = "faimly-friendwraper"
+    res['Bookings'] = Booking.objects.filter(user=request.user.id , status='success')
     return render(request,'UserData/user/booking.html',res)
-def report(request):
+def Report(request,slug=None):
+    if slug is not None:
+        repofile = report.objects.get(id=slug).report
+        return download_file(str(repofile))
     res = {}
+    res['reports'] = report.objects.filter(booking__user=request.user)
     res['bodyclass'] = "faimly-friendwraper"
     return render(request,'UserData/user/report.html',res)
 def family(request):

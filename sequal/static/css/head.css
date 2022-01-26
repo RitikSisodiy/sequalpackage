@@ -8233,7 +8233,6 @@ textarea.input-group-sm>.input-group-btn>.btn {
 .navbar {
     position: relative;
     min-height: 50px;
-    margin-bottom: 20px;
     border: 1px solid transparent
 }
 
@@ -13895,11 +13894,14 @@ header .dropdown-menu>li>a {
     display: block;
     padding: 12px 20px
 }
+.modal-header .close {
+    padding: 0rem 0rem !important;
+  ]
+}
 
 header .navbar {
     position: relative;
     min-height: 32px;
-    margin-bottom: 20px;
     border: 0 solid transparent
 }
 

@@ -160,6 +160,10 @@ header .navbar ul li.sub-menu a::after {
     margin-left: 4px;
     color: #ffffff;
 }
+footer {
+    background: #000000;
+    color: azure;
+}
 
 header .drop-down {
     z-index: 999;
@@ -276,7 +280,7 @@ footer .links ul li {
 }
 
 footer .links ul li a {
-    color: #00000088;
+    color: #ffffff;
     font-weight: 600;
 }
 
@@ -2899,7 +2903,6 @@ body {
 /* .dashboard */
 
 .dashboard header {
-    height: 20vh;
     position: relative;
     width: 100vw;
 }

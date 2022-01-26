@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from UserData.userView import booking
 
-from .models import package, tempbooking
+from .models import package, tempbooking,category,Subcategory
 from UserData.models import cart,Family,Booking
 from datetime import datetime
 from paymentintigration.views import getPaytmParam, verifyPaymentRequest
@@ -18,6 +18,18 @@ def packagedetails(request,slug):
         totaltest += data.Select_Test_id.all().count()
     res['totaltest'] = totaltest
     return render(request,'package/packageDetails.html',res)
+
+def getbycategory(request,slug='slug'):
+    res= {}
+    res['bodyclass'] = "risk-page"
+    return render(request,'package/listpackage.html',res) 
+def getbysubcategory(request,slug='slug'):
+    res= {}
+    res['bodyclass'] = "risk-page"
+    res['packages'] = package.objects.filter(package_category__slug=slug)
+    res['category'] = Subcategory.objects.get(slug=slug)
+    return render(request,'package/listpackage.html',res) 
+
 def booknow(request,slug):
     res= {}
     buypackage = package.objects.get(slug=slug)
@@ -76,4 +88,4 @@ def handlepaytm(request):
                 pass
     else:
             print("order unsuccessful because",response_dict['RESPMSG'])
-    return render(request,'package/paymentstatus.html',{'response': response_dict})
+    return render(request,'package/paymentstatus.html',{'.': response_dict})
