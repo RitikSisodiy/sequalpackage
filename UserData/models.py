@@ -1,5 +1,6 @@
 from email.policy import default
 from pyexpat import model
+from random import choice
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.models import AbstractUser
@@ -40,6 +41,8 @@ class TempUser(models.Model):
     phone = models.CharField(max_length=13)
     otp = models.CharField(max_length=8)
     expire = models.DateTimeField()
+    def __str__(self) -> str:
+        return self.phone
 class Family(models.Model):
     user= models.ForeignKey(User,on_delete=models.CASCADE,related_name="Family")
     name= models.CharField(max_length=100)
@@ -51,6 +54,8 @@ class Family(models.Model):
     def age(self):
         if not isinstance(self.dob, str):
             return datetime.date.today().year - self.dob.year
+    def __str__(self) -> str:
+        return self.name
 class Booking(models.Model):
     choices=(
         ("package","package"),
@@ -104,14 +109,16 @@ class cart(models.Model):
     user = models.ForeignKey("UserData.User",on_delete=models.CASCADE)
     package = models.ForeignKey(package,on_delete=models.SET_NULL,null=True)
     test = models.ForeignKey(test,on_delete=models.SET_NULL,null=True)
-
+    def __str__(self) -> str:
+        return self.package.Package_name
 
 class report(models.Model):
     booking = models.OneToOneField(Booking,on_delete=models.CASCADE,related_name="report")
     report = models.FileField(upload_to="reports",validators=[FileExtensionValidator( ['pdf','tif','jpg','jpeg','gif','png','docx'] ) ],)
     message = models.TextField(blank=True)
     content_type = models.CharField(null=True, blank=True, max_length=100)
-
+    def __str__(self) -> str:
+        return self.booking
     def save(self, *args, **kwargs):
         try:
             self.content_type = self.report.file.content_type
@@ -129,3 +136,15 @@ class report(models.Model):
             ("Bluk Report upload",'btn btn-secondary',"HandleUploadReport",reverse('bulkreportupload'),True),
         )
         return data
+class RequestedCallBack(models.Model):
+    choice = (
+        ('booking','booking'),
+        ('support','support'),
+        
+    )
+    type = models.CharField(max_length=100,choices=choice)
+    mobile = models.CharField(max_length=13)
+    name = models.CharField(max_length=50)
+    city = models.CharField(max_length=50)
+    def __str__(self) -> str:
+        return self.name

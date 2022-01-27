@@ -5,6 +5,7 @@ from pydoc import describe
 from django.db import models
 from django.core.exceptions import ValidationError
 from datetime import datetime
+from ckeditor_uploader.fields import RichTextUploadingField
 # Create your models here.
 # from UserData.models import User
 
@@ -31,22 +32,52 @@ def unique_slug_generator(instance, new_slug=None):
         return unique_slug_generator(instance, new_slug=new_slug)
     return slug
 
+class category(models.Model):
+    name = models.CharField(max_length=100,unique=True)
+    describe = models.CharField(max_length=100)
+    img = models.ImageField(upload_to="images",blank=True,help_text="optional")
+    slug = models.SlugField(blank=True)
+    def __str__(self) -> str:
+        return self.name
+    def save(self, *args, **kwargs):
+        if self.id is None or self.slug is None or len(self.slug)==0:
+            self.slug = unique_slug_generator(category,self.name)
+        super().save()
+class Subcategory(models.Model):
+    category = models.ForeignKey(category,on_delete=models.CASCADE,related_name="subcategory")
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(blank=True)
+    shortdes = models.TextField(blank=True)
+    description = RichTextUploadingField(blank=True)
+    class Meta:
+        unique_together = ('category', 'name',)
 
+    def __str__(self) -> str:
+        return f"{self.name} ({self.category.name})"
+    def save(self, *args, **kwargs):
+        if self.id is None or self.slug is None or len(self.slug)==0:
+            self.slug = unique_slug_generator(Subcategory,self.name)
+        super().save()
 
 
 class test(models.Model):
     test_uniqueId = models.CharField(max_length=50, blank=True)
     test_name = models.CharField(max_length = 50)
-    test_description = models.CharField(max_length = 100)
+    test_description = RichTextUploadingField()
+    test_category = models.ManyToManyField(Subcategory,null=True,blank=True,related_name="test")
     test_price  = models.FloatField()
     sample_colllection_charges = models.CharField(max_length = 1,choices=(("1","Yes"),("0","No")))
     discount = models.CharField(help_text="You Can Ammount or Percent of Ammount Eg: 100 or 10%",max_length=10)
     final_cost  = models.FloatField(max_length = 50,blank=True)
-    
+    Publish = models.CharField(max_length = 1,choices=(("1","Yes"),("0","No")))
+    slug = models.SlugField(blank=True)
+        
     def __str__(self):
         return F"{self.test_name} - ( {self.test_uniqueId} )"
     def save(self, *args, **kwargs):
         if self.discount:
+            if self.id is None or len(self.slug)==0:
+                self.slug = unique_slug_generator(package,self.test_name)
             discount = float(self.discount.replace("%",''))
             if '%' in self.discount:
                 self.final_cost = self.test_price -((self.test_price*discount)/100)
@@ -92,41 +123,19 @@ class PackageAvailablefor(models.Model):
     def __str__(self):
         return self.gender
 
-class category(models.Model):
-    name = models.CharField(max_length=100,unique=True)
-    describe = models.CharField(max_length=100)
-    img = models.ImageField(upload_to="images",blank=True,help_text="optional")
-    slug = models.SlugField(blank=True)
-    def __str__(self) -> str:
-        return self.name
-    def save(self, *args, **kwargs):
-        if self.id is None or self.slug is None or len(self.slug)==0:
-            self.slug = unique_slug_generator(category,self.name)
-        super().save()
-class Subcategory(models.Model):
-    category = models.ForeignKey(category,on_delete=models.CASCADE,related_name="subcategory")
-    name = models.CharField(max_length=100)
-    slug = models.SlugField(blank=True)
-    class Meta:
-        unique_together = ('category', 'name',)
 
-    def __str__(self) -> str:
-        return f"{self.name} ({self.category.name})"
-    def save(self, *args, **kwargs):
-        if self.id is None or self.slug is None or len(self.slug)==0:
-            self.slug = unique_slug_generator(Subcategory,self.name)
-        super().save()
 class package(models.Model):
     Package_id = models.CharField(max_length=50,blank=True)
     Package_name = models.CharField(max_length=50)
     package_category = models.ManyToManyField(Subcategory,null=True,blank=True,related_name="package")
     Porfile_collection = models.ManyToManyField(profile)
-    Package_descrption = models.TextField()
+    Package_descrption = RichTextUploadingField()
     Package_price = models.FloatField()
     Package_for = models.ManyToManyField(PackageAvailablefor)
     discount = models.CharField(help_text="You Can Ammount or Percent of Ammount Eg: 100 or 10%",max_length=10)
     final_cost  = models.FloatField(max_length = 50,blank=True)
     popular_package = models.BooleanField(default=False)
+    Publish = models.CharField(max_length = 1,choices=(("1","Yes"),("0","No")))
     slug = models.SlugField(blank=True)
     def __str__(self):
         return F"{self.Package_name} - ( {self.Package_id} )"
@@ -196,10 +205,14 @@ class Faqs(models.Model):
     package = models.ForeignKey(package,on_delete=models.CASCADE , related_name="Faqs")
     question = models.CharField(max_length=150)
     Answere = models.TextField()
+    def __str__(self):
+        return F"{self.question}"
 class tempbooking(models.Model):
     bookingid = models.TextField() #csv formate
     tempbookingid = models.CharField(max_length=20)
     ammount = models.CharField(max_length=20)
+    def __str__(self):
+        return F"{self.tempbookingid}"
     def save(self, ) -> None:
         if self.id is None:
             now = datetime.now()

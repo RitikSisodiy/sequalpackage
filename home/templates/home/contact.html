@@ -5,8 +5,8 @@
     <div class="heading-sec">
         <h1>Need to Connect?</h1>
         <h2>
-            Call Us at: 999-888-111-1 <br>
-            Helpline No.: 1800-572-0005
+            Call Us at: {{contactinfo.0.phone}} <br>
+            Helpline No.: {{contactinfo.0.helpline}}
         </h2>
     </div>
 </div>
@@ -16,15 +16,11 @@
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="Expedient-Healtdiv">
                     <div class="heading-name my-4  d-flex justify-content-center align-items-center flex-column">
-                        <h1>Expedient Healthcare<br>
-                            Marketing Pvt. Ltd.</h1>
-                        <img alt="Icon" class="center-block"
-                            src="images/underline-o.png">
+                        <h1>{{contactinfo.0.companyname}}</h1>
                         
                     </div>
                     <div class="Wing-Floordiv">
-                        <p>Plot No. 518, Udyog Vihar, Phase 3,<br>
-                            Gurugram, Haryana, India.</p>
+                        <p>{{contactinfo.0.address|linebreaks}}</p>
                     </div>
 
                     <div class="contact-info">
@@ -34,9 +30,9 @@
                             </div>
 
                             <div class="contact-cont">
-                                <p>999-888-000-5</p>
+                                <p>{{contactinfo.0.phone}}</p>
 
-                                <p>1800-572-0005 <span style="display:inline;">(Toll free number)</span></p>
+                                <p>{{contactinfo.0.helpline}} <span style="display:inline;">(Toll free number)</span></p>
                             </div>
                         </div>
 
@@ -46,33 +42,12 @@
                             </div>
 
                             <div class="contact-cont">
-                                <p>Customer Support<br>
-                                    <span>cs@healthians.com</span>
+                                {% for data in emails %}
+                                <p>{{data.name}}<br>
+                                    <span>{{data.email}}</span>
                                 </p>
-
-                                <p>Corporate Tie-ups<br>
-                                    <span>arpita.bhattacharyya@healthians.com</span>
-                                </p>
-
-                                <p>Media Queries/PR<br>
-                                    <span>media@healthians.com</span>
-                                </p>
-
-                                <p>Become an Affiliate<br>
-                                    <span>partners@healthians.com</span>
-                                </p>
-
-                                <p>Become a Franchisee Partner<br>
-                                    <span>franchisee@healthians.com</span>
-                                </p>
-
-                                <p>Marketing<br>
-                                    <span>marketing@healthians.com</span>
-                                </p>
-
-                                <p>Career<br>
-                                    <span>careers@healthians.com</span>
-                                </p>
+                                {% endfor %}
+                               
                             </div>
                         </div>
                     </div>

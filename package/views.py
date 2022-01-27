@@ -4,8 +4,8 @@ from django.http import request
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from UserData.userView import booking
-
-from .models import package, tempbooking,category,Subcategory
+from django.contrib.auth.decorators import login_required
+from .models import package, tempbooking,Subcategory,test
 from UserData.models import cart,Family,Booking
 from datetime import datetime
 from paymentintigration.views import getPaytmParam, verifyPaymentRequest
@@ -18,22 +18,54 @@ def packagedetails(request,slug):
         totaltest += data.Select_Test_id.all().count()
     res['totaltest'] = totaltest
     return render(request,'package/packageDetails.html',res)
+def testdetails(request,slug):
+    res = {}
+    res['package'] = test.objects.get(slug=slug)
+    totaltest = 0
+    res['totaltest'] = totaltest
+    return render(request,'package/testDetails.html',res)
 
 def getbycategory(request,slug='slug'):
     res= {}
     res['bodyclass'] = "risk-page"
     return render(request,'package/listpackage.html',res) 
-def getbysubcategory(request,slug='slug'):
+def getbysubcategory(request,slug='slug',type='package'):
     res= {}
-    res['bodyclass'] = "risk-page"
-    res['packages'] = package.objects.filter(package_category__slug=slug)
     res['category'] = Subcategory.objects.get(slug=slug)
+    res['type'] = type
+    res['bodyclass'] = "risk-page"
+    if type=='test':
+        print('working')
+        res['packages'] = test.objects.filter(test_category__slug=slug,Publish='1')
+        return render(request,'package/listpackage.html',res) 
+    res['packages'] = package.objects.filter(package_category__slug=slug,Publish='1')
+    
+    
     return render(request,'package/listpackage.html',res) 
 
-def booknow(request,slug):
+@login_required(login_url='userlogin')
+def booknow(request,slug,type):
     res= {}
-    buypackage = package.objects.get(slug=slug)
-    cart.objects.update_or_create(user=request.user,package=buypackage)
+    res['member'] = request.user.Family.all()
+    if type=='package':
+        buypackage = package.objects.get(slug=slug)
+        totaltest = 0
+        for data in buypackage.Porfile_collection.all():
+            totaltest += data.Select_Test_id.all().count()
+        res['totaltest'] = totaltest
+        res['totleprize'] = float(buypackage.final_cost)*res['member'].count()
+        res['totalsaving'] =(float(buypackage.Package_price) -float(buypackage.final_cost))*res['member'].count()
+        buytest = None
+    else:
+        buypackage = None
+        buytest = test.objects.get(slug=slug)
+        res['totleprize'] = float(buytest.final_cost)*res['member'].count()
+        res['totalsaving'] =(float(buytest.test_price) -float(buytest.final_cost))*res['member'].count()
+    res['type'] = type
+    res['package'] = buypackage
+    res['test'] =buytest
+    
+    cart.objects.update_or_create(user=request.user,package=buypackage,test=buytest)
     res['family'] = Family.objects.filter(user= request.user)
     if request.method=="POST":
         print(request.POST)
@@ -50,14 +82,20 @@ def booknow(request,slug):
         ammount = 0.0
         for data in familymember:
             mem = Family.objects.get(id=data.replace('member',''))
-            newbooking = Booking(user=request.user,type='package',package=buypackage,collectiontime=datime,bookingfor=data,member=mem)
+            newbooking = Booking(user=request.user,type=type,package=buypackage,test=buytest,collectiontime=datime,bookingfor=data,member=mem)
             newbooking.save()
-            ammount+=float(buypackage.final_cost)
+            if buypackage is not None:
+                ammount+=float(buypackage.final_cost)
+            else:
+                ammount+=float(buytest.final_cost)
             bookingids+=str(newbooking.id)+","
         if forself:
-            newbooking = Booking(user=request.user,type='package',package=buypackage,collectiontime=datime,bookingfor='self')
+            newbooking = Booking(user=request.user,type=type,package=buypackage,test=buytest,collectiontime=datime,bookingfor='self')
             newbooking.save()
-            ammount+=float(buypackage.final_cost)
+            if buypackage is not None:
+                ammount+=float(buypackage.final_cost)
+            else:
+                ammount+=float(buytest.final_cost)
             bookingids += str(newbooking.id)
         tran = tempbooking(bookingid=bookingids,ammount=ammount)
         tran.save()
@@ -88,4 +126,4 @@ def handlepaytm(request):
                 pass
     else:
             print("order unsuccessful because",response_dict['RESPMSG'])
-    return render(request,'package/paymentstatus.html',{'.': response_dict})
+    return render(request,'package/paymentstatus.html',{'response': response_dict})

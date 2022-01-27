@@ -2,6 +2,7 @@ from os import name
 from django import template
 from django.db.models import Count
 from package.models import category, package
+from home.models import ContactInfo
 register = template.Library()
 @register.filter(name='getcategory')
 def getcategory(value):
@@ -20,3 +21,6 @@ def getrange(value):
     range1 = f"0:{int(len(value)/2)}"
     range2 = f"{int(len(value)/2)}:"
     return [range1,range2]
+@register.filter(name='getContact')
+def getContact(value):
+    return ContactInfo.objects.all()

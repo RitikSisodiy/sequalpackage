@@ -152,7 +152,10 @@ header .navbar ul li:hover .drop-down {
     display: block!important;
     z-index: 99999;
 }
-
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color: #e51f23!important;
+}
 header .navbar ul li.sub-menu a::after {
     content: '\f0d7';
     font-weight: 400;

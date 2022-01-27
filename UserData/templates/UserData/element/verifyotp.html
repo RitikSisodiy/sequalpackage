@@ -59,7 +59,7 @@
             <strong>+91 {{phone}} </strong>
             <P>Otp is vaild : <span id="coundown" >2:5</span></p>
         </center>
-            <form method="POST" id="otp-form" action="{% url 'verifyotp' %}" class="digit-group mt-4" data-group-name="digits" data-autosubmit="false" autocomplete="off">
+            <form method="POST" id="otp-form" action="{% url 'verifyotp' %}?next={{request.GET.next}}" class="digit-group mt-4" data-group-name="digits" data-autosubmit="false" autocomplete="off">
             {% csrf_token %}
             <input type="hidden" name="phone" value="{{phone}}">
             <input type="number" id="digit-1" name="digit-1" data-next="digit-2" />

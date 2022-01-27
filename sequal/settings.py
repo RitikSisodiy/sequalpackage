@@ -44,9 +44,17 @@ INSTALLED_APPS = [
     'sequal',
     'paymentintigration',
     'paypal.standard.ipn',
+    'ckeditor',
+    'ckeditor_uploader',
 
 ]
-
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+    },
+}
+CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'
+CKEDITOR_UPLOAD_PATH = "uploads/"
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

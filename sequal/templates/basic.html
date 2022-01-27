@@ -3,6 +3,7 @@
 <html lang="en">
     {% load custumfilter %}
     {% with ''|getAbout as aboutdata %}
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,12 +32,12 @@
 
 <body>
     <div class="{{bodyclass}}">
-        {% include 'header.html' with aboutdata=aboutdata %}
+        {% include 'header.html' with aboutdata=aboutdata  %}
 
   
         {% block body %}{% endblock %}
         
-        {% include 'footer.html' with aboutdata=aboutdata %}
+        {% include 'footer.html' with aboutdata=aboutdata   %}
 
         <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
         <script src=" {% static 'js/index.js' %} "></script>

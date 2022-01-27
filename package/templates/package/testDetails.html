@@ -153,10 +153,11 @@
         <div class="container">
             <div class="title">
                 <div class="left">
-                    <h2>{{package.Package_name}}</h2>
+                    <h2>{{package.test_name}}</h2>
+                    <p>Perameter Included: <b>{{totaltest}}</b></p><br>
                 </div>
                 <div class="right ">
-                    <h4 style="opacity: 80%;">Sequal Price: &#8377;{{package.Package_price}}</h4>
+                    <h4 style="opacity: 80%;">Sequal Price: &#8377;{{package.test_price}}</h4>
                     <h4>Limited Time offer: &#8377;{{package.final_cost}}</h4>
                     <!-- package rating -->
                     <!-- <div class="package_rating">
@@ -176,7 +177,7 @@
 
                 <div class="row mt-5">
                     <div class="col-lg-9 col-12 text-left" style="float: left;">
-                        {{package.Package_descrption|safe}}
+                        {{package.test_description|safe}}
                         <br>
                     </div>
                     <div class="col-lg-3 col-12 no-display">
@@ -406,70 +407,14 @@
                                 </form>
                             </div>
 
+
                         </div>
                     </div>
                 </div>
-                <a href="{% url 'booknow' package.slug 'package' %}"><button class="link-1">Book Now</button></a>
+                <a href="{% url 'booknow' package.slug 'test' %}"><button class="link-1">Book Now</button></a>
                 <button class="link-2" data-toggle="modal" data-target="#exampleModal">Get A Call Back</button>
             </center>
             <br><br>
-            <div class="fifth">
-                <h2 style="font-weight: 800;">
-                    {{package.Package_name}} (Test included : {{totaltest}})
-                </h2>
-                <div class="col-12 head">
-                    <div class="row" style="font-weight: 600;">
-                        <div class="col-5">
-                            Profile/Parameter
-                        </div>
-                        <div class="col-2 text-center">
-                            No. of Parameters
-                        </div>
-                    </div>
-                </div>
-
-                {% for data in package.Porfile_collection.all %}
-                <div class="col-12 toggler p-0" id="toggler">
-                    <div class="row">
-                        <div class="col-5">
-                            {{data.Profile_Name}}
-                        </div>
-                        <div class="col-2 text-center">
-                            {{data.Select_Test_id.all.count}}
-                        </div>
-                        <div class="col-5 text-right"><i class="btn fa fa-plus"></i></div>
-                    </div>
-
-                    <ul class="col-12">
-                        {% for da in data.Select_Test_id.all %}
-                        <li>{{da.test_name}}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                {% endfor %}
-
-            </div>
-            <br><br>
-            <div class="fifth">
-                <h2 style="font-weight: 800;">
-                    Frequntly Asked Questions
-                </h2>
-                {% for data in package.Faqs.all %}
-                <div class="col-12 toggler p-0" id="toggler">
-                    <div class="row">
-                        <div class="col-lg-5 col-12">
-                            {{data.question}}
-                        </div>
-                    </div>
-                    <ul class="pt-2 pb-2">
-                        <p>{{data.Answere|safe}}
-                        </p>
-                    </ul>
-
-                </div>
-                {% endfor %}
-
-            </div>
         </div>
 
         <div class="first container mt-5">

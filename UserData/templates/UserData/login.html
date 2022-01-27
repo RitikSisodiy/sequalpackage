@@ -94,7 +94,7 @@
                         <h3>Login/Sign Up</h3>
                         <p>Please enter your Mobile Number to proceed</p>
                         <div class="blue-line"></div>
-                        <form action="{% url 'userlogin' %}" id="loginform">
+                        <form action="{% url 'userlogin' %}?next={{request.GET.next}}" id="loginform">
                             {% csrf_token %}
                             <input type="text" value="+91" readonly>
                             <input type="number" placeholder="Enter your Mobile Number" name="phone" id=""> <br>

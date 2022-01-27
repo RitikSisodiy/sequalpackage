@@ -191,32 +191,56 @@
             </form>
         </div>
         <div class="col-sm-4 col-xs-12 packages_section mob_viewport">
-            <div class="p-3 shadow p-3 mb-2 bg-primary text-light font-weight-bold rounded">PACKAGE DETAILS</div>
+            <div class="p-3 shadow p-3 mb-2 bg-primary text-light font-weight-bold rounded">{{type|title}} Details</div>
+            {% if type == 'test' %}
             <div class="p-3 shadow d-flex justify-content-between p-3 mb-2  rounded">
                 <div>
-                    <span>ferlin</span><br>
-                    <del class="text-secondary">₹1050 </del> <small
-                        class="text-primary font-weight-bold mx-3">₹399</small>
+                    <span>{{test.test_name}}</span><br>
+                    <del class="text-secondary">₹{{test.test_price}} </del> <small
+                        class="text-primary font-weight-bold mx-3">₹{{test.final_cost}}</small>
                 </div>
                 <div>
-                    <small class="p-1 bg-primary text-light">save 62%</small>
+                    <small class="p-1 bg-primary text-light">save {{test.discount}}{% if '%' not in test.discount %}₹{% endif %}</small>
                 </div>
             </div>
+            {% else %}
+            <div class="p-3 shadow d-flex justify-content-between p-3 mb-2  rounded">
+                <div>
+                    <span>{{package.Package_name}}</span><br>
+                    <del class="text-secondary">₹{{package.Package_price}} </del> <small
+                        class="text-primary font-weight-bold mx-3">₹{{package.final_cost}}</small>
+                </div>
+                <div>
+                    <small class="p-1 bg-primary text-light">save {{package.discount}}{% if '%' not in package.discount %}₹{% endif %}</small>
+                </div>
+            </div>
+            {% endif %}
+            {% for data in member %}
             <div class="p-3 shadow p-3 mb-2  font-weight-bold rounded">
-                <div>Pravesh | Colleague</div>
+                <div>{{data.name}} | {{data.relation}}</div>
                 <small>Male, 22 years</small>
                 <hr>
-                <div>Ayushman Package</div>
-                <small>Parameters Included : 77</small>
+                {% if type == 'test' %}
+                <div>{{test.test_name}} Test</div>
+                <small>{{package.Package_name}} Included : 1</small>
                 <div>
-                    <del class="text-secondary">₹1050 </del> <small
-                        class="text-primary font-weight-bold mx-3">₹399</small>
+                    <del class="text-secondary">₹{{test.test_price}} </del> <small
+                        class="text-primary font-weight-bold mx-3">₹{{test.final_cost}}</small>
                 </div>
+                {% else %}
+                <div>Ayushman Package</div>
+                <small>{{package.Package_name}} Included : {{totaltest}}</small>
+                <div>
+                    <del class="text-secondary">₹{{package.Package_price}} </del> <small
+                        class="text-primary font-weight-bold mx-3">₹{{package.final_cost}}</small>
+                </div>
+                {% endif %}
             </div>
+            {% endfor %}
             <div class="shadow p-3">
                 <div class="d-flex justify-content-between">
                     <div>Price</div>
-                    <div>₹ 798</div>
+                    <div>₹ {{totleprize}}</div>
                 </div>
                 <div class="d-flex justify-content-between">
                     <div>Doctor Consultation<span class=" mx-1 badge badge-pill badge-success">Success</span></div>
@@ -225,9 +249,9 @@
                 <hr>
                 <div class="d-flex justify-content-between">
                     <div class="font-weight-bold text-primary">Total</div>
-                    <div class="font-weight-bold text-primary">₹ 798</div>
+                    <div class="font-weight-bold text-primary">₹ {{totleprize}}</div>
                 </div>
-                <p class="text-success text-center my-4"><small>Your total saving on this health booking ₹ 9408</small>
+                <p class="text-success text-center my-4"><small>Your total saving on this health booking ₹ {{totalsaving}}</small>
                 </p>
                 <div class="Addressbuttons">
                     <button class="mx-2">Add More Package</button>
