@@ -37,7 +37,7 @@ def LoginSignUp(request):
         
         otp = GenOtp(phone)
         
-        data = render(request,'userdata/element/verifyotp.html',{"phone":phone,"expire":otp.expire})
+        data = render(request,'UserData/element/verifyotp.html',{"phone":phone,"expire":otp.expire})
         print(otp.otp)
         enteredotp = request.GET.get('otp')
         # if otp is not None:
