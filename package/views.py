@@ -1,11 +1,11 @@
-import re
+from tkinter.messagebox import NO
 from django.forms import models
 from django.http import request
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from UserData.userView import booking
 from django.contrib.auth.decorators import login_required
-from .models import package, tempbooking,Subcategory,test
+from .models import package, tempbooking,Subcategory,test,category
 from UserData.models import cart,Family,Booking
 from datetime import datetime
 from paymentintigration.views import getPaytmParam, verifyPaymentRequest
@@ -14,6 +14,10 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 def packagedetails(request,slug):
     res = {}
     res['package'] = package.objects.get(slug=slug)
+    qry = [data['id'] for data in res['package'].package_category.all().values('id')]
+    res['related'] = package.objects.filter(package_category__in=qry).exclude(slug=slug).distinct()
+    print(res['related'])
+    # print(res['package'].package_category.all().values_list('id'))
     totaltest = 0
     for data in res['package'].Porfile_collection.all():
         totaltest += data.Select_Test_id.all().count()
@@ -22,6 +26,8 @@ def packagedetails(request,slug):
 def testdetails(request,slug):
     res = {}
     res['package'] = test.objects.get(slug=slug)
+    qry = [data['id'] for data in res['package'].test_category.all().values('id')]
+    res['related'] = test.objects.filter(test_category__in=qry).exclude(slug=slug).distinct()
     totaltest = 0
     res['totaltest'] = totaltest
     return render(request,'package/testDetails.html',res)
@@ -30,21 +36,30 @@ def getbycategory(request,slug='slug'):
     res= {}
     res['bodyclass'] = "risk-page"
     return render(request,'package/listpackage.html',res) 
-def getbysubcategory(request,slug='slug',type='package'):
+def getbysubcategory(request,subcategory=None,catename=None,type='package'):
     res= {}
-    res['category'] = Subcategory.objects.get(slug=slug)
+    if subcategory is not None:
+        slug = subcategory
+        res['category'] = Subcategory.objects.get(slug=slug)
+    if catename is not None:
+        slug = catename
+        res['category'] = category.objects.get(slug=slug)
     res['type'] = type
     res['bodyclass'] = "risk-page"
+    res['subcate'] = subcategory
+    page = request.GET.get('page', 1)
     if type=='test':
-        print('working')
-        page = request.GET.get('page', 1)
-        res['packages'] = test.objects.filter(test_category__slug=slug,Publish='1')
+        # print('working')
+        if subcategory is not None:
+            res['packages'] = test.objects.filter(test_category__slug=slug,Publish='1')
+        else:
+            res['packages'] = test.objects.filter(test_category__category__slug=slug,Publish='1')
     else:
-        li = []
-        for d in range(0,100):
-            li.append(package.objects.filter(package_category__slug=slug,Publish='1')[0])
-        res['packages'] = li
-        page = request.GET.get('page', 1)
+        if subcategory is not None:
+            res['packages'] = package.objects.filter(package_category__slug=slug,Publish='1')
+        else:
+            res['packages'] = package.objects.filter(package_category__category__slug=slug,Publish='1')
+    res['packages'] = res['packages'].distinct()
     res['packages'] =Paginator(res['packages'], 12)
     try:
         res['packages'] = res['packages'].page(page)

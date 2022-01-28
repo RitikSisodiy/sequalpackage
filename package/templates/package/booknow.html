@@ -95,7 +95,7 @@
                                     <span>{{user.first_name}} {{user.last_name}},</span><br>
                                     <small>Self,</small><br>
                                     <small>{{user.gender}} , {{user.age}} yrs</small>
-                                    <input type="checkbox" class="familymember" name="self" id="">
+                                    <input type="checkbox" class="familymember" name="self" id="" checked>
                                 </div>
                             </div>
                             {% for data in family %}
@@ -104,7 +104,7 @@
                                     <span>{{data.name}},</span><br>
                                     <small>{{data.relation}}</small><br>
                                     <small>{{data.gender}} , {{data.age}} yrs</small>
-                                    <input type="checkbox" class="familymember" name="member{{data.id}}" id="" >
+                                    <input type="checkbox" class="familymember" name="member{{data.id}}" id="member{{data.id}}" checked="checked" >
                                 </div>
                             </div>
                             {% endfor %}
@@ -216,23 +216,25 @@
             </div>
             {% endif %}
             {% for data in member %}
-            <div class="p-3 shadow p-3 mb-2  font-weight-bold rounded">
+            <div class="p-3 shadow p-3 mb-2  font-weight-bold rounded" id="boxmember{{data.id}}">
                 <div>{{data.name}} | {{data.relation}}</div>
                 <small>Male, 22 years</small>
                 <hr>
                 {% if type == 'test' %}
+                <div>
                 <div>{{test.test_name}} Test</div>
                 <small>{{package.Package_name}} Included : 1</small>
                 <div>
                     <del class="text-secondary">₹{{test.test_price}} </del> <small
-                        class="text-primary font-weight-bold mx-3">₹{{test.final_cost}}</small>
+                        class="text-primary font-weight-bold mx-3 packageprize" >₹<span id="prizemember{{data.id}}"> {{test.final_cost}}</span></small>
+                </div>
                 </div>
                 {% else %}
                 <div>Ayushman Package</div>
                 <small>{{package.Package_name}} Included : {{totaltest}}</small>
                 <div>
                     <del class="text-secondary">₹{{package.Package_price}} </del> <small
-                        class="text-primary font-weight-bold mx-3">₹{{package.final_cost}}</small>
+                        class="text-primary font-weight-bold mx-3 packageprize"  >₹<span id="prizemember{{data.id}}" >{{package.final_cost}}</span></small>
                 </div>
                 {% endif %}
             </div>
@@ -249,7 +251,7 @@
                 <hr>
                 <div class="d-flex justify-content-between">
                     <div class="font-weight-bold text-primary">Total</div>
-                    <div class="font-weight-bold text-primary">₹ {{totleprize}}</div>
+                    <div class="font-weight-bold text-primary" id="totlePrize">₹ {{totleprize}}</div>
                 </div>
                 <p class="text-success text-center my-4"><small>Your total saving on this health booking ₹ {{totalsaving}}</small>
                 </p>
@@ -264,7 +266,15 @@
     {% endblock %}
     {% block basicscript %}
     <script>
+        totalprize = $('#totlePrize')
+        packagePrize  = $("small.packageprize")
         $("input.familymember").on("change", function () {
+            $(`#box${this.id}`).toggle()
+            var prize = parseInt($(`#prize${this.id}`).html())
+            var tprize = parseInt(totalprize.html())
+            tprize = tprize-prize
+            totalprize.html(tprize)
+            console.log(prize,tprize)
             console.log(this.name)
         })
     </script>

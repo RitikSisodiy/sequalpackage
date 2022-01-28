@@ -1,4 +1,6 @@
 
+from distutils.command.upload import upload
+from email.policy import default
 from math import fabs
 from operator import mod
 from pydoc import describe
@@ -47,6 +49,7 @@ class Subcategory(models.Model):
     category = models.ForeignKey(category,on_delete=models.CASCADE,related_name="subcategory")
     name = models.CharField(max_length=100)
     slug = models.SlugField(blank=True)
+    logo = models.ImageField(upload_to="logos",default="logos/logo.png")
     shortdes = models.TextField(blank=True)
     description = RichTextUploadingField(blank=True)
     class Meta:
@@ -64,7 +67,7 @@ class test(models.Model):
     test_uniqueId = models.CharField(max_length=50, blank=True)
     test_name = models.CharField(max_length = 50)
     test_description = RichTextUploadingField()
-    test_category = models.ManyToManyField(Subcategory,null=True,blank=True,related_name="test")
+    test_category = models.ManyToManyField(Subcategory,blank=True,related_name="test")
     test_price  = models.FloatField()
     sample_colllection_charges = models.CharField(max_length = 1,choices=(("1","Yes"),("0","No")))
     discount = models.CharField(help_text="You Can Ammount or Percent of Ammount Eg: 100 or 10%",max_length=10)
@@ -127,7 +130,7 @@ class PackageAvailablefor(models.Model):
 class package(models.Model):
     Package_id = models.CharField(max_length=50,blank=True)
     Package_name = models.CharField(max_length=50)
-    package_category = models.ManyToManyField(Subcategory,null=True,blank=True,related_name="package")
+    package_category = models.ManyToManyField(Subcategory,blank=True,related_name="package")
     Porfile_collection = models.ManyToManyField(profile)
     Package_descrption = RichTextUploadingField()
     Package_price = models.FloatField()

@@ -1,6 +1,6 @@
 
 from django.shortcuts import redirect, render
-from package.models import package
+from package.models import package,category
 from .models import customer_contact,ContactInfo
 from UserData.models import RequestedCallBack
 from superuser.forms import GenForm
@@ -8,8 +8,10 @@ from django.contrib import messages
 # Create your views here.
 def index(request):
     res = {}
-    res['packages'] = package.objects.all()
+    # res['packages'] = package.objects.all()
+    res['packages'] = [package.objects.all()[0] for i in range(0,30)]
     res['bodyclass'] = "index-page"
+    res['categorys'] = category.objects.all()
     return render(request,'home/index.html',res)
 def contact(request):
     res={}

@@ -7,7 +7,7 @@
     <a  style="color: #ff9800; ">{{category.name}}</a>
 </div>
 <div class="first container">
-    <h3>{{category.name}} tests </h3>
+    <h3>{{category.name}} {{type}}s </h3>
 
     <p>
        {{catagory.describe}}
@@ -15,6 +15,7 @@
 
 </div>
 <div class="container">
+  {% if subcate %}
     <nav class="nav nav-pills nav-fill col-4">
         {% url 'getbysubcategory' category.slug as packageurl %}
         <a class="nav-link {% if request.path == packageurl %}active{% endif %}" href="{{packageurl}}">Packges</a>
@@ -22,6 +23,15 @@
         <a class="nav-link {% if request.path == testurl %}active{% endif %}" href="{{testurl}}">Tests</a>
       
       </nav>
+    {% else %}
+    <nav class="nav nav-pills nav-fill col-4">
+      {% url 'getbycategory' category.slug as packageurl %}
+      <a class="nav-link {% if request.path == packageurl %}active{% endif %}" href="{{packageurl}}">Packges</a>
+      {% url 'testcategory' category.slug 'test' as testurl %}
+      <a class="nav-link {% if request.path == testurl %}active{% endif %}" href="{{testurl}}">Tests</a>
+    
+    </nav>
+    {% endif %}
     <div class="justify-content-center align-items-center d-flex flex-wrap infinite-container">
         {% if type == 'package' %}
         {% for data in packages %}

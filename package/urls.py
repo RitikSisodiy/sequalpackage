@@ -20,8 +20,9 @@ urlpatterns = [
     path('Handlepayment/', views.handlepaytm , name="handlePaytm"),
     path('package/<slug:slug>/', views.packagedetails , name="packagedetails"),
     path('test/<slug:slug>/', views.testdetails , name="testdetails"),
-    path('category/<slug:slug>/', views.getbycategory , name="getbycategory"),
-    path('subcategory/<slug:slug>/', views.getbysubcategory , name="getbysubcategory"),
-    path('subcategory/<slug:slug>/<slug:type>/', views.getbysubcategory , name="testurl"),
+    path('category/<slug:catename>/', views.getbysubcategory , name="getbycategory"),
+    path('category/<slug:catename>/<slug:type>/', views.getbysubcategory , name="testcategory"),
+    path('subcategory/<slug:subcategory>/', views.getbysubcategory , name="getbysubcategory"),
+    path('subcategory/<slug:subcategory>/<slug:type>/', views.getbysubcategory , name="testurl"),
     path('package/<slug:slug>/book-now/<slug:type>', views.booknow , name="booknow"),
 ]
