@@ -1,9 +1,5 @@
-from tkinter.messagebox import NO
-from django.forms import models
-from django.http import request
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from UserData.userView import booking
 from django.contrib.auth.decorators import login_required
 from .models import package, tempbooking,Subcategory,test,category
 from UserData.models import cart,Family,Booking
