@@ -1,9 +1,11 @@
+from unittest import result
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from .models import package, tempbooking,Subcategory,test,category
 from UserData.models import cart,Family,Booking
 from datetime import datetime
+from itertools import chain
 from paymentintigration.views import getPaytmParam, verifyPaymentRequest
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
@@ -162,3 +164,36 @@ def Test(request):
     except EmptyPage:
         numbers = paginator.page(paginator.num_pages)
     return render(request, 'package/test1.html', {'numbers': numbers})
+def searchinModel(modelname,qry):
+    if qry is not None:
+        print('if working')
+        from django.db.models import  Q
+        from django.db.models import CharField
+        fields = [f for f in modelname._meta.fields if isinstance(f, CharField)]
+        queries = [Q(**{f.name+'__contains': qry}) for f in fields]
+        qs = Q()
+        for query in queries:
+            qs = qs | query
+        print(qs)
+        res = modelname.objects.filter(qs)
+        return res
+    return []
+def search(request):
+    res={}
+    res['bodyclass'] = "risk-page"
+    qry = request.GET.get('q')
+    page = request.GET.get('page',None)
+    if qry is not None:
+        # searchresult = chain(searchinModel(package,qry),searchinModel(test,qry))
+        searchresult = searchinModel(test,qry).union(searchinModel(package,qry))
+        # if searchresult:
+        #     searchresult = [searchresult[0] for data in range(0,100)]
+        paginator = Paginator(searchresult, 12)
+        try:
+            result = paginator.page(page)
+        except PageNotAnInteger:
+            result = paginator.page(1)
+        except EmptyPage:   
+            result = paginator.page(paginator.num_pages)
+        res['result'] = result
+    return render(request,'package/search.html',res)

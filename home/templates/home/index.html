@@ -26,29 +26,17 @@
     </div>
     <div class="p-4 search" style="display: flex; justify-content: center;">
         <div class="search-bar">
-            <div class="row">
-                <input type="text" placeholder="Find your Package/Test" class="col-lg-10 col-8"><button
+                <form method="get" class="row" action="{% url 'search' %}">
+                <input name="q" type="text" placeholder="Find your Package/Test" class="col-lg-10 col-8"><button
                     class="col-lg-2 col-4"><i class="fa fa-search"></i>&nbsp;
                     Search</button>
-            </div>
-            <div class="search-sub-menu">
+                </form>
+            <!-- <div class="search-sub-menu">
                 <div class="row">
                     <div class="col-lg-6 col-12">
                         <h5>Popular Test</h5>
                         <ul>
                             <li> CRP (C Reactive Protein) Quantitative, Serum</li>
-                            <li>D-Dimer Quantitative</li>
-                            <li>Covid 19 RTPCR Test</li>
-                            <li>Lipid Profile</li>
-                            <li>Liver Function Test</li>
-                            <li>Complete Hemogram</li>
-                            <li>Thyroid Profile-Total (T3, T4 & TSH Ultra-sensitive)</li>
-                            <li> Kidney Function Test</li>
-                            <li>Urine Routine & Microscopy</li>
-                            <li>HbA1c</li>
-                            <li>Blood Glucose Fasting</li>
-                            <li>Vitamin B12 Cyanocobalamin</li>
-                            <li> Vitamin D Total-25 Hydroxy</li>
                         </ul>
                     </div>
                     <div class="col-lg-6 col-12">
@@ -72,7 +60,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="first container mt-5">
