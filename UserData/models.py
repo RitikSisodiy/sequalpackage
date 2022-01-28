@@ -107,6 +107,7 @@ class Booking(models.Model):
         return self.Booking_id
 class cart(models.Model):
     user = models.ForeignKey("UserData.User",on_delete=models.CASCADE)
+    type = models.CharField(max_length=10)
     package = models.ForeignKey(package,on_delete=models.SET_NULL,null=True)
     test = models.ForeignKey(test,on_delete=models.SET_NULL,null=True)
     def __str__(self) -> str:
@@ -148,3 +149,9 @@ class RequestedCallBack(models.Model):
     city = models.CharField(max_length=50)
     def __str__(self) -> str:
         return self.name
+class userAddress(models.Model):
+    city = models.CharField(max_length=100)
+    houseno = models.CharField(max_length=200)
+    pin = models.CharField(max_length=8)
+    state = models.CharField(max_length=100)
+    default = models.BooleanField(default=False)

@@ -9,6 +9,7 @@ from .models import package, tempbooking,Subcategory,test
 from UserData.models import cart,Family,Booking
 from datetime import datetime
 from paymentintigration.views import getPaytmParam, verifyPaymentRequest
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 def packagedetails(request,slug):
     res = {}
@@ -36,10 +37,29 @@ def getbysubcategory(request,slug='slug',type='package'):
     res['bodyclass'] = "risk-page"
     if type=='test':
         print('working')
+        page = request.GET.get('page', 1)
         res['packages'] = test.objects.filter(test_category__slug=slug,Publish='1')
+        res['packages'] =Paginator(res['packages'], 12)
+        try:
+            res['packages'] = res['packages'].page(page)
+        except PageNotAnInteger:
+            res['packages'] = res['packages'].page(1)
+        except EmptyPage:
+            res['packages'] = res['packages'].page(res['packages'].num_pages)
         return render(request,'package/listpackage.html',res) 
-    res['packages'] = package.objects.filter(package_category__slug=slug,Publish='1')
-    
+    li = []
+    for d in range(0,100):
+        li.append(package.objects.filter(package_category__slug=slug,Publish='1')[0])
+    res['packages'] = li
+    page = request.GET.get('page', 1)
+    res['packages'] =Paginator(res['packages'], 12)
+    try:
+        res['packages'] = res['packages'].page(page)
+    except PageNotAnInteger:
+        res['packages'] = res['packages'].page(1)
+    except EmptyPage:
+        res['packages'] = res['packages'].page(res['packages'].num_pages)
+    return render(request,'package/listpackage.html',res) 
     
     return render(request,'package/listpackage.html',res) 
 
@@ -127,3 +147,15 @@ def handlepaytm(request):
     else:
             print("order unsuccessful because",response_dict['RESPMSG'])
     return render(request,'package/paymentstatus.html',{'response': response_dict})
+
+def Test(request):
+    numbers_list = range(1, 1000)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(numbers_list, 20)
+    try:
+        numbers = paginator.page(page)
+    except PageNotAnInteger:
+        numbers = paginator.page(1)
+    except EmptyPage:
+        numbers = paginator.page(paginator.num_pages)
+    return render(request, 'package/test1.html', {'numbers': numbers})

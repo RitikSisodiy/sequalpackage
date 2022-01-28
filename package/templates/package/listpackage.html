@@ -22,7 +22,7 @@
         <a class="nav-link {% if request.path == testurl %}active{% endif %}" href="{{testurl}}">Tests</a>
       
       </nav>
-    <div class="justify-content-center align-items-center d-flex flex-wrap">
+    <div class="justify-content-center align-items-center d-flex flex-wrap infinite-container">
         {% if type == 'package' %}
         {% for data in packages %}
             
@@ -36,8 +36,36 @@
 
         {% endif %}
     </div>
+    <center class="my-3">
+   
+    <div class="spinner-border text-danger loading" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </center>
+    {% if packages.has_next %}
+    <a class="infinite-more-link" href="?page={{ packages.next_page_number }}">More</a>
+    {% endif %}
+
 </div>
 <div class="second container">
     {{category.description|safe}}
 </div>
+{% endblock %}
+
+
+{% block basicscript %}
+<script src="{% static 'loading/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'loading/infinite.min.js' %}"></script>
+<script>
+
+    var infinite = new Waypoint.Infinite({
+      element: $('.infinite-container')[0],
+      onBeforePageLoad: function () {
+        $('.loading').show();
+      },
+      onAfterPageLoad: function ($items) {
+        $('.loading').hide();
+      }
+    });
+</script>
 {% endblock %}
