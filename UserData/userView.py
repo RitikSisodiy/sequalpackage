@@ -2,7 +2,7 @@ from ast import Not
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.http import JsonResponse,HttpResponse
-from UserData.models import Family,Booking,report
+from UserData.models import Family,Booking,report,userAddress
 from django.conf import settings
 from superuser.forms import GenForm
 import mimetypes
@@ -78,10 +78,10 @@ def family(request):
         if form.is_valid():
             form.save()
             messages.success(request,"Family member added successfully")
-            return redirect(request.path)
         else:
             for data in form.errors:
                 messages.error(request,str(data))
+        return redirect(request.path)
     res['bodyclass'] = "faimly-friendwraper"
     return render(request,'UserData/user/family.html',res)
 from django.core.serializers import serialize
@@ -92,6 +92,22 @@ def getMember(request):
     data = serialize('python',Family.objects.filter(id=id))
     return JsonResponse(data[0]['fields'],safe=False)
 def address(request):
+    if request.method == "POST":
+        form = GenForm(userAddress)(request.POST)
+        print(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Thanks for contacting us We will get back to you soon')
+        else:
+            for key,value in form.errors.as_data().items():
+                msg = ""
+                for data in value:
+                    for v in data:
+                        msg+=str(v)+"<br>"
+                msg = msg[:msg.rfind('<br>')]
+                messages.error(request,f"{key}: {msg}")
+            
     res = {}
     res['bodyclass'] = "faimly-friendwraper"
+    res['address'] = userAddress.objects.all()
     return render(request,'UserData/user/address.html',res)

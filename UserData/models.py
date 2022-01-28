@@ -5,8 +5,8 @@ from django.core.exceptions import ValidationError
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import FileExtensionValidator
-
-from package.models import package, test
+from package.models import package, test 
+from package import models as reqmodel
 from django.urls import reverse
 import datetime
 from package.models import get_random_string
@@ -150,8 +150,12 @@ class RequestedCallBack(models.Model):
     def __str__(self) -> str:
         return self.name
 class userAddress(models.Model):
+    user = models.ForeignKey(User,on_delete=models.SET_NULL,blank=True,null=True)
     city = models.CharField(max_length=100)
     houseno = models.CharField(max_length=200)
     pin = models.CharField(max_length=8)
     state = models.CharField(max_length=100)
     default = models.BooleanField(default=False)
+    def save(self):
+        self.user = reqmodel.exposed_request.user
+        super().save()

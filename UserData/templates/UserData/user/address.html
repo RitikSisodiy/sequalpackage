@@ -81,16 +81,17 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 normal-input">
                                     <label>City, State</label>
-                                    <input autocomplete="off" id="city_state" name="state" placeholder="Enter your City, State" tabindex="3" type="text" value="" readonly="" disabled >
+                                    <input  id="city_state" name='city_state' placeholder="Enter your City, State" tabindex="3" type="text"  >
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="reminds">
                                         <div class="checkbox checkbox-info checkbox-circle">
                                             <input id="default_status" name="default" type="checkbox" value="default_status"> <label for="checkbox6">Make Default Address</label>
+                                            
                                         </div>
                                     </div>
                                 </div>
-                               
+                               <input type="hidden" id="statein" name="state" >
                             </div>
                             <div class="center-bnt addaddresssavechange">
                                 <button type="submit" class="btn btn-danger btn_cmncolor ga_add_member_submit">Save changes</button>
@@ -145,6 +146,7 @@
         $("#locality").html(`<option value='${data[0].city__name}' >${data[0].city__name}, ${data[0].city__state__name}</option>`)
         $("#locality").val(data[0].city__name)
         $("#city_state").val(`${data[0].city__name}, ${data[0].city__state__name}`)
+        $("#statein").val(data[0].city__state__name)
     })
         </script>
 {% endblock %}

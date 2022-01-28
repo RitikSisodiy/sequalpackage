@@ -39,19 +39,12 @@ def getbysubcategory(request,slug='slug',type='package'):
         print('working')
         page = request.GET.get('page', 1)
         res['packages'] = test.objects.filter(test_category__slug=slug,Publish='1')
-        res['packages'] =Paginator(res['packages'], 12)
-        try:
-            res['packages'] = res['packages'].page(page)
-        except PageNotAnInteger:
-            res['packages'] = res['packages'].page(1)
-        except EmptyPage:
-            res['packages'] = res['packages'].page(res['packages'].num_pages)
-        return render(request,'package/listpackage.html',res) 
-    li = []
-    for d in range(0,100):
-        li.append(package.objects.filter(package_category__slug=slug,Publish='1')[0])
-    res['packages'] = li
-    page = request.GET.get('page', 1)
+    else:
+        li = []
+        for d in range(0,100):
+            li.append(package.objects.filter(package_category__slug=slug,Publish='1')[0])
+        res['packages'] = li
+        page = request.GET.get('page', 1)
     res['packages'] =Paginator(res['packages'], 12)
     try:
         res['packages'] = res['packages'].page(page)
@@ -61,7 +54,6 @@ def getbysubcategory(request,slug='slug',type='package'):
         res['packages'] = res['packages'].page(res['packages'].num_pages)
     return render(request,'package/listpackage.html',res) 
     
-    return render(request,'package/listpackage.html',res) 
 
 @login_required(login_url='userlogin')
 def booknow(request,slug,type):
