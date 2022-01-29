@@ -1,4 +1,5 @@
-from ast import Not
+from ast import Not, excepthandler
+from tkinter import NO
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.http import JsonResponse,HttpResponse
@@ -74,10 +75,18 @@ def Report(request,slug=None):
 def family(request):
     res = {}
     if request.method=="POST":
-        form = GenForm(Family)(request.POST)
+        id = request.POST.get('customer_id')
+        if id is not None and len(id) != 0:
+            instance = Family.objects.get(id=id)
+        else:
+            instance =None
+        form = GenForm(Family)(request.POST,instance=instance)
         if form.is_valid():
             form.save()
-            messages.success(request,"Family member added successfully")
+            if instance is None:
+                messages.success(request,'Member added successfully')
+            else:
+                messages.success(request,'Member updated successfully')
         else:
             for data in form.errors:
                 messages.error(request,str(data))
@@ -91,13 +100,45 @@ def getMember(request):
     id = request.GET.get('memberid')
     data = serialize('python',Family.objects.filter(id=id))
     return JsonResponse(data[0]['fields'],safe=False)
+def deleteMember(request,id):
+    if request.user.is_authenticated:
+        try:
+            Family.objects.get(id=id,user=request.user).delete()
+            messages.success(request,"Family member deleted")
+        except Exception as e:
+            print(e)
+            messages.error(request,"Not allowed Invalid request")
+        return redirect('family')
+    return redirect("userlogin")
+def getaddress(request):
+    id = request.GET.get('addressid')
+    data = serialize('python',userAddress.objects.filter(id=id))
+    return JsonResponse(data[0]['fields'],safe=False)
+def deleteaddress(request,id):
+    if request.user.is_authenticated:
+        try:
+            userAddress.objects.get(id=id,user=request.user).delete()
+            messages.success(request,   "Address deleted")
+        except:
+            messages.error(request, "Not allowed Invalid request")
+        return redirect("address")
+    return redirect("userlogin")
 def address(request):
     if request.method == "POST":
-        form = GenForm(userAddress)(request.POST)
+        id = request.POST.get('id')
+        if id is not None and len(id) != 0:
+            instance = userAddress.objects.get(id=id)
+        else:
+            instance =None
+        form = GenForm(userAddress)(request.POST,instance=instance)
         print(request.POST)
         if form.is_valid():
             form.save()
-            messages.success(request,'Thanks for contacting us We will get back to you soon')
+            if instance is None:
+                messages.success(request,'Address added successfully')
+            else:
+                messages.success(request,'Address updated successfully')
+            return redirect(request.path)
         else:
             for key,value in form.errors.as_data().items():
                 msg = ""
@@ -109,5 +150,5 @@ def address(request):
             
     res = {}
     res['bodyclass'] = "faimly-friendwraper"
-    res['address'] = userAddress.objects.all()
+    res['address'] = userAddress.objects.filter(user=request.user.id)
     return render(request,'UserData/user/address.html',res)

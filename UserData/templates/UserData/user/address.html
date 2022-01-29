@@ -12,23 +12,29 @@
         <!--  <div class="Add-New-Member text-center"></div> -->
         <div class="alert alert-danger" id="address_list_error_div" style="display:none;"></div>
         <div id="address_list_div">
-            <div class="add-box" id="address_1802946">
+            {% if address %}
+            {% for data in address %}
+            <div class="add-box" id="address_{{data.id}}">
                 <div class="row">
                     <div class="col-sm-8">
-                        <div class="address"> <strong>House No. / Flat : </strong> <span>123</span> </div>
-                        <div class="address"> <strong>Address : </strong> <span>Indore, Madhya Pradesh, India</span>
+                        <div class="address"> <strong>House No. / Flat : </strong> <span>{{data.houseno}}</span> </div>
+                        <div class="address"> <strong>Address : </strong> <span>{{data.city}}, {{data.state}}, India</span>
                         </div>
-                        <div class="address"> <strong>Pincode : </strong> <span>452010</span> </div>
+                        <div class="address"> <strong>Pincode : </strong> <span>{{data.pin}}</span> </div>
                     </div>
                     <div class="col-sm-4 text-center btnrdiv">
-                        <div class="edit-address"> <a class="delico" onclick="deleteAddress('1802946');"> <img
+                        <div class="edit-address"> <a class="delico" href="{% url 'deleteaddress' data.id %}"> <img
                                     src="/static/images/del-icon.png"> </a> <a class="editico"
-                                onclick="editAddress('1802946');" data-toggle="modal" data-target="#address_edit"> <img
+                                onclick="editAddress('{{data.id}}');" data-toggle="modal" data-target="#family_edit"> <img
                                     src="/static/images/edit-icon.png"> </a>
                         </div>
                     </div>
                 </div>
             </div>
+            {% endfor %}
+            {% else %}
+            <h4><label class="alert alert-info">No Address Found..!!</label></h4>
+            {% endif %}
         </div>
 
         <div class="modal fade addfamilymember in" id="family_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -52,12 +58,11 @@
                                 <div class="clearfix"></div>                       
                                 
                                 {% csrf_token %}
-                                <div class="alert alert-danger" id="address_error_div" style="display:none;"></div>
-                                <div class="alert alert-success" id="address_success_div" style="display:none;"></div>
                                 <div class="text-success my-2" id="infomessage"></div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 normal-input loc_autodiv">
                                     <label class="loc_label">Colony / Area / Sector* 
                                     </label>
+                                    <input type="hidden" name="id" id="addressid">
                                     <select id="locality" name="city" class="mt-2" placeholder="Enter Locality" required="true" style="
                                         width: 100%;
                                         border: 0px;
@@ -104,6 +109,23 @@
     </div>
 </div>
 <script>
+     function ajaxCallPromise(api_url, method, request_data, loader = true) {
+        var promiseObj = new Promise(function (resolve, reject) {
+            $.ajax({
+                url: api_url,
+                type: method,
+                data: request_data,
+                beforeSend: function () {
+                    if (loader) {
+                        $("#ajax-loader").show();
+                    }
+                },
+                success: resolve,
+                error: reject
+            });
+        });
+        return promiseObj;
+    }
     function makerequest(url, query, appendopt, responce = false) {
     return new Promise((resolve, reject) => {
             var xhttp = new XMLHttpRequest()
@@ -148,6 +170,31 @@
         $("#city_state").val(`${data[0].city__name}, ${data[0].city__state__name}`)
         $("#statein").val(data[0].city__state__name)
     })
+    function addAddress(){
+        $("#add_edit_title").text("Add New Address");
+        $("#locality").html(``)
+        $('#add_family_form')[0].reset();   
+    }
+    
+    function editAddress(addressid) {
+        getFamily_api_url = "{% url "getaddress" %}?addressid="+addressid
+        $("#add_edit_title").text("Edit address");
+        $('#add_family_form')[0].reset();
+
+        $("#addressid").val("");
+        $("#addressid").val(addressid);
+
+        ajaxCallPromise(getFamily_api_url, "GET", null).then((data)=>{
+            console.log(data);
+        $("#locality").html(`<option value='${data.city}'>${data.city}</option>`);
+        $("#house_number").val(data.houseno);
+        $("#pincode").val(data.pin);
+        $("#default_status").prop('checked',data.default);
+        $("#city_state").val(data.state);
+        $("statein").prop(data.state);
+            
+        });
+    }
         </script>
 {% endblock %}
 

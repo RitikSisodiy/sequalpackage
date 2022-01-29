@@ -46,7 +46,7 @@ class category(models.Model):
             self.slug = unique_slug_generator(category,self.name)
         super().save()
 class Subcategory(models.Model):
-    category = models.ForeignKey(category,on_delete=models.CASCADE,related_name="subcategory")
+    category = models.ForeignKey(category,on_delete=models.CASCADE,related_name="subcategory" )
     name = models.CharField(max_length=100)
     slug = models.SlugField(blank=True)
     logo = models.ImageField(upload_to="logos",default="logos/logo.png")
@@ -54,7 +54,6 @@ class Subcategory(models.Model):
     description = RichTextUploadingField(blank=True)
     class Meta:
         unique_together = ('category', 'name',)
-
     def __str__(self) -> str:
         return f"{self.name} ({self.category.name})"
     def save(self, *args, **kwargs):

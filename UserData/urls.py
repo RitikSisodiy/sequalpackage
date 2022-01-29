@@ -13,6 +13,9 @@ urlpatterns = [
     path('report/report<slug:slug>/download',userView.Report,name="reportdownload"),
     path('family/',userView.family,name="family"),
     path('getmember/',userView.getMember,name="getmember"),
+    path('deletemember/<int:id>',userView.deleteMember,name="deletemember"),
     path('address/',userView.address,name="address"),
+    path('getaddress/',userView.getaddress,name="getaddress"),
+    path('deleteaddress/<int:id>/',userView.deleteaddress,name="deleteaddress"),
     path('logout/',views.Logout,name="logoutuser"),
 ]

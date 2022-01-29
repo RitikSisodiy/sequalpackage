@@ -85,7 +85,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
             <form method="post" enctype="multipart/form-data">{% csrf_token %}
-                <div class="p-3 shadow p-3 mb-2 bg-white rounded">1 Test | +91 9090974785</div>
+                <div class="p-3 shadow p-3 mb-2 bg-white rounded">1 {{user.first_name}} | +91 {{user.phone}}</div>
                 <div class="shadow mb-2">
                     <div class="p-3  text-light bg-primary">2 Add Member</div>
                     <div class="p-3 ">
@@ -95,7 +95,7 @@
                                     <span>{{user.first_name}} {{user.last_name}},</span><br>
                                     <small>Self,</small><br>
                                     <small>{{user.gender}} , {{user.age}} yrs</small>
-                                    <input type="checkbox" class="familymember" name="self" id="" checked>
+                                    <input type="checkbox" class="familymember" name="self" id="memberself" checked>
                                 </div>
                             </div>
                             {% for data in family %}
@@ -122,17 +122,18 @@
                     <div class="collapse" id="collapseExample">
                         <div class="card-body">
                             <div class="row">
-
+                                {% for data in address %}
                                 <div class="p-3 col-sm-6">
                                     <div class="p-3 text-sm shadow-sm addressbox d-flex flex-row">
-                                        <div><input class="mx-1" type="radio" name="" id="" required></div>
-                                        <div><small>
-                                                House no.: 123, Indore, Madhya Pradesh, India indore Madhya Pradesh -
-                                                452010
-                                            </small>
+                                        <div><input class="mx-1" type="radio" name="address" id="address{{data.id}}" required></div>
+                                        <div> <label for="address{{data.id}}"> <small>
+                                                House no.: {{data.houseno}}, {{data.city}}, {{data.state}}, India -
+                                                {{data.pin}}
+                                            </small></label>
                                         </div>
                                     </div>
                                 </div>
+                                {% endfor %}
                             </div>
 
                             <div class="my-3"></div>
@@ -192,6 +193,7 @@
         </div>
         <div class="col-sm-4 col-xs-12 packages_section mob_viewport">
             <div class="p-3 shadow p-3 mb-2 bg-primary text-light font-weight-bold rounded">{{type|title}} Details</div>
+            
             {% if type == 'test' %}
             <div class="p-3 shadow d-flex justify-content-between p-3 mb-2  rounded">
                 <div>
@@ -215,15 +217,37 @@
                 </div>
             </div>
             {% endif %}
-            {% for data in member %}
-            <div class="p-3 shadow p-3 mb-2  font-weight-bold rounded" id="boxmember{{data.id}}">
-                <div>{{data.name}} | {{data.relation}}</div>
-                <small>Male, 22 years</small>
+            <div class="p-3 shadow p-3 mb-2  font-weight-bold rounded" id="boxmemberself">
+                <div>{{user.first_name}}{{user.last_name}} | self,</div>
+                <small>Male, {{user.age}} years</small>
                 <hr>
                 {% if type == 'test' %}
                 <div>
                 <div>{{test.test_name}} Test</div>
-                <small>{{package.Package_name}} Included : 1</small>
+                <small>{{package.test_name}} Included : 1</small>
+                <div>
+                    <del class="text-secondary">₹{{test.test_price}} </del> <small
+                        class="text-primary font-weight-bold mx-3 packageprize" >₹<span id="prizememberself"> {{test.final_cost}}</span></small>
+                </div>
+                </div>
+                {% else %}
+                <div>Ayushman Package</div>
+                <small>{{package.Package_name}} Included : {{totaltest}}</small>
+                <div>
+                    <del class="text-secondary">₹{{package.Package_price}} </del> <small
+                        class="text-primary font-weight-bold mx-3 packageprize"  >₹<span id="prizememberself" >{{package.final_cost}}</span></small>
+                </div>
+                {% endif %}
+            </div>
+            {% for data in member %}
+            <div class="p-3 shadow p-3 mb-2  font-weight-bold rounded" id="boxmember{{data.id}}">
+                <div>{{data.name}} | {{data.relation}}</div>
+                <small>Male, {{data.age}} years</small>
+                <hr>
+                {% if type == 'test' %}
+                <div>
+                <div>{{test.test_name}} Test</div>
+                <small>{{package.test_name}} Included : 1</small>
                 <div>
                     <del class="text-secondary">₹{{test.test_price}} </del> <small
                         class="text-primary font-weight-bold mx-3 packageprize" >₹<span id="prizemember{{data.id}}"> {{test.final_cost}}</span></small>
@@ -251,7 +275,7 @@
                 <hr>
                 <div class="d-flex justify-content-between">
                     <div class="font-weight-bold text-primary">Total</div>
-                    <div class="font-weight-bold text-primary" id="totlePrize">₹ {{totleprize}}</div>
+                    <div class="font-weight-bold text-primary" >₹ <span id="totlePrize" >{{totleprize}}</span></div>
                 </div>
                 <p class="text-success text-center my-4"><small>Your total saving on this health booking ₹ {{totalsaving}}</small>
                 </p>
@@ -272,7 +296,11 @@
             $(`#box${this.id}`).toggle()
             var prize = parseInt($(`#prize${this.id}`).html())
             var tprize = parseInt(totalprize.html())
-            tprize = tprize-prize
+            if($(this).is(":checked")){
+                tprize = tprize+prize
+            }else{
+                tprize = tprize-prize
+            }
             totalprize.html(tprize)
             console.log(prize,tprize)
             console.log(this.name)

@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from .models import package, tempbooking,Subcategory,test,category
-from UserData.models import cart,Family,Booking
+from UserData.models import cart,Family,Booking, userAddress
 from datetime import datetime
 from itertools import chain
 from paymentintigration.views import getPaytmParam, verifyPaymentRequest
@@ -78,18 +78,18 @@ def booknow(request,slug,type):
         for data in buypackage.Porfile_collection.all():
             totaltest += data.Select_Test_id.all().count()
         res['totaltest'] = totaltest
-        res['totleprize'] = float(buypackage.final_cost)*res['member'].count()
+        res['totleprize'] = float(buypackage.final_cost)*(res['member'].count()+1)
         res['totalsaving'] =(float(buypackage.Package_price) -float(buypackage.final_cost))*res['member'].count()
         buytest = None
     else:
         buypackage = None
         buytest = test.objects.get(slug=slug)
-        res['totleprize'] = float(buytest.final_cost)*res['member'].count()
+        res['totleprize'] = float(buytest.final_cost)*(res['member'].count()+1)
         res['totalsaving'] =(float(buytest.test_price) -float(buytest.final_cost))*res['member'].count()
     res['type'] = type
     res['package'] = buypackage
     res['test'] =buytest
-    
+    res['address'] = userAddress.objects.filter(user=request.user.id)
     cart.objects.update_or_create(user=request.user,package=buypackage,test=buytest)
     res['family'] = Family.objects.filter(user= request.user)
     if request.method=="POST":

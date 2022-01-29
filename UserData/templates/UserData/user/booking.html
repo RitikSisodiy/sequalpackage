@@ -66,12 +66,16 @@
             {% for data in Bookings %}
             <div class="add-box">
                 <div class="row">
-                    <div class="col-sm-5">
+                    <div class="col-sm-12">
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table" >
                                 <thead>
                                     <tr>
-                                        <th colspan="2"><a href="{% url 'packagedetails' data.package.slug %}"><h3>{{data.package.Package_name}}</h3></a></th>
+                                        {% if data.type == "package" %}
+                                        <th colspan="2"><a href="{% url 'packagedetails' data.package.slug %}"><h3>{{data.package.Package_name}}(Package)</h3></a></th>
+                                        {% else %}
+                                        <th colspan="2"><a href="{% url 'testdetails' data.test.slug %}"><h3>{{data.test.test_name}} (Test)</h3></a></th>
+                                        {% endif %}
                                     </tr>
                                 </thead>
                                 {% if data.bookingfor == 'self' %}

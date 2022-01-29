@@ -1,3 +1,4 @@
+from email.headerregistry import Address
 from email.policy import default
 from pyexpat import model
 from random import choice
@@ -43,6 +44,20 @@ class TempUser(models.Model):
     expire = models.DateTimeField()
     def __str__(self) -> str:
         return self.phone
+
+class userAddress(models.Model):
+    user = models.ForeignKey(User,on_delete=models.SET_NULL,blank=True,null=True)
+    city = models.CharField(max_length=100)
+    houseno = models.CharField(max_length=200)
+    pin = models.CharField(max_length=8)
+    state = models.CharField(max_length=100)
+    default = models.BooleanField(default=False)
+    def save(self):
+        self.user = reqmodel.exposed_request.user
+        super().save()
+        userAddress.objects.filter(user=self.user).exclude(id=self.id).update(default=False)
+    def __str__(self) -> str:
+        return f"{self.city},{self.state}"
 class Family(models.Model):
     user= models.ForeignKey(User,on_delete=models.CASCADE,related_name="Family")
     name= models.CharField(max_length=100)
@@ -85,7 +100,10 @@ class Booking(models.Model):
     collectiontime = models.DateTimeField()
     bookingfor = models.CharField(max_length=20,choices=forchoice)
     status = models.CharField(max_length=20,choices=statuschoice,default='pending')
+    address = models.ForeignKey(userAddress,on_delete=models.SET_NULL,null=True,blank=True)
     member = models.ForeignKey(Family,on_delete=models.SET_NULL,null=True,blank=True)
+    
+    
     def clean(self) -> None:
         if self.type == "package" and not self.package:
             raise ValidationError(
@@ -149,13 +167,3 @@ class RequestedCallBack(models.Model):
     city = models.CharField(max_length=50)
     def __str__(self) -> str:
         return self.name
-class userAddress(models.Model):
-    user = models.ForeignKey(User,on_delete=models.SET_NULL,blank=True,null=True)
-    city = models.CharField(max_length=100)
-    houseno = models.CharField(max_length=200)
-    pin = models.CharField(max_length=8)
-    state = models.CharField(max_length=100)
-    default = models.BooleanField(default=False)
-    def save(self):
-        self.user = reqmodel.exposed_request.user
-        super().save()
