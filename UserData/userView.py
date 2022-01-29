@@ -1,5 +1,3 @@
-from ast import Not, excepthandler
-from tkinter import NO
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.http import JsonResponse,HttpResponse
