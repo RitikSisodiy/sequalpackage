@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'superuser',
     'UserData',
+    'userlogin',
     'package',
     'home',
     'sequal',

@@ -1,21 +1,17 @@
 
 from django.urls import path 
-from . import views , userView
+from . import views
 urlpatterns = [
-    path('login', views.LoginSignUp , name="userlogin"),
-    path('login/verifyotp', views.verifyotp , name="verifyotp"),
-    path('registration/',views.registration,name="registration"),
-    path('dashboard/',userView.dashboard,name="userdashboard"),
+    path('dashboard/',views.dashboard,name="userdashboard"),
     # path('subscription/',userView.subscription,name="subscription"),
-    path('profile/',userView.profile,name="profile"),
-    path('booking/',userView.booking,name="booking"),
-    path('report/',userView.Report,name="report"),
-    path('report/report<slug:slug>/download',userView.Report,name="reportdownload"),
-    path('family/',userView.family,name="family"),
-    path('getmember/',userView.getMember,name="getmember"),
-    path('deletemember/<int:id>',userView.deleteMember,name="deletemember"),
-    path('address/',userView.address,name="address"),
-    path('getaddress/',userView.getaddress,name="getaddress"),
-    path('deleteaddress/<int:id>/',userView.deleteaddress,name="deleteaddress"),
-    path('logout/',views.Logout,name="logoutuser"),
+    path('profile/',views.profile,name="profile"),
+    path('booking/',views.booking,name="booking"),
+    path('report/',views.Report,name="report"),
+    path('report/report<slug:slug>/download',views.Report,name="reportdownload"),
+    path('family/',views.family,name="family"),
+    path('getmember/',views.getMember,name="getmember"),
+    path('deletemember/<int:id>',views.deleteMember,name="deletemember"),
+    path('address/',views.address,name="address"),
+    path('getaddress/',views.getaddress,name="getaddress"),
+    path('deleteaddress/<int:id>/',views.deleteaddress,name="deleteaddress"),
 ]

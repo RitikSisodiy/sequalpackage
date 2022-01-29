@@ -1,105 +1,148 @@
-from django.shortcuts import redirect, render
-from .models import User,TempUser
 from django.contrib import messages
-from datetime import datetime
-from django.http import HttpResponse,JsonResponse
-import random, string
-from datetime import timedelta
-from django.utils.timezone import make_aware
-from django.contrib.auth import login ,logout
-from django.urls import reverse
-# Create your views here.
-def GenOtp(phone,userotp=None):
-    temp = TempUser.objects.filter(phone=phone)
-    current_time = datetime.now()
-    if temp.exists():
-        if temp[0].expire > make_aware(current_time ):
-            if userotp is not None:
-                return temp[0].otp == userotp
-            return temp[0]
-        else:
-            temp[0].delete()
-    if userotp is not None:
-        return False
-    otp = ''.join(random.choices(string.digits, k = 6))
-    expire =  make_aware( current_time + timedelta(minutes=2))
-    temp = TempUser(phone=phone,otp=otp,expire=expire)
-    temp.save()
-    return temp
+from django.shortcuts import redirect, render
+from django.http import JsonResponse,HttpResponse
+from UserData.models import Family,Booking,report,userAddress
+from django.conf import settings
+from superuser.forms import GenForm
+import mimetypes
 
-def LoginSignUp(request):
-    if request.user.is_authenticated:
-        return redirect('index')
-    res= {}
-    if request.method == "POST":
-        print(request.POST)
-        phone = request.POST['phone']
-        
-        otp = GenOtp(phone)
-        
-        data = render(request,'UserData/element/verifyotp.html',{"phone":phone,"expire":otp.expire})
-        print(otp.otp)
-        enteredotp = request.GET.get('otp')
-        # if otp is not None:
-        #     if enteredotp==otp:
-        #         User.
-        return HttpResponse(data)
+def download_file(filepath):
+    # Define Django project base directory
+    # Define text file name
+    filename = 'report'+ filepath[filepath.rfind('.'):]
+    # Define the full file path
+    print(filepath)
+    filepath = settings.MEDIA_ROOT / filepath
+    # Open the file for reading content
+    print(filepath)
 
-    return render(request,'UserData/login.html',res)
+    path = open(filepath, 'rb')
+    # Set the mime type
+    mime_type, _ = mimetypes.guess_type(filepath)
+    # Set the return value of the HttpResponse
+    response = HttpResponse(path, content_type=mime_type)
+    # Set the HTTP header for sending to browser
+    response['Content-Disposition'] = "attachment; filename=%s" % filename
+    # Return the response value
+    return response
 
 
-def verifyotp(request):
-    if request.user.is_authenticated:
-        return redirect('index')
-    print(request.POST)
-    otp = ""
-    if request.method=="POST":
-        for data in request.POST:
-            if "digit-" in data:
-                otp+=request.POST[data]
-        phone = request.POST['phone']
-        sentotp = GenOtp(phone,otp)
-        print(sentotp)
-        if otp == '123456':
-            sentotp = True
-        if sentotp:
-            checkuser = User.objects.filter(phone=phone)
-            next = request.GET.get('next')
-            next = next if next is not None else '/'
-            if checkuser.exists():
-                login(request,checkuser[0])
-                return JsonResponse({"login":True,"msg":"user is loggedin","next":next})
-            else:
-                print(phone ,"Lend", len(phone))
-                user =  User.objects.create_user(username=phone,email="",password=phone,phone=phone)
-                user.save()
-                login(request,user)
-                next = reverse("registration")
-                return JsonResponse({"login":True,"msg":"user is loggedin","next":next})
-        else:
-            return HttpResponse('invali otp')
-    return HttpResponse(otp)
-from operator import itemgetter
-def registration(request):
-    if not request.user.is_authenticated:
-        return redirect('userlogin')
+def dashboard(request):
+    res={}
+    res['bodyclass'] = "dashboard"
+    return render(request,'UserData/user/dashboard.html',res)
+def subscription(request):
     res = {}
-    res['bodyclass'] = "registration-page"
-    if request.method =="POST":
-        name,email,gender,dob =   itemgetter('name', 'email','gender','dob')(request.POST)
+    res['bodyclass'] = "faimly-friendwraper"
+    return render(request,'UserData/user/subscription.html',res)
+
+from operator import itemgetter
+def profile(request):
+    res = {}
+    if request.method == "POST":
+        if request.GET.get('profile') == "update":
+            profile= request.POST.FILES['my_pics']
+            request.user.profile = profile
+            request.user.save()
+            messages.success(request,"Profile picture updated")
+            return redirect(request.path)
+        name,gender,dob =  itemgetter('name','gender','dob')(request.POST)
         name = name.strip().split(' ')
         if len(name)>=1:request.user.first_name = name[0]
         if len(name)==2:request.user.last_name = name[1]
-        request.user.email = email
         request.user.gender = gender
         request.user.dob = dob
         request.user.save()
-        return redirect("index")
-    return render(request,'UserData/registration.html',res)
+        messages.success(request,"Profile updated")
+        return redirect(request.path)
+    res['bodyclass'] = "faimly-friendwraper"
+    return render(request,'UserData/user/profile.html',res)
+def booking(request):
+    res = {}
+    res['bodyclass'] = "faimly-friendwraper"
+    res['Bookings'] = Booking.objects.filter(user=request.user.id , status='success')
+    return render(request,'UserData/user/booking.html',res)
+def Report(request,slug=None):
+    if slug is not None:
+        repofile = report.objects.get(id=slug).report
+        return download_file(str(repofile))
+    res = {}
+    res['reports'] = report.objects.filter(booking__user=request.user)
+    res['bodyclass'] = "faimly-friendwraper"
+    return render(request,'UserData/user/report.html',res)
+def family(request):
+    res = {}
+    if request.method=="POST":
+        id = request.POST.get('customer_id')
+        if id is not None and len(id) != 0:
+            instance = Family.objects.get(id=id)
+        else:
+            instance =None
+        form = GenForm(Family)(request.POST,instance=instance)
+        if form.is_valid():
+            form.save()
+            if instance is None:
+                messages.success(request,'Member added successfully')
+            else:
+                messages.success(request,'Member updated successfully')
+        else:
+            for data in form.errors:
+                messages.error(request,str(data))
+        return redirect(request.path)
+    res['bodyclass'] = "faimly-friendwraper"
+    return render(request,'UserData/user/family.html',res)
+from django.core.serializers import serialize
 
-def Logout(request):
+
+def getMember(request):
+    id = request.GET.get('memberid')
+    data = serialize('python',Family.objects.filter(id=id))
+    return JsonResponse(data[0]['fields'],safe=False)
+def deleteMember(request,id):
     try:
-        logout(request)
-    finally:
-        messages.success(request,"Signout SuccessFully")
-        return redirect('userlogin')
+        Family.objects.get(id=id,user=request.user).delete()
+        messages.success(request,"Family member deleted")
+    except Exception as e:
+        print(e)
+        messages.error(request,"Not allowed Invalid request")
+    return redirect('family')
+def getaddress(request):
+    id = request.GET.get('addressid')
+    data = serialize('python',userAddress.objects.filter(id=id))
+    return JsonResponse(data[0]['fields'],safe=False)
+def deleteaddress(request,id):
+    try:
+        userAddress.objects.get(id=id,user=request.user).delete()
+        messages.success(request,   "Address deleted")
+    except:
+        messages.error(request, "Not allowed Invalid request")
+    return redirect("address")
+def address(request):
+    if request.method == "POST":
+        id = request.POST.get('id')
+        if id is not None and len(id) != 0:
+            instance = userAddress.objects.get(id=id)
+        else:
+            instance =None
+        form = GenForm(userAddress)(request.POST,instance=instance)
+        print(request.POST)
+        if form.is_valid():
+            form.save()
+            if instance is None:
+                messages.success(request,'Address added successfully')
+            else:
+                messages.success(request,'Address updated successfully')
+            return redirect(request.path)
+        else:
+            for key,value in form.errors.as_data().items():
+                msg = ""
+                for data in value:
+                    for v in data:
+                        msg+=str(v)+"<br>"
+                msg = msg[:msg.rfind('<br>')]
+                messages.error(request,f"{key}: {msg}")
+            
+    res = {}
+    res['bodyclass'] = "faimly-friendwraper"
+    res['address'] = userAddress.objects.filter(user=request.user.id)
+    return render(request,'UserData/user/address.html',res)
