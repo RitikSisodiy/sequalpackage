@@ -89,6 +89,7 @@
                 <div class="shadow mb-2">
                     <div class="p-3  text-light bg-primary">2 Add Member</div>
                     <div class="p-3 ">
+
                         <div class="row">
                             <div class="p-3 col-sm-4">
                                 <div class="p-3 text-sm shadow-sm addressbox">
@@ -104,7 +105,8 @@
                                     <span>{{data.name}},</span><br>
                                     <small>{{data.relation}}</small><br>
                                     <small>{{data.gender}} , {{data.age}} yrs</small>
-                                    <input type="checkbox" class="familymember" name="member{{data.id}}" id="member{{data.id}}" checked="checked" >
+                                    <input type="checkbox" class="familymember" name="member{{data.id}}"
+                                        id="member{{data.id}}" checked="checked">
                                 </div>
                             </div>
                             {% endfor %}
@@ -112,7 +114,7 @@
                         <div class="Addressbuttons">
                             <a href="{% url 'family' %}?next={{request.path}}"><button class="mx-2">Add More
                                     Member</button></a>
-                            <button type="button"  class="mx-2" data-toggle="collapse" data-target="#collapseExample"
+                            <button type="button" class="mx-2" data-toggle="collapse" data-target="#collapseExample"
                                 aria-expanded="false" aria-controls="collapseExample">next</button>
                         </div>
                     </div>
@@ -125,11 +127,12 @@
                                 {% for data in address %}
                                 <div class="p-3 col-sm-6">
                                     <div class="p-3 text-sm shadow-sm addressbox d-flex flex-row">
-                                        <div><input class="mx-1" type="radio" name="address" id="address{{data.id}}" required></div>
+                                        <div><input class="mx-1" type="radio" name="address" id="address{{data.id}}"
+                                                required></div>
                                         <div> <label for="address{{data.id}}"> <small>
-                                                House no.: {{data.houseno}}, {{data.city}}, {{data.state}}, India -
-                                                {{data.pin}}
-                                            </small></label>
+                                                    House no.: {{data.houseno}}, {{data.city}}, {{data.state}}, India -
+                                                    {{data.pin}}
+                                                </small></label>
                                         </div>
                                     </div>
                                 </div>
@@ -143,15 +146,16 @@
                                     <input type="date" name="colletiondate" class="form-control " required>
                                 </div>
                                 <div class="col-sm-6">
-                                    <input type="time"  name="colletiontime" class="form-control" required>
+                                    <input type="time" name="colletiontime" class="form-control" required>
                                 </div>
                             </div>
                             <small>* Choose sample collection date & time to proceed further</small>
                             <div class="Addressbuttons">
                                 <a href="{% url 'address' %}?next={{request.path}}"><button class="mx-2">Add More
                                         Address</button></a>
-                                <button class="mx-2" type="button" data-toggle="collapse" data-target="#collapseExample1"
-                                    aria-expanded="false" aria-controls="collapseExample1">next</button>
+                                <button class="mx-2" type="button" data-toggle="collapse"
+                                    data-target="#collapseExample1" aria-expanded="false"
+                                    aria-controls="collapseExample1">next</button>
                             </div>
                         </div>
                     </div>
@@ -165,8 +169,27 @@
                                 <div class="my-3"></div>
                                 <div class="mb-3">
                                     <img src="/static/images/coupon-card.png" class="mb-3">Apply Coupon here<br>
-                                    <input type="text" class="coupeninput"  placeholder="Enter Coupen">
-                                    <input type="button" class="coupenButton" value="Apply">
+                                    <div class="d-none" id="coupencard">
+                                        <div class="d-flex justify-content-between col-md-6 p-3 border border-success ">
+                                            <div class="d-flex">
+                                                <div class="align-self-center text-bg text-success">
+                                                    <i
+                                                        class="fa fa-check mr-3 rounded-circle border border-success p-2"></i>
+                                                </div>
+                                                <div class="align-self-center">
+                                                    <span id=coupencode></span><strong
+                                                        class="text-success">Applied</strong>
+                                                    <br>
+                                                    <small><span id="coupenmsg"></span></small>
+                                                </div>
+                                            </div>
+                                            <div class="align-self-center"><a href="" class="text-danger">remove</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-danger d-none">invalid coupen</div>
+                                    <input type="text" class="coupeninput" id="coupeninput" placeholder="Enter Coupen">
+                                    <input type="button" class="coupenButton" id="coupensubmit" value="Apply">
                                 </div>
                                 <div>
                                     <small>* Choose sample collection date & time to proceed further</small>
@@ -193,7 +216,7 @@
         </div>
         <div class="col-sm-4 col-xs-12 packages_section mob_viewport">
             <div class="p-3 shadow p-3 mb-2 bg-primary text-light font-weight-bold rounded">{{type|title}} Details</div>
-            
+
             {% if type == 'test' %}
             <div class="p-3 shadow d-flex justify-content-between p-3 mb-2  rounded">
                 <div>
@@ -202,7 +225,8 @@
                         class="text-primary font-weight-bold mx-3">₹{{test.final_cost}}</small>
                 </div>
                 <div>
-                    <small class="p-1 bg-primary text-light">save {{test.discount}}{% if '%' not in test.discount %}₹{% endif %}</small>
+                    <small class="p-1 bg-primary text-light">save
+                        {{test.discount}}{% if '%' not in test.discount %}₹{% endif %}</small>
                 </div>
             </div>
             {% else %}
@@ -213,7 +237,8 @@
                         class="text-primary font-weight-bold mx-3">₹{{package.final_cost}}</small>
                 </div>
                 <div>
-                    <small class="p-1 bg-primary text-light">save {{package.discount}}{% if '%' not in package.discount %}₹{% endif %}</small>
+                    <small class="p-1 bg-primary text-light">save
+                        {{package.discount}}{% if '%' not in package.discount %}₹{% endif %}</small>
                 </div>
             </div>
             {% endif %}
@@ -223,19 +248,21 @@
                 <hr>
                 {% if type == 'test' %}
                 <div>
-                <div>{{test.test_name}} Test</div>
-                <small>{{package.test_name}} Included : 1</small>
-                <div>
-                    <del class="text-secondary">₹{{test.test_price}} </del> <small
-                        class="text-primary font-weight-bold mx-3 packageprize" >₹<span id="prizememberself"> {{test.final_cost}}</span></small>
-                </div>
+                    <div>{{test.test_name}} Test</div>
+                    <small>{{package.test_name}} Included : 1</small>
+                    <div>
+                        <del class="text-secondary">₹{{test.test_price}} </del> <small
+                            class="text-primary font-weight-bold mx-3 packageprize">₹<span id="prizememberself">
+                                {{test.final_cost}}</span></small>
+                    </div>
                 </div>
                 {% else %}
                 <div>Ayushman Package</div>
                 <small>{{package.Package_name}} Included : {{totaltest}}</small>
                 <div>
                     <del class="text-secondary">₹{{package.Package_price}} </del> <small
-                        class="text-primary font-weight-bold mx-3 packageprize"  >₹<span id="prizememberself" >{{package.final_cost}}</span></small>
+                        class="text-primary font-weight-bold mx-3 packageprize">₹<span
+                            id="prizememberself">{{package.final_cost}}</span></small>
                 </div>
                 {% endif %}
             </div>
@@ -246,19 +273,21 @@
                 <hr>
                 {% if type == 'test' %}
                 <div>
-                <div>{{test.test_name}} Test</div>
-                <small>{{package.test_name}} Included : 1</small>
-                <div>
-                    <del class="text-secondary">₹{{test.test_price}} </del> <small
-                        class="text-primary font-weight-bold mx-3 packageprize" >₹<span id="prizemember{{data.id}}"> {{test.final_cost}}</span></small>
-                </div>
+                    <div>{{test.test_name}} Test</div>
+                    <small>{{package.test_name}} Included : 1</small>
+                    <div>
+                        <del class="text-secondary">₹{{test.test_price}} </del> <small
+                            class="text-primary font-weight-bold mx-3 packageprize">₹<span id="prizemember{{data.id}}">
+                                {{test.final_cost}}</span></small>
+                    </div>
                 </div>
                 {% else %}
                 <div>Ayushman Package</div>
                 <small>{{package.Package_name}} Included : {{totaltest}}</small>
                 <div>
                     <del class="text-secondary">₹{{package.Package_price}} </del> <small
-                        class="text-primary font-weight-bold mx-3 packageprize"  >₹<span id="prizemember{{data.id}}" >{{package.final_cost}}</span></small>
+                        class="text-primary font-weight-bold mx-3 packageprize">₹<span
+                            id="prizemember{{data.id}}">{{package.final_cost}}</span></small>
                 </div>
                 {% endif %}
             </div>
@@ -275,9 +304,10 @@
                 <hr>
                 <div class="d-flex justify-content-between">
                     <div class="font-weight-bold text-primary">Total</div>
-                    <div class="font-weight-bold text-primary" >₹ <span id="totlePrize" >{{totleprize}}</span></div>
+                    <div class="font-weight-bold text-primary">₹ <span id="totlePrize">{{totleprize}}</span></div>
                 </div>
-                <p class="text-success text-center my-4"><small>Your total saving on this health booking ₹ {{totalsaving}}</small>
+                <p class="text-success text-center my-4"><small>Your total saving on this health booking ₹
+                        {{totalsaving}}</small>
                 </p>
                 <div class="Addressbuttons">
                     <button class="mx-2">Add More Package</button>
@@ -290,20 +320,37 @@
     {% endblock %}
     {% block basicscript %}
     <script>
+        // funtion for prize change
         totalprize = $('#totlePrize')
-        packagePrize  = $("small.packageprize")
+        packagePrize = $("small.packageprize")
         $("input.familymember").on("change", function () {
             $(`#box${this.id}`).toggle()
             var prize = parseInt($(`#prize${this.id}`).html())
             var tprize = parseInt(totalprize.html())
-            if($(this).is(":checked")){
-                tprize = tprize+prize
-            }else{
-                tprize = tprize-prize
+            if ($(this).is(":checked")) {
+                tprize = tprize + prize
+            } else {
+                tprize = tprize - prize
             }
             totalprize.html(tprize)
-            console.log(prize,tprize)
+            console.log(prize, tprize)
             console.log(this.name)
         })
+
+        // funtion for couper apply
+        cbutton = $("#coupensubmit")
+        cinput = $("#coupeninput")
+        cerror = $("#coupenerror")
+        cCard = $("#coupencard")
+        csuccess = $("#coupensuccess")
+        cbutton.on("click", function () {
+            console.log('woring')
+            if (cinput.val().length != 0) {
+                cCard.toggle('display')
+            } else {
+                cerror.toggle("display")
+            }
+        })
     </script>
+
     {% endblock %}
