@@ -185,7 +185,12 @@ def search(request):
     page = request.GET.get('page',None)
     if qry is not None:
         # searchresult = chain(searchinModel(package,qry),searchinModel(test,qry))
-        searchresult = searchinModel(test,qry).union(searchinModel(package,qry))
+        # searchresult = []
+        # for data in searchinModel(test,qry):
+        #     searchresult.append(data)
+        # for data in searchinModel(package,qry):
+        #     searchresult.append(data)
+        searchresult = list(chain(searchinModel(test,qry),searchinModel(package,qry)))
         # if searchresult:
         #     searchresult = [searchresult[0] for data in range(0,100)]
         paginator = Paginator(searchresult, 12)

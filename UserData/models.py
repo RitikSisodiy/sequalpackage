@@ -122,7 +122,10 @@ class Booking(models.Model):
         self.Booking_id = f"booking{self.id}"
         super(Booking, self).save(*args, **kwargs)
     def __str__(self):
-        return self.Booking_id
+        try:
+            return self.Booking_id
+        except:
+            return self.user.first_name
 class cart(models.Model):
     user = models.ForeignKey("UserData.User",on_delete=models.CASCADE)
     type = models.CharField(max_length=10)

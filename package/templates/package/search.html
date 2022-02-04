@@ -18,11 +18,10 @@
     <div class="justify-content-center align-items-center d-flex flex-wrap infinite-container">
         {% if result %}
         {% for data in result %}
+       {{ data.test_name}}
         {% if data.Package_name %}
-
-        {% include 'package/component/packageItem.html' with data=data %}
+         {% include 'package/component/packageItem.html' with data=data %}
         {% else %}
-
         {% include 'package/component/testitem.html' with data=data %}
         {% endif %}
         {% endfor %}
