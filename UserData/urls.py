@@ -14,4 +14,5 @@ urlpatterns = [
     path('address/',views.address,name="address"),
     path('getaddress/',views.getaddress,name="getaddress"),
     path('deleteaddress/<int:id>/',views.deleteaddress,name="deleteaddress"),
+    path('upload-prescription/',views.uploadprescription,name="uploadprescription"),
 ]

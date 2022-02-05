@@ -36,6 +36,7 @@
     <style>
         .django-ckeditor-widget {
             width: 100%;
+            padding: 0px 18px 0 18px;
         }
     </style>
     <script src=" {% static 'assets/common/vendor/modernizr-2.8.3.min.js' %} "></script>
@@ -281,17 +282,18 @@
         var ele = document.getElementsByTagName('input')
         var ele2 = document.getElementsByTagName('textarea')
 
-        for (var i = 0; i < ele.length; i++) {
-            if (ele[i].className == '' && ele[i].getAttribute('type') != 'checkbox') {
-                ele[i].setAttribute('class', 'form-control col')
-            }
-            if (ele[i].className == 'self.fields[f.name].') {
-                ele[i].setAttribute('type', 'time')
-            }
-        }
+        // for (var i = 0; i < ele.length; i++) {
+        //     if (ele[i].className == '' && ele[i].getAttribute('type') != 'checkbox') {
+        //         ele[i].setAttribute('class', 'form-control col')
+        //     }
+        //     if (ele[i].className == 'self.fields[f.name].') {
+        //         ele[i].setAttribute('type', 'time')
+        //     }
+        // }
         for (var i = 0; i < ele2.length; i++) {
             if (ele2[i].className == '' && ele2[i].getAttribute('type') != 'checkbox') {
                 ele2[i].setAttribute('class', 'form-control col')
+                ele2[i].parentElement.setAttribute('class', 'col-md-12 ')
             }
             if (ele2[i].className == 'vTimeField') {
                 ele2[i].setAttribute('type', 'time')
@@ -299,25 +301,30 @@
         }
         var sel = document.getElementsByTagName('select')
         for (var i = 0; i < sel.length; i++) {
-            sel[i].setAttribute('class', 'mdb-select colorful-select dropdown-primary md-form')
+            sel[i].setAttribute('class', 'mdb-select colorful-select dropdown-primary md-form ')
             sel[i].setAttribute('searchable', 'Search here..')
+            sel[i].parentElement.setAttribute('class', 'col-md-6')
         }
         var ele = document.getElementsByTagName('input')
         for (var i = 0; i < ele.length; i++) {
-            if (ele[i].className == '' && ele[i].getAttribute('type') != 'checkbox') {
-                ele[i].setAttribute('class', 'form-control col')
+            if (ele[i].className == '' && ele[i].getAttribute('type') != 'checkbox' && ele[i].getAttribute('type') != 'hidden') {
+                ele[i].setAttribute('class', 'form-control ')
+                ele[i].parentElement.setAttribute('class', 'col-md-6')
             }
             if (ele[i].className == 'vTimeField') {
                 ele[i].setAttribute('type', 'time')
+                ele[i].parentElement.setAttribute('class', 'col-md-6')
             }
             if (ele[i].className == 'vDateField') {
                 ele[i].setAttribute('type', 'date')
                 ele[i].setAttribute('class', 'form-control')
+                ele[i].parentElement.setAttribute('class', 'col-md-6')
             }
             if (ele[i].className == 'vDateTime') {
                 ele[i].setAttribute('value', ele[i].value.replace(" ","T"))
                 ele[i].setAttribute('type', 'datetime-local')
                 ele[i].setAttribute('class', 'form-control')
+                ele[i].parentElement.setAttribute('class', 'col-md-6')
             }
         }
       

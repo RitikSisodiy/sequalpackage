@@ -1,5 +1,6 @@
 from email.headerregistry import Address
 from email.policy import default
+from hashlib import blake2b
 from pyexpat import model
 from random import choice
 from django.core.exceptions import ValidationError
@@ -170,3 +171,11 @@ class RequestedCallBack(models.Model):
     city = models.CharField(max_length=50)
     def __str__(self) -> str:
         return self.name
+
+class Prescriptions(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    image1 = models.ImageField(upload_to='prescription',blank=True)
+    image2 = models.ImageField(upload_to='prescription',blank=True)
+    image3 = models.ImageField(upload_to='prescription',blank=True)
+    def __str__(self) -> str:
+        return self.user.first_name

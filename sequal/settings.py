@@ -52,6 +52,8 @@ INSTALLED_APPS = [
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
+        'height': 'full', 
+        'width': 'full', 
     },
 }
 CKEDITOR_UPLOAD_PATH = 'content/ckeditor/'

@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.http import JsonResponse,HttpResponse
-from UserData.models import Family,Booking,report,userAddress
+from UserData.models import Family,Booking,report,userAddress,Prescriptions
 from django.conf import settings
 from superuser.forms import GenForm
 import mimetypes
@@ -146,3 +146,21 @@ def address(request):
     res['bodyclass'] = "faimly-friendwraper"
     res['address'] = userAddress.objects.filter(user=request.user.id)
     return render(request,'UserData/user/address.html',res)
+
+
+def uploadprescription(request):
+    res= {}
+    res['bodyclass'] = 'upload-page'
+    if request.method=="POST":
+        print(request.POST,request.FILES)
+        dictdata = {'user':request.user}
+        count = 0
+        for data in request.FILES.getlist('files[]'):
+            count+=1
+            if count <=3:
+                dictdata[f'image{count}'] = data
+        presimg = Prescriptions(**dictdata)
+        presimg.save()
+        messages.success(request,'Your Prescription uploaded successfully we will get back to you soon')
+        return JsonResponse({"uploaded":True,'status':True,'url':request.path})
+    return render(request,'UserData/user/uploadprescription.html',res)
