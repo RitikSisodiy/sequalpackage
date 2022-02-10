@@ -85,7 +85,7 @@
 
         <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ">
             <form method="post" enctype="multipart/form-data">{% csrf_token %}
-                <div class="p-3 shadow p-3 mb-2 bg-white rounded">1 {{user.first_name}} | +91 {{user.phone}}</div>
+                <div class="p-3 shadow p-3 mb-2 bg-white rounded">1 {{user.first_name|title}} | +91 {{user.phone}}</div>
                 <div class="shadow mb-2">
                     <div class="p-3  text-light bg-primary">2 Add Member</div>
                     <div class="p-3 ">
@@ -93,18 +93,18 @@
                         <div class="row">
                             <div class="p-3 col-sm-4">
                                 <div class="p-3 text-sm shadow-sm addressbox">
-                                    <span>{{user.first_name}} {{user.last_name}},</span><br>
+                                    <span>{{user.first_name|title}} {{user.last_name|title}},</span><br>
                                     <small>Self,</small><br>
-                                    <small>{{user.gender}} , {{user.age}} yrs</small>
+                                    <small>{{user.gender|title}} , {{user.age|title}} yrs</small>
                                     <input type="checkbox" class="familymember" name="self" id="memberself" checked>
                                 </div>
                             </div>
                             {% for data in family %}
                             <div class="p-3 col-sm-4">
                                 <div class="p-3 text-sm shadow-sm addressbox">
-                                    <span>{{data.name}},</span><br>
-                                    <small>{{data.relation}}</small><br>
-                                    <small>{{data.gender}} , {{data.age}} yrs</small>
+                                    <span>{{data.name|title}},</span><br>
+                                    <small>{{data.relation|title}}</small><br>
+                                    <small>{{data.gender|title}} , {{data.age}} yrs</small>
                                     <input type="checkbox" class="familymember" name="member{{data.id}}"
                                         id="member{{data.id}}" checked="checked">
                                 </div>
@@ -112,7 +112,7 @@
                             {% endfor %}
                         </div>
                         <div class="Addressbuttons">
-                            <a href="{% url 'family' %}?next={{request.path}}"><button class="mx-2">Add More
+                            <a href="{% url 'family' %}?next={{request.path}}"><button onclick="window.location='{% url 'family' %}?next={{request.path}}'" class="mx-2">Add More
                                     Member</button></a>
                             <button type="button" class="mx-2" data-toggle="collapse" data-target="#collapseExample"
                                 aria-expanded="false" aria-controls="collapseExample">next</button>
@@ -127,10 +127,10 @@
                                 {% for data in address %}
                                 <div class="p-3 col-sm-6">
                                     <div class="p-3 text-sm shadow-sm addressbox d-flex flex-row">
-                                        <div><input class="mx-1" type="radio" name="address" id="address{{data.id}}"
+                                        <div><input class="mx-1" type="radio" value="{{data.id}}" name="address" id="address{{data.id}}"
                                                 required></div>
                                         <div> <label for="address{{data.id}}"> <small>
-                                                    House no.: {{data.houseno}}, {{data.city}}, {{data.state}}, India -
+                                                    House no.: {{data.houseno|title}}, {{data.city|title}}, {{data.state|title}}, India -
                                                     {{data.pin}}
                                                 </small></label>
                                         </div>
@@ -143,7 +143,7 @@
                             <p class="text-primary">CHOOSE DATE & TIME FOR HOME SAMPLE COLLECTION</p>
                             <div class="row mb-3">
                                 <div class="col-sm-6">
-                                    <input type="date" name="colletiondate" class="form-control " required>
+                                    <input type="date" id="collectiondate" name="colletiondate" class="form-control " required>
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="time" name="colletiontime" class="form-control" required>
@@ -151,7 +151,7 @@
                             </div>
                             <small>* Choose sample collection date & time to proceed further</small>
                             <div class="Addressbuttons">
-                                <a href="{% url 'address' %}?next={{request.path}}"><button class="mx-2">Add More
+                                <a href="{% url 'address' %}?next={{request.path}}"><button onclick="window.location='{% url 'address' %}?next={{request.path}}'" class="mx-2">Add More
                                         Address</button></a>
                                 <button class="mx-2" type="button" data-toggle="collapse"
                                     data-target="#collapseExample1" aria-expanded="false"
@@ -169,15 +169,19 @@
                                 <div class="my-3"></div>
                                 <div class="mb-3">
                                     <img src="/static/images/coupon-card.png" class="mb-3">Apply Coupon here<br>
-                                    <div class="d-none" id="coupencard">
-                                        <div class="d-flex justify-content-between col-md-6 p-3 border border-success ">
+                                    <div class="mx-2" style="display: none;" id="coupencard">
+                                        <div class="d-flex justify-content-between col-md-6 col-sm-12 col-xm-12 p-3 border border-success ">
                                             <div class="d-flex">
                                                 <div class="align-self-center text-bg text-success">
                                                     <i
                                                         class="fa fa-check mr-3 rounded-circle border border-success p-2"></i>
                                                 </div>
                                                 <div class="align-self-center">
-                                                    <span id=coupencode></span><strong
+                                                    <strong><small class="text-success">
+                                                        <span id=coupencode></span>
+                                                    </small>
+                                                    </strong><br>
+                                                    <strong
                                                         class="text-success">Applied</strong>
                                                     <br>
                                                     <small><span id="coupenmsg"></span></small>
@@ -187,9 +191,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="text-danger d-none">invalid coupen</div>
-                                    <input type="text" class="coupeninput" id="coupeninput" placeholder="Enter Coupen">
-                                    <input type="button" class="coupenButton" id="coupensubmit" value="Apply">
+                                    <div class="d-none" id="couperloader">
+                                    <div class="d-flex my-2 align-items-center">
+                                        <strong>Loading...</strong>
+                                        <div class="spinner-border text-danger ml-auto" role="status" aria-hidden="true"></div>
+                                      </div>
+                                    </div>
+                                    <div class="text-danger mx-2 " style="display:none;" id="coupenerror">invalid coupen</div>
+                                    <!-- <div class="text-danger d-none" id="coupenerror">invalid coupen</div> -->
+                                    <input type="text" class="coupeninput my-2" id="coupeninput" name="coupencode" placeholder="Enter Coupen">
+                                    <input type="hidden" class="coupeninput my-2" id="coupeninputcopy" name="coupencode" placeholder="Enter Coupen">
+                                    <input type="button" class="coupenButton my-2" id="coupensubmit" value="Apply">
                                 </div>
                                 <div>
                                     <small>* Choose sample collection date & time to proceed further</small>
@@ -201,9 +213,9 @@
                                     Paytm</label>
                             </div>
                             <div class="p-3 shadow-sm p-3 mb-2 bg-white rounded">
-                                <input type="radio" name="payoption" id='paypal' value="paypal" class="mx-2"><label
-                                    for="paypal"><img src="/static/images/paypal.png" class="mx-1" alt="paypal icon">
-                                    Pay with Paypal</label>
+                                <input type="radio" name="payoption" id='paypal' value="cod" class="mx-2"><label
+                                    for="paypal"><img src="/static/images/cod1.png" style="height: 31px;" class="mx-1" alt="paypal icon">
+                                    Cash on Delhivery </label>
                             </div>
                             <div class="Addressbuttons">
                                 <button type="submit" class="mx-2">Pay Now</button>
@@ -243,7 +255,7 @@
             </div>
             {% endif %}
             <div class="p-3 shadow p-3 mb-2  font-weight-bold rounded" id="boxmemberself">
-                <div>{{user.first_name}}{{user.last_name}} | self,</div>
+                <div>{{user.first_name|title}}{{user.last_name|title}} | self,</div>
                 <small>Male, {{user.age}} years</small>
                 <hr>
                 {% if type == 'test' %}
@@ -257,8 +269,8 @@
                     </div>
                 </div>
                 {% else %}
-                <div>Ayushman Package</div>
-                <small>{{package.Package_name}} Included : {{totaltest}}</small>
+                <div>{{package.Package_name}}</div>
+                <small>Total Test Included : {{totaltest}}</small>
                 <div>
                     <del class="text-secondary">₹{{package.Package_price}} </del> <small
                         class="text-primary font-weight-bold mx-3 packageprize">₹<span
@@ -268,7 +280,7 @@
             </div>
             {% for data in member %}
             <div class="p-3 shadow p-3 mb-2  font-weight-bold rounded" id="boxmember{{data.id}}">
-                <div>{{data.name}} | {{data.relation}}</div>
+                <div>{{data.name|title}} | {{data.relation|title}}</div>
                 <small>Male, {{data.age}} years</small>
                 <hr>
                 {% if type == 'test' %}
@@ -282,8 +294,8 @@
                     </div>
                 </div>
                 {% else %}
-                <div>Ayushman Package</div>
-                <small>{{package.Package_name}} Included : {{totaltest}}</small>
+                <div>{{package.Package_name}}</div>
+                <small>Total Test Included : {{totaltest}}</small>
                 <div>
                     <del class="text-secondary">₹{{package.Package_price}} </del> <small
                         class="text-primary font-weight-bold mx-3 packageprize">₹<span
@@ -293,6 +305,7 @@
             </div>
             {% endfor %}
             <div class="shadow p-3">
+                <div id="accountbox">
                 <div class="d-flex justify-content-between">
                     <div>Price</div>
                     <div>₹ {{totleprize}}</div>
@@ -301,6 +314,8 @@
                     <div>Doctor Consultation<span class=" mx-1 badge badge-pill badge-success">Success</span></div>
                     <div><del>₹ 798</del></div>
                 </div>
+            </div>
+
                 <hr>
                 <div class="d-flex justify-content-between">
                     <div class="font-weight-bold text-primary">Total</div>
@@ -319,14 +334,16 @@
     </div>
     {% endblock %}
     {% block basicscript %}
+   <script src="/static/js/request.js"></script>
+
     <script>
         // funtion for prize change
         totalprize = $('#totlePrize')
         packagePrize = $("small.packageprize")
         $("input.familymember").on("change", function () {
             $(`#box${this.id}`).toggle()
-            var prize = parseInt($(`#prize${this.id}`).html())
-            var tprize = parseInt(totalprize.html())
+            var prize = parseFloat($(`#prize${this.id}`).html())
+            var tprize = parseFloat(totalprize.html())
             if ($(this).is(":checked")) {
                 tprize = tprize + prize
             } else {
@@ -336,21 +353,77 @@
             console.log(prize, tprize)
             console.log(this.name)
         })
-
+        
         // funtion for couper apply
         cbutton = $("#coupensubmit")
         cinput = $("#coupeninput")
         cerror = $("#coupenerror")
+        cloader = $("#couperloader")
         cCard = $("#coupencard")
-        csuccess = $("#coupensuccess")
+        coupenmsg = $("#coupenmsg")
+        coupencode = $("#coupencode")
+        accbox = $("#accountbox")
         cbutton.on("click", function () {
+            showele(cCard,false)
+            showele(cerror,false)
+            showele(cloader,false)
+            cerror.html('')
             console.log('woring')
             if (cinput.val().length != 0) {
-                cCard.toggle('display')
+                showele(cloader,true)
+                ajaxCallPromise(`{% url 'getCoupenDetails' %}?coupen=${cinput.val()}&ordervalue=${parseFloat(totalprize.html())}`,"GET",null).then((data)=>{
+                    showele(cloader,false)
+                    console.log(data)
+                    if (data.success){
+                        cinput.prop("disabled",true)
+                        $("#coupeninputcopy").val(data.code)
+                        cbutton.prop("disabled",true)
+                        tprize = parseFloat(totalprize.html())
+                        if ((data.discount).includes('%')){
+                            msg = data.discount + " off"
+                            dis = parseFloat(data.discount.replace("%",''))
+                            cdis= (tprize*dis)/100
+                            totalprize.html(tprize -cdis)
+                        }else{
+                            msg =  "₹"+ data.discount 
+                            dis = parseFloat(data.discount)
+                            cdis = dis
+                            totalprize.html(tprize -dis)
+                        }
+                        str = ` <div class="d-flex justify-content-between">
+                            <div>Coupon Discount<span class=" mx-1 badge badge-pill badge-success">Success</span></div>
+                            <div>₹ ${cdis}</div>
+                        </div>`
+                        accbox.append(str)
+                        coupenmsg.html(`${msg}  ${data.message}`)
+                        coupencode.html(data.code)
+                        showele(cCard,true);
+                    }
+                    else{
+                        cerror.html(data.message)
+                        showele(cerror,true);   
+                    }
+                })
             } else {
-                cerror.toggle("display")
+                cerror.html("please enter the coupen code first")
+                showele(cerror,true);
             }
         })
+
+        function showele(ele,bul){
+            if(bul){ele.css('display','block')}
+            else{ele.css('display','none')}
+        }
+        $(document).ready(function () {
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0');
+            var yyyy = today.getFullYear();
+
+            today = yyyy + '-' + mm + '-' + dd;
+            $('#collectiondate').attr('min',today);
+
+        });
     </script>
 
     {% endblock %}

@@ -1,100 +1,99 @@
 {% extends 'UserData/user/userbasic.html' %}
 {% block user %}
 
-<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-    <div class="Family-headingdiv text-left">
-        <h3>My Family &amp; Friends</h3>
+<div class="Family-headingdiv text-left">
+    <h3>My Family &amp; Friends</h3>
 
-        <span class="addmemberright">
-            <a class="btn btn-danger btn_cmncolor_right ga_add_member_button" data-toggle="modal"
-                data-target="#family_edit" onclick="addFamily()" id="addnewmember">Add New Member</a>
-        </span>
+    <span class="addmemberright">
+        <a class="btn btn-danger btn_cmncolor_right ga_add_member_button" data-toggle="modal" data-target="#family_edit"
+            onclick="addFamily()" id="addnewmember">Add New Member</a>
+    </span>
 
+</div>
+
+<div class="Retake-Healthkarmadiv f-div">
+
+
+    <div class="alert alert-danger" id="family_list_error_div" style="display:none;">
     </div>
 
-    <div class="Retake-Healthkarmadiv f-div">
-
-
-        <div class="alert alert-danger" id="family_list_error_div" style="display:none;">
-        </div>
-
-        <div id="myfamily_list_div">
-            <div class="add-box">
-                <div class="row">
-                    <div class="col-sm-5">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">Test</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="db_titlecaption">Age : </td>
-                                        <td class="db_titleinfo">30 Years</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="db_titlecaption">Relation : </td>
-                                        <td class="db_titleinfo">Self</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="db_titlecaption">Gender : </td>
-                                        <td class="db_titleinfo">Male</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="db_titlecaption">Mobile Number : </td>
-                                        <td class="db_titleinfo">9090974785</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+    <div id="myfamily_list_div">
+        <div class="add-box">
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">Test</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="db_titlecaption">Age : </td>
+                                    <td class="db_titleinfo">30 Years</td>
+                                </tr>
+                                <tr>
+                                    <td class="db_titlecaption">Relation : </td>
+                                    <td class="db_titleinfo">Self</td>
+                                </tr>
+                                <tr>
+                                    <td class="db_titlecaption">Gender : </td>
+                                    <td class="db_titleinfo">Male</td>
+                                </tr>
+                                <tr>
+                                    <td class="db_titlecaption">Mobile Number : </td>
+                                    <td class="db_titleinfo">9090974785</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-
                 </div>
-            </div>
-            {% for data in request.user.Family.all %}
-            <div class="add-box">
-                <a class="edit" data-toggle="modal" data-target="#family_edit"
-                    onclick="editFamily('{{data.id}}');"> <img src="/static/images/edit-icon.png">
-                    </a>
-                <div class="row">
-                    <div class="col-sm-5">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th colspan="2">{{data.name}}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="db_titlecaption">Age : </td>
-                                        <td class="db_titleinfo">{{data.age}} Years</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="db_titlecaption">Relation : </td>
-                                        <td class="db_titleinfo">{{data.relation}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="db_titlecaption">Gender : </td>
-                                        <td class="db_titleinfo">{{data.gender|title}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="db_titlecaption">Mobile Number : </td>
-                                        <td class="db_titleinfo">{{data.mobile}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
 
-                </div>
             </div>
-            {% endfor %}
         </div>
+        {% for data in request.user.Family.all %}
+        <div class="add-box">
+            <a class="edit" data-toggle="modal" data-target="#family_edit" onclick="editFamily('{{data.id}}');"> <img
+                    src="/static/images/edit-icon.png">
+            </a>
+            <div class="row">
+                <div class="col-sm-5">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">{{data.name}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="db_titlecaption">Age : </td>
+                                    <td class="db_titleinfo">{{data.age}} Years</td>
+                                </tr>
+                                <tr>
+                                    <td class="db_titlecaption">Relation : </td>
+                                    <td class="db_titleinfo">{{data.relation}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="db_titlecaption">Gender : </td>
+                                    <td class="db_titleinfo">{{data.gender|title}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="db_titlecaption">Mobile Number : </td>
+                                    <td class="db_titleinfo">{{data.mobile}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
+            </div>
+        </div>
+        {% endfor %}
     </div>
+
+</div>
 </div>
 <div class="modal fade addfamilymember in" id="family_edit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -183,15 +182,15 @@
                                         <ul>
                                             <li>
 
-                                                <input name="gender" value="male" type="radio" id="checkbox6" tabindex="7"
-                                                    required>
+                                                <input name="gender" value="male" type="radio" id="checkbox6"
+                                                    tabindex="7" required>
                                                 <label for="checkbox6">Male</label>
 
                                             </li>
 
                                             <li>
-                                                <input name="gender" value="female" type="radio" id="checkbox7" tabindex="8"
-                                                    required>
+                                                <input name="gender" value="female" type="radio" id="checkbox7"
+                                                    tabindex="8" required>
                                                 <label for="checkbox7">Female</label>
                                             </li>
                                         </ul>
@@ -228,6 +227,7 @@
 </script> -->
 
 
+
 <script>
     function ajaxCallPromise(api_url, method, request_data, loader = true) {
         var promiseObj = new Promise(function (resolve, reject) {
@@ -248,23 +248,23 @@
     }
 
     function editFamily(customer_id) {
-        getFamily_api_url = "{% url "getmember" %}?memberid="+customer_id
+        getFamily_api_url = "{% url "getmember" %}?memberid=" + customer_id
         $("#add_edit_title").text("Edit Family Member");
         $('#add_family_form')[0].reset();
 
         $("#customer_id").val("");
         $("#customer_id").val(customer_id);
 
-        ajaxCallPromise(getFamily_api_url, "GET", null).then((data)=>{
+        ajaxCallPromise(getFamily_api_url, "GET", null).then((data) => {
             console.log(data);
-        $("#username").val(data.name);
-        $("#relation").val(data.relation);
-        $("#mobile").val(data.mobile);
-        $("#dob").val(data.dob);
-        $("#email").val(data.email);
-        $("#familid").val(customer_id);
-        $("input[value="+data.gender+"]").prop('checked', true);
-            
+            $("#username").val(data.name);
+            $("#relation").val(data.relation);
+            $("#mobile").val(data.mobile);
+            $("#dob").val(data.dob);
+            $("#email").val(data.email);
+            $("#familid").val(customer_id);
+            $("input[value=" + data.gender + "]").prop('checked', true);
+
         });
     }
 

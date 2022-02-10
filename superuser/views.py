@@ -13,6 +13,7 @@ from superuser.dashboardsettings import exclude as excludeapps
 from django.db.models.fields import related
 from superuser.dashboardsettings import hiddenFields,disablefield
 from .models import emailSetup
+import csv
 from django.core.mail.backends.smtp import EmailBackend
 # from django.apps import apps
 # from onlineshop.models import *
@@ -82,6 +83,21 @@ def showObject(request,appname,modelname):
     except:
         pass
     return render(request , 'superuser/modeldatatable.html' ,res)
+
+def ExportData(request,appname,modelname,type):
+    if type=='excel':
+        mymodel = getObjectbyAppModelName(appname,modelname)
+        modelob = mymodel.objects.all()
+        response = HttpResponse(content_type='application/vnd.ms-excel;charset=utf-8')
+        response['Content-Disposition'] = f'attachment; filename="{appname}-{modelname}.xls"'
+
+        writer = csv.writer(response)
+        fields = [f.name for f in mymodel._meta.fields]
+        writer.writerow(fields)
+        for data in modelob:
+            writer.writerow([ getattr(data,name) for name in fields ])
+        return response
+
 from .dashboardsettings import showRelatedOnEditPage
 def editmodel(request,appname=None,modelname=None,objectid=None,opration=None):
     res = {}
@@ -206,7 +222,7 @@ def relatedmodel(request,appname=None,modelname=None,objectid=None,relatedfield=
     return render(request,'superuser/relatedmodel.html',res)
 
 
-
+from django.core.exceptions import ValidationError
 from django.contrib.admin.utils import NestedObjects
 def alertdelete(request,singledata,confirm="None",appname ='', modelname=''):
     print(request.POST)
@@ -221,7 +237,11 @@ def alertdelete(request,singledata,confirm="None",appname ='', modelname=''):
         name = ""
         for data in singledata:
             name += str(data)+ " ,"
-            data.delete()
+            try:
+                data.delete()
+            except ValidationError as e:
+                messages.error(request,e.message)
+                return redirect('showdatamodel',appname=appname,modelname=modelname )
         messages.success(request,name + " is deleted successfully")
         return redirect('showdatamodel',appname=appname,modelname=modelname )
     res = {}

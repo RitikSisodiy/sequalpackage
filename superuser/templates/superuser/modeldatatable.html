@@ -8,6 +8,7 @@
             <div class="my-3">
                 <a class="btn btn-primary" href="{% url 'editdatamodel' appname modelname 'newmodel' 'add' %}">+Add New
                     {{modelname|cemelcase|title}} </a>
+                    <a class="btn btn-warning mx-2" href="{% url 'exportexcel' appname modelname 'excel' %}">Export {{modelname|cemelcase|title}} </a>
             </div>
            {% include 'superuser/componets/datatable.html' with modeldata=modeldata fields=fields %}
         </div>

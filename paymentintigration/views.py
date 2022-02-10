@@ -1,6 +1,6 @@
 from django.apps import config
 from django.shortcuts import render
-from .models import PaytmConfig, rozpayConfig , paypalConfig
+from .models import PaytmConfig, rozpayConfig , paypalConfig,PaytmTransaction
 from .paytm import Checksum
 from django.conf import settings
 from paypal.standard.forms import PayPalPaymentsForm
@@ -33,12 +33,17 @@ def getPaytmParam(request,orderid:str,ammount:float,cust_id:str,callbackpathname
 def verifyPaymentRequest(request):
     config = PaytmConfig.objects.get(activate=True)
     form = request.POST
+    print(request.POST)
     response_dict= {}
     for i in form.keys():
         response_dict[i]=form[i]
         if i == 'CHECKSUMHASH':
             checksum = form[i]
     print(response_dict)
+    try:
+        PaytmTransaction(**response_dict).save()
+    except Exception as e:
+        print("+++++++++++++++++=exception in push trastion",e)
     verify = Checksum.verify_checksum(response_dict,config.MERCHANT_KEY,checksum)
     return verify,response_dict
 

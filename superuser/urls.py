@@ -5,6 +5,7 @@ urlpatterns = [
     path('',views.index, name="dashboardindex"),
     path('logout',views.Logout, name="dashboardlogout"),
     path('related/<slug:appname>/<slug:modelname>/<slug:objectid>/<slug:relatedfield>/',views.relatedmodel, name="relatedmodel"),
+    path('export/<slug:appname>/<slug:modelname>/<slug:type>',views.ExportData, name="exportexcel"),
     path('<slug:appname>/',views.showmodels, name="showapp"),
     path('<slug:appname>/<slug:modelname>/',views.showObject, name="showdatamodel"),
     path('<slug:appname>/<slug:modelname>/<slug:objectid>/<slug:opration>/',views.editmodel, name="editdatamodel"),

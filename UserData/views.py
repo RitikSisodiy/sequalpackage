@@ -5,6 +5,7 @@ from UserData.models import Family,Booking,report,userAddress,Prescriptions
 from django.conf import settings
 from superuser.forms import GenForm
 import mimetypes
+from django.db.models import Q
 
 def download_file(filepath):
     # Define Django project base directory
@@ -45,6 +46,8 @@ def profile(request):
             request.user.profile = profile
             request.user.save()
             messages.success(request,"Profile picture updated")
+            if request.GET.get('next') is not None:
+                return redirect(request.GET.get('next'))
             return redirect(request.path)
         name,gender,dob =  itemgetter('name','gender','dob')(request.POST)
         name = name.strip().split(' ')
@@ -54,13 +57,15 @@ def profile(request):
         request.user.dob = dob
         request.user.save()
         messages.success(request,"Profile updated")
+        if request.GET.get('next') is not None:
+            return redirect(request.GET.get('next'))
         return redirect(request.path)
     res['bodyclass'] = "faimly-friendwraper"
     return render(request,'UserData/user/profile.html',res)
 def booking(request):
     res = {}
     res['bodyclass'] = "faimly-friendwraper"
-    res['Bookings'] = Booking.objects.filter(user=request.user.id , status='success')
+    res['Bookings'] = Booking.objects.filter(Q(user=request.user.id) , Q(status='success')|Q(status='cod')).order_by("-id")
     return render(request,'UserData/user/booking.html',res)
 def Report(request,slug=None):
     if slug is not None:
@@ -88,6 +93,9 @@ def family(request):
         else:
             for data in form.errors:
                 messages.error(request,str(data))
+        if request.GET.get('next') is not None:
+            return redirect(request.GET.get('next'))
+        
         return redirect(request.path)
     res['bodyclass'] = "faimly-friendwraper"
     return render(request,'UserData/user/family.html',res)
@@ -116,6 +124,8 @@ def deleteaddress(request,id):
         messages.success(request,   "Address deleted")
     except:
         messages.error(request, "Not allowed Invalid request")
+    if request.GET.get('next') is not None:
+        return redirect(request.GET.get('next'))
     return redirect("address")
 def address(request):
     if request.method == "POST":
@@ -132,6 +142,8 @@ def address(request):
                 messages.success(request,'Address added successfully')
             else:
                 messages.success(request,'Address updated successfully')
+            if request.GET.get('next') is not None:
+                return redirect(request.GET.get('next'))
             return redirect(request.path)
         else:
             for key,value in form.errors.as_data().items():

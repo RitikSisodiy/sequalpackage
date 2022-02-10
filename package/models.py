@@ -1,13 +1,16 @@
 
 from distutils.command.upload import upload
+from email import message
 from email.policy import default
 from math import fabs
 from operator import mod
 from pydoc import describe
+from statistics import mode
 from django.db import models
 from django.core.exceptions import ValidationError
 from datetime import datetime
 from ckeditor_uploader.fields import RichTextUploadingField
+
 # Create your models here.
 # from UserData.models import User
 
@@ -76,6 +79,15 @@ class test(models.Model):
         
     def __str__(self):
         return F"{self.test_name} - ( {self.test_uniqueId} )"
+    def delete(self):
+        data = self.profile.all()
+        if len(data)>0:
+            message = "Unable to delete This test is used in these Profile [ "
+            for d in data:
+                message+= str(d)+", "
+            message+= " ] please remove it first.."
+            raise ValidationError(message)
+        return super().delete()
     def save(self, *args, **kwargs):
         if self.discount:
             if self.id is None or len(self.slug)==0:
@@ -109,7 +121,7 @@ class test(models.Model):
 class profile(models.Model):
     Profile_Id = models.CharField(max_length=50,blank = True)
     Profile_Name = models.CharField(max_length=50)
-    Select_Test_id = models.ManyToManyField(test)
+    Select_Test_id = models.ManyToManyField(test,related_name="profile")
     profile_description = models.TextField()
     Publish = models.CharField(max_length = 1,choices=(("1","Yes"),("0","No")))
     
@@ -150,6 +162,7 @@ class package(models.Model):
                 self.final_cost = self.Package_price -((self.Package_price*discount)/100)
             else:
                 self.final_cost = self.Package_price - discount
+            self.final_cost = "{:.2f}".format(self.final_cost)
         super(package, self).save(*args, **kwargs)
         if len(self.Package_id)<1:
             self.Package_id = "Package"+F"{self.id}"
@@ -174,11 +187,12 @@ class package(models.Model):
 class coupon(models.Model):
     Coupon_id = models.CharField(max_length=50,blank=True)
     coupan_name = models.CharField(max_length=50)
-    Generate_coupon = models.CharField(max_length=50,help_text="Add coupon or leave blank to genrate automatically..",blank=True)
+    Generate_coupon = models.CharField(max_length=50,help_text="Add coupon or leave blank to genrate automatically..",blank=True,unique=True)
     Coupon_expire_date = models.DateField()
     Coupon_partical_allowes = models.CharField(max_length = 1,choices=(("1","Yes"),("0","No")))
     Coupon_issed_by = models.ForeignKey('UserData.User',on_delete=models.SET_NULL,null=True,blank=True)
     Coupon_created = models.DateField(auto_now=True) 
+    message = models.CharField(max_length=100,help_text="User will see this messge when he/she apply the coupen",default='Applied')
     discount = models.CharField(help_text="You Can Ammount or Percent of Ammount Eg: 100 or 10%",max_length=10)
     minimum_order_value = models.FloatField()
     active = models.CharField(max_length = 1,choices=(("1","Yes"),("0","No")))
@@ -208,11 +222,15 @@ class Faqs(models.Model):
     question = models.CharField(max_length=150)
     Answere = models.TextField()
     def __str__(self):
-        return F"{self.question}"
+        return F"{self.question}" 
 class tempbooking(models.Model):
-    bookingid = models.TextField() #csv formate
+    user = models.ForeignKey('UserData.User',blank=True,on_delete=models.SET_NULL,null=True,related_name='tempbooking')
+    bookingid = models.ManyToManyField("UserData.Booking",null=True,related_name="Transtaction") #csv formate
+    # bookingid = models.TextField() #csv formate
     tempbookingid = models.CharField(max_length=20)
+    coupon = models.CharField(max_length=50,blank=True)
     ammount = models.CharField(max_length=20)
+    status = models.CharField(max_length=10,choices=(('success','success'),('pending','pending')),default="pending")
     def __str__(self):
         return F"{self.tempbookingid}"
     def save(self, ) -> None:

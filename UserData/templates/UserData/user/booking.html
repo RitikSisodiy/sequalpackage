@@ -51,12 +51,11 @@
     {% endif %}
 </div> -->
 
-<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-    <div class="Family-headingdiv text-left">
+    <div class="Family-headingdiv text-left" style="margin: 0;">
         <h3>My Bookings</h3>
     </div>
 
-    <div class="Retake-Healthkarmadiv f-div">
+    <div class="Retake-Healthkarmadiv f-div" style="margin: 0;">
         
 
         <div class="alert alert-danger" id="family_list_error_div" style="display:none;">
@@ -100,11 +99,21 @@
                                         <td class="db_titlecaption">Report : </td>
                                         <td class="db_titleinfo"><span class="badge badge-primary">
                                             {% if data.report %}
-                                            <a href="{% url "report" %}" target="_blank" rel="noopener noreferrer">Uploaded</a>
+                                            <a href="{% url "report" %}" class="text-light" style="margin-left: 0px;" target="_blank" rel="noopener noreferrer">Uploaded</a>
                                             {% else %}
                                             Will Upload soon...
                                             {% endif %}
                                         </span></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="db_titlecaption">Payment status : </td>
+                                        <td class="db_titleinfo">
+                                            {% if data.status == 'success' %}
+                                            <span class="badge badge-success" >Paid</span>
+                                            {% else %}
+                                            <span class="badge badge-secondary">Cash on Delhivery</span>
+                                            {% endif %}
+                                        </td>
                                     </tr>
                                 </tbody>
                                 {% else %}
@@ -135,6 +144,16 @@
                                             {% endif %}
                                         </span></td>
                                     </tr>
+                                    <tr>
+                                        <td class="db_titlecaption">Payment status : </td>
+                                        <td class="db_titleinfo">
+                                            {% if data.status == 'success' %}
+                                            <span class="badge badge-success">Paid</span>
+                                            {% else %}
+                                            <span class="badge badge-secondary">Cash on Delhivery</span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
                                 </tbody>
                                 {% endif %}
                             </table>
@@ -150,7 +169,6 @@
         </div>
 
     </div>
-</div>
 {% endblock %}
 
 <!------aside-end -->

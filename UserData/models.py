@@ -89,21 +89,21 @@ class Booking(models.Model):
         ('other','other'),
     )
     statuschoice=(
+        ('cod','Cash On Delhivery'),
         ('success','success'),
         ('pending','pending'),
         ('failed','failed'),
     )
     Booking_id = models.CharField(max_length=50,blank=True)
+    status = models.CharField(max_length=20,choices=statuschoice,default='pending')
     user = models.ForeignKey(User,on_delete=models.CASCADE,related_name="Booking")
     type = models.CharField(max_length=10,choices=choices)
     test = models.ForeignKey(test,on_delete=models.SET_NULL,null=True,blank=True)
     package = models.ForeignKey(package,on_delete=models.SET_NULL,null=True,blank=True,related_name="Booking")
     collectiontime = models.DateTimeField()
     bookingfor = models.CharField(max_length=20,choices=forchoice)
-    status = models.CharField(max_length=20,choices=statuschoice,default='pending')
     address = models.ForeignKey(userAddress,on_delete=models.SET_NULL,null=True,blank=True)
     member = models.ForeignKey(Family,on_delete=models.SET_NULL,null=True,blank=True)
-    
     
     def clean(self) -> None:
         if self.type == "package" and not self.package:

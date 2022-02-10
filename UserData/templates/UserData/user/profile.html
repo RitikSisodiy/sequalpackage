@@ -1,7 +1,6 @@
 {% extends 'UserData/user/userbasic.html' %}
 {% block user %}
 
-<div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 shubham edit-input">
     <div class="Family-headingdiv text-left">
         <h3>Edit Profile</h3>
     </div>
@@ -12,9 +11,7 @@
                 <div id="user_image_name_div">
 
                     <div class="user-img" style="border-radius: 0%;">
-                        <img class="center-block"
-                            src="{{request.user.profile.url}}"
-                            id="user_profile_pic">
+                        <img class="center-block" src="{{request.user.profile.url}}" id="user_profile_pic">
 
                         <a href="javascript:void(0)" class="btn btn-info penciledit"
                             onclick="document.getElementById('my_pics').click();"> <i class="fa fa-camera"
@@ -32,7 +29,8 @@
             <br>
 
 
-            <form id="update_pic_form" method="post" action="{{request.path}}?profile=update" name="update_pic_form" enctype="multipart/form-data">
+            <form id="update_pic_form" method="post" action="{{request.path}}?profile=update" name="update_pic_form"
+                enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="file" name="my_pics" id="my_pics">
             </form>
@@ -167,22 +165,23 @@
 
 
     </div>
-</div>
 
-<script>
-    function displayEditProfile() {
-        $("#edit_profile_div").show();
-        $("#profile_display_info").hide();
-        $("#edit_profile_link").hide();
-    }
 
-    function displayProfileInfo() {
-        $("#edit_profile_div").hide();
-        $("#profile_display_info").show();
-        $("#edit_profile_link").show();
-    }
-    $("#my_pics").on('change',function(){
-        $("#update_pic_form").submit()
-    })
-</script>
-{% endblock %}
+    <script>
+        function displayEditProfile() {
+            $("#edit_profile_div").show();
+            $("#profile_display_info").hide();
+            $("#edit_profile_link").hide();
+        }
+
+        function displayProfileInfo() {
+            $("#edit_profile_div").hide();
+            $("#profile_display_info").show();
+            $("#edit_profile_link").show();
+        }
+        $("#my_pics").on('change', function () {
+            $("#update_pic_form").submit()
+        })
+    </script>
+    {% endblock %}
+    

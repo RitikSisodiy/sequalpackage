@@ -260,7 +260,7 @@
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button>
                             </div>
                             <div class="modal-body">
-                                <form action="{% url "callback" %}?next={{request.path}}" name="addLeadFormPopup" id="addLeadFormPopup" novalidate="">
+                                <form action="{% url "callback" %}?next={{request.path}}" method="post" name="addLeadFormPopup" id="addLeadFormPopup" novalidate="">
                                    {% csrf_token %}
 
                                     <div class="genderOptions" id="callback_type_div">
@@ -269,13 +269,13 @@
                                                 <li>
                                                     <div class="radio_genoption">
                                                         <input id="newBooking" name="type" type="radio"
-                                                            value="1">
+                                                            value="booking">
                                                         <label for="newBooking">New booking </label>
                                                     </div>
                                                 </li>
 
                                                 <li><input id="customerSupport" name="type" type="radio"
-                                                        value="2">
+                                                        value="support">
                                                     <label for="customerSupport">Customer support query </label>
                                                 </li>
                                             </ul>
@@ -451,6 +451,7 @@
             </div>
             <br><br>
             <div class="fifth">
+                {% if package.Faqs.all %}
                 <h2 style="font-weight: 800;">
                     Frequntly Asked Questions
                 </h2>
@@ -468,7 +469,7 @@
 
                 </div>
                 {% endfor %}
-
+                {% endif %}
             </div>
         </div>
 
@@ -483,11 +484,7 @@
                 {% endfor %}
             </div>
             {% endif %}
-            <center>
-                <br><br>
-                <a href=" {% static '' %} " class="services-btn m-4">View All Services</a>
-                <br><br>
-            </center>
+
         </div>
 
         {% include 'footer.html' with aboutdata=aboutdata %}

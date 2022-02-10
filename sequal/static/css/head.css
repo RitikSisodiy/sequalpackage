@@ -9139,7 +9139,6 @@ a.label:hover {
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
-    background-color: #777;
     border-radius: 10px
 }
 
@@ -19444,7 +19443,7 @@ textarea:focus {
 
 .faimly-friendwraper .asidenavdiv {
     width: 100%;
-    margin: 50px 0;
+    margin: 0;
     float: left;
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;

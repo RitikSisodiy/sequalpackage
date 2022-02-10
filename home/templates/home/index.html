@@ -4,24 +4,17 @@
 
     <div id="myCarousel" class="carousel slide lazy-load" data-ride="carousel">
         <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-            <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-
-            <li data-target="#myCarousel" data-slide-to="3" class="active"></li>
+            {% for data in sliders %}
+            <li data-target="#myCarousel" data-slide-to="{{forloop.counter}}" class=""></li>
+            {% endfor %}
         </ol>
         <div class="carousel-inner">
-            <div class="carousel-item"><a href=" {% static 'parameter/gurgaon/covid-19-rtpcr-test' %} "
+            {% for data in sliders %}
+            <div class="carousel-item {% if forloop.counter ==  1 %}active{% endif %}"><a href=" {{data.url}} "
                     style="width:100%;margin:0px;"><img
-                        src="https://helma.healthians.com/stationery/banners/80_5604.jpg" alt="RTPCR TEST"></a>
+                        src="/media/{{data.img}}" alt="{{data.name}}"></a>
             </div>
-
-            <div class="carousel-item"><a href=" {% static 'surgery' %} " style="width:100%;margin:0px;"><img
-                        src="https://helma.healthians.com/stationery/banners/84_1785.jpg" alt="Surgery Banner"></a>
-            </div>
-            <div class="carousel-item active"><a href=" {% static 'popular-package' %} " style="width:100%;margin:0px;"><img
-                        src="https://helma.healthians.com/stationery/banners/78_4194.jpeg"
-                        alt="Popular Packages"></a></div>
-
+            {% endfor %}
         </div>
     </div>
     <div class="p-4 search" style="display: flex; justify-content: center;">
@@ -83,7 +76,7 @@
 
     <div class="second">
         {% for data in categorys %}
-        <div style="background: #f8f8f8;">
+        <div style="background: {% if forloop.counter|divisibleby:2 %} #f8f8f8;{% else %}#ffe2e2;{% endif %}">
             <br>
             <div class="container health-card-p mt-4">
                 <div class="text col-12">

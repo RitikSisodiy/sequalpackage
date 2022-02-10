@@ -1,8 +1,10 @@
 from unittest import result
-from django.shortcuts import render
+from django.http import JsonResponse
+from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
-from .models import package, tempbooking,Subcategory,test,category
+from razorpay import Order, Payment
+from .models import package, tempbooking,Subcategory,test,category,coupon
 from UserData.models import cart,Family,Booking, userAddress
 from datetime import datetime
 from itertools import chain
@@ -97,6 +99,10 @@ def booknow(request,slug,type):
         date = request.POST['colletiondate']
         time = request.POST['colletiontime']
         datime = datetime.strptime(date+" "+time,'%Y-%m-%d %H:%M')
+        address = request.POST['address']
+        coupencode = request.POST['coupencode']
+        address = res['address'].filter(id=address)[0]
+        paymode = request.POST['payoption']
         forself = True if request.POST['self'] == 'on' else False
         familymember = []
         for data in request.POST:
@@ -105,27 +111,53 @@ def booknow(request,slug,type):
                 familymember.append(data)
         bookingids = ''
         ammount = 0.0
+        tran = tempbooking(user=request.user,ammount=0)
+        tran.save()
         for data in familymember:
             mem = Family.objects.get(id=data.replace('member',''))
-            newbooking = Booking(user=request.user,type=type,package=buypackage,test=buytest,collectiontime=datime,bookingfor=data,member=mem)
+            newbooking = Booking(user=request.user,type=type,package=buypackage,test=buytest,collectiontime=datime,bookingfor=data,member=mem,address=address)
             newbooking.save()
             if buypackage is not None:
                 ammount+=float(buypackage.final_cost)
             else:
                 ammount+=float(buytest.final_cost)
-            bookingids+=str(newbooking.id)+","
+            tran.bookingid.add(newbooking)
         if forself:
-            newbooking = Booking(user=request.user,type=type,package=buypackage,test=buytest,collectiontime=datime,bookingfor='self')
+            newbooking = Booking(user=request.user,type=type,package=buypackage,test=buytest,collectiontime=datime,bookingfor='self',address=address)
             newbooking.save()
             if buypackage is not None:
                 ammount+=float(buypackage.final_cost)
             else:
                 ammount+=float(buytest.final_cost)
-            bookingids += str(newbooking.id)
-        tran = tempbooking(bookingid=bookingids,ammount=ammount)
+            tran.bookingid.add(newbooking)
+        tran.ammount = ammount
         tran.save()
-        return getPaytmParam(request,tran.tempbookingid,tran.ammount,request.user.phone,'handlePaytm',"INR")
-        return html
+        validate = validateCoupen(request,coupencode,ammount)
+        print(validate)
+        if validate['success']:
+            tran.coupon = validate['code']
+            discount = validate['discount']
+            amm = tran.ammount
+            if '%' in discount:
+                dis = float(discount.replace('%',''))
+                tran.ammount = amm -((amm*dis)/100)
+            else:
+                tran.ammount = amm - float(discount)
+        tran.save()
+        print(tran.ammount)
+        if paymode == "paytm":
+            return getPaytmParam(request,tran.tempbookingid,tran.ammount,request.user.phone,'handlePaytm',"INR")
+        elif paymode == "cod":
+            tempbook = tempbooking.objects.get(tempbookingid = tran.tempbookingid)
+            tempbook.status = 'success'
+            tempbook.save()
+            for data in tempbook.bookingid.split(','):
+                if len(data)>0:
+                    bob =Booking.objects.get(id=data)
+                    bob.status="cod"
+                    bob.save()
+            return render(request,'package/paymentstatus.html',{'response': {'RESPCODE':'01'}})
+        return redirect(request.path)
     return render(request,'package/booknow.html',res)
 @csrf_exempt
 def handlepaytm(request):
@@ -134,11 +166,11 @@ def handlepaytm(request):
     if verify:
         if response_dict['RESPCODE'] == '01':
             tempbook = tempbooking.objects.get(tempbookingid = response_dict['ORDERID'])
-            for data in tempbook.bookingid.split(','):
-                if len(data)>0:
-                    bob =Booking.objects.get(id=data)
-                    bob.status="success"
-                    bob.save()
+            tempbook.status = 'success'
+            tempbook.save()
+            for bob in tempbook.bookingid.all():
+                bob.status="success"
+                bob.save()
             response_dict['couse'] = float(response_dict['TXNAMOUNT'])
         else:
             try:
@@ -202,3 +234,36 @@ def search(request):
             result = paginator.page(paginator.num_pages)
         res['result'] = result
     return render(request,'package/search.html',res)
+
+def validateCoupen(request,code,ordervalue):
+    res= {}
+    res['code'] = code
+    res['success'] = False
+    if code is None or len(code)==0:
+        res['message'] = "please add coupen code"
+        res
+    couponob = coupon.objects.filter(Generate_coupon=code,active='1')
+    if not couponob.exists():
+        res['message'] = "Please Enter a valid coupen code"
+        return res
+    couponob = couponob[0]
+    if  datetime.now().date() > couponob.Coupon_expire_date:
+        res['message'] = "This Coupen is expired"
+        return res
+    if tempbooking.objects.filter(user=request.user.id,coupon=code,status='success').exists():
+        res['message'] = "You Already Used This Coupen"
+        return res
+    if couponob.minimum_order_value > float(ordervalue):
+        res['message'] = f'minimum ₹{couponob.minimum_order_value} ordervalue is required'
+        return res
+    res['success'] = True
+    res['message']=couponob.message
+    res['discount'] = couponob.discount
+    return res
+@login_required(login_url='userlogin')
+def getCoupenDetails(request):
+    code = request.GET.get('coupen')
+    ordervalue = request.GET.get('ordervalue')
+    res= validateCoupen(request,code,ordervalue)
+    return JsonResponse(res)
+    

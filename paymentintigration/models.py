@@ -1,3 +1,4 @@
+from tkinter.tix import Tree
 from django.db import models
 
 # Create your models here.
@@ -42,3 +43,21 @@ class paypalConfig(models.Model):
             data=paypalConfig.objects.all().exclude(id=self.id)
             data.update(activate=False)
         super(paypalConfig, self).save(*args, **kwargs)
+
+class PaytmTransaction(models.Model):
+    ORDERID = models.CharField(max_length=50,blank=True)
+    TXNID = models.CharField(max_length=50,blank=True)
+    STATUS = models.CharField(max_length=50,blank=True)
+    TXNAMOUNT = models.CharField(max_length=50,blank=True)
+    CURRENCY = models.CharField(max_length=4,blank=True)
+    GATEWAYNAME = models.CharField(max_length=15,blank=True)
+    RESPMSG = models.CharField(max_length=50,blank=True)
+    BANKNAME = models.CharField(max_length=50,blank=True)
+    PAYMENTMODE = models.CharField(max_length=50,blank=True)
+    MID = models.CharField(max_length=50,blank=True)
+    RESPCODE = models.CharField(max_length=50,blank=True)
+    BANKTXNID = models.CharField(max_length=50,blank=True)
+    TXNDATE = models.DateTimeField()
+    CHECKSUMHASH = models.CharField(max_length=50,blank=True)
+    def __str__(self) -> str:
+        return super().__str__()

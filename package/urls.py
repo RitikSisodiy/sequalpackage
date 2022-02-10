@@ -18,6 +18,7 @@ from . import views
 urlpatterns = [
     path('testurl/',views.test,name="testurl"),
     path('search/',views.search,name="search"),
+    path('getCoupenDetails/',views.getCoupenDetails,name="getCoupenDetails"),
     path('Handlepayment/', views.handlepaytm , name="handlePaytm"),
     path('package/<slug:slug>/', views.packagedetails , name="packagedetails"),
     path('test/<slug:slug>/', views.testdetails , name="testdetails"),
