@@ -1,4 +1,4 @@
-from tkinter.tix import Tree
+
 from django.db import models
 
 # Create your models here.
