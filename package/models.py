@@ -225,7 +225,7 @@ class Faqs(models.Model):
         return F"{self.question}" 
 class tempbooking(models.Model):
     user = models.ForeignKey('UserData.User',blank=True,on_delete=models.SET_NULL,null=True,related_name='tempbooking')
-    bookingid = models.ManyToManyField("UserData.Booking",null=True,related_name="Transtaction") #csv formate
+    bookingid = models.ManyToManyField("UserData.Booking",related_name="Transtaction") #csv formate
     # bookingid = models.TextField() #csv formate
     tempbookingid = models.CharField(max_length=20)
     coupon = models.CharField(max_length=50,blank=True)
