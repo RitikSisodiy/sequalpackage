@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='booking',
             name='bookingfor',
-            field=models.CharField(choices=[('self', 'self'), ('child', 'child'), ('perent', 'perent'), ('grand parent', 'grand parent'), ('friend', 'friend'), ('relative', 'relative'), ('other', 'other'), ('collieague', 'collieague'), ('other', 'other')], default=django.utils.timezone.now, max_length=20),
+            field=models.CharField(choices=[('self', 'self'), ('child', 'child'), ('perent', 'perent'), ('grand parent', 'grand parent'), ('friend', 'friend'), ('relative', 'relative'), ('other', 'other'), ('collieague', 'collieague'), ('other', 'other')], max_length=20),
             preserve_default=False,
         ),
         migrations.AddField(
