@@ -2655,7 +2655,7 @@ body {
 .otp-page .login-container .carousel-item {
     position: relative;
     height: 80vh;
-    background: url("../images/left-div-background.jpg");
+    background: url("../images/div-background.jpg");
     background-size: cover;
     background-position: center;
     color: #fff;
