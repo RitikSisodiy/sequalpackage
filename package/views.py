@@ -1,15 +1,14 @@
-from unittest import result
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
-from razorpay import Order, Payment
-from .models import package, tempbooking,Subcategory,test,category,coupon
+from .models import package, tempbooking,Subcategory,test,category, coupon , profile
 from UserData.models import cart,Family,Booking, userAddress
 from datetime import datetime
 from itertools import chain
 from paymentintigration.views import getPaytmParam, verifyPaymentRequest
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+# from django.contrib.postgres.aggregates import ArrayAgg
 # Create your views here.
 def packagedetails(request,slug):
     res = {}
@@ -109,7 +108,6 @@ def booknow(request,slug,type):
             val = request.POST[data]
             if 'member' in data and val == "on":
                 familymember.append(data)
-        bookingids = ''
         ammount = 0.0
         tran = tempbooking(user=request.user,ammount=0)
         tran.save()
@@ -202,12 +200,13 @@ def searchinModel(modelname,qry):
         from django.db.models import  Q
         from django.db.models import CharField
         fields = [f for f in modelname._meta.fields if isinstance(f, CharField)]
-        queries = [Q(**{f.name+'__icontains': qry}) for f in fields]
+        queries = [Q(**{f.name+'__contains': qry}) for f in fields]
         qs = Q()
         for query in queries:
             qs = qs | query
         print(qs)
         res = modelname.objects.filter(qs)
+        print(res)
         return res
     return []
 def search(request):
@@ -222,9 +221,11 @@ def search(request):
         #     searchresult.append(data)
         # for data in searchinModel(package,qry):
         #     searchresult.append(data)
-        searchresult = list(chain(searchinModel(test,qry),searchinModel(package,qry)))
-        # if searchresult:
-        #     searchresult = [searchresult[0] for data in range(0,100)]
+        profiles = searchinModel(profile,qry)
+        result = set()
+        for data in profiles:
+            result = result.union(set(data.package.all())) 
+        searchresult = list(chain(searchinModel(test,qry),searchinModel(package,qry),result))
         paginator = Paginator(searchresult, 12)
         try:
             result = paginator.page(page)

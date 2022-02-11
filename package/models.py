@@ -142,7 +142,7 @@ class package(models.Model):
     Package_id = models.CharField(max_length=50,blank=True)
     Package_name = models.CharField(max_length=50)
     package_category = models.ManyToManyField(Subcategory,blank=True,related_name="package")
-    Porfile_collection = models.ManyToManyField(profile)
+    Porfile_collection = models.ManyToManyField(profile,related_name='package')
     Package_descrption = RichTextUploadingField()
     Package_price = models.FloatField()
     Package_for = models.ManyToManyField(PackageAvailablefor)
