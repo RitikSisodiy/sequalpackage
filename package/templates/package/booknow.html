@@ -112,7 +112,7 @@
                             {% endfor %}
                         </div>
                         <div class="Addressbuttons">
-                            <a href="{% url 'family' %}?next={{request.path}}"><button onclick="window.location='{% url 'family' %}?next={{request.path}}'" class="mx-2">Add More
+                            <a href="{% url 'family' %}?next={{request.path}}"><button type="button" onclick="window.location='{% url 'family' %}?next={{request.path}}'" class="mx-2">Add More
                                     Member</button></a>
                             <button type="button" class="mx-2" data-toggle="collapse" data-target="#collapseExample"
                                 aria-expanded="false" aria-controls="collapseExample">next</button>
@@ -151,7 +151,7 @@
                             </div>
                             <small>* Choose sample collection date & time to proceed further</small>
                             <div class="Addressbuttons">
-                                <a href="{% url 'address' %}?next={{request.path}}"><button onclick="window.location='{% url 'address' %}?next={{request.path}}'" class="mx-2">Add More
+                                <a href="{% url 'address' %}?next={{request.path}}"><button type="button" onclick="window.location='{% url 'address' %}?next={{request.path}}'" class="mx-2">Add More
                                         Address</button></a>
                                 <button class="mx-2" type="button" data-toggle="collapse"
                                     data-target="#collapseExample1" aria-expanded="false"

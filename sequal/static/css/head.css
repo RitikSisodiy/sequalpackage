@@ -4,8 +4,8 @@
  */
 @font-face {
     font-family: FontAwesome;
-    src: url(https://cdn1.healthians.com/fonts/fontawesome-webfont.eot?v=4.7.0);
-    src: url(https://cdn1.healthians.com/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0) format('embedded-opentype'), url(https://cdn1.healthians.com/fonts/fontawesome-webfont.woff2?v=4.7.0) format('woff2'), url(https://cdn1.healthians.com/fonts/fontawesome-webfont.woff?v=4.7.0) format('woff'), url(https://cdn1.healthians.com/fonts/fontawesome-webfont.ttf?v=4.7.0) format('truetype'), url(https://cdn1.healthians.com//fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular) format('svg');
+    src: url(/static/fonts/fontawesome-webfont.eot?v=4.7.0);
+    src: url(/static/fonts/fontawesome-webfont.eot?#iefix&v=4.7.0) format('embedded-opentype'), url(/static/fonts/fontawesome-webfont.woff2?v=4.7.0) format('woff2'), url(/static/fonts/fontawesome-webfont.woff?v=4.7.0) format('woff'), url(/static/fonts/fontawesome-webfont.ttf?v=4.7.0) format('truetype'), url(/static//fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular) format('svg');
     font-weight: 400;
     font-style: normal
 }
@@ -3344,8 +3344,8 @@ th {
 
 @font-face {
     font-family: 'Glyphicons Halflings';
-    src: url(https://cdn2.healthians.com/css/fonts/glyphicons-halflings-regular.eot);
-    src: url(https://cdn2.healthians.com/css/fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'), url(https://cdn2.healthians.com/css/fonts/glyphicons-halflings-regular.woff2) format('woff2'), url(https://cdn2.healthians.com/css/fonts/glyphicons-halflings-regular.woff) format('woff'), url(https://cdn2.healthians.com/css/fonts/glyphicons-halflings-regular.ttf) format('truetype'), url(https://cdn2.healthians.com/css/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg')
+    src: url(/static/css/fonts/glyphicons-halflings-regular.eot);
+    src: url(/static/css/fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'), url(/static/css/fonts/glyphicons-halflings-regular.woff2) format('woff2'), url(/static/css/fonts/glyphicons-halflings-regular.woff) format('woff'), url(/static/css/fonts/glyphicons-halflings-regular.ttf) format('truetype'), url(/static/css/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg')
 }
 
 .glyphicon {
@@ -14082,7 +14082,7 @@ header .navbar-default .navbar-nav li:first-child a {
     margin: 0;
     background-color: transparent;
     margin-bottom: 10px;
-    background-image: url(https://cdn1.healthians.com/img/slider-active.png);
+    background-image: url(/static/img/slider-active.png);
     width: 16px;
     height: 16px
 }
@@ -14091,7 +14091,7 @@ header .navbar-default .navbar-nav li:first-child a {
     background-color: #fff;
     margin-bottom: 10px;
     background-color: transparent;
-    background-image: url(https://cdn1.healthians.com/img/slider.png);
+    background-image: url(/static/img/slider.png);
     width: 16px;
     height: 16px
 }
@@ -23647,7 +23647,7 @@ ul.tabs {
 .filters .caret {
     position: absolute;
     border: none;
-    background-image: url(https://cdn1.healthians.com/img/dropdown-arrow.png);
+    background-image: url(/static/img/dropdown-arrow.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: 12px;
@@ -23797,7 +23797,7 @@ ul.tabs {
 }
 
 .certified {
-    background-image: url(https://cdn1.healthians.com/img/button-bg.jpg);
+    background-image: url(/static/img/button-bg.jpg);
     background-repeat: no-repeat;
     margin-top: 0;
     margin-bottom: 20px;
@@ -25527,7 +25527,7 @@ img.lazy {
 
 #view-arrow::after {
     content: '';
-    background-image: url(https://cdn1.healthians.com/img/arrow-view.png);
+    background-image: url(/static/img/arrow-view.png);
     background-size: 18px;
     width: 18px;
     height: 10px;
@@ -26562,7 +26562,7 @@ a.viewriskhabit {
 }
 
 .hb-circle {
-    background-image: url(https://cdn2.healthians.com/img/heart-icon-bg.png);
+    background-image: url(/static/img/heart-icon-bg.png);
     background-repeat: no-repeat;
     background-size: contain;
     width: 110px;
@@ -26574,7 +26574,7 @@ a.viewriskhabit {
 }
 
 .hb-circle {
-    background-image: url(https://cdn2.healthians.com/img/heart-icon-bg.png);
+    background-image: url(/static/img/heart-icon-bg.png);
     background-repeat: no-repeat;
     background-size: contain;
     width: 140px;
@@ -26602,7 +26602,7 @@ a.viewriskhabit {
 }
 
 .hb-circle-red {
-    background-image: url(https://cdn2.healthians.com/img/heart-icon-red.png);
+    background-image: url(/static/img/heart-icon-red.png);
     background-repeat: no-repeat;
     background-size: contain;
     width: 110px;
@@ -27983,27 +27983,27 @@ label {
 }
 
 .ic_user {
-    background: url(https://cdn1.healthians.com/img/ic_user.png) left center no-repeat
+    background: url(/static/img/ic_user.png) left center no-repeat
 }
 
 .ic_family {
-    background: url(https://cdn1.healthians.com/img/ic_family.png) left center no-repeat
+    background: url(/static/img/ic_family.png) left center no-repeat
 }
 
 .ic_age {
-    background: url(https://cdn1.healthians.com/img/ic_age.png) left center no-repeat
+    background: url(/static/img/ic_age.png) left center no-repeat
 }
 
 .ic_phone {
-    background: url(https://cdn1.healthians.com/img/ic_phone.png) left center no-repeat
+    background: url(/static/img/ic_phone.png) left center no-repeat
 }
 
 .ic_email {
-    background: url(https://cdn1.healthians.com/img/ic_email.png) left center no-repeat
+    background: url(/static/img/ic_email.png) left center no-repeat
 }
 
 .ic_date {
-    background: url(https://cdn1.healthians.com/img/ic_date.png) left center no-repeat
+    background: url(/static/img/ic_date.png) left center no-repeat
 }
 
 .iconspace {

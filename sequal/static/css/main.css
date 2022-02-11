@@ -2496,10 +2496,11 @@ body {
 .login-page .login-container .carousel-item {
     position: relative;
     height: 80vh;
-    background: url("../images/left-div-background.jpg");
+    background: url("../images/Login Image.jpg");
     background-size: cover;
     background-position: center;
     color: #fff;
+    box-shadow: 4px 4px 0px #00000040, inset 0 0 0 1000px rgb(1 1 1 / 24%);
 }
 
 .login-page .login-container .col-lg-6 {
