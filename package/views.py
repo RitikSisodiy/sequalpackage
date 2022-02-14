@@ -200,7 +200,7 @@ def searchinModel(modelname,qry):
         from django.db.models import  Q
         from django.db.models import CharField
         fields = [f for f in modelname._meta.fields if isinstance(f, CharField)]
-        queries = [Q(**{f.name+'__contains': qry}) for f in fields]
+        queries = [Q(**{f.name+'__icontains': qry}) for f in fields]
         qs = Q()
         for query in queries:
             qs = qs | query
@@ -222,10 +222,13 @@ def search(request):
         # for data in searchinModel(package,qry):
         #     searchresult.append(data)
         profiles = searchinModel(profile,qry)
+        print(profiles)
         result = set()
         for data in profiles:
             result = result.union(set(data.package.all())) 
+        print(result)
         searchresult = list(chain(searchinModel(test,qry),searchinModel(package,qry),result))
+        print(searchresult)
         paginator = Paginator(searchresult, 12)
         try:
             result = paginator.page(page)
