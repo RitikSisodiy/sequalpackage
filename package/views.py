@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.csrf import csrf_exempt
@@ -98,7 +99,11 @@ def booknow(request,slug,type):
         date = request.POST['colletiondate']
         time = request.POST['colletiontime']
         datime = datetime.strptime(date+" "+time,'%Y-%m-%d %H:%M')
-        address = request.POST['address']
+        try:
+            address = request.POST['address']
+        except Exception:
+            messages.error(request,"Please add Address first")
+            return redirect(request.path)
         coupencode = request.POST['coupencode']
         address = res['address'].filter(id=address)[0]
         paymode = request.POST['payoption']
