@@ -5,7 +5,7 @@
             <h4>{{data.Package_name}}</h4>
             Includes : {{data.Porfile_collection.count}} Parameter
             <ul>
-                {% for profile in data.Porfile_collection.all|slice:":4" %}
+                {% for profile in data.Porfile_collection.all|slice:":3" %}
                 <li>{{profile.Profile_Name}}</a> </li>
                 {% endfor %}
             </ul>
