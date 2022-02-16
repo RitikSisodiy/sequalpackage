@@ -154,11 +154,11 @@ def booknow(request,slug,type):
             tempbook = tempbooking.objects.get(tempbookingid = tran.tempbookingid)
             tempbook.status = 'success'
             tempbook.save()
-            for data in tempbook.bookingid.split(','):
-                if len(data)>0:
-                    bob =Booking.objects.get(id=data)
-                    bob.status="cod"
-                    bob.save()
+            for data in tempbook.bookingid.all():
+                # if len(data)>0:
+                    # bob =Booking.objects.get(id=data)
+                data.status="cod"
+                data.save()
             return render(request,'package/paymentstatus.html',{'response': {'RESPCODE':'01'}})
         return redirect(request.path)
     return render(request,'package/booknow.html',res)
@@ -178,10 +178,10 @@ def handlepaytm(request):
         else:
             try:
                 tempbook = tempbooking.objects.get(tempbookingid = response_dict['ORDERID'])
-                for data in tempbook.bookingid.split(','):
-                    if len(data)>0:
-                        bob =Booking.objects.get(id=data)
-                        bob.delete()
+                for data in tempbook.bookingid.all():
+                    # if len(data)>0:
+                        # bob =Booking.objects.get(id=data)
+                    data.delete()
             except Exception as e:
                 pass
     else:

@@ -90,13 +90,13 @@ class test(models.Model):
         return super().delete()
     def save(self, *args, **kwargs):
         if self.discount:
-            if self.id is None or len(self.slug)==0:
-                self.slug = unique_slug_generator(package,self.test_name)
             discount = float(self.discount.replace("%",''))
             if '%' in self.discount:
                 self.final_cost = self.test_price -((self.test_price*discount)/100)
             else:
                 self.final_cost = self.test_price - discount
+        if self.id is None or len(self.slug)==0:
+                self.slug = unique_slug_generator(package,self.test_name)
         super(test, self).save(*args, **kwargs)
         if len(self.test_uniqueId)<1:
             self.test_uniqueId = "Stest"+F"{self.id}"
