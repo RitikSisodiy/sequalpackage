@@ -106,7 +106,11 @@ def booknow(request,slug,type):
             return redirect(request.path)
         coupencode = request.POST['coupencode']
         address = res['address'].filter(id=address)[0]
-        paymode = request.POST['payoption']
+        try:
+            paymode = request.POST['payoption']
+        except Exception:
+            messages.error(request,"Please select payment mode ")
+        
         forself = True if request.POST['self'] == 'on' else False
         familymember = []
         for data in request.POST:
