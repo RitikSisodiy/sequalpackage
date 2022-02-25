@@ -89,7 +89,7 @@ class Booking(models.Model):
         ('other','other'),
     )
     statuschoice=(
-        ('cod','Cash On Delhivery'),
+        ('cod','Cash on sample collection'),
         ('success','success'),
         ('pending','pending'),
         ('failed','failed'),

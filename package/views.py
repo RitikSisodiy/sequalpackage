@@ -1,6 +1,8 @@
+from msilib.schema import File
 from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
+from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from .models import package, tempbooking,Subcategory,test,category, coupon , profile
@@ -73,6 +75,9 @@ def getbysubcategory(request,subcategory=None,catename=None,type='package'):
 @login_required(login_url='userlogin')
 def booknow(request,slug,type):
     res= {}
+    if len(request.user.first_name.replace(' ','')) == 0:
+        path = reverse("registration")+ "?next="+request.get_full_path()
+        return redirect(path)
     res['member'] = request.user.Family.all()
     if type=='package':
         buypackage = package.objects.get(slug=slug)
@@ -169,6 +174,7 @@ def handlepaytm(request):
     if verify:
         if response_dict['RESPCODE'] == '01':
             tempbook = tempbooking.objects.get(tempbookingid = response_dict['ORDERID'])
+            response_dict['booking'] = tempbook
             tempbook.status = 'success'
             tempbook.save()
             for bob in tempbook.bookingid.all():
@@ -231,8 +237,12 @@ def search(request):
         result = set()
         for data in profiles:
             result = result.union(set(data.package.all())) 
+        filtertest = searchinModel(test,qry)
+        for data in filtertest:
+            result = result.union(set(package.objects.filter(Porfile_collection__Select_Test_id=data.id))) 
         print(result)
-        searchresult = list(chain(searchinModel(test,qry),searchinModel(package,qry),result))
+        result = result.union(set(searchinModel(package,qry)))
+        searchresult = list(chain(filtertest.filter(final_cost__gt=0),result))
         print(searchresult)
         paginator = Paginator(searchresult, 12)
         try:

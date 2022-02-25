@@ -54,11 +54,22 @@
                                     <h2 id="add_edit_title">Add New Address</h2>
                                     <img class="lazy-loaded" data-src="/img/underline.png" alt="underline" src="/static/images/underline.png">
                                 </div>
-        
+                                
                                 <div class="clearfix"></div>                       
                                 
                                 {% csrf_token %}
                                 <div class="text-success my-2" id="infomessage"></div>
+                                
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 normal-input">
+                                    <label>Pincode *</label>
+                                    <div class="text-danger" id="errormsg" ></div>
+                                    <input autocomplete="off" id="pincode" maxlength="6" minlength="6" name="pin" placeholder="Enter Pincode" required="true" tabindex="3" type="text"><br>
+                                    
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 normal-input">
+                                    <label>City, State</label>
+                                    <input  id="city_state" name='city_state' placeholder="Enter your City, State" tabindex="3" type="text"  >
+                                </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 normal-input loc_autodiv">
                                     <label class="loc_label">Colony / Area / Sector* 
                                     </label>
@@ -78,16 +89,7 @@
                                     <label>House No. / Flat / Building / Landing *</label>
                                     <input autocomplete="off" id="house_number" name="houseno" maxlength="512" placeholder="Enter House Number" required="true" tabindex="1" type="text" >
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 normal-input">
-                                    <label>Pincode *</label>
-                                    <div class="text-danger" id="errormsg" ></div>
-                                    <input autocomplete="off" id="pincode" maxlength="6" minlength="6" name="pin" placeholder="Enter Pincode" required="true" tabindex="3" type="text"><br>
-                                    
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 normal-input">
-                                    <label>City, State</label>
-                                    <input  id="city_state" name='city_state' placeholder="Enter your City, State" tabindex="3" type="text"  >
-                                </div>
+                                
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="reminds">
                                         <div class="checkbox checkbox-info checkbox-circle">

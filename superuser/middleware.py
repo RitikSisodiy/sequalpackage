@@ -19,7 +19,10 @@ def simple_middleware(get_response):
                     response = redirect(rev)
             else:
                 if request.user.is_authenticated:
-                    response = get_response(request)
+                    if len(request.user.first_name.replace(' ','')) == 0:
+                        response = redirect("registration")
+                    else:
+                        response = get_response(request)
                 else:
                     rev = reverse('userlogin') + "?next="+request.get_full_path()
                     response = redirect(rev)

@@ -3018,7 +3018,6 @@ body {
 
 .upload-page .second .first-row::before {
     position: absolute;
-    content: url("../images/recomondation-bg.png");
     right: 0px;
     top: 0;
     height: 100%;

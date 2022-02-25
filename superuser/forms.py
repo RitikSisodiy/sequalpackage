@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from django.contrib.auth.models import User
+from UserData.models import User
 
 # from .models import about
 from django.contrib.admin import (
@@ -13,7 +13,11 @@ def GenForm(Model,listHiddenfield=[],disablefield=[]):
     class newform(forms.ModelForm):
         class Meta:
             model = Model
-            exclude = ('id',)
+            print()
+            if Model.__module__=="UserData.models":
+                fields = ['first_name','last_name','phone','email','last_login','username','dob','profile','gender','date_joined']
+            else:
+                exclude = ('id',) 
             widgets = data
         def __init__(self, *args, **kwargs):
             super(newform, self).__init__(*args, **kwargs)
@@ -40,7 +44,8 @@ def GenForm(Model,listHiddenfield=[],disablefield=[]):
                         self.fields[f.name].widget,
                         self.instance._meta.get_field(f.name).remote_field,
                         admin_site
-                    )
+                        )
+                        self.fields[f.name].empty_label = f"Select a {f.name}"
                     except Exception:
                         pass 
                            

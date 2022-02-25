@@ -80,6 +80,10 @@
                                 {% if data.bookingfor == 'self' %}
                                 <tbody>
                                     <tr>
+                                        <td class="db_titlecaption">Booking id : </td>
+                                        <td class="db_titleinfo">#{{data.Booking_id}}</td>
+                                    </tr>
+                                    <tr>
                                         <td class="db_titlecaption">Booking For : </td>
                                         <td class="db_titleinfo">{{user.first_name|title}} {{user.last_name|title}}</td>
                                     </tr>
@@ -111,13 +115,17 @@
                                             {% if data.status == 'success' %}
                                             <span class="badge badge-success" >Paid</span>
                                             {% else %}
-                                            <span class="badge badge-secondary">Cash on Delhivery</span>
+                                            <span class="badge badge-secondary">Cash on sample collection</span>
                                             {% endif %}
                                         </td>
                                     </tr>
                                 </tbody>
                                 {% else %}
                                 <tbody>
+                                    <tr>
+                                        <td class="db_titlecaption">Booking id : </td>
+                                        <td class="db_titleinfo">#{{data.Booking_id}}</td>
+                                    </tr>
                                     <tr>
                                         <td class="db_titlecaption">Booking For : </td>
                                         <td class="db_titleinfo">{{data.member.name}}</td>
@@ -150,7 +158,7 @@
                                             {% if data.status == 'success' %}
                                             <span class="badge badge-success">Paid</span>
                                             {% else %}
-                                            <span class="badge badge-secondary">Cash on Delhivery</span>
+                                            <span class="badge badge-secondary">Cash on sample collection </span>
                                             {% endif %}
                                         </td>
                                     </tr>
