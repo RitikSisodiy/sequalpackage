@@ -24,7 +24,6 @@ def sendmail(instance,to):
             plain_message,
             from_email,
             to,
-            headers={'Reply-To': from_email},
             connection=backend
     )
     email.attach("report",instance.report.file.read(),instance.content_type)

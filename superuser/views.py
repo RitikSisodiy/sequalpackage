@@ -286,7 +286,7 @@ def logindashboard(request):
 def getEmailBackend():
     config = emailSetup.objects.get(activate=True)
     backend = EmailBackend(host=config.host, port=config.port, username=config.email, 
-                       password=config.password, use_tls=config.tsl )
+                       password=config.password, use_tls=config.tsl,use_ssl=config.ssl )
     return backend , config
 
 
