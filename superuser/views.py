@@ -72,7 +72,8 @@ def showObject(request,appname,modelname):
     res = {}
     mymodel = getObjectbyAppModelName(appname,modelname)
     res['modeldata'] = mymodel.objects.all()
-    if mymodel.__module__ == "UserData.models":
+    if mymodel._meta.object_name=='User' and mymodel._meta.app_label=="UserData":
+    # if mymodel.__module__ == "UserData.models":
         res['fields'] = [['id','type'],['first_name','type'],['last_name','type'],['phone','type'],['email','type'],['last_login','type'],['username','type'],['dob','type'],['profile','type'],['gender','type'],['date_joined','type']]
     else:
         res['fields'] = [[f.name,str(type(f))] for f in mymodel._meta.fields]

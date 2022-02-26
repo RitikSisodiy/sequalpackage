@@ -76,6 +76,7 @@
                 <input type="submit" id="otp-form-submit" value="submit">
             </div>
         </form>
+        <div id="otperror" class=" mx-4 mt-2"></div>
         <input type="submit" onclick="$('#otp-form-submit').click()" value="Login">
         <p class="proceed text-center mt-5">By proceeding, you agree with our <span class="text-danger">Terms and
                 Conditions</span> &amp; <span class="text-danger">Privacy Policy</span></p>
@@ -108,27 +109,6 @@
     }
 });
 });
-$("#otp-form").submit(function (e) {
-
-e.preventDefault(); // avoid to execute the actual submit of the form.
-
-var form = $(this);
-var actionUrl = form.attr('action');
-var method = form.attr('method')
-var loadingdiv = $("#loadingdiv")
-loadingdiv.html(`<center><img src="/static/Spinner-1s-44px.gif" alt="loading"></center>`)
-$.ajax({
-    type: method,
-    url: actionUrl,
-    data: form.serialize(), // serializes the form's elements.
-    success: function (data) {
-        if (data.login){
-            window.location.href = data.next;  // show response from the php script.
-        }
-    }   
-});
-
-});
 var countDownDate = new Date("{{expire|date:"M d , Y H:i:s"}}").getTime();
 
 // Update the count down every 1 second
@@ -153,7 +133,57 @@ var x = setInterval(function() {
   // If the count down is over, write some text 
   if (distance < 0) {
     clearInterval(x);
-    document.getElementById("coundown").innerHTML = "EXPIRED";
+    var otpstatus = "EXPIRED"
+    document.getElementById("coundown").innerHTML = otpstatus;
   }
 }, 1000);
+$("#otp-form").submit(function (e) {
+
+e.preventDefault(); // avoid to execute the actual submit of the form.
+
+var form = $(this);
+var actionUrl = form.attr('action');
+var method = form.attr('method')
+var loadingdiv = $("#loadingdiv")
+var otperr = $("#otperror")
+otperr.html('')
+loadingdiv.html(`<center><img src="/static/Spinner-1s-44px.gif" alt="loading"></center>`)
+if (document.getElementById("coundown").innerHTML== "EXPIRED"){
+    otperr.html(`Otp is Expired
+    <form action="{% url 'userlogin' %}?next={{request.GET.next}}" id="loginform" style="display:none">
+                            {% csrf_token %}
+    <input type="hidden" value="+91" readonly>
+    <input type="hidden" placeholder="Enter your Mobile Number" name="phone" id="" maxlength="10" minlength="10" value={{phone}} required  > <br>
+    <div id="otpdiv"></div>
+    <div id="errordiv" class=""></div>
+    <div id="loadingdiv"></div>
+    </form>
+    <a onclick="resendotp()" class="text-danger" style="cursor: pointer;">resend<a>
+    `)
+    return false
+}
+$.ajax({
+    type: method,
+    url: actionUrl,
+    data: form.serialize(), // serializes the form's elements.
+    success: function (data) {
+        if (data.login){
+            window.location.href = data.next;  // show response from the php script.
+        }
+    }   
+});
+
+});
+function resendotp(){
+    $.ajax({
+            type: "POST",
+            url: "{% url 'userlogin' %}?next={{request.GET.next}}",
+            data: $('#loginform').serialize(), // serializes the form's elements.
+            success: function (data) {
+                console.log(data)// show response from the php script.
+                $("#login-container").html(data);
+                $("#pagename").attr('class', 'otp-page')
+            }
+        });
+}
 </script>

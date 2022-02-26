@@ -22,7 +22,7 @@ def GenOtp(phone,userotp=None):
     if userotp is not None:
         return False
     otp = ''.join(random.choices(string.digits, k = 6))
-    expire =  make_aware( current_time + timedelta(minutes=2))
+    expire =  make_aware( current_time )
     temp = TempUser(phone=phone,otp=otp,expire=expire)
     temp.save()
     return temp

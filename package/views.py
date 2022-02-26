@@ -1,4 +1,5 @@
-from msilib.schema import File
+from threading import Thread
+
 from django.contrib import messages
 from django.http import JsonResponse
 from django.shortcuts import redirect, render
@@ -9,8 +10,10 @@ from .models import package, tempbooking,Subcategory,test,category, coupon , pro
 from UserData.models import cart,Family,Booking, userAddress
 from datetime import datetime
 from itertools import chain
+from django.core.mail import EmailMessage
 from paymentintigration.views import getPaytmParam, verifyPaymentRequest
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from superuser.views import getEmailBackend
 # from django.contrib.postgres.aggregates import ArrayAgg
 # Create your views here.
 def packagedetails(request,slug):
@@ -112,7 +115,7 @@ def booknow(request,slug,type):
         coupencode = request.POST['coupencode']
         address = res['address'].filter(id=address)[0]
         paymode = request.POST['payoption']
-        forself = True if request.POST['self'] == 'on' else False
+        forself = True if request.POST.get('self') == 'on' else False
         familymember = []
         for data in request.POST:
             val = request.POST[data]
@@ -159,14 +162,18 @@ def booknow(request,slug,type):
             tempbook = tempbooking.objects.get(tempbookingid = tran.tempbookingid)
             tempbook.status = 'success'
             tempbook.save()
-            for data in tempbook.bookingid.split(','):
-                if len(data)>0:
-                    bob =Booking.objects.get(id=data)
-                    bob.status="cod"
-                    bob.save()
-            return render(request,'package/paymentstatus.html',{'response': {'RESPCODE':'01'}})
+            for data in tempbook.bookingid.all():
+                data.status="cod"
+                data.save()
+                email = data.user.email
+            Thread(target=sendBookingNortification, args=(tempbook.tempbookingid,email)).start()
+            return render(request,'package/paymentstatus.html',{'response': {'RESPCODE':'01','ORDERID':tempbook.tempbookingid}})
         return redirect(request.path)
     return render(request,'package/booknow.html',res)
+def sendBookingNortification(bookinid,emailadress):
+    backend , config = getEmailBackend()
+    email = EmailMessage("Sequal | Order",f'Your Order booked successfully your order id is {bookinid}',config.email,[emailadress],connection=backend)
+    email.send()
 @csrf_exempt
 def handlepaytm(request):
     print(request.POST)
@@ -180,14 +187,14 @@ def handlepaytm(request):
             for bob in tempbook.bookingid.all():
                 bob.status="success"
                 bob.save()
+                email = bob.user.email
+            Thread(target=sendBookingNortification, args=(tempbook.tempbookingid,email)).start()
             response_dict['couse'] = float(response_dict['TXNAMOUNT'])
         else:
             try:
                 tempbook = tempbooking.objects.get(tempbookingid = response_dict['ORDERID'])
-                for data in tempbook.bookingid.split(','):
-                    if len(data)>0:
-                        bob =Booking.objects.get(id=data)
-                        bob.delete()
+                for data in tempbook.bookingid.all():
+                    data.delete()
             except Exception as e:
                 pass
     else:

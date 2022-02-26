@@ -14,10 +14,11 @@ def GenForm(Model,listHiddenfield=[],disablefield=[]):
         class Meta:
             model = Model
             print()
-            if Model.__module__=="UserData.models":
+            if Model._meta.object_name=='User' and Model._meta.app_label=="UserData":
                 fields = ['first_name','last_name','phone','email','last_login','username','dob','profile','gender','date_joined']
             else:
                 exclude = ('id',) 
+            # exclude = ('id',) 
             widgets = data
         def __init__(self, *args, **kwargs):
             super(newform, self).__init__(*args, **kwargs)

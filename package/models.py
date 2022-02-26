@@ -237,5 +237,5 @@ class tempbooking(models.Model):
         if self.id is None:
             now = datetime.now()
             super().save()
-            self.tempbookingid = f'paytm{now.year}{now.month}{now.day}{self.id}'
+            self.tempbookingid = f'PAY{now.year}{now.month}{now.day}{self.id}'
         super().save()

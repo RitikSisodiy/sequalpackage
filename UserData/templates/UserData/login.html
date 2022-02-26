@@ -97,8 +97,9 @@
                         <form action="{% url 'userlogin' %}?next={{request.GET.next}}" id="loginform">
                             {% csrf_token %}
                             <input type="text" value="+91" readonly>
-                            <input type="number" placeholder="Enter your Mobile Number" name="phone" id=""> <br>
+                            <input type="number" placeholder="Enter your Mobile Number" name="phone" id="" maxlength="10" minlength="10" required > <br>
                             <div id="otpdiv"></div>
+                            <div id="errordiv" class="text-danger"></div>
                             <div id="loadingdiv"></div>
                             <input type="submit" value="Login">
                         </form>
@@ -127,7 +128,13 @@
                 var actionUrl = form.attr('action');
                 var input = form.children("input[name=phone]")
                 var otpdiv = $("#otpdiv")
+                var errordiv = $("#errordiv")
                 var loadingdiv = $("#loadingdiv")
+                errordiv.html('')
+                if (input.val().length!=10){
+                    errordiv.html("Please Enter a Valid Phone Number")
+                    return false
+                }
                 loadingdiv.html(`<center><img src="/static/Spinner-1s-44px.gif" alt="loading"></center>`)
                 $.ajax({
                     type: "POST",
