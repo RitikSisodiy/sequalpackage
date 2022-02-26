@@ -31,18 +31,21 @@ def download_file(filepath):
 def dashboard(request):
     res={}
     res['bodyclass'] = "dashboard"
+    res['pagetitle'] = "Dashboard"
     return render(request,'UserData/user/dashboard.html',res)
 def subscription(request):
     res = {}
+    res['pagetitle'] = "Subscriptions"
     res['bodyclass'] = "faimly-friendwraper"
     return render(request,'UserData/user/subscription.html',res)
 
 from operator import itemgetter
 def profile(request):
     res = {}
+    res['pagetitle'] = "Profile"
     if request.method == "POST":
         if request.GET.get('profile') == "update":
-            profile= request.POST.FILES['my_pics']
+            profile= request.FILES['my_pics']
             request.user.profile = profile
             request.user.save()
             messages.success(request,"Profile picture updated")
@@ -64,6 +67,7 @@ def profile(request):
     return render(request,'UserData/user/profile.html',res)
 def booking(request):
     res = {}
+    res['pagetitle'] = "Bookings"
     res['bodyclass'] = "faimly-friendwraper"
     res['Bookings'] = Booking.objects.filter(Q(user=request.user.id) , Q(status='success')|Q(status='cod')).order_by("-id")
     return render(request,'UserData/user/booking.html',res)
@@ -72,11 +76,13 @@ def Report(request,slug=None):
         repofile = report.objects.get(id=slug).report
         return download_file(str(repofile))
     res = {}
+    res['pagetitle'] = "Reports"
     res['reports'] = report.objects.filter(booking__user=request.user)
     res['bodyclass'] = "faimly-friendwraper"
     return render(request,'UserData/user/report.html',res)
 def family(request):
     res = {}
+    res['pagetitle'] = "My Family"
     if request.method=="POST":
         id = request.POST.get('customer_id')
         if id is not None and len(id) != 0:
@@ -157,11 +163,13 @@ def address(request):
     res = {}
     res['bodyclass'] = "faimly-friendwraper"
     res['address'] = userAddress.objects.filter(user=request.user.id)
+    res['pagetitle'] = "Address"
     return render(request,'UserData/user/address.html',res)
 
 
 def uploadprescription(request):
     res= {}
+    res['pagetitle'] = "Upload Prescription"
     res['bodyclass'] = 'upload-page'
     if request.method=="POST":
         print(request.POST,request.FILES)

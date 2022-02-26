@@ -141,7 +141,7 @@ class report(models.Model):
     message = models.TextField(blank=True)
     content_type = models.CharField(null=True, blank=True, max_length=100)
     def __str__(self) -> str:
-        return self.booking
+        return self.booking.Booking_id
     def save(self, *args, **kwargs):
         try:
             self.content_type = self.report.file.content_type

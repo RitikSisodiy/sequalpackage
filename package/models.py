@@ -189,6 +189,9 @@ class coupon(models.Model):
     coupan_name = models.CharField(max_length=50)
     Generate_coupon = models.CharField(max_length=50,help_text="Add coupon or leave blank to genrate automatically..",blank=True,unique=True)
     Coupon_expire_date = models.DateField()
+    quantity = models.IntegerField(default=100)
+    used = models.IntegerField(default=0)
+    remaining = models.IntegerField(default=0)
     Coupon_partical_allowes = models.CharField(max_length = 1,choices=(("1","Yes"),("0","No")))
     Coupon_issed_by = models.ForeignKey('UserData.User',on_delete=models.SET_NULL,null=True,blank=True)
     Coupon_created = models.DateField(auto_now=True) 
@@ -200,6 +203,7 @@ class coupon(models.Model):
         return F"{self.coupan_name} - ( {self.Coupon_id} )"
     def save(self, *args, **kwargs):
         self.Coupon_issed_by = exposed_request.user
+        self.remaining = self.quantity - self.used
         super(coupon, self).save(*args, **kwargs)
         if len(self.Coupon_id)<1:
             self.Coupon_id = "Package"+F"{self.id}"

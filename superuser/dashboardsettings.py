@@ -47,6 +47,8 @@ disablefield = (
     "package.Test.final_cost",
     "package.coupon.Coupon_issed_by",
     "UserData.Booking.Booking_id",
+    "package.coupon.used",
+    "package.coupon.remaining",
    
 )
 

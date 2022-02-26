@@ -274,7 +274,7 @@ footer .logo img {
 }
 
 footer .logo h4 {
-    font-size: 18px;
+    font-size: 13px;
     margin: 10px 0;
 }
 
@@ -284,7 +284,8 @@ footer .links ul li {
 
 footer .links ul li a {
     color: #ffffff;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 700;
 }
 
 footer .social-ico {
@@ -1447,13 +1448,7 @@ body {
     text-decoration: none;
 }
 
-.pregnancy-test-page .check-up-card .discount {
-    color: #115278;
-    font-weight: 1000;
-    padding: 5px 10px;
-    border: 1px solid #115278;
-    border-bottom-right-radius: 10px;
-}
+
 
 .pregnancy-test-page .check-up-card b {
     margin-top: 10px;

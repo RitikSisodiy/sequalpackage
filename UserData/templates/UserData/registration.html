@@ -70,7 +70,7 @@
                              <label>Email Id</label>
                              <input type="email" name="email" oninvalid="this.setCustomValidity('This mail is invalid')" placeholder="Enter your Email" id="" required>
                              <label>Gender</label>
-                             <input type="radio" name="gender" id="mail" value="male" required> <label for="mail" >Male</label> <input type="radio" name="gender" id="female" value="female" required> <label for="female">Female</label> <br>
+                             <input type="radio" name="gender"  value="male" checked required> <label for="mail" >Male</label> <input type="radio" name="gender" id="female" value="female" required> <label for="female">Female</label> <br>
                              <label>Date Of Birth</label>
                              <input type="date" name="dob" id="dob"  required>
                              <input type="submit" value="Register">
@@ -93,7 +93,7 @@
             var mm = String(today.getMonth() + 1).padStart(2, '0');
             var yyyy = today.getFullYear();
 
-            today = 2015 + '-' + mm + '-' + dd;
+            today = yyyy-5 + '-' + mm + '-' + dd;
             $('#dob').attr('max',today);
 
         });

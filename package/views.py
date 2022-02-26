@@ -14,11 +14,13 @@ from django.core.mail import EmailMessage
 from paymentintigration.views import getPaytmParam, verifyPaymentRequest
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from superuser.views import getEmailBackend
+from superuser.forms import GenForm
 # from django.contrib.postgres.aggregates import ArrayAgg
 # Create your views here.
 def packagedetails(request,slug):
     res = {}
     res['package'] = package.objects.get(slug=slug)
+    res['pagetitle'] = res['package'].Package_name
     qry = [data['id'] for data in res['package'].package_category.all().values('id')]
     res['related'] = package.objects.filter(package_category__in=qry).exclude(slug=slug).distinct()
     print(res['related'])
@@ -31,6 +33,7 @@ def packagedetails(request,slug):
 def testdetails(request,slug):
     res = {}
     res['package'] = test.objects.get(slug=slug)
+    res['pagetitle'] = res['package'].test_name 
     qry = [data['id'] for data in res['package'].test_category.all().values('id')]
     res['related'] = test.objects.filter(test_category__in=qry).exclude(slug=slug).distinct()
     totaltest = 0
@@ -49,6 +52,7 @@ def getbysubcategory(request,subcategory=None,catename=None,type='package'):
     if catename is not None:
         slug = catename
         res['category'] = category.objects.get(slug=slug)
+    res['pagetitle'] = res['category'].name
     res['type'] = type
     res['bodyclass'] = "risk-page"
     res['subcate'] = subcategory
@@ -56,9 +60,9 @@ def getbysubcategory(request,subcategory=None,catename=None,type='package'):
     if type=='test':
         # print('working')
         if subcategory is not None:
-            res['packages'] = test.objects.filter(test_category__slug=slug,Publish='1')
+            res['packages'] = test.objects.filter(test_category__slug=slug,Publish='1',final_cost__gt=0)
         else:
-            res['packages'] = test.objects.filter(test_category__category__slug=slug,Publish='1')
+            res['packages'] = test.objects.filter(test_category__category__slug=slug,Publish='1',final_cost__gt=0)
     else:
         if subcategory is not None:
             res['packages'] = package.objects.filter(package_category__slug=slug,Publish='1')
@@ -78,6 +82,7 @@ def getbysubcategory(request,subcategory=None,catename=None,type='package'):
 @login_required(login_url='userlogin')
 def booknow(request,slug,type):
     res= {}
+    res['pagetitle'] = "Book-Now"
     if len(request.user.first_name.replace(' ','')) == 0:
         path = reverse("registration")+ "?next="+request.get_full_path()
         return redirect(path)
@@ -89,13 +94,13 @@ def booknow(request,slug,type):
             totaltest += data.Select_Test_id.all().count()
         res['totaltest'] = totaltest
         res['totleprize'] = float(buypackage.final_cost)*(res['member'].count()+1)
-        res['totalsaving'] =(float(buypackage.Package_price) -float(buypackage.final_cost))*res['member'].count()
+        res['totalsaving'] =(float(buypackage.Package_price) -float(buypackage.final_cost))*(res['member'].count()+1)
         buytest = None
     else:
         buypackage = None
         buytest = test.objects.get(slug=slug)
         res['totleprize'] = float(buytest.final_cost)*(res['member'].count()+1)
-        res['totalsaving'] =(float(buytest.test_price) -float(buytest.final_cost))*res['member'].count()
+        res['totalsaving'] =(float(buytest.test_price) -float(buytest.final_cost))*(res['member'].count()+1)
     res['type'] = type
     res['package'] = buypackage
     res['test'] =buytest
@@ -107,13 +112,19 @@ def booknow(request,slug,type):
         date = request.POST['colletiondate']
         time = request.POST['colletiontime']
         datime = datetime.strptime(date+" "+time,'%Y-%m-%d %H:%M')
-        try:
-            address = request.POST['address']
-        except Exception:
-            messages.error(request,"Please add Address first")
-            return redirect(request.path)
+        if res['address'].exists():
+            try:
+                address = request.POST['address']
+            except Exception:
+                messages.error(request,"Please add Address first")
+                return redirect(request.path)
+        else:
+            form = GenForm(userAddress)(request.POST,instance=None)
+            if form.is_valid():
+                address = form.save()
+                address = address.id
         coupencode = request.POST['coupencode']
-        address = res['address'].filter(id=address)[0]
+        address = userAddress.objects.filter(id=address)[0]
         paymode = request.POST['payoption']
         forself = True if request.POST.get('self') == 'on' else False
         familymember = []
@@ -156,12 +167,24 @@ def booknow(request,slug,type):
                 tran.ammount = amm - float(discount)
         tran.save()
         print(tran.ammount)
+        if int(tran.ammount)<1:
+            tempbook = tempbooking.objects.get(tempbookingid = tran.tempbookingid)
+            tempbook.status = 'success'
+            tempbook.save()
+            validateCoupen(request,coupencode,ammount,use=True)
+            for data in tempbook.bookingid.all():
+                data.status="success"
+                data.save()
+                email = data.user.email
+            Thread(target=sendBookingNortification, args=(tempbook.tempbookingid,email)).start()
+            return render(request,'package/paymentstatus.html',{'response': {'RESPCODE':'01','ORDERID':tempbook.tempbookingid}})
         if paymode == "paytm":
             return getPaytmParam(request,tran.tempbookingid,tran.ammount,request.user.phone,'handlePaytm',"INR")
         elif paymode == "cod":
             tempbook = tempbooking.objects.get(tempbookingid = tran.tempbookingid)
             tempbook.status = 'success'
             tempbook.save()
+            validateCoupen(request,coupencode,ammount,use=True)
             for data in tempbook.bookingid.all():
                 data.status="cod"
                 data.save()
@@ -184,6 +207,7 @@ def handlepaytm(request):
             response_dict['booking'] = tempbook
             tempbook.status = 'success'
             tempbook.save()
+            validateCoupen(request,tempbooking.coupon,response_dict['TXNAMOUNT'],use=True)
             for bob in tempbook.bookingid.all():
                 bob.status="success"
                 bob.save()
@@ -199,7 +223,7 @@ def handlepaytm(request):
                 pass
     else:
             print("order unsuccessful because",response_dict['RESPMSG'])
-    return render(request,'package/paymentstatus.html',{'response': response_dict})
+    return render(request,'package/paymentstatus.html',{'response': response_dict,'pagetitle':'Payment Status'})
 
 def Test(request):
     numbers_list = range(1, 1000)
@@ -231,6 +255,7 @@ def search(request):
     res={}
     res['bodyclass'] = "risk-page"
     qry = request.GET.get('q')
+    res['pagetitle'] = qry
     page = request.GET.get('page',None)
     if qry is not None:
         # searchresult = chain(searchinModel(package,qry),searchinModel(test,qry))
@@ -261,7 +286,7 @@ def search(request):
         res['result'] = result
     return render(request,'package/search.html',res)
 
-def validateCoupen(request,code,ordervalue):
+def validateCoupen(request,code,ordervalue,use=False):
     res= {}
     res['code'] = code
     res['success'] = False
@@ -273,6 +298,13 @@ def validateCoupen(request,code,ordervalue):
         res['message'] = "Please Enter a valid coupen code"
         return res
     couponob = couponob[0]
+    if use:
+        couponob.used = couponob.used+1
+        couponob.save()
+        return res
+    if couponob.remaining > 0:
+        res['message'] = "This Coupen is expired"
+        return res
     if  datetime.now().date() > couponob.Coupon_expire_date:
         res['message'] = "This Coupen is expired"
         return res
@@ -285,6 +317,7 @@ def validateCoupen(request,code,ordervalue):
     res['success'] = True
     res['message']=couponob.message
     res['discount'] = couponob.discount
+    
     return res
 @login_required(login_url='userlogin')
 def getCoupenDetails(request):

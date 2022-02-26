@@ -79,6 +79,39 @@
         display: initial;
         position: relative;
     }
+    .select-member-option input {
+    font-size: 14px;
+    margin: 0;
+    width: 100%;
+    padding: 16px 10px 15px 0;
+    display: block;
+    border: none;
+    border-top-color: currentcolor;
+    border-right-color: currentcolor;
+    border-bottom-color: currentcolor;
+    border-bottom-style: none;
+    border-bottom-width: medium;
+    border-left-color: currentcolor;
+    border-top-color: currentcolor;
+    border-right-color: currentcolor;
+    border-bottom-color: currentcolor;
+    border-bottom-style: none;
+    border-bottom-width: medium;
+    border-left-color: currentcolor;
+    border-bottom: 1px solid #717171;
+    border-bottom-color: #717171;
+    border-bottom-color: #717171;
+    height: 52px;
+    border-radius: 0;
+    line-height: 22px;
+    box-shadow: none !important;
+    margin-bottom: 0;
+}
+.select-member-option .normal-input {
+    margin-bottom: 35px;
+    min-height: 98px;
+}
+
 </style>
 <div class="container">
     <div class="row">
@@ -139,10 +172,56 @@
                                 </div>
                                 {% endfor %}
                                 {% else %}
-                                <div class="alert alert-warning alert-dismissible fade show">
+                                <!-- <div class="alert alert-warning alert-dismissible fade show">
                                     <strong>Warning!</strong> Please Add Atleast One Address
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                                </div>
+                                </div> -->
+                                    <div class="modal-body">
+                                        <div class="col-md-12 row col-xs-12 col-sm-12 col-lg-12 select-member-option">
+            
+                                            <div class="col-sm-12 text-center commonpopup_title">
+                                                <h2 id="add_edit_title">Add New Address</h2>
+                                                <img class="lazy-loaded" data-src="/img/underline.png" alt="underline" src="/static/images/underline.png">
+                                            </div>
+                                            
+                                            <div class="clearfix"></div>                       
+                                            
+                                            {% csrf_token %}
+                                            <div class="text-success my-2" id="infomessage"></div>
+                                            
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 normal-input">
+                                                <label>Pincode *</label>
+                                                <div class="text-danger" id="errormsg" ></div>
+                                                <input autocomplete="off" id="pincode" maxlength="6" minlength="6" name="pin" placeholder="Enter Pincode" required="true" tabindex="3" type="text"><br>
+                                                
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 normal-input">
+                                                <label>City, State</label>
+                                                <input  id="city_state" name='city_state' placeholder="Enter your City, State" tabindex="3" type="text"  >
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 normal-input loc_autodiv">
+                                                <label class="loc_label">Colony / Area / Sector* 
+                                                </label>
+                                                <input type="hidden" name="id" id="addressid">
+                                                <select id="locality" name="city" class="mt-2" placeholder="Enter Locality" required="true" style="
+                                                    width: 100%;
+                                                    border: 0px;
+                                                    border-bottom: 1px solid rgb(113, 113, 113);
+                                                    font-size: 14px;
+                                                    padding-bottom: 11px;
+                                                    border-radius: 0.25rem;" tabindex="-1" class="select2" aria-hidden="true">
+                                                 <option value="" selected="">Select Your City *</option>
+                                                
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 normal-input hno_autodiv">
+                                                <label>House No. / Flat / Building / Landing *</label>
+                                                <input autocomplete="off" id="house_number" name="houseno" maxlength="512" placeholder="Enter House Number" required="true" tabindex="1" type="text" >
+                                            </div>
+                                            
+                                           
+                                           <input type="hidden" id="statein" name="state" >
+                                        </div>
+                                    </div>
                                 {% endif %}
                             </div>
 
@@ -433,5 +512,57 @@
 
         });
     </script>
+     <script src="/static/js/request.js"></script>
+     <script>
+         
+         pinselect = $("#pincode")
+         pinselect.focusin(function(){
+             $("#errormsg").html('')
+         })
+         $("#locality").on('click',function(){
+             $("#infomessage").html("Enter the Pincode we will populate this field for you")
+             setTimeout(() => {
+                 $("#infomessage").html("")
+             }, 5000);
+         })
+     
+         pinselect.focusout( async function(){
+             url = "https://api.cyberflax.tk/"
+             locationsurl = `${url}api/locations/`
+             data = await makerequest(locationsurl,`?pincode=${this.value}&pagesize=1&data=id,city__name,city__state__name`,pinselect,responce=true)
+             if(data.length ==0){
+                 $("#errormsg").html('invalid pincode')
+             }
+             $("#locality").html(`<option value='${data[0].city__name}' >${data[0].city__name}, ${data[0].city__state__name}</option>`)
+             $("#locality").val(data[0].city__name)
+             $("#city_state").val(`${data[0].city__name}, ${data[0].city__state__name}`)
+             $("#statein").val(data[0].city__state__name)
+         })
+         function addAddress(){
+             $("#add_edit_title").text("Add New Address");
+             $("#locality").html(``)
+             $('#add_family_form')[0].reset();   
+         }
+         
+         function editAddress(addressid) {
+             getFamily_api_url = "{% url "getaddress" %}?addressid="+addressid
+             $("#add_edit_title").text("Edit address");
+             $('#add_family_form')[0].reset();
+     
+             $("#addressid").val("");
+             $("#addressid").val(addressid);
+     
+             ajaxCallPromise(getFamily_api_url, "GET", null).then((data)=>{
+                 console.log(data);
+             $("#locality").html(`<option value='${data.city}'>${data.city}</option>`);
+             $("#house_number").val(data.houseno);
+             $("#pincode").val(data.pin);
+             $("#default_status").prop('checked',data.default);
+             $("#city_state").val(data.state);
+             $("statein").prop(data.state);
+                 
+             });
+         }
+     </script>
 
     {% endblock %}

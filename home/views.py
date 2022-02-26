@@ -11,6 +11,7 @@ def index(request):
     # res['packages'] = package.objects.all()
     res['packages'] = package.objects.all()
     res['bodyclass'] = "index-page"
+    res['pagetitle'] = "Home"
     res['categorys'] = category.objects.all()
     res['sliders'] = HomeSlider.objects.all()
     return render(request,'home/index.html',res)
@@ -18,6 +19,7 @@ def contact(request):
     res={}
     res['contactinfo'] = ContactInfo.objects.all()
     res["bodyclass"] = "contant-page"
+    res['pagetitle'] = "Contact"
     if request.method == 'POST':
         form = GenForm(customer_contact)
         form = form(request.POST)

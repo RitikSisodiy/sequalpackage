@@ -31,6 +31,7 @@ def LoginSignUp(request):
     if request.user.is_authenticated:
         return redirect('index')
     res= {}
+    res['pagetitle'] = "Login/SignUp"
     if request.method == "POST":
         print(request.POST)
         phone = request.POST['phone']
@@ -84,6 +85,7 @@ def registration(request):
     if not request.user.is_authenticated:
         return redirect('userlogin')
     res = {}
+    res['pagetitle'] = "Register"
     res['bodyclass'] = "registration-page"
     if request.method =="POST":
         name,email,gender,dob =   itemgetter('name', 'email','gender','dob')(request.POST)
@@ -94,7 +96,7 @@ def registration(request):
         request.user.gender = gender
         request.user.dob = dob
         request.user.save()
-        return redirect("index")
+        return redirect("profile")
     return render(request,'UserData/registration.html',res)
 
 def Logout(request):
