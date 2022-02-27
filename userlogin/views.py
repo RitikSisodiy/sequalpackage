@@ -13,7 +13,7 @@ def GenOtp(phone,userotp=None):
     temp = TempUser.objects.filter(phone=phone)
     current_time = datetime.now()
     if temp.exists():
-        if temp[0].expire > make_aware(current_time ):
+        if temp[0].expire > make_aware(current_time):
             if userotp is not None:
                 return temp[0].otp == userotp
             return temp[0]
