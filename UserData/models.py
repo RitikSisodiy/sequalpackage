@@ -45,6 +45,8 @@ class TempUser(models.Model):
     expire = models.DateTimeField()
     def __str__(self) -> str:
         return self.phone
+    def getExpire(self):
+        return self.expire.__str__()
 
 class userAddress(models.Model):
     user = models.ForeignKey(User,on_delete=models.SET_NULL,blank=True,null=True)

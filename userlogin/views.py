@@ -11,7 +11,7 @@ from django.urls import reverse
 # Create your views here.
 def GenOtp(phone,userotp=None):
     temp = TempUser.objects.filter(phone=phone)
-    current_time = datetime.now()
+    current_time = datetime.utcnow()
     if temp.exists():
         if temp[0].expire > make_aware(current_time):
             if userotp is not None:
@@ -38,7 +38,7 @@ def LoginSignUp(request):
         
         otp = GenOtp(phone)
         
-        data = render(request,'UserData/element/verifyotp.html',{"phone":phone,"expire":otp.expire})
+        data = render(request,'UserData/element/verifyotp.html',{"phone":phone,"expire":otp.getExpire()})
         print(otp.otp)
         enteredotp = request.GET.get('otp')
         # if otp is not None:
