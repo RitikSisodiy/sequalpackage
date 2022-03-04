@@ -22,7 +22,7 @@ def packagedetails(request,slug):
     res['package'] = package.objects.get(slug=slug)
     res['pagetitle'] = res['package'].Package_name
     qry = [data['id'] for data in res['package'].package_category.all().values('id')]
-    res['related'] = package.objects.filter(package_category__in=qry).exclude(slug=slug).distinct()
+    res['related'] = package.objects.filter(package_category__in=qry,Publish="1",final_cost__gt=0).exclude(slug=slug).distinct()
     print(res['related'])
     # print(res['package'].package_category.all().values_list('id'))
     totaltest = 0
@@ -35,7 +35,7 @@ def testdetails(request,slug):
     res['package'] = test.objects.get(slug=slug)
     res['pagetitle'] = res['package'].test_name 
     qry = [data['id'] for data in res['package'].test_category.all().values('id')]
-    res['related'] = test.objects.filter(test_category__in=qry).exclude(slug=slug).distinct()
+    res['related'] = test.objects.filter(test_category__in=qry,Publish="1",final_cost__gt=0).exclude(slug=slug).distinct()
     totaltest = 0
     res['totaltest'] = totaltest
     return render(request,'package/testDetails.html',res)

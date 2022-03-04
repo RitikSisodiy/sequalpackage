@@ -367,7 +367,9 @@
         var oTable = $('table').DataTable( {
             orderCellsTop: true,
             fixedHeader: true,
-            "scrollX": true,
+            "sScrollX": "100%",
+            "sScrollXInner": "110%",
+            "bScrollCollapse": true,
             select: true,
             initComplete: function () {
             var api = this.api();
@@ -436,7 +438,7 @@
             {% endfor %}
         ]
         } );
-        oTable.columns.adjust().draw();
+        oTable.columns.adjust();
         
         function getSelecteddata(){
             var data = $('table tbody').children('tr.selected')
