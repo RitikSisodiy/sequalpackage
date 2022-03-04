@@ -21,7 +21,7 @@ def gen_username(length):
 
 class User(AbstractUser):
     phone = models.CharField(max_length=10)
-    gender = models.CharField(max_length=5,blank=True,null=True)
+    gender = models.CharField(max_length=10,blank=True,null=True)
     dob = models.DateField(blank=True,null=True)
     profile = models.ImageField(upload_to="profiles",default="profile/default.jpg")
 

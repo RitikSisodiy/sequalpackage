@@ -1,14 +1,22 @@
 {% load static %}
+{% load loadheader %}
+{% with ''|getContact as contactdata %}
+
+<style>
+    .footer-item {
+    margin: 20px 0px;
+}
+</style>
 <footer class='p-5'>
     <div class="row">
-        <div class="col-lg-3">
+        <div class="footer-item col-lg-3">
             <div class="logo">
                 <img src="{{aboutdata.logo.url}}" alt="">
                 <h4> AWARDS & RECOGNITIONS</h4>
                 <img src=" {% static 'images/other-logos.png' %} " alt="">
             </div>
         </div>
-        <div class="col-lg-6 links">
+        <div class="footer-item col-lg-6 links">
             <ul>
                 <li><a href="# ">About Us</a></li>
                 <li><a href="# ">Our Labs</a></li>
@@ -24,8 +32,18 @@
                 <li><a href="# ">Our Partner</a></li>
             </ul>
         </div>
-        <div class="col-lg-3">
-            <div class="social-ico">
+        <div class="footer-item col-lg-3">
+
+            <div class="col">
+                <address>
+                   <big><strong>MEET US AT</strong></big><br>
+                   <small>
+
+                       {{contactdata.0.address}}
+                   </small>
+                </address>
+            </div>
+            <div class="social-ico col">
                 <div class="icon">
                     <i class="fa fa-facebook"></i>
                 </div>
@@ -47,3 +65,4 @@
     </div>
 </footer>
 
+{% endwith %}

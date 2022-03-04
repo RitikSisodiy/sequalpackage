@@ -289,7 +289,6 @@ footer .links ul li a {
 
 footer .social-ico {
     display: flex;
-    justify-content: center;
 }
 
 footer .social-ico .icon {
@@ -2606,7 +2605,9 @@ body {
         font-size: 12px;
     }
     .login-page .login-container .col-lg-6:nth-child(2) {
-        height: 70vh;
+        padding: 15px 10px;
+    }
+    .otp-page .login-container .col-lg-6:nth-child(2) {
         padding: 15px 10px;
     }
     .login-page .login-container input[type="text"] {
@@ -2614,6 +2615,18 @@ body {
     }
     .login-page .login-container input[type="number"] {
         width: 70%;
+    }
+    .login-page .login-container .proceed {
+        position: inherit;
+        bottom: 0;
+        left: 0;
+        transform: none;
+    }
+    .otp-page .login-container .proceed {
+        position: inherit;
+        bottom: 0;
+        left: 0;
+        transform: none;
     }
 }
 
