@@ -21593,7 +21593,8 @@ a.query {
     width: 117px;
     height: 118px;
     overflow: hidden;
-    border-radius: 50%
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .media-page .inner-banner p {
