@@ -2710,10 +2710,10 @@ body {
 }
 
 .otp-page .login-container .proceed {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    position: inherit;
+    bottom: 0;
+    left: 0;
+    transform: none;
 }
 
 @media(max-width:911px) {
@@ -2733,7 +2733,7 @@ body {
         font-size: 12px;
     }
     .otp-page .login-container .col-lg-6:nth-child(2) {
-        height: 70vh;
+        height: 100vh;
         padding: 73px 10px;
         }
     .otp-page .login-container input[type="text"] {
