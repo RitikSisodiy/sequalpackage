@@ -457,7 +457,7 @@
             </div>
             {% if related %}
             <h1 class="text-center m-lg-5 mb-5">Related Packages</h1>
-            <div class="slides" style="display:flex; overflow-y:hidden; overflow-x: scroll;">
+            <div class="slides" >
                 {% for data in related %}
                 {% include 'package/component/packageItem.html' with data=data %}
                 {% endfor %}

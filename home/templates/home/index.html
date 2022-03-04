@@ -1,7 +1,7 @@
 {% extends 'basic.html' %}
 {% load static %}
     {% block body %}
-
+  
     <div id="myCarousel" class="carousel slide lazy-load" data-ride="carousel">
         <ol class="carousel-indicators">
             {% for data in sliders %}
@@ -60,7 +60,19 @@
         <div class="text col-lg-6 col-12">
         </div>
         <h1 class="text-center m-5" style="color: #c7250f; font-size: 28px;">Full Body Checkup Packages</h1>
-        <div class="slides" style="display:flex; overflow-y:hidden; overflow-x: scroll;">
+        <div class="slides" >
+            {% for data in packages %}
+            
+            {% include 'package/component/packageItem.html' with data=data %}
+            {% endfor %}
+            {% for data in packages %}
+            
+            {% include 'package/component/packageItem.html' with data=data %}
+            {% endfor %}
+            {% for data in packages %}
+            
+            {% include 'package/component/packageItem.html' with data=data %}
+            {% endfor %}
             {% for data in packages %}
             
             {% include 'package/component/packageItem.html' with data=data %}
@@ -264,4 +276,5 @@
     
         });
     </script>
+    
     {% endblock %}

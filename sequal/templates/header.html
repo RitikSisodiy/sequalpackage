@@ -1,6 +1,9 @@
 {% load static %}
 {% load loadheader %}
 {% with ''|getContact as contactdata %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">
+
         <header style="padding: 20px 0px">
             <div class="navbar">
                 <div class="logo"><a href="{% url 'index' %}"><img src="{{aboutdata.logo.url}} " alt="" class="logo"></a></div>
