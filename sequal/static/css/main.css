@@ -2734,8 +2734,8 @@ body {
     }
     .otp-page .login-container .col-lg-6:nth-child(2) {
         height: 70vh;
-        padding: 15px 10px;
-    }
+        padding: 73px 10px;
+        }
     .otp-page .login-container input[type="text"] {
         width: 45px;
     }
