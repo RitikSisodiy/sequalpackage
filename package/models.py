@@ -241,5 +241,5 @@ class tempbooking(models.Model):
         if self.id is None:
             now = datetime.now()
             super().save()
-            self.tempbookingid = f'PAY{now.year}{now.month}{now.day}{self.id}'
+            self.tempbookingid = f'sequel{now.year}{now.month}{now.day}{self.id}'.upper()
         super().save()

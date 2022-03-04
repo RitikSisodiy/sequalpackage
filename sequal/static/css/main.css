@@ -2462,7 +2462,6 @@ body {
 /* .login-page */
 
 .login-page header {
-    height: 20vh;
     position: relative;
     width: 100vw;
 }
