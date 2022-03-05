@@ -118,9 +118,9 @@ header .navbar nav .bottom ul li {
 }
 
 header .navbar nav .bottom ul a {
-    font-size: 14px;
-    color: #e51f23;
+    color: #ffffff;
     font-weight: normal;
+    font-family: alef;
 }
 
 header .navbar nav .bottom ul li i {
