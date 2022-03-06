@@ -104,12 +104,18 @@ header .navbar nav .top ul li {
 
 header .navbar nav .top ul a {
     font-size: 13px;
-    color: #e51f23;
+    color: #ffffff;
     font-weight: 500;
 }
+header .navbar nav .top ul a:hover,header .navbar nav .bottom ul a:hover {
+    color: #e51f23;
+}
 
+.sub-menu ul.drop-down{
+    background: #e51f23;
+}
 header .navbar nav .top ul li i {
-    color: #00000099;
+    color: #e51f23;
     margin: 0 8px;
 }
 
@@ -120,7 +126,6 @@ header .navbar nav .bottom ul li {
 header .navbar nav .bottom ul a {
     color: #ffffff;
     font-weight: normal;
-    font-family: alef;
 }
 
 header .navbar nav .bottom ul li i {
