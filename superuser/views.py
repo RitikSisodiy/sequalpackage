@@ -109,7 +109,7 @@ def ExportData(request,appname,modelname,type):
         excel_file = IO()
         df_output = pd.DataFrame(values)
         xlwriter = pd.ExcelWriter(excel_file, engine='xlsxwriter')
-        df_output.to_excel(xlwriter, 'sheetname')
+        df_output.to_excel(xlwriter, 'sheetname',index=False)
         xlwriter.save()
         xlwriter.close()
         excel_file.seek(0)
@@ -118,7 +118,7 @@ def ExportData(request,appname,modelname,type):
         response = HttpResponse(excel_file.read(), content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
 
         # set the file name in the Content-Disposition header
-        response['Content-Disposition'] = 'attachment; filename=myfile.xlsx'
+        response['Content-Disposition'] = f'attachment; filename="{appname}-{modelname}.xlsx'
         return response
 from .dashboardsettings import showRelatedOnEditPage
 def editmodel(request,appname=None,modelname=None,objectid=None,opration=None):
