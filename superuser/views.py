@@ -87,21 +87,39 @@ def showObject(request,appname,modelname):
     except:
         pass
     return render(request , 'superuser/modeldatatable.html' ,res)
-
+from io import BytesIO as IO
+import pandas as pd
 def ExportData(request,appname,modelname,type):
-    if type=='excel':
-        mymodel = getObjectbyAppModelName(appname,modelname)
-        modelob = mymodel.objects.all()
+    mymodel = getObjectbyAppModelName(appname,modelname)
+    modelob = mymodel.objects.all()
+    fields = [f.name for f in mymodel._meta.fields]
+    values = [fields]
+    for data in modelob:
+        values.append([ str(getattr(data,name)) for name in fields ])
+        # writer.writerow([ getattr(data,name) for name in fields ])
+    if type=='fexcel':
         response = HttpResponse(content_type='application/vnd.ms-excel;charset=utf-8')
         response['Content-Disposition'] = f'attachment; filename="{appname}-{modelname}.xls"'
-
         writer = csv.writer(response)
-        fields = [f.name for f in mymodel._meta.fields]
         writer.writerow(fields)
-        for data in modelob:
-            writer.writerow([ getattr(data,name) for name in fields ])
+        for data in values:
+            writer.writerow(data)
         return response
+    if type=='excel':
+        excel_file = IO()
+        df_output = pd.DataFrame(values)
+        xlwriter = pd.ExcelWriter(excel_file, engine='xlsxwriter')
+        df_output.to_excel(xlwriter, 'sheetname')
+        xlwriter.save()
+        xlwriter.close()
+        excel_file.seek(0)
 
+        # set the mime type so that the browser knows what to do with the file
+        response = HttpResponse(excel_file.read(), content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+
+        # set the file name in the Content-Disposition header
+        response['Content-Disposition'] = 'attachment; filename=myfile.xlsx'
+        return response
 from .dashboardsettings import showRelatedOnEditPage
 def editmodel(request,appname=None,modelname=None,objectid=None,opration=None):
     res = {}

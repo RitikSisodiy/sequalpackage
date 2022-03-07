@@ -125,7 +125,11 @@ def booknow(request,slug,type):
                 address = address.id
         coupencode = request.POST['coupencode']
         address = userAddress.objects.filter(id=address)[0]
-        paymode = request.POST['payoption']
+        try:
+            paymode = request.POST['payoption']
+        except Exception:
+            messages.error(request,"Please Select Payment option")
+            return redirect(request.path)
         forself = True if request.POST.get('self') == 'on' else False
         familymember = []
         for data in request.POST:
