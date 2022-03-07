@@ -5,7 +5,7 @@
     <div id="myCarousel" class="carousel slide lazy-load" data-ride="carousel">
         <ol class="carousel-indicators">
             {% for data in sliders %}
-            <li data-target="#myCarousel" data-slide-to="{{forloop.counter}}" class=""></li>
+            <li data-target="#myCarousel" data-slide-to="{{forloop.counter}}" class="shadow"></li>
             {% endfor %}
         </ol>
         <div class="carousel-inner">
@@ -83,7 +83,7 @@
                 <div class="text col-12">
                     <h1 style="color: #115278;">{{data.name}} Packages</h1>
                 </div>
-                <div class="slides-2 " style="display:flex; overflow-x: scroll;">
+                <div class="slides-2 ">
                     {% for da in data.subcategory.all %}
                     <div class="col-12 col-lg-4 p-2">
                         <div class="health-card">
@@ -111,9 +111,24 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="cards">
-                    <div class="d-flex justify-content-center">
-                        <img src="/static/images/why choose sequel.jpg" alt="why choose sequal" srcset="">
+                <div class="slides  bg-light">
+                    <div class="shadow">
+                        <img src="/static/images/why choose sequel1.jpg" alt="why choose sequal" srcset="">
+                    </div>
+                    <div class="shadow">
+                        <img src="/static/images/why choose sequel2.jpg" alt="why choose sequal" srcset="">
+                    </div>
+                    <div class="shadow">
+                        <img src="/static/images/why choose sequel3.jpg" alt="why choose sequal" srcset="">
+                    </div>
+                    <div class="shadow">
+                        <img src="/static/images/why choose sequel4.jpg" alt="why choose sequal" srcset="">
+                    </div>
+                    <div class="shadow">
+                        <img src="/static/images/why choose sequel5.jpg" alt="why choose sequal" srcset="">
+                    </div>
+                    <div class="shadow">
+                        <img src="/static/images/why choose sequel6.jpg" alt="why choose sequal" srcset="">
                     </div>
                 </div>
             </div>
@@ -265,5 +280,36 @@
     
         });
     </script>
-    
+     <script>
+        $(document).ready(() => {
+    $('.slides-2').slick({
+        centerMode: true,
+        centerPadding: '60px',
+        slidesToShow: 3,
+        autoplay: true,
+        arrows:false    ,
+        autoplaySpeed: 1000,
+        responsive: [
+          {
+            breakpoint: 768,
+            settings: {
+              arrows: false,
+              centerMode: true,
+              centerPadding: '40px',
+              slidesToShow: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              arrows: false,
+              centerMode: true,
+              centerPadding: '40px',
+              slidesToShow: 1
+            }
+          }
+        ]
+      })
+});
+    </script>
     {% endblock %}
